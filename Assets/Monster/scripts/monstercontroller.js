@@ -52,7 +52,7 @@ var holster1sound : AudioClip;
 var holster2sound : AudioClip;
 private var fightmodus : boolean = false;
 private var didselect : boolean = false;
-private var canattack : boolean = true;
+public var canattack : boolean = true;
 var addvector : Vector3;
 
 function Awake()
@@ -141,8 +141,9 @@ function FixedUpdate()
 		if (Input.GetButton("Fire1")&& canattack)
 		{
 			
-			var currentState : AnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(2);
-			if (currentState.length == 0)
+		    var currentState : AnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(2);
+		    Debug.Log(currentState.length);
+			if (currentState.length == 1)
 			{
    				var attackrandom : int = Random.Range(0,4);
 				animator.SetFloat("random",attackrandom);
