@@ -1,7 +1,11 @@
 fileFormatVersion: 2
 guid: 9ccf2a7548bd3a8418345cc5b2aab9f3
 folderAsset: yes
+<<<<<<< HEAD
 timeCreated: 1462063921
+=======
+timeCreated: 1462063688
+>>>>>>> Enemy_Paradise/master
 licenseType: Free
 DefaultImporter:
   userData: 
