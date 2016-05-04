@@ -55,6 +55,7 @@ public class monster_Cont : Enemy_Parameter{
     private GameObject Player;
 
     private bool event_find = false;
+    private bool event_damage = false;
 
     public float rotSpeed = 5;
 
@@ -165,6 +166,13 @@ public class monster_Cont : Enemy_Parameter{
         yield return new WaitForSeconds(waitTime);
 
         state = nextState;
+    }
+
+    //イベントが起きた時/////////////////////
+
+    public void Damage()
+    {
+        event_damage = true;
     }
 
     //武器を持つよう////////////////////////

@@ -7,7 +7,7 @@ public class Damage_Manager : MonoBehaviour {
 
 	public GameObject Parent;//このあたり判定を持つキャラ
 	public bool weak_point = false;
-	private Enemy_ControllerZ ecZ;
+	private Enemy_Parameter ecZ;
 
     private Renderer[] Renderer;//レンダー1
     private Renderer[] SkinRenderer;//レンダー2
@@ -31,7 +31,7 @@ public class Damage_Manager : MonoBehaviour {
 
     void Start () {
 
-		ecZ = Parent.GetComponent<Enemy_ControllerZ>();
+		ecZ = Parent.GetComponent<monster_Cont>();
 
         Renderer = Model.GetComponentsInChildren<MeshRenderer>();
         SkinRenderer = Model.GetComponentsInChildren<SkinnedMeshRenderer>();
@@ -40,12 +40,15 @@ public class Damage_Manager : MonoBehaviour {
 
 	void Update () {
 
+        //とりあえず止めとく
+        /*
         if (ecZ.flag_poison)
         {
 
             coroutine = StartCoroutine(Poison());
 
         }
+        */
 
         //ちょっとだけふわふわさせる(y軸だけでいい)
         if (flag_knockback)
@@ -106,10 +109,12 @@ public class Damage_Manager : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col){
 
-		if (col.tag == "Bullet") {//タグ"Bullet"が攻撃
-			
-			//当たった弾の攻撃力取得
-			Attack_Parameter attack = col.gameObject.GetComponent<Attack_Parameter> ();
+        if (col.tag == "Bullet") {//タグ"Bullet"が攻撃
+
+            Debug.Log("www");
+
+            //当たった弾の攻撃力取得
+            Attack_Parameter attack = col.gameObject.GetComponent<Attack_Parameter> ();
 
 			if (attack.Parent.name == "Player") {
 
@@ -160,13 +165,13 @@ public class Damage_Manager : MonoBehaviour {
 					damage *= 2;
 				
 				}
-
+                
 
                 //実際のダメージ処理
                 if (ecZ.GetF_Damage())
                 {
                     ecZ.H_point -= damage;
-                    ecZ.Damage();//とりあえずダメージを受けたことを知らせる
+                    //ecZ.Damage();//とりあえずダメージを受けたことを知らせる
                     ecZ.Reverse_Damage();//ダメージを連続で受けないようにする
                     //StartCoroutine(Blink());
                     Invoke("Reverse_Damage", 0.5f);
@@ -208,13 +213,15 @@ public class Damage_Manager : MonoBehaviour {
                 }*/
 
                 //こっから演出
+                //とりあえず止めとく
+                /*
                 for (int i = 0; i < Effects.Length; i++)
                 {
                     //Effects[i].transform.parent = null;//子供にしとくとたいてい消える
                     Effects[i].SetActive(true);
                     StartCoroutine(ErasseEffect(Effects[i]));
                 }
-
+                */
             }
 
                         
@@ -255,7 +262,7 @@ public class Damage_Manager : MonoBehaviour {
     void Reverse_Damage()
     {
         ecZ.Reverse_Damage();//無敵時間解除
-        ecZ.NotDamage();//ダメージ受けおわり
+        //ecZ.NotDamage();//ダメージ受けおわり
     }
 
     void SetActive()
