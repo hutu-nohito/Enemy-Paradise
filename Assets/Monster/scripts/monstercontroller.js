@@ -142,7 +142,6 @@ function FixedUpdate()
 		{
 			
 		    var currentState : AnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(2);
-		    Debug.Log(currentState.length);
 			if (currentState.length == 1)
 			{
    				var attackrandom : int = Random.Range(0,4);

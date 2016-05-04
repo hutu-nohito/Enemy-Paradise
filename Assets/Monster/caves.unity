@@ -1140,31 +1140,31 @@ Prefab:
     m_Modifications:
     - target: {fileID: 449376, guid: 3b50916312c79bb4c97a260ab071bc88, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 32.7709999
+      value: 32.771
       objectReference: {fileID: 0}
     - target: {fileID: 449376, guid: 3b50916312c79bb4c97a260ab071bc88, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.06200004
+      value: -1.062
       objectReference: {fileID: 0}
     - target: {fileID: 449376, guid: 3b50916312c79bb4c97a260ab071bc88, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 2.95100021
+      value: 2.9510002
       objectReference: {fileID: 0}
     - target: {fileID: 449376, guid: 3b50916312c79bb4c97a260ab071bc88, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -.640033662
+      value: -0.64003366
       objectReference: {fileID: 0}
     - target: {fileID: 449376, guid: 3b50916312c79bb4c97a260ab071bc88, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -8.62384361e-17
+      value: -8.6238436e-17
       objectReference: {fileID: 0}
     - target: {fileID: 449376, guid: 3b50916312c79bb4c97a260ab071bc88, type: 2}
       propertyPath: m_LocalRotation.z
-      value: .768346906
+      value: 0.7683469
       objectReference: {fileID: 0}
     - target: {fileID: 449376, guid: 3b50916312c79bb4c97a260ab071bc88, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -8.62384361e-17
+      value: -8.6238436e-17
       objectReference: {fileID: 0}
     - target: {fileID: 449376, guid: 3b50916312c79bb4c97a260ab071bc88, type: 2}
       propertyPath: m_RootOrder
@@ -1900,7 +1900,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 401506, guid: 8e3b71233304fa145aff95de569ca1e7, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 30.0900002
+      value: 30.09
       objectReference: {fileID: 0}
     - target: {fileID: 401506, guid: 8e3b71233304fa145aff95de569ca1e7, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1908,7 +1908,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 401506, guid: 8e3b71233304fa145aff95de569ca1e7, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1.25999832
+      value: -1.2599983
       objectReference: {fileID: 0}
     - target: {fileID: 401506, guid: 8e3b71233304fa145aff95de569ca1e7, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1955,7 +1955,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 859584089}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.730967, y: -0.34566593, z: -21.857056}
+  m_LocalPosition: {x: 9.9, y: -0.34566593, z: -22.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1691268699}
@@ -3898,7 +3898,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -3920,7 +3920,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!1 &969998744
 GameObject:
   m_ObjectHideFlags: 0
@@ -5589,7 +5589,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -5611,7 +5611,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!167 &1328032455
 AudioReverbZone:
   m_ObjectHideFlags: 0
@@ -8045,7 +8045,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -8067,7 +8067,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!135 &1517071693
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8597,7 +8597,7 @@ MonoBehaviour:
   impactPrefab: {fileID: 400000, guid: 1527ff41453632b44a4b04882b7378f3, type: 2}
   mask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   damage: 25
   force: 250
   range: 3
@@ -8740,6 +8740,7 @@ MonoBehaviour:
   equip2sound: {fileID: 8300000, guid: 968dac97cad74df4394d62522017fda6, type: 3}
   holster1sound: {fileID: 8300000, guid: 5286367a706955f42949cfb6db9fcefe, type: 3}
   holster2sound: {fileID: 8300000, guid: 863bd0075c66f264fa8f3557cb7ed179, type: 3}
+  canattack: 1
   addvector: {x: -45, y: 180, z: 0}
 --- !u!54 &1691268704
 Rigidbody:
