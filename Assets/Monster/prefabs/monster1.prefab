@@ -948,8 +948,6 @@ GameObject:
   - 92: {fileID: 9268192}
   - 124: {fileID: 12468192}
   - 81: {fileID: 8168192}
-  - 114: {fileID: 11468190}
-  - 114: {fileID: 11468192}
   - 114: {fileID: 11468188}
   m_Layer: 0
   m_Name: Main Camera
@@ -1447,7 +1445,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 135194}
-  m_LocalRotation: {x: 0.40718642, y: -0.4492305, z: 0.54883075, w: 0.57547885}
+  m_LocalRotation: {x: 0.40718645, y: -0.44923052, z: 0.5488308, w: 0.5754789}
   m_LocalPosition: {x: -0.08873856, y: 0.13916698, z: -0.25895718}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2372,7 +2370,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -2394,7 +2392,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!92 &9268192
 Behaviour:
   m_ObjectHideFlags: 1
@@ -2512,7 +2510,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactPrefab: {fileID: 400000, guid: 1527ff41453632b44a4b04882b7378f3, type: 2}
-  mask: {}
+  mask:
+    serializedVersion: 2
+    m_Bits: 4294967295
   damage: 25
   force: 250
   range: 3
@@ -2542,7 +2542,9 @@ MonoBehaviour:
   gravity: 16
   rotateSpeed: 8
   dampTime: 3
-  mask: {}
+  mask:
+    serializedVersion: 2
+    m_Bits: 4294967295
   downcastrange: 1.5
   grounded: 1
   myaudiosource: {fileID: 8268192}
@@ -2559,6 +2561,7 @@ MonoBehaviour:
   equip2sound: {fileID: 8300000, guid: 968dac97cad74df4394d62522017fda6, type: 3}
   holster1sound: {fileID: 8300000, guid: 5286367a706955f42949cfb6db9fcefe, type: 3}
   holster2sound: {fileID: 8300000, guid: 863bd0075c66f264fa8f3557cb7ed179, type: 3}
+  canattack: 1
   addvector: {x: -45, y: 180, z: 0}
 --- !u!114 &11468188
 MonoBehaviour:
@@ -2574,48 +2577,15 @@ MonoBehaviour:
   target: {fileID: 468188}
   targetOffset: {x: 0, y: 1.5, z: 0}
   distance: 2.5
-  lineOfSightMask: {}
+  lineOfSightMask:
+    serializedVersion: 2
+    m_Bits: 0
   closerRadius: 0.2
   closerSnapLag: 0.1
   xSpeed: 120
   ySpeed: 80
   yMinLimit: -30
   yMaxLimit: 30
---- !u!114 &11468190
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 168190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97b4768c3683045e4bfdb2e78272970c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  threshhold: 0.123
-  intensity: 0.54
-  blurSize: 1
-  resolution: 0
-  blurIterations: 1
-  blurType: 0
-  fastBloomShader: {fileID: 4800000, guid: 68a00c837b82e4c6d92e7da765dc5f1d, type: 3}
---- !u!114 &11468192
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 168190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e653d08d21ce9453591b1dc2100fdfcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  intensity: 0.4
-  threshhold: 0
-  blurSpread: 1
-  separableBlurShader: {fileID: 4800000, guid: e97c14fbb5ea04c3a902cc533d7fc5d1, type: 3}
-  contrastCompositeShader: {fileID: 4800000, guid: 273404942eede4ea1883ca1fb2942507,
-    type: 3}
 --- !u!124 &12468192
 Behaviour:
   m_ObjectHideFlags: 1
@@ -2800,7 +2770,19 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: panLevelCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 135260}
