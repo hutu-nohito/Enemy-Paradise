@@ -37,22 +37,31 @@ public class Player_ControllerZ : Character_Manager{
     private string inputKey = "W";//入力(どの方向か)
     private float elapsedTime = 0.0f;
 
-
     public float RotSpeed = 0.1f;//曲がる速さ
+
+    //デバッグ用(デバックしたいときはこれにチェック)
+    public bool isDemo = false;
 
     void Start()
     {
         playerController = GetComponent<CharacterController>();//rigidbodyを使う場合は外す
         animator = GetComponentInChildren<Animator>();//アニメータを使うとき
-		save = GameObject.FindGameObjectWithTag ("Manager").GetComponent<Static> ();
 
+        if (!isDemo)
+        {
+            save = GameObject.FindGameObjectWithTag("Manager").GetComponent<Static>();
+        }
+		
         //メインカメラが設定されてなかったらする
         if (MainCamera == null) MainCamera = Camera.main.gameObject;
 
-		//HPとMPの引継ぎ
-		H_point = save.H_Point;
-		M_point = save.M_Point;
-
+        //HPとMPの引継ぎ
+        if (!isDemo)
+        {
+            H_point = save.H_Point;
+            M_point = save.M_Point;
+        }
+		
         //初期パラメタを保存
         max_HP = H_point;
         max_MP = M_point;
@@ -68,11 +77,22 @@ public class Player_ControllerZ : Character_Manager{
         //HPがなくなった時の処理
         if (H_point <= 0)
         {
-            save.H_Point = 100;//HPは満タンに
-            GameObject.FindGameObjectWithTag("Manager").GetComponent<QuestManager>().Questfailure();
-            //Application.LoadLevel(Application.loadedLevel);
+            if (isDemo)
+            {
 
+                //デバッグ用なので満タンに戻す
+                H_point = max_HP;
+
+            }
+            else
+            {
+
+                save.H_Point = max_HP;//HPは満タンに
+                GameObject.FindGameObjectWithTag("Manager").GetComponent<QuestManager>().Questfailure();
+
+            }
         }
+
 
         //アニメーションリセット///////////////////////////////////////////////////////////
         move_direction = new Vector3(0.0f, move_direction.y, 0.0f);
