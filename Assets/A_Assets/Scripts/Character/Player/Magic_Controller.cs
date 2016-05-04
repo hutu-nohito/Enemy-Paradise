@@ -11,6 +11,9 @@ public class Magic_Controller : MonoBehaviour{
 
     */
 
+    //デバック用
+    public bool isDemo = false;
+
     private Player_ControllerZ Pz;
     private Static _static;
 
@@ -52,10 +55,16 @@ public class Magic_Controller : MonoBehaviour{
     {
 
         Pz = GetComponent<Player_ControllerZ>();
-        _static = GameObject.FindGameObjectWithTag("Manager").GetComponent<Static>();
+
+        if (!isDemo)
+        {
+
+            _static = GameObject.FindGameObjectWithTag("Manager").GetComponent<Static>();
+
+        }
 
         //選択されてる魔法の番号を渡す。
-        MagicSet (8,2,1,6,8);
+        MagicSet (0,0,0,0,0);
         /*
         MagicSet(
             _static.SelectMagicID[0],
