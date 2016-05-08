@@ -595,7 +595,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0
+        functionName: AnimRun
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 2b51da4f1bb7e314b8a73bd79084c49e,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -1700,18 +1708,10 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.31698114
-        functionName: attacksound
+      - time: 0
+        functionName: AnimAttack
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: a52b96fa86a792b4790d169dd20d6209,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.38078272
-        functionName: rayfireshort
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: bc99bba037f3052419d7e5b43c516041,
+        objectReferenceParameter: {fileID: 11500000, guid: 97138daa4639be0489057388ad41d096,
           type: 3}
         floatParameter: 0
         intParameter: 0

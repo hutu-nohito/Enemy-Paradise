@@ -6049,6 +6049,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1152212595}
   - 20: {fileID: 1152212594}
+  - 45: {fileID: 1152212596}
   m_Layer: 0
   m_Name: Water4SimpleReflectionSceneCamera
   m_TagString: Untagged
@@ -6102,6 +6103,14 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 12
+--- !u!45 &1152212596
+Skybox:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1152212593}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 0}
 --- !u!4 &1180885418 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 44fa49aaa06433448b95f6d567266b0c, type: 2}
@@ -6874,6 +6883,14 @@ Prefab:
     - target: {fileID: 421212, guid: d673ba29f709e1d47be802517184af25, type: 2}
       propertyPath: m_RootOrder
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11420682, guid: d673ba29f709e1d47be802517184af25, type: 2}
+      propertyPath: Offset.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11420682, guid: d673ba29f709e1d47be802517184af25, type: 2}
+      propertyPath: distance
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d673ba29f709e1d47be802517184af25, type: 2}
@@ -9566,7 +9583,11 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 185544, guid: 62621b5bef2106447946f81ac250e966, type: 2}
   m_PrefabInternal: {fileID: 1846145282}
---- !u!114 &1846145284
+--- !u!4 &1846145285 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 467880, guid: 62621b5bef2106447946f81ac250e966, type: 2}
+  m_PrefabInternal: {fileID: 1846145282}
+--- !u!114 &1846145286
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -9574,7 +9595,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1846145283}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97138daa4639be0489057388ad41d096, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b51da4f1bb7e314b8a73bd79084c49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   QuestStageID: 0
@@ -9598,7 +9619,7 @@ MonoBehaviour:
   flag_invincible: 0
   move: 0
   search: 1
-  state: 1
+  state: 2
   rotSpeed: 5
   shield: {fileID: 352596772}
   weapon: {fileID: 1365737522}
@@ -9606,10 +9627,6 @@ MonoBehaviour:
   righthandpos: {fileID: 832166075}
   chestposshield: {fileID: 1612497527}
   chestposweapon: {fileID: 1317101975}
---- !u!4 &1846145285 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 467880, guid: 62621b5bef2106447946f81ac250e966, type: 2}
-  m_PrefabInternal: {fileID: 1846145282}
 --- !u!1001 &1860121732
 Prefab:
   m_ObjectHideFlags: 0
