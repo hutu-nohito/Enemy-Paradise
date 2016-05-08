@@ -13,7 +13,7 @@ public class monster_Cont2 : Enemy_Parameter
     /******************************************************************************/
     /* 更新履歴
     *   攻撃はイベント
-
+        まつ必要があるアニメーションはイベントを送るのを少し遅らせたほうがいい
     */
     /******************************************************************************/
 
@@ -22,11 +22,11 @@ public class monster_Cont2 : Enemy_Parameter
     {
         Stop,//アニメーションが終わるまで待機(状態でなく網目ーションの整合性のために必要)
         Attack,//攻撃
-        Walk,//プレイヤを見つけて近づいてる
+        Run,//プレイヤを見つけて近づいてる
         Fight,//臨戦態勢
         
     }//intにすれば優先度にできる
-    public ActionState state = ActionState.Fight;
+    public ActionState state = ActionState.Stop;
     public ActionState GetState() { return state; }
     public void SetState(ActionState state) { this.state = state; }
     
@@ -42,7 +42,9 @@ public class monster_Cont2 : Enemy_Parameter
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
-        
+
+        coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Run));
+
         Player = GameObject.FindWithTag("Player");
     }
 
@@ -65,10 +67,10 @@ public class monster_Cont2 : Enemy_Parameter
             coroutine = StartCoroutine(Attack());
         }
 
-        if (state == ActionState.Walk)
+        if (state == ActionState.Run)
         {
             
-            if (animState != 2)
+            if (animState != (int)ActionState.Run)
             {
                 animator.SetTrigger("Run");
             }
@@ -95,7 +97,7 @@ public class monster_Cont2 : Enemy_Parameter
         if (state == ActionState.Fight)
         {
 
-            if (animState != 3)
+            if (animState != (int)ActionState.Fight)
             {
                 animator.SetTrigger("Fight");
             }
@@ -120,7 +122,7 @@ public class monster_Cont2 : Enemy_Parameter
             {
                 animator.SetTrigger("H_Weapon");
                 state = ActionState.Stop;
-                coroutine = StartCoroutine(ChangeState(1.4f, ActionState.Walk));
+                coroutine = StartCoroutine(ChangeState(1.4f, ActionState.Run));
 
             }
 
@@ -129,6 +131,8 @@ public class monster_Cont2 : Enemy_Parameter
             {
                 float randAt1 = Random.value;
                 float randAt2 = Random.value;
+                //coroutine = StartCoroutine(Attack());
+
                 if (randAt1 > 0.9)
                 {
                     if (randAt2 < 0.2)
@@ -191,26 +195,24 @@ public class monster_Cont2 : Enemy_Parameter
     //アニメーション
     private Animator animator;
     private int animState = 0;//アニメータのパラメタが取得できないのでとりあえずこれで代用
-    /*
-    アニメーションの番号割り振り          
-        1   attack
-        2   walk
-        3   fight
-    */
     
     public void AnimAttack()
     {
-        animState = 1;
+        //animState = 1;
+        animState = (int)ActionState.Attack;
+
     }
 
     public void AnimRun()
     {
-        animState = 2;
+        //animState = 2;
+        animState = (int)ActionState.Run;
     }
 
     public void Animfight()
     {
-        animState = 3;
+        //animState = 3;
+        animState = (int)ActionState.Fight;
     }
 
     //武器を持つよう////////////////////////

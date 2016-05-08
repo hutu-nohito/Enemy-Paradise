@@ -9619,7 +9619,7 @@ MonoBehaviour:
   flag_invincible: 0
   move: 0
   search: 1
-  state: 2
+  state: 0
   rotSpeed: 5
   shield: {fileID: 352596772}
   weapon: {fileID: 1365737522}
