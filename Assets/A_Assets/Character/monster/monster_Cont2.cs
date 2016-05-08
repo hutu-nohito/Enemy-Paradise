@@ -21,6 +21,7 @@ public class monster_Cont2 : Enemy_Parameter
     public enum ActionState
     {
         Stop,//アニメーションが終わるまで待機(状態でなく網目ーションの整合性のために必要)
+        Block,//盾で防御
         Attack,//攻撃
         Run,//プレイヤを見つけて近づいてる
         Fight,//臨戦態勢
@@ -59,6 +60,13 @@ public class monster_Cont2 : Enemy_Parameter
         if (state == ActionState.Stop)
         {
             //何もしない
+        }
+
+        //防御
+        if(state == ActionState.Block)
+        {
+            coroutine = StartCoroutine(Block());
+            
         }
 
         //アタックするだけ
@@ -160,6 +168,25 @@ public class monster_Cont2 : Enemy_Parameter
     private Coroutine coroutine;//一度に動かすコルーチンは1つ ここでとっとけば止めるのが楽
     private bool isCoroutine = false;//コルーチンを止めるときにはfalseに戻すこと
 
+
+    //防御
+    IEnumerator Block()
+    {
+        if (isCoroutine) yield break;
+        isCoroutine = true;
+
+        shield.gameObject.GetComponent<BoxCollider>().enabled = true;
+        state = ActionState.Stop;//とりあえず動きを止める
+        animator.SetTrigger("Block");
+
+        //防御してる時間
+        yield return new WaitForSeconds(1.0f);//こーゆーパラメータもインスペクタで決めるべきだと思うけどごちゃごちゃしそうでいや
+
+        isCoroutine = false;
+        shield.gameObject.GetComponent<BoxCollider>().enabled = false;
+        coroutine = StartCoroutine(ChangeState(1.6f, ActionState.Fight));
+    }
+
     //攻撃
     IEnumerator Attack()
     {
@@ -192,10 +219,20 @@ public class monster_Cont2 : Enemy_Parameter
         }
     }
 
+    public void Mikiri()
+    {
+        state = ActionState.Block;
+    }
+
     //アニメーション
     private Animator animator;
     private int animState = 0;//アニメータのパラメタが取得できないのでとりあえずこれで代用
-    
+
+    public void AnimBlock()
+    {
+        animState = (int)ActionState.Block;
+        
+    }
     public void AnimAttack()
     {
         //animState = 1;
