@@ -3,14 +3,19 @@ using System.Collections;
 
 public class monster_Cont : Enemy_Parameter{
 
-    /*
-        (Serch) → Player → (威嚇) → 距離10m以下 → (踊る) → HP減る → (攻撃) 
-                               ↓                       ↓                  ↓
-                           距離10m以上              距離10m以上
-                            　 ↓                       ↓
-          ↑                   ←                    がっかり               ←
+    /******************************************************************************/
+    /** @brief モンスターAIテスト
+    * @date 2016/05/08
+    * @author 石川
+    * @param[in] m_fringe 干渉縞の計算結果を格納
+    */
+    /******************************************************************************/
+    /* 更新履歴
+    *   攻撃はイベント
 
     */
+    /******************************************************************************/
+
 
     private Animator animator;
     private int animState = 0;//アニメータのパラメタが取得できないのでとりあえずこれで代用
@@ -20,6 +25,7 @@ public class monster_Cont : Enemy_Parameter{
         0   idle                            
         1   walk
         2   fight
+        3   attack
 
     */                         
 
@@ -43,7 +49,6 @@ public class monster_Cont : Enemy_Parameter{
         Stop,//止まっている状態
         Walk,//プレイヤを見つけて近づいてる
         Fight,//臨戦態勢
-        Attack,//攻撃
     }
     public ActionState state = ActionState.Fight;
     public ActionState GetState() { return state; }
@@ -147,6 +152,16 @@ public class monster_Cont : Enemy_Parameter{
 
             }
 
+            //ランダムで攻撃
+            float randAt = Random.value;
+            Debug.Log(randAt);
+            if(randAt > 0.7)
+            {
+                coroutine = StartCoroutine(Attack());
+            }
+
+
+
         }
 
         //状態が変化したら前の状態のいどうは中断
@@ -169,6 +184,22 @@ public class monster_Cont : Enemy_Parameter{
     }
 
     //イベントが起きた時/////////////////////
+
+    //攻撃
+    IEnumerator Attack()
+    {
+        if (isCoroutine) yield break;
+        isCoroutine = true;
+
+        state = ActionState.Stop;//とりあえず動きを止める
+
+        //攻撃前のため
+        yield return new WaitForSeconds(0.5f);//こーゆーパラメータもインスペクタで決めるべきだと思うけどごちゃごちゃしそうでいや
+
+        animator.SetTrigger("Attack");
+        animState = 0;
+        coroutine = StartCoroutine(ChangeState(1.6f, ActionState.Fight));
+    }
 
     public void Damage()
     {
