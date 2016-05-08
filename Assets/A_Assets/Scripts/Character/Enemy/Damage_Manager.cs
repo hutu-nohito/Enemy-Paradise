@@ -111,8 +111,6 @@ public class Damage_Manager : MonoBehaviour {
 
         if (col.tag == "Bullet") {//タグ"Bullet"が攻撃
 
-            Debug.Log("www");
-
             //当たった弾の攻撃力取得
             Attack_Parameter attack = col.gameObject.GetComponent<Attack_Parameter> ();
 

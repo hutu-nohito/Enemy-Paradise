@@ -31,6 +31,14 @@ public class Camera_ControllerZ : MonoBehaviour {
     private float quaketime = 0;
     private float elapsedquakeTime = 0.05f;
 
+    void Awake()
+    {
+        //カーソルがはみ出さない設定(デバック用なのでここに書いてるがマネージャのほうがいいと思う)
+        Cursor.lockState = CursorLockMode.Confined;//デバックでは使えないみたい
+        //Cursor.visible = false;
+
+    }
+
     void Start()
     {
         //Playerをセットし忘れてたら探す
