@@ -137,7 +137,11 @@ public class Camera_ControllerZ : MonoBehaviour {
                     }
                     else//距離が近かったらカメラを回さない
                     {
-                        transform.LookAt(lookPosition);
+                        transform.LookAt(new Vector3((lookPosition.x + Zcamara.Target.transform.position.x) / 2,
+                                                     (lookPosition.y + Zcamara.Target.transform.position.y) / 2,
+                                                     (lookPosition.z + Zcamara.Target.transform.position.z) / 2));//敵とLookPositionの中間点を見せてみる
+
+                        //transform.LookAt(lookPosition);
                     }
                 }
 

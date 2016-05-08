@@ -104,7 +104,7 @@ public class Z_Camera : MonoBehaviour {
 
                 //注目時のマーカー
                 targetMarker.SetActive(true);
-                targetMarker.transform.position = Target.transform.position + new Vector3(0, Target.transform.localScale.y + 1, 0) + Offset;
+                targetMarker.transform.position = Target.transform.position + new Vector3(0, Target.transform.localScale.y + 2, 0) + Offset;//+2を何とかしたい
                 nearMarker.SetActive(false);
             }
             else
@@ -168,7 +168,7 @@ public class Z_Camera : MonoBehaviour {
             {
                 this.Target = Target;
                 nearMarker.SetActive(true);
-                nearMarker.transform.position = Target.transform.position + new Vector3(0, Target.transform.localScale.y + 1, 0) + Offset;
+                nearMarker.transform.position = Target.transform.position + new Vector3(0, Target.transform.localScale.y + 2, 0) + Offset;
             }
             
 
