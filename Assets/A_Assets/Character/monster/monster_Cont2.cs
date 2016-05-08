@@ -23,9 +23,9 @@ public class monster_Cont2 : Enemy_Parameter
         Stop,//アニメーションが終わるまで待機(状態でなく網目ーションの整合性のために必要)
         Block,//盾で防御
         Attack,//攻撃
-        Run,//プレイヤを見つけて近づいてる
         Fight,//臨戦態勢
-        
+        Run,//プレイヤを見つけて近づいてる
+
     }//intにすれば優先度にできる
     public ActionState state = ActionState.Stop;
     public ActionState GetState() { return state; }
@@ -75,33 +75,7 @@ public class monster_Cont2 : Enemy_Parameter
             coroutine = StartCoroutine(Attack());
         }
 
-        if (state == ActionState.Run)
-        {
-            
-            if (animState != (int)ActionState.Run)
-            {
-                animator.SetTrigger("Run");
-            }
-
-            //前を向ける
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Player.transform.position - transform.position), 0.05f);
-            transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
-
-            iTween.MoveUpdate(this.gameObject, iTween.Hash(
-                "position", new Vector3(Player.transform.position.x, transform.position.y, Player.transform.position.z),
-                "time", 20 / speed)
-                );
-
-            //近づいたら戦闘状態に移行
-            if ((transform.position - Player.transform.position).magnitude < 5)
-            {
-                animator.SetTrigger("G_Weapon");
-                state = ActionState.Stop;
-                coroutine = StartCoroutine(ChangeState(1.6f, ActionState.Fight));
-            }
-
-        }
-
+        //相手の周りを旋回
         if (state == ActionState.Fight)
         {
 
@@ -150,6 +124,36 @@ public class monster_Cont2 : Enemy_Parameter
                 }
             }
         }
+
+        //見つけて近づいてる
+        if (state == ActionState.Run)
+        {
+            
+            if (animState != (int)ActionState.Run)
+            {
+                animator.SetTrigger("Run");
+            }
+
+            //前を向ける
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Player.transform.position - transform.position), 0.05f);
+            transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+
+            iTween.MoveUpdate(this.gameObject, iTween.Hash(
+                "position", new Vector3(Player.transform.position.x, transform.position.y, Player.transform.position.z),
+                "time", 20 / speed)
+                );
+
+            //近づいたら戦闘状態に移行
+            if ((transform.position - Player.transform.position).magnitude < 5)
+            {
+                animator.SetTrigger("G_Weapon");
+                state = ActionState.Stop;
+                coroutine = StartCoroutine(ChangeState(1.6f, ActionState.Fight));
+            }
+
+        }
+
+        
     }
 
     /////////////////////////////////////
@@ -175,16 +179,23 @@ public class monster_Cont2 : Enemy_Parameter
         if (isCoroutine) yield break;
         isCoroutine = true;
 
+        //回転してほしくない
         shield.gameObject.GetComponent<BoxCollider>().enabled = true;
+        GetComponent<Rigidbody>().isKinematic = true;
         state = ActionState.Stop;//とりあえず動きを止める
         animator.SetTrigger("Block");
 
         //防御してる時間
         yield return new WaitForSeconds(1.0f);//こーゆーパラメータもインスペクタで決めるべきだと思うけどごちゃごちゃしそうでいや
 
-        isCoroutine = false;
+        //重力に従ってほしい
         shield.gameObject.GetComponent<BoxCollider>().enabled = false;
-        coroutine = StartCoroutine(ChangeState(1.6f, ActionState.Fight));
+        GetComponent<Rigidbody>().isKinematic = false;
+
+        //coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Fight));
+        state = ActionState.Fight;
+
+        isCoroutine = false;
     }
 
     //攻撃
@@ -221,7 +232,11 @@ public class monster_Cont2 : Enemy_Parameter
 
     public void Mikiri()
     {
-        state = ActionState.Block;
+        if(state == ActionState.Fight)
+        {
+            state = ActionState.Block;
+        }
+        
     }
 
     //アニメーション

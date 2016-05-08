@@ -1382,7 +1382,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0
+      - time: 0.007827789
         functionName: Animfight
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 2b51da4f1bb7e314b8a73bd79084c49e,
@@ -2913,7 +2913,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 1
       loopBlendOrientation: 1
       loopBlendPositionY: 1
@@ -2926,7 +2926,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.006666667
+      - time: 0.012537508
         functionName: AnimBlock
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 2b51da4f1bb7e314b8a73bd79084c49e,

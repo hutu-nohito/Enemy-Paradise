@@ -1530,7 +1530,7 @@ GameObject:
   - 114: {fileID: 134364113}
   - 54: {fileID: 134364117}
   m_Layer: 2
-  m_Name: mikiri_H
+  m_Name: Vision
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2979,7 +2979,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.3, z: 0.05}
+  m_Size: {x: 0.5, y: 0.5, z: 0.2}
   m_Center: {x: 2.7964228e-12, y: -0.0000009536743, z: -0.0015013183}
 --- !u!1 &353102901
 GameObject:
@@ -5843,7 +5843,7 @@ Transform:
   m_GameObject: {fileID: 693500297}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: -0.05}
-  m_LocalScale: {x: 0.7, y: 1.4, z: 0.45}
+  m_LocalScale: {x: 0.7, y: 1.4, z: 0.7}
   m_Children: []
   m_Father: {fileID: 1846145285}
   m_RootOrder: 0
@@ -6680,6 +6680,10 @@ Prefab:
     - target: {fileID: 437626, guid: dd1166dc8674e8048950296d89704ce5, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8205532, guid: dd1166dc8674e8048950296d89704ce5, type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd1166dc8674e8048950296d89704ce5, type: 2}
@@ -13427,7 +13431,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1713705333}
-  m_LocalRotation: {x: -0.087155744, y: 0, z: 0, w: 0.9961947}
+  m_LocalRotation: {x: -0.13052623, y: 0, z: 0, w: 0.9914449}
   m_LocalPosition: {x: 103.83, y: -5.8462257, z: 66.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -14260,6 +14264,10 @@ Prefab:
     - target: {fileID: 431646, guid: 62621b5bef2106447946f81ac250e966, type: 2}
       propertyPath: m_LocalScale.z
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 13609284, guid: 62621b5bef2106447946f81ac250e966, type: 2}
+      propertyPath: m_Center.z
+      value: -0.05
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11481206, guid: 62621b5bef2106447946f81ac250e966, type: 2}

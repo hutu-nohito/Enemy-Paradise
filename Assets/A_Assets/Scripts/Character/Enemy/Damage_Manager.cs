@@ -31,7 +31,7 @@ public class Damage_Manager : MonoBehaviour {
 
     void Start () {
 
-		ecZ = Parent.GetComponent<monster_Cont>();
+		ecZ = Parent.GetComponent<monster_Cont2>();
 
         Renderer = Model.GetComponentsInChildren<MeshRenderer>();
         SkinRenderer = Model.GetComponentsInChildren<SkinnedMeshRenderer>();

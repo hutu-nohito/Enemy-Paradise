@@ -129,10 +129,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  ThroughEnemy: 0
+  ThroughEnemy: 1
   ThroughBullet: 0
   ThroughPlayer: 1
-  ThroughTerrain: 1
+  ThroughTerrain: 0
 --- !u!114 &11496100
 MonoBehaviour:
   m_ObjectHideFlags: 1
