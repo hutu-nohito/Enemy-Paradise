@@ -153,15 +153,20 @@ public class monster_Cont : Enemy_Parameter{
             }
 
             //ランダムで攻撃
-            float randAt = Random.value;
-            Debug.Log(randAt);
-            if(randAt > 0.7)
+            if((int)Time.time % 5 == 0)//5秒ごと
             {
-                coroutine = StartCoroutine(Attack());
+                float randAt1 = Random.value;
+                float randAt2 = Random.value;
+                Debug.Log(randAt1 + "w" + randAt2);
+                if (randAt1 > 0.9)
+                {
+                    if (randAt2 < 0.2)
+                    {
+                        coroutine = StartCoroutine(Attack());
+                    }
+                }
             }
-
-
-
+                        
         }
 
         //状態が変化したら前の状態のいどうは中断
@@ -182,7 +187,7 @@ public class monster_Cont : Enemy_Parameter{
 
         state = nextState;
     }
-
+    
     //イベントが起きた時/////////////////////
 
     //攻撃
@@ -198,7 +203,9 @@ public class monster_Cont : Enemy_Parameter{
 
         animator.SetTrigger("Attack");
         animState = 0;
+        isCoroutine = false;
         coroutine = StartCoroutine(ChangeState(1.6f, ActionState.Fight));
+        
     }
 
     public void Damage()

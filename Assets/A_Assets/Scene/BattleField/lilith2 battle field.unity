@@ -9539,9 +9539,27 @@ Prefab:
       propertyPath: m_Pitch
       value: 0.47
       objectReference: {fileID: 0}
+    - target: {fileID: 11104006, guid: 62621b5bef2106447946f81ac250e966, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 431646, guid: 62621b5bef2106447946f81ac250e966, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 431646, guid: 62621b5bef2106447946f81ac250e966, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 431646, guid: 62621b5bef2106447946f81ac250e966, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11481206, guid: 62621b5bef2106447946f81ac250e966, type: 2}
     - {fileID: 11493616, guid: 62621b5bef2106447946f81ac250e966, type: 2}
+    - {fileID: 11481684, guid: 62621b5bef2106447946f81ac250e966, type: 2}
+    - {fileID: 8273684, guid: 62621b5bef2106447946f81ac250e966, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 62621b5bef2106447946f81ac250e966, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1846145283 stripped
