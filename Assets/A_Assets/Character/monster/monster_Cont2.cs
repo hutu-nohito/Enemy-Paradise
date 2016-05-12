@@ -14,6 +14,7 @@ public class monster_Cont2 : Enemy_Parameter
     /* 更新履歴
     *   攻撃はイベント
         まつ必要があるアニメーションはイベントを送るのを少し遅らせたほうがいい
+        見える弾を避ける
     */
     /******************************************************************************/
 
@@ -22,6 +23,7 @@ public class monster_Cont2 : Enemy_Parameter
     {
         Stop,//アニメーションが終わるまで待機(状態でなく網目ーションの整合性のために必要)
         Block,//盾で防御
+        Avoid,//避ける
         Attack,//攻撃
         Fight,//臨戦態勢
         Run,//プレイヤを見つけて近づいてる
@@ -39,6 +41,8 @@ public class monster_Cont2 : Enemy_Parameter
 
     public float rotSpeed = 5;
 
+    private SimpleMove SM;
+
     // Use this for initialization
     void Start()
     {
@@ -47,6 +51,9 @@ public class monster_Cont2 : Enemy_Parameter
         coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Run));
 
         Player = GameObject.FindWithTag("Player");
+
+        SM = GetComponent<SimpleMove>();
+        SM.enabled = false;
     }
 
     // Update is called once per frame
@@ -67,6 +74,37 @@ public class monster_Cont2 : Enemy_Parameter
         {
             coroutine = StartCoroutine(Block());
             
+        }
+
+        //避ける
+        if (state == ActionState.Avoid)
+        {
+            if (animState != (int)ActionState.Stop)
+            {
+                animator.SetTrigger("Idle");
+            }
+
+            //避ける動作
+            //iTween.MoveUpdate(this.gameObject, iTween.Hash(
+            //        "position", new Vector3(transform.position.x, transform.position.y + 1, transform.position.z),
+            //        "time", 0.5f)
+            //        );
+            iTween.MoveUpdate(this.gameObject, iTween.Hash(
+                    "position", new Vector3(transform.position.x + 2, transform.position.y, transform.position.z),
+                    "time", 1)
+                    );
+            //iTween.RotateTo(this.gameObject, iTween.Hash(
+            //        "z", 180,
+            //        "time", 0.5f)
+            //        );
+            //iTween.RotateTo(this.gameObject, iTween.Hash(
+            //        "z", 180,
+            //        "time", 0.5f)
+            //        );
+            //SM.enabled = true;
+
+            coroutine = StartCoroutine(ChangeState(0.5f, ActionState.Run));
+
         }
 
         //アタックするだけ
@@ -113,13 +151,12 @@ public class monster_Cont2 : Enemy_Parameter
             {
                 float randAt1 = Random.value;
                 float randAt2 = Random.value;
-                //coroutine = StartCoroutine(Attack());
-
+                
                 if (randAt1 > 0.9)
                 {
                     if (randAt2 < 0.2)
                     {
-                        coroutine = StartCoroutine(Attack());
+                        state = ActionState.Attack;
                     }
                 }
             }
@@ -163,6 +200,8 @@ public class monster_Cont2 : Enemy_Parameter
         yield return new WaitForSeconds(waitTime);
 
         state = nextState;
+        SM.enabled = false;
+
     }
 
     //イベントが起きた時/////////////////////
@@ -186,7 +225,7 @@ public class monster_Cont2 : Enemy_Parameter
         animator.SetTrigger("Block");
 
         //防御してる時間
-        yield return new WaitForSeconds(1.0f);//こーゆーパラメータもインスペクタで決めるべきだと思うけどごちゃごちゃしそうでいや
+        yield return new WaitForSeconds(2.0f);//こーゆーパラメータもインスペクタで決めるべきだと思うけどごちゃごちゃしそうでいや
 
         //重力に従ってほしい
         shield.gameObject.GetComponent<BoxCollider>().enabled = false;
@@ -198,21 +237,30 @@ public class monster_Cont2 : Enemy_Parameter
         isCoroutine = false;
     }
 
+    //避け
+    IEnumerator Avoid()
+    {
+        if (isCoroutine) yield break;
+        isCoroutine = true; 
+        
+        isCoroutine = false;
+
+    }
+
     //攻撃
     IEnumerator Attack()
     {
         if (isCoroutine) yield break;
         isCoroutine = true;
 
-        state = ActionState.Stop;//とりあえず動きを止める
-
         //攻撃前のため
         yield return new WaitForSeconds(0.5f);//こーゆーパラメータもインスペクタで決めるべきだと思うけどごちゃごちゃしそうでいや
 
         animator.SetTrigger("Attack");
-        isCoroutine = false;
-        coroutine = StartCoroutine(ChangeState(1.6f, ActionState.Fight));
 
+        yield return new WaitForSeconds(1.6f);
+        state = ActionState.Fight;
+        isCoroutine = false;
     }
 
     public void Damage()
@@ -230,6 +278,16 @@ public class monster_Cont2 : Enemy_Parameter
         }
     }
 
+    public void FindDamage()
+    {
+        if (state == ActionState.Run)
+        {
+            //避ける前のため
+            coroutine = StartCoroutine(ChangeState(0.5f, ActionState.Avoid));
+            
+        }
+    }
+
     public void Mikiri()
     {
         if(state == ActionState.Fight)
@@ -243,11 +301,18 @@ public class monster_Cont2 : Enemy_Parameter
     private Animator animator;
     private int animState = 0;//アニメータのパラメタが取得できないのでとりあえずこれで代用
 
+    public void AnimIdle()
+    {
+        animState = (int)ActionState.Stop;
+
+    }
+
     public void AnimBlock()
     {
         animState = (int)ActionState.Block;
         
     }
+
     public void AnimAttack()
     {
         //animState = 1;

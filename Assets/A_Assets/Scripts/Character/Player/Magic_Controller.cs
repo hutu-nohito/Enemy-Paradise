@@ -64,7 +64,7 @@ public class Magic_Controller : MonoBehaviour{
         }
 
         //選択されてる魔法の番号を渡す。
-        MagicSet (0,0,0,0,0);
+        MagicSet (0,1,0,1,0);
         /*
         MagicSet(
             _static.SelectMagicID[0],
