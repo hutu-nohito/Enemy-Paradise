@@ -93,8 +93,17 @@ public class monster_Cont2 : Enemy_Parameter
                     "position", new Vector3(transform.position.x + 2, transform.position.y, transform.position.z),
                     "time", 1)
                     );
-            //iTween.RotateTo(this.gameObject, iTween.Hash(
-            //        "z", 180,
+            transform.Rotate(0,24,0);
+            //iTween.RotateUpdate(this.gameObject, iTween.Hash(
+            //        "y", transform.rotation.y + 180,
+            //        "time", 0.5f)
+            //        );
+            //iTween.RotateAdd(this.gameObject, iTween.Hash(
+            //        "y", transform.rotation.y + 180,
+            //        "time", 0.5f)
+            //        );
+            //iTween.RotateUpdate(this.gameObject, iTween.Hash(
+            //        "y", 180,
             //        "time", 0.5f)
             //        );
             //iTween.RotateTo(this.gameObject, iTween.Hash(
@@ -103,7 +112,7 @@ public class monster_Cont2 : Enemy_Parameter
             //        );
             //SM.enabled = true;
 
-            coroutine = StartCoroutine(ChangeState(0.5f, ActionState.Run));
+            coroutine = StartCoroutine(ChangeState(0.25f, ActionState.Run));
 
         }
 
