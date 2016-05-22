@@ -85,32 +85,17 @@ public class monster_Cont2 : Enemy_Parameter
             }
 
             //避ける動作
-            //iTween.MoveUpdate(this.gameObject, iTween.Hash(
-            //        "position", new Vector3(transform.position.x, transform.position.y + 1, transform.position.z),
-            //        "time", 0.5f)
-            //        );
             iTween.MoveUpdate(this.gameObject, iTween.Hash(
-                    "position", new Vector3(transform.position.x + 2, transform.position.y, transform.position.z),
-                    "time", 1)
+                    "position", new Vector3(
+                    transform.position.x + ((transform.position - Player.transform.position).normalized.z / (transform.position - Player.transform.position).magnitude) * 50,
+                    transform.position.y,
+                    transform.position.z + ((transform.position - Player.transform.position).normalized.x / (transform.position - Player.transform.position).magnitude) * 50
+                    ),
+                    "time", 1,
+                    "easetype", "easeInOutBack"//全然利いてない
+                    )
                     );
             transform.Rotate(0,24,0);
-            //iTween.RotateUpdate(this.gameObject, iTween.Hash(
-            //        "y", transform.rotation.y + 180,
-            //        "time", 0.5f)
-            //        );
-            //iTween.RotateAdd(this.gameObject, iTween.Hash(
-            //        "y", transform.rotation.y + 180,
-            //        "time", 0.5f)
-            //        );
-            //iTween.RotateUpdate(this.gameObject, iTween.Hash(
-            //        "y", 180,
-            //        "time", 0.5f)
-            //        );
-            //iTween.RotateTo(this.gameObject, iTween.Hash(
-            //        "z", 180,
-            //        "time", 0.5f)
-            //        );
-            //SM.enabled = true;
 
             coroutine = StartCoroutine(ChangeState(0.25f, ActionState.Run));
 
@@ -262,8 +247,18 @@ public class monster_Cont2 : Enemy_Parameter
         if (isCoroutine) yield break;
         isCoroutine = true;
 
+        //とびかかる
+        iTween.MoveTo(this.gameObject, iTween.Hash(
+                "position", new Vector3(
+                transform.position.x + (-(transform.position - Player.transform.position).x /* / (transform.position - Player.transform.position).magnitude */) * (transform.position - Player.transform.position).magnitude * 0.1f,
+                transform.position.y + 1,
+                transform.position.z + (-(transform.position - Player.transform.position).z /* / (transform.position - Player.transform.position).magnitude */) * (transform.position - Player.transform.position).magnitude * 0.1f
+                ),
+                "time", 0.5f)
+                );
+
         //攻撃前のため
-        yield return new WaitForSeconds(0.5f);//こーゆーパラメータもインスペクタで決めるべきだと思うけどごちゃごちゃしそうでいや
+        yield return new WaitForSeconds(0.1f);//こーゆーパラメータもインスペクタで決めるべきだと思うけどごちゃごちゃしそうでいや
 
         animator.SetTrigger("Attack");
 
@@ -292,7 +287,7 @@ public class monster_Cont2 : Enemy_Parameter
         if (state == ActionState.Run)
         {
             //避ける前のため
-            coroutine = StartCoroutine(ChangeState(0.5f, ActionState.Avoid));
+            coroutine = StartCoroutine(ChangeState(0.1f, ActionState.Avoid));
             
         }
     }
