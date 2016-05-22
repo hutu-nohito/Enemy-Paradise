@@ -59,9 +59,11 @@ public class monster_Cont2 : Enemy_Parameter
     // Update is called once per frame
     void Update()
     {
-
-        //アニメーションを取得してみる
-        AnimatorStateInfo anim = animator.GetCurrentAnimatorStateInfo(0);
+        //HPがなくなった時の処理
+        if(GetHP() == 0)
+        {
+            Destroy(this.gameObject);//とりあえず消す
+        }
 
         //何もしない
         if (state == ActionState.Stop)
@@ -219,13 +221,15 @@ public class monster_Cont2 : Enemy_Parameter
         animator.SetTrigger("Block");
 
         //防御してる時間
-        yield return new WaitForSeconds(2.0f);//こーゆーパラメータもインスペクタで決めるべきだと思うけどごちゃごちゃしそうでいや
+        float rand = Random.Range(1,2);
+        yield return new WaitForSeconds(rand);//こーゆーパラメータもインスペクタで決めるべきだと思うけどごちゃごちゃしそうでいや
 
         //重力に従ってほしい
         shield.gameObject.GetComponent<BoxCollider>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = false;
 
         //coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Fight));
+        animator.SetTrigger("Fight");
         state = ActionState.Fight;
 
         isCoroutine = false;
@@ -247,6 +251,11 @@ public class monster_Cont2 : Enemy_Parameter
         if (isCoroutine) yield break;
         isCoroutine = true;
 
+        //攻撃前のため
+        yield return new WaitForSeconds(0.5f);//こーゆーパラメータもインスペクタで決めるべきだと思うけどごちゃごちゃしそうでいや
+
+        Vector3 OldPlayerPos = Player.transform.position;
+
         //とびかかる
         iTween.MoveTo(this.gameObject, iTween.Hash(
                 "position", new Vector3(
@@ -258,22 +267,26 @@ public class monster_Cont2 : Enemy_Parameter
                 "easetype", iTween.EaseType.easeInOutBack)
                 );
 
-        //攻撃前のため
-        yield return new WaitForSeconds(0.1f);//こーゆーパラメータもインスペクタで決めるべきだと思うけどごちゃごちゃしそうでいや
+        //武器を振り下ろすまで
+        yield return new WaitForSeconds(0.4f);//こーゆーパラメータもインスペクタで決めるべきだと思うけどごちゃごちゃしそうでいや
 
         animator.SetTrigger("Attack");
 
-        yield return new WaitForSeconds(1.6f);
+        yield return new WaitForSeconds(0.8f);
         //ちょい戻る
+        animator.SetTrigger("Fight");
         iTween.MoveTo(this.gameObject, iTween.Hash(
                 "position", new Vector3(
-                transform.position.x + ((transform.position - Player.transform.position).x /* / (transform.position - Player.transform.position).magnitude */) / (transform.position - Player.transform.position).magnitude * 2,
+                transform.position.x + ((transform.position - OldPlayerPos).x /* / (transform.position - Player.transform.position).magnitude */) / (transform.position - OldPlayerPos).magnitude * 2,
                 transform.position.y + 0.5f,
-                transform.position.z + ((transform.position - Player.transform.position).z /* / (transform.position - Player.transform.position).magnitude */) / (transform.position - Player.transform.position).magnitude * 2
+                transform.position.z + ((transform.position - OldPlayerPos).z /* / (transform.position - Player.transform.position).magnitude */) / (transform.position - OldPlayerPos).magnitude * 2
                 ),
                 "time", 0.5f,
                 "easetype", iTween.EaseType.easeInBack)
                 );
+
+        yield return new WaitForSeconds(0.8f);
+
         state = ActionState.Fight;
         isCoroutine = false;
     }

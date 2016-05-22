@@ -5325,6 +5325,10 @@ MeshCollider:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 1c28602268ade034dbb8f08048b2f566, type: 3}
   m_PrefabInternal: {fileID: 1901253859}
+--- !u!1 &593783909 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 120794, guid: 62621b5bef2106447946f81ac250e966, type: 2}
+  m_PrefabInternal: {fileID: 1846145282}
 --- !u!1 &595379348
 GameObject:
   m_ObjectHideFlags: 0
@@ -11839,6 +11843,42 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1491430526 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 147434, guid: 62621b5bef2106447946f81ac250e966, type: 2}
+  m_PrefabInternal: {fileID: 1846145282}
+--- !u!114 &1491430527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1491430526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27b51ddb5f661d94991e344fc5e5092c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power: 3
+  speed: 5
+  attack_time: 5
+  rigid_time: 5
+  magicElement: 0
+  property: 0
+  ailment: 
+  KnockBack: {x: 0, y: 0, z: 0}
+  Parent: {fileID: 593783909}
+--- !u!65 &1491430528
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1491430526}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.20948075, y: 0.2, z: 0.21438064}
+  m_Center: {x: 0.00042024968, y: 0.6, z: -0.0029441004}
 --- !u!1 &1495444081
 GameObject:
   m_ObjectHideFlags: 0
@@ -12952,6 +12992,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11437058, guid: 97af7b76ae8d1174bb9b75ad8d997363, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 97af7b76ae8d1174bb9b75ad8d997363, type: 2}
   m_IsPrefabParent: 0
@@ -13858,8 +13902,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1713705333}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 103.214, y: -48.43155, z: 86.34058}
+  m_LocalRotation: {x: 0.14361313, y: 0.7815278, z: 0.19524162, w: -0.57486546}
+  m_LocalPosition: {x: 107.742004, y: -6.030018, z: 71.39041}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -14712,6 +14756,10 @@ Prefab:
       propertyPath: m_Constraints
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 147434, guid: 62621b5bef2106447946f81ac250e966, type: 2}
+      propertyPath: m_TagString
+      value: Bullet
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11481206, guid: 62621b5bef2106447946f81ac250e966, type: 2}
     - {fileID: 11493616, guid: 62621b5bef2106447946f81ac250e966, type: 2}
@@ -14755,7 +14803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   QuestStageID: 0
   CharaName: Monster
-  H_point: 100
+  H_point: 30
   M_point: 10
   power: 1
   def: 0
@@ -15546,7 +15594,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.7
+  m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}

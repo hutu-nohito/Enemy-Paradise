@@ -186,113 +186,113 @@ public class Player_ControllerZ : Character_Manager{
         }
 
         //ダッシュ////////////////////////////////
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            if (!flag_Dash)
-            {
-                inputKey = "W";
-            }                
-            flag_Dash = true;
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            if (!flag_Dash)
-                inputKey = "A";
-            flag_Dash = true;
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            if (!flag_Dash)
-                inputKey = "S";
-            flag_Dash = true;
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            if (!flag_Dash)
-                inputKey = "D";
-            flag_Dash = true;
-        }
+        //if (Input.GetKeyDown(KeyCode.W))
+        //{
+        //    if (!flag_Dash)
+        //    {
+        //        inputKey = "W";
+        //    }                
+        //    flag_Dash = true;
+        //}
+        //if (Input.GetKeyDown(KeyCode.A))
+        //{
+        //    if (!flag_Dash)
+        //        inputKey = "A";
+        //    flag_Dash = true;
+        //}
+        //if (Input.GetKeyDown(KeyCode.S))
+        //{
+        //    if (!flag_Dash)
+        //        inputKey = "S";
+        //    flag_Dash = true;
+        //}
+        //if (Input.GetKeyDown(KeyCode.D))
+        //{
+        //    if (!flag_Dash)
+        //        inputKey = "D";
+        //    flag_Dash = true;
+        //}
 
-        if (Dash)
-        {
-            if (flag_Dash)
-            {
-                elapsedTime += Time.deltaTime;
-                if (elapsedTime > inputTime)
-                {
-                    flag_Dash = false;
-                    elapsedTime = 0;
-                }
+        //if (Dash)
+        //{
+        //    if (flag_Dash)
+        //    {
+        //        elapsedTime += Time.deltaTime;
+        //        if (elapsedTime > inputTime)
+        //        {
+        //            flag_Dash = false;
+        //            elapsedTime = 0;
+        //        }
 
-                switch (inputKey)
-                {
-                    case "W":
-                        if (Input.GetKeyUp(KeyCode.W))//押しっぱなしで発動しないよう
-                        {
-                            isDash = true;
-                        }
-                        if (isDash)
-                        {
-                            if (Input.GetKeyDown(KeyCode.W))//
-                            {
-                                speed = 2 * base_Sp;
-                                elapsedTime = 0;
-                                isDash = false;
-                                flag_Dash = false;
-                            }
-                        }
-                        break;
-                    case "A":
-                        if (Input.GetKeyUp(KeyCode.A))
-                        {
-                            isDash = true;
-                        }
-                        if (isDash)
-                        {
-                            if (Input.GetKeyDown(KeyCode.A))//
-                            {
-                                speed = 2 * base_Sp;
-                                elapsedTime = 0;
-                                isDash = false;
-                                flag_Dash = false;
-                            }
-                        }
-                        break;
-                    case "S":
-                        if (Input.GetKeyUp(KeyCode.S))
-                        {
-                            isDash = true;
-                        }
-                        if (isDash)
-                        {
-                            if (Input.GetKeyDown(KeyCode.S))//
-                            {
-                                speed = 2 * base_Sp;
-                                elapsedTime = 0;
-                                isDash = false;
-                                flag_Dash = false;
-                            }
-                        }
-                        break;
-                    case "D":
-                        if (Input.GetKeyUp(KeyCode.D))
-                        {
-                            isDash = true;
-                        }
-                        if (isDash)
-                        {
-                            if (Input.GetKeyDown(KeyCode.D))//
-                            {
-                                speed = 2 * base_Sp;
-                                elapsedTime = 0;
-                                isDash = false;
-                                flag_Dash = false;
-                            }
-                        }
-                        break;
-                }
-            }
-        }
+        //        switch (inputKey)
+        //        {
+        //            case "W":
+        //                if (Input.GetKeyUp(KeyCode.W))//押しっぱなしで発動しないよう
+        //                {
+        //                    isDash = true;
+        //                }
+        //                if (isDash)
+        //                {
+        //                    if (Input.GetKeyDown(KeyCode.W))//
+        //                    {
+        //                        speed = 2 * base_Sp;
+        //                        elapsedTime = 0;
+        //                        isDash = false;
+        //                        flag_Dash = false;
+        //                    }
+        //                }
+        //                break;
+        //            case "A":
+        //                if (Input.GetKeyUp(KeyCode.A))
+        //                {
+        //                    isDash = true;
+        //                }
+        //                if (isDash)
+        //                {
+        //                    if (Input.GetKeyDown(KeyCode.A))//
+        //                    {
+        //                        speed = 2 * base_Sp;
+        //                        elapsedTime = 0;
+        //                        isDash = false;
+        //                        flag_Dash = false;
+        //                    }
+        //                }
+        //                break;
+        //            case "S":
+        //                if (Input.GetKeyUp(KeyCode.S))
+        //                {
+        //                    isDash = true;
+        //                }
+        //                if (isDash)
+        //                {
+        //                    if (Input.GetKeyDown(KeyCode.S))//
+        //                    {
+        //                        speed = 2 * base_Sp;
+        //                        elapsedTime = 0;
+        //                        isDash = false;
+        //                        flag_Dash = false;
+        //                    }
+        //                }
+        //                break;
+        //            case "D":
+        //                if (Input.GetKeyUp(KeyCode.D))
+        //                {
+        //                    isDash = true;
+        //                }
+        //                if (isDash)
+        //                {
+        //                    if (Input.GetKeyDown(KeyCode.D))//
+        //                    {
+        //                        speed = 2 * base_Sp;
+        //                        elapsedTime = 0;
+        //                        isDash = false;
+        //                        flag_Dash = false;
+        //                    }
+        //                }
+        //                break;
+        //        }
+        //    }
+        //}
         
 
         if (inputDirection.magnitude == 0)//ダッシュ解除
