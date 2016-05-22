@@ -60,7 +60,7 @@ public class monster_Cont2 : Enemy_Parameter
     void Update()
     {
         //HPがなくなった時の処理
-        if(GetHP() == 0)
+        if(GetHP() <= 0)
         {
             Destroy(this.gameObject);//とりあえず消す
         }
@@ -93,13 +93,13 @@ public class monster_Cont2 : Enemy_Parameter
                     transform.position.y,
                     transform.position.z + (-(transform.position - Player.transform.position).x / (transform.position - Player.transform.position).magnitude) * 2
                     ),
-                    "time", 1,
+                    "time", 0.5f,
                     "easetype", "easeInOutBack"//全然利いてない
                     )
                     );
             transform.Rotate(0,24,0);
 
-            coroutine = StartCoroutine(ChangeState(0.5f, ActionState.Run));
+            coroutine = StartCoroutine(ChangeState(0.25f, ActionState.Run));
 
         }
 
