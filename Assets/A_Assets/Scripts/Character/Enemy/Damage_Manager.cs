@@ -114,7 +114,7 @@ public class Damage_Manager : MonoBehaviour {
             //当たった弾の攻撃力取得
             Attack_Parameter attack = col.gameObject.GetComponent<Attack_Parameter> ();
 
-			if (attack.Parent.name == "Player") {
+			if (attack.Parent.name != Parent.name) {
 
                 int damage = attack.power;
 

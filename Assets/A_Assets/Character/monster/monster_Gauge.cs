@@ -17,7 +17,10 @@ public class monster_Gauge : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        guiText.text = "Monster HP " + Monster.GetComponent<monster_Cont2>().H_point;
-
+        if(Monster != null)
+        {
+            guiText.text = "Monster HP " + Monster.GetComponent<monster_Cont2>().H_point;
+        }
+        
     }
 }

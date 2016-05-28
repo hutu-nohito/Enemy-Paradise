@@ -51,7 +51,18 @@ public class monster_Cont2 : Enemy_Parameter
 
         coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Run));
 
-        Player = GameObject.FindWithTag("Player");
+        if(this.gameObject.name == "AImonster")
+        {
+            Player = GameObject.Find("AImonster2");
+        }
+        else if(this.gameObject.name == "AImonster2")
+        {
+            Player = GameObject.Find("AImonster");
+        }
+        else
+        {
+            Player = GameObject.FindWithTag("Player");
+        }
         
         SM = GetComponent<SimpleMove>();
         SM.enabled = false;
@@ -63,7 +74,26 @@ public class monster_Cont2 : Enemy_Parameter
         //HPがなくなった時の処理
         if(GetHP() <= 0)
         {
-            Destroy(this.gameObject);//とりあえず消す
+            //ダウン演出
+            if (animState != (int)ActionState.Stop)
+            {
+                animator.SetTrigger("Die");
+                Destroy(this.gameObject, 3);//とりあえず消す
+            }
+            state = ActionState.Stop;
+            animState = (int)ActionState.Stop;
+            
+        }
+
+        //相手がいなくなった時の処理
+        if(Player == null)
+        {
+            StopAllCoroutines();
+            Player = this.gameObject;
+            state = ActionState.Stop;
+            animState = (int)ActionState.Stop;
+            //勝利のポーズ
+            animator.SetTrigger("Win");
         }
 
         //何もしない
@@ -90,17 +120,25 @@ public class monster_Cont2 : Enemy_Parameter
             //避ける動作
             iTween.MoveUpdate(this.gameObject, iTween.Hash(
                     "position", new Vector3(
-                    transform.position.x + ((transform.position - Player.transform.position).z / (transform.position - Player.transform.position).magnitude) * 2,
+                    transform.position.x + ((transform.position - Player.transform.position).z / (transform.position - Player.transform.position).magnitude) * 1.5f,
                     transform.position.y,
-                    transform.position.z + (-(transform.position - Player.transform.position).x / (transform.position - Player.transform.position).magnitude) * 2
+                    transform.position.z + (-(transform.position - Player.transform.position).x / (transform.position - Player.transform.position).magnitude) * 1.5f
                     ),
-                    "time", 0.5f,
+                    "time", 0.8f,
                     "easetype", "easeInOutBack"//全然利いてない
                     )
                     );
-            transform.Rotate(0,24,0);
+            transform.Rotate(0,12,0);
 
-            coroutine = StartCoroutine(ChangeState(0.25f, ActionState.Run));
+            if((transform.position - Player.transform.position).magnitude > 10)
+            {
+                coroutine = StartCoroutine(ChangeState(0.5f, ActionState.Run));
+            }
+            else
+            {
+                coroutine = StartCoroutine(ChangeState(0.5f, ActionState.Fight));
+            }
+            
 
         }
 
@@ -144,6 +182,7 @@ public class monster_Cont2 : Enemy_Parameter
             }
 
             //ランダムで攻撃
+            /*
             if ((int)Time.time % 5 == 0)//5秒ごと
             {
                 float randAt1 = Random.value;
@@ -156,7 +195,27 @@ public class monster_Cont2 : Enemy_Parameter
                         state = ActionState.Attack;
                     }
                 }
+            }*/
+
+            //たまーに避けつつ攻撃
+            if ((int)Time.time % 5 == 0)//5秒ごと
+            {
+                float randAt1 = Random.value;
+                float randAt2 = Random.value;
+
+                if (randAt1 > 0.9)
+                {
+                    if (randAt2 < 0.4)
+                    {
+                        state = ActionState.Avoid;
+                    }
+                    else
+                    {
+                        state = ActionState.Attack;
+                    }
+                }
             }
+
         }
 
         //見つけて近づいてる
@@ -271,9 +330,13 @@ public class monster_Cont2 : Enemy_Parameter
         //武器を振り下ろすまで
         yield return new WaitForSeconds(0.4f);//こーゆーパラメータもインスペクタで決めるべきだと思うけどごちゃごちゃしそうでいや
 
+        weapon.gameObject.GetComponent<BoxCollider>().enabled = true;
         animator.SetTrigger("Attack");
 
         yield return new WaitForSeconds(0.8f);
+
+        weapon.gameObject.GetComponent<BoxCollider>().enabled = false;
+
         //ちょい戻る
         animator.SetTrigger("Fight");
         iTween.MoveTo(this.gameObject, iTween.Hash(
