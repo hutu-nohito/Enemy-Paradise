@@ -63,12 +63,14 @@ public class CharacterDamage : MonoBehaviour {
 
         }
         */
-
-        if (Parent.GetComponent<Character_Parameters>().GetGround())
+        if (Parent.GetComponent<Character_Parameters>().GetF_Damage())//これはCharacterController用
         {
-            Cpara.SetActive();//動かす
+            if (Parent.GetComponent<Character_Parameters>().GetGround())
+            {
+                Cpara.SetActive();//動かす
+            }
         }
-
+        
     }
 
     IEnumerator Poison()
@@ -173,18 +175,15 @@ public class CharacterDamage : MonoBehaviour {
                 }
 
                 //こっからノックバック
-                if (Parent.GetComponent<Rigidbody>() != null)
+                if (attack.GetKnockBack().magnitude > 0)
                 {
-                    if (attack.GetKnockBack().magnitude > 0)
-                    {
-                        //吹っ飛ぶ
-                        iTween.MoveTo(Parent.gameObject, iTween.Hash(
-                                "position", Parent.gameObject.transform.position + Parent.transform.TransformDirection(attack.GetKnockBack()),
-                                "time", 0.8f,
-                                "easetype", iTween.EaseType.easeOutBack)
-                                );
-                        Cpara.SetKeylock();//行動不能だったと思う
-                    }
+                    //吹っ飛ぶ
+                    iTween.MoveTo(Parent.gameObject, iTween.Hash(
+                            "position", Parent.gameObject.transform.position + Parent.transform.TransformDirection(attack.GetKnockBack()),
+                            "time", 0.8f,
+                            "easetype", iTween.EaseType.easeOutBack)
+                            );
+                    Cpara.SetKeylock();//行動不能だったと思う
                 }
 
                 //こっから演出

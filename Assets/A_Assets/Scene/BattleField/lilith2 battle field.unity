@@ -13098,7 +13098,7 @@ MonoBehaviour:
   magicElement: 0
   property: 0
   ailment: 
-  KnockBack: {x: 0, y: 0, z: 0}
+  KnockBack: {x: 0, y: 20, z: 0}
   Parent: {fileID: 593783909}
 --- !u!65 &1491430528
 BoxCollider:
@@ -15219,8 +15219,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1713705333}
-  m_LocalRotation: {x: -0.22580817, y: 0.61071044, z: 0.18750931, w: 0.73544794}
-  m_LocalPosition: {x: 37.35701, y: -61.495197, z: 59.636475}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000028212997}
+  m_LocalPosition: {x: 103.89, y: -4.6000004, z: 71.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -16883,7 +16883,7 @@ GameObject:
   - 4: {fileID: 1932226782}
   - 33: {fileID: 1932226784}
   - 136: {fileID: 1932226783}
-  - 114: {fileID: 1932226785}
+  - 114: {fileID: 1932226786}
   m_Layer: 2
   m_Name: Hit
   m_TagString: Untagged
@@ -16923,7 +16923,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1932226781}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1932226785
+--- !u!114 &1932226786
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -16931,12 +16931,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1932226781}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f4b27cc859b9e54d95eb96aaa1f7212, type: 3}
+  m_Script: {fileID: 11500000, guid: 789ff79ed60dd3d4fbe50511b45c74e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Parent: {fileID: 1924814100}
-  PlayerModel: {fileID: 1767239129}
-  EndPos: {x: 0, y: 0, z: 0}
+  weak_point: 0
+  Model: {fileID: 1767239129}
+  Effects: []
 --- !u!4 &1933478866 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 44fa49aaa06433448b95f6d567266b0c, type: 2}

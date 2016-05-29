@@ -105,6 +105,7 @@ public class monster_Cont2 : Character_Parameters
             animator.SetTrigger("Win");
         }
 
+        //空中判定
         RaycastHit groundHit;
         if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 2))
         {
