@@ -106,13 +106,14 @@ public class monster_Cont2 : Character_Parameters
         }
 
         RaycastHit groundHit;
-        if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.5f))
+        if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 2))
         {
-            Debug.DrawLine(transform.position, groundHit.point, Color.blue);
-        }
-        else
-        {
-            flag_ground = false;
+            
+            if (groundHit.distance < 0.5f)//長さで見る
+            {
+                flag_ground = false;
+            }
+            
         }
 
         //状態遷移//////////////////////////////////////////////////////////////////////////////////
@@ -417,7 +418,6 @@ public class monster_Cont2 : Character_Parameters
         RaycastHit groundHit;
         if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.2f))
         {
-            Debug.DrawLine(transform.position, groundHit.point, Color.blue);
             flag_ground = true;
         }
     }
