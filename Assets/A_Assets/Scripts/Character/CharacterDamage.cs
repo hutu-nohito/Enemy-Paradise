@@ -179,9 +179,17 @@ public class CharacterDamage : MonoBehaviour {
                 {
                     //吹っ飛ぶ
                     iTween.MoveTo(Parent.gameObject, iTween.Hash(
-                            "position", Parent.gameObject.transform.position + Parent.transform.TransformDirection(attack.GetKnockBack()),
-                            "time", 0.8f,
-                            "easetype", iTween.EaseType.easeOutBack)
+                            "position", new Vector3(
+                            Parent.gameObject.transform.position.x - (col.gameObject.transform.position.x - Parent.gameObject.transform.position.x),
+                            Parent.gameObject.transform.position.y + attack.GetKnockBack().y,
+                            Parent.gameObject.transform.position.z - (col.gameObject.transform.position.z - Parent.gameObject.transform.position.z))
+                            /*Parent.gameObject.transform.position.x - (col.gameObject.transform.position.x - Parent.gameObject.transform.position.x) * attack.GetKnockBack().x,
+                            Parent.gameObject.transform.position.y + attack.GetKnockBack().y,
+                            Parent.gameObject.transform.position.z - (col.gameObject.transform.position.z - Parent.gameObject.transform.position.z) * attack.GetKnockBack().z)*/
+                            //- (col.gameObject.transform.position - Parent.gameObject.transform.position)
+                            /*Parent.transform.TransformDirection(attack.GetKnockBack())*/,
+                            "time", 0.3f/*,
+                            "easetype", iTween.EaseType.easeOutBack*/)
                             );
                     Cpara.SetKeylock();//行動不能だったと思う
                 }

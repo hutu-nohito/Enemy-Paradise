@@ -13098,7 +13098,7 @@ MonoBehaviour:
   magicElement: 0
   property: 0
   ailment: 
-  KnockBack: {x: 0, y: 20, z: 0}
+  KnockBack: {x: 0, y: 5, z: 10}
   Parent: {fileID: 593783909}
 --- !u!65 &1491430528
 BoxCollider:
