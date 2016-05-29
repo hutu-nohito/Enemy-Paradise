@@ -151,7 +151,7 @@ MonoBehaviour:
   magicElement: 0
   property: 0
   ailment: NaN
-  KnockBack: {x: 0, y: 5, z: 5}
+  KnockBack: {x: 1, y: 0, z: 1}
   Parent: {fileID: 0}
 --- !u!135 &13552168
 SphereCollider:
@@ -206,15 +206,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: KnockBack.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: KnockBack.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
+      propertyPath: KnockBack.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: KnockBack.z
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
