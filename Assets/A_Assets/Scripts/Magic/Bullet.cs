@@ -3,6 +3,19 @@ using System.Collections;
 
 public class Bullet : Magic_Parameter {
 
+    /******************************************************************************/
+    /** @brief バレットの動きを制御
+    * @date 2016/05/29
+    * @author 石川
+    * @param[in] m_fringe 干渉縞の計算結果を格納
+*/
+    /******************************************************************************/
+    /* 更新履歴
+    *  全ての魔法はこれをもとに作られる
+    */
+    /******************************************************************************/
+
+
     public GameObject bullet_Prefab;//弾のプレハブ
 
     private Magic_Controller MC;
@@ -33,7 +46,7 @@ public class Bullet : Magic_Parameter {
 
     IEnumerator Shot()
     {
-        Parent.GetComponent<Character_Manager>().SetKeylock();
+        Parent.GetComponent<Character_Parameters>().SetKeylock();
         GameObject bullet;
 
         animator.SetTrigger("Shoot");
@@ -76,7 +89,7 @@ public class Bullet : Magic_Parameter {
         yield return new WaitForSeconds(bullet.GetComponent<Attack_Parameter>().GetR_Time());//撃った後の硬直
 
         //硬直を解除
-        Parent.GetComponent<Character_Manager>().SetActive();
+        Parent.GetComponent<Character_Parameters>().SetActive();
 
     }
 

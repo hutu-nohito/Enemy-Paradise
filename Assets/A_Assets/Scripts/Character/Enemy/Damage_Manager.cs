@@ -7,7 +7,7 @@ public class Damage_Manager : MonoBehaviour {
 
 	public GameObject Parent;//このあたり判定を持つキャラ
 	public bool weak_point = false;
-	private Enemy_Parameter ecZ;
+	private Character_Parameters ecZ;
 
     private Renderer[] Renderer;//レンダー1
     private Renderer[] SkinRenderer;//レンダー2

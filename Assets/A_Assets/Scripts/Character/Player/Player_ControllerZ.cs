@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player_ControllerZ : Character_Manager{
+public class Player_ControllerZ : Character_Parameters{
 
     /*
     プレイヤーの操作用
@@ -91,6 +91,16 @@ public class Player_ControllerZ : Character_Manager{
                 GameObject.FindGameObjectWithTag("Manager").GetComponent<QuestManager>().Questfailure();
 
             }
+        }
+
+        //接地用
+        if (playerController.isGrounded)
+        {
+            flag_ground = true;
+        }
+        else
+        {
+            flag_ground = false;
         }
 
 

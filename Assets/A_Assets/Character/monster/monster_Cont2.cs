@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class monster_Cont2 : Enemy_Parameter
+public class monster_Cont2 : Character_Parameters
 {
 
     /******************************************************************************/
@@ -71,6 +71,15 @@ public class monster_Cont2 : Enemy_Parameter
     // Update is called once per frame
     void Update()
     {
+
+        //状態以外で変化するもの/////////////////////////////////////////////////////////
+
+        if(!GetF_Move())
+        {
+            //StopAllCoroutines();//コルーチンはどうやって止めたらいいんだろう
+            return;//これで行動不能にできるか？
+        }
+        
         //HPがなくなった時の処理
         if(GetHP() <= 0)
         {
@@ -95,6 +104,29 @@ public class monster_Cont2 : Enemy_Parameter
             //勝利のポーズ
             animator.SetTrigger("Win");
         }
+
+        RaycastHit groundHit;
+        //if(Physics.SphereCast(transform.position,1,Vector3.down,out groundHit, 1.0f))
+        //{
+        //    Debug.Log("sss");
+        //    flag_ground = true;
+        //}
+        //else
+        //{
+        //    flag_ground = false;
+        //}
+
+        if(Physics.Raycast(transform.position,  Vector3.down, out groundHit, 0.2f))
+        {
+            Debug.DrawLine(transform.position, groundHit.point, Color.blue);
+            flag_ground = true;
+        }
+        else
+        {
+            flag_ground = false;
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////
 
         //何もしない
         if (state == ActionState.Stop)
