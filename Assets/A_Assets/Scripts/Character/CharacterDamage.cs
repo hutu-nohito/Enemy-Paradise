@@ -177,19 +177,18 @@ public class CharacterDamage : MonoBehaviour {
                 //こっからノックバック
                 if (attack.GetKnockBack().magnitude > 0)
                 {
-                    //ベクトルの向き補正
-                    var LocalPos = col.gameObject.transform.position - Parent.gameObject.transform.position;//ターゲットに対するローカル座標に変換
-                    var degreeTheta = Vector3.Angle((col.gameObject.transform.position - Parent.gameObject.transform.position),attack.GetKnockBack());
-                    Vector3 cal;
-                    cal.x = attack.GetKnockBack().x * Mathf.Cos(degreeTheta * Mathf.Deg2Rad);
-                    cal.z = attack.GetKnockBack().z * Mathf.Sin(degreeTheta * Mathf.Deg2Rad);
+                    //vec2をvec1に向かって角度差分だけ回転させる
+                    var vec1 = (col.gameObject.transform.position - Parent.gameObject.transform.position);
+                    var vec2 = attack.GetKnockBack();
+                    var axis = Vector3.Cross(vec2, vec1);
+                    var res = Quaternion.AngleAxis(Vector3.Angle(vec2,vec1), axis) * vec2;
 
-                    //吹っ飛ぶ
+                    //吹っ飛ぶ(後ろか上にしか吹っ飛ばないけど横に飛ぶことはないだろうしいいか)
                     iTween.MoveTo(Parent.gameObject, iTween.Hash(
                             "position", new Vector3(
-                            Parent.gameObject.transform.position.x - (col.gameObject.transform.position.x - Parent.gameObject.transform.position.x) + cal.x,
+                            Parent.gameObject.transform.position.x - res.x,
                             Parent.gameObject.transform.position.y + attack.GetKnockBack().y,
-                            Parent.gameObject.transform.position.z - (col.gameObject.transform.position.z - Parent.gameObject.transform.position.z) + cal.z)
+                            Parent.gameObject.transform.position.z - res.z)
                             /*Parent.gameObject.transform.position.x - (col.gameObject.transform.position.x - Parent.gameObject.transform.position.x) * attack.GetKnockBack().x,
                             Parent.gameObject.transform.position.y + attack.GetKnockBack().y,
                             Parent.gameObject.transform.position.z - (col.gameObject.transform.position.z - Parent.gameObject.transform.position.z) * attack.GetKnockBack().z)*/
