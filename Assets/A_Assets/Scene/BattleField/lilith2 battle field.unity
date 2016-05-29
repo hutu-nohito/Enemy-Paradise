@@ -3731,6 +3731,7 @@ MonoBehaviour:
   flag_jump: 1
   flag_damage: 1
   flag_magic: 1
+  flag_ground: 1
   flag_poison: 0
   flag_invincible: 0
   flag_watch: 0
@@ -5368,6 +5369,7 @@ MonoBehaviour:
   flag_jump: 1
   flag_damage: 1
   flag_magic: 1
+  flag_ground: 1
   flag_poison: 0
   flag_invincible: 0
   flag_watch: 0
@@ -16133,6 +16135,7 @@ MonoBehaviour:
   flag_jump: 1
   flag_damage: 1
   flag_magic: 1
+  flag_ground: 1
   flag_poison: 0
   flag_invincible: 0
   flag_watch: 0
@@ -16812,6 +16815,7 @@ MonoBehaviour:
   flag_jump: 1
   flag_damage: 1
   flag_magic: 1
+  flag_ground: 1
   flag_poison: 0
   flag_invincible: 0
   flag_watch: 0

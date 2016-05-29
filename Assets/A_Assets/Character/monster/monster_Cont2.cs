@@ -106,27 +106,16 @@ public class monster_Cont2 : Character_Parameters
         }
 
         RaycastHit groundHit;
-        //if(Physics.SphereCast(transform.position,1,Vector3.down,out groundHit, 1.0f))
-        //{
-        //    Debug.Log("sss");
-        //    flag_ground = true;
-        //}
-        //else
-        //{
-        //    flag_ground = false;
-        //}
-
-        if(Physics.Raycast(transform.position,  Vector3.down, out groundHit, 0.2f))
+        if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.5f))
         {
             Debug.DrawLine(transform.position, groundHit.point, Color.blue);
-            flag_ground = true;
         }
         else
         {
             flag_ground = false;
         }
 
-        ////////////////////////////////////////////////////////////////////////////////////
+        //状態遷移//////////////////////////////////////////////////////////////////////////////////
 
         //何もしない
         if (state == ActionState.Stop)
@@ -422,7 +411,18 @@ public class monster_Cont2 : Character_Parameters
         
     }
 
-    //アニメーション
+    //接地判定欲しい
+    void OnCollisionEnter()
+    {
+        RaycastHit groundHit;
+        if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.2f))
+        {
+            Debug.DrawLine(transform.position, groundHit.point, Color.blue);
+            flag_ground = true;
+        }
+    }
+
+    //アニメーション///////////////////////////////////////////////////////
     private Animator animator;
     private int animState = 0;//アニメータのパラメタが取得できないのでとりあえずこれで代用
 

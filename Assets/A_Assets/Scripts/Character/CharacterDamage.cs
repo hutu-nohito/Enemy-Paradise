@@ -64,10 +64,15 @@ public class CharacterDamage : MonoBehaviour {
         }
         */
 
-        if (Parent.GetComponent<Character_Parameters>().GetGround())
+        /*
+        if (Parent.GetComponent<Character_Parameters>().GetF_Damage())
         {
-            Cpara.SetActive();//動かす
+            if (Parent.GetComponent<Character_Parameters>().GetGround())
+            {
+                //Cpara.SetActive();//動かす
+            }
         }
+        */
 
     }
 
