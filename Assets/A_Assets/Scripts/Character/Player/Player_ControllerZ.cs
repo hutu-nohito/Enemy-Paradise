@@ -3,6 +3,20 @@ using System.Collections;
 
 public class Player_ControllerZ : Character_Parameters{
 
+    /******************************************************************************/
+    /** @brief プレイヤの操作管理
+    * @date 2016/06/05
+    * @author 石川
+    * @param[in] m_fringe 干渉縞の計算結果を格納
+    * 
+*/
+    /******************************************************************************/
+    /* 更新履歴
+    *
+    */
+    /******************************************************************************/
+
+
     /*
     プレイヤーの操作用
     Jump()//ジャンプ
@@ -93,7 +107,7 @@ public class Player_ControllerZ : Character_Parameters{
             }
         }
 
-        //接地用
+        //接地用(Character_Parametersに合わせて無駄に入れてる)
         if (playerController.isGrounded)
         {
             flag_ground = true;

@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;//リスト
 
 public class CharacterDamage : MonoBehaviour {
 
     /******************************************************************************/
-    /** @brief キャラクターのダメージ処理全般
+    /** @brief キャラクターのダメージ処理全般(状態異常も)
     * @date 2016/05/29
     * @author 石川
     * @param[in] m_fringe 干渉縞の計算結果を格納
@@ -13,12 +14,13 @@ public class CharacterDamage : MonoBehaviour {
     /* 更新履歴
     *  プレイヤも敵も一緒くたにできるように
     *  とりあえず敵だけ？
+    *  一応プレイヤにも適用してる
     */
     /******************************************************************************/
     
     public GameObject Parent;//このあたり判定を持つキャラ
     public bool weak_point = false;
-    private Character_Parameters Cpara;
+    private Character_Parameters Cpara;//キャラクタのパラメタ
 
     private Renderer[] Renderer;//レンダー1
     private Renderer[] SkinRenderer;//レンダー2
@@ -31,6 +33,7 @@ public class CharacterDamage : MonoBehaviour {
 
     //演出
     public GameObject[] Effects;//出すエフェクト
+    private List<Vector3> Effect_basePos = new List<Vector3>();//エフェクトの基準位置
 
     void Start()
     {
@@ -41,6 +44,12 @@ public class CharacterDamage : MonoBehaviour {
         else
         {
             Cpara = Parent.GetComponent<monster_Cont2>();//敵だったらこっち
+        }
+
+        //エフェクトの基準位置を取得
+        for (int i = 0 ;i < Effects.Length ; i++)
+        {
+            Effect_basePos.Add(Effects[i].transform.localPosition);
         }
         
         //今はいらない
@@ -54,15 +63,7 @@ public class CharacterDamage : MonoBehaviour {
     void Update()
     {
 
-        //とりあえず止めとく
-        /*
-        if (Cpara.flag_poison)
-        {
-
-            coroutine = StartCoroutine(Poison());
-
-        }
-        */
+        //着地判定(敵側で必要)
         if (Parent.GetComponent<Character_Parameters>().GetF_Damage())//これはCharacterController用
         {
             if (Parent.GetComponent<Character_Parameters>().GetGround())
@@ -71,26 +72,6 @@ public class CharacterDamage : MonoBehaviour {
             }
         }
         
-    }
-
-    IEnumerator Poison()
-    {
-
-        if (isCoroutine) { yield break; }
-        isCoroutine = true;
-
-        yield return new WaitForSeconds(5.0f);
-
-        Cpara.H_point -= 1;
-        count++;
-        if (count == 10)
-        {
-
-            Cpara.flag_poison = false;//毒の自然治癒
-
-        }
-        isCoroutine = false;
-
     }
 
     void OnTriggerEnter(Collider col)
@@ -104,6 +85,7 @@ public class CharacterDamage : MonoBehaviour {
 
             if (attack.Parent.name != Parent.name)
             {
+                //ダメージ処理///////////////////////////////////////////////////////////////
 
                 int damage = attack.power;
 
@@ -153,8 +135,7 @@ public class CharacterDamage : MonoBehaviour {
                     damage *= 2;
 
                 }
-
-
+                
                 //実際のダメージ処理
                 if (Cpara.GetF_Damage())
                 {
@@ -165,16 +146,8 @@ public class CharacterDamage : MonoBehaviour {
                     Invoke("ReverseDamage", 0.5f);
                 }
 
-                //こっから状態異常///////////////////////////////////////////////////////////
+                //こっからノックバック////////////////////////////////////////////////////////////////
 
-                if (attack.GetAilment() == "Poison")
-                {
-
-                    Cpara.flag_poison = true;
-
-                }
-
-                //こっからノックバック
                 if (attack.GetKnockBack().magnitude > 0)
                 {
                     //vec2をvec1に向かって角度差分だけ回転させる
@@ -200,31 +173,83 @@ public class CharacterDamage : MonoBehaviour {
                     Cpara.SetKeylock();//行動不能だったと思う
                 }
 
-                //こっから演出
-                //とりあえず止めとく
-                /*
+                //こっから演出////////////////////////////////////////////////////////////////
+
+                //(できれば攻撃された部分にエフェクトを出したい)
+                //(そのうち地水火風で分ける)
                 for (int i = 0; i < Effects.Length; i++)
                 {
-                    //Effects[i].transform.parent = null;//子供にしとくとたいてい消える
+
+                    /*Effects[i].transform.localPosition = Effect_basePos[i];//位置合わせ
+                    Effects[i].transform.localPosition -= new Vector3(
+                        (col.transform.position.x - Parent.transform.position.x) * 1.5f,
+                        (col.transform.position.y - Parent.transform.position.y) * -0.1f,
+                        (col.transform.position.z - Parent.transform.position.z) * 1.5f);//位置合わせ
+                    */
+
+                    //位置合わせ
+                    Effects[i].transform.position = col.transform.position;//弾が当たった場所
+
+                    //一瞬だけ消してつけるともう一回再生してくれる
+                    Effects[i].SetActive(false);
                     Effects[i].SetActive(true);
-                    StartCoroutine(ErasseEffect(Effects[i]));
+                    //StartCoroutine(ErasseEffect(Effects[i]));
                 }
-                */
+                
             }
 
+            //こっから状態異常///////////////////////////////////////////////////////////
 
+            //弾に付加されてるからここでやるのが手っ取り早い
+            if (attack.GetAilment() == "Poison")
+            {
+                if (!Cpara.flag_poison)//毒状態は重ならない
+                {
+                    Cpara.flag_poison = true;
+                    StartCoroutine(Poison());//一回動かせばいい
+                }
+            }
         }
     }
 
+    //反転を時間を遅らせて行うため
     void ReverseDamage()
     {
         Cpara.Reverse_Damage();
     }
-    
-    IEnumerator ErasseEffect(GameObject Effect)
-    {
-        yield return new WaitForSeconds(0.5f);//エフェクトが出てる時間
 
-        Effect.SetActive(false);
+    //エフェクト///////////////////////////////////////////////
+
+    IEnumerator Effect()
+    {
+        if (isCoroutine) { yield break; }
+        isCoroutine = true;
+
+        yield return new WaitForSeconds(5.0f);
+    }
+    
+    //状態異常管理//////////////////////////////////////////////
+
+    IEnumerator Poison()
+    {
+        
+        while (true)
+        {
+            yield return new WaitForSeconds(1.0f);//継続ダメージの入る間隔
+
+            Cpara.H_point -= 1;//スリップダメージの量
+            count++;
+            Debug.Log("www");
+
+            //毒を止める
+            if (count == 10)//時間で切るべき？
+            {
+
+                Cpara.flag_poison = false;//毒の自然治癒
+                StopCoroutine(Poison());
+            }
+
+        }
+
     }
 }
