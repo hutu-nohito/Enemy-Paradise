@@ -48,9 +48,9 @@ public class Vision : MonoBehaviour {
 
             for (int i = 0; i < Target.Count; i++)
             {
+                //同じターゲットを重複させないようにしてる
                 if (col.gameObject == Target[i])
                 {
-                    Debug.Log(col.name);
                     return;//これでよさそう
 
                 }
@@ -113,7 +113,8 @@ public class Vision : MonoBehaviour {
 			                                     nearTarget.transform.position.y - (Player.transform.position.y + 1.0f),//Playerのy軸は少し上げておく
 			                                     nearTarget.transform.position.z - Player.transform.position.z);
 
-			if (Physics.Raycast(LineStart, LineDirection, out hit, 1000))
+            //マスクしたレイヤとのみ反応する(1はデフォルト)
+			if (Physics.Raycast(LineStart, LineDirection, out hit, 1000, 1))
             {
 				hitObject = hit.collider.gameObject;//レイヤーがIgnoreLayerのObjectは弾かれる。
 

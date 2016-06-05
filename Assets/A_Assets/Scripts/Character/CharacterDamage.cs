@@ -15,7 +15,7 @@ public class CharacterDamage : MonoBehaviour {
     *  プレイヤも敵も一緒くたにできるように
     *  とりあえず敵だけ？
     *  一応プレイヤにも適用してる
-    *  ヒットエフェクト追加
+    *  ヒットエフェクト追加(属性ごと)
     *  毒追加
     */
     /******************************************************************************/
@@ -27,11 +27,7 @@ public class CharacterDamage : MonoBehaviour {
     private Renderer[] Renderer;//レンダー1
     private Renderer[] SkinRenderer;//レンダー2
     public GameObject Model;//モデル
-
-    //コルーチン
-    private Coroutine coroutine;
-    private int count;//汎用のカウント用の箱(使い終わったら0に戻すこと)
-    private bool isCoroutine = false;
+    
 
     //演出(最初に取得)
     private List<GameObject> Effects = new List<GameObject>();//出すエフェクト
@@ -238,7 +234,7 @@ public class CharacterDamage : MonoBehaviour {
             //こっから状態異常///////////////////////////////////////////////////////////
 
             //弾に付加されてるからここでやるのが手っ取り早い
-            if (attack.GetAilment() == "Poison")
+            if (attack.GetAilment() == Attack_Parameter.Ailment.Poison)
             {
                 if (!Cpara.flag_poison)//毒状態は重ならない
                 {

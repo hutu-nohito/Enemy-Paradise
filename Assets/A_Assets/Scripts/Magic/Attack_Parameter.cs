@@ -3,7 +3,19 @@ using System.Collections;
 
 public class Attack_Parameter : MonoBehaviour {
 
-    //攻撃魔法に必要な変数
+    /******************************************************************************/
+    /** @brief 攻撃・ギミックに必要な変数
+    * @date 2016/06/05
+    * @author 石川
+    * @param[in] m_fringe 干渉縞の計算結果を格納
+    * 
+*/
+    /******************************************************************************/
+    /* 更新履歴
+    *  ギミックに対応
+    */
+    /******************************************************************************/
+
 
     public int power = 3;//攻撃力
     public int GetPower() { return power; }
@@ -37,8 +49,15 @@ public class Attack_Parameter : MonoBehaviour {
     public Property property = Property.NaN;
     public Property GetProperty() { return property; }
 
-    public string ailment = "";//付加される状態異常
-    public string GetAilment() { return ailment; }
+    public enum Ailment
+    {//状態異常
+        NaN,//なし
+        Poison,//毒
+        Paralysis,//麻痺
+        confusion,//混乱
+    }
+    public Ailment ailment = Ailment.NaN;
+    public Ailment GetAilment() { return ailment; }
 
     public Vector3 KnockBack = Vector3.zero;//ノックバックで吹っ飛ばす方向　ノックバックさせない場合は0
     public Vector3 GetKnockBack() { return KnockBack; }

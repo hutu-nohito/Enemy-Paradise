@@ -134,7 +134,7 @@ GameObject:
   - 114: {fileID: 11410446}
   - 54: {fileID: 5407982}
   - 82: {fileID: 8230608}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Blast_Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -398,7 +398,7 @@ MonoBehaviour:
   rigid_time: 0
   magicElement: 2
   property: 0
-  ailment: 
+  ailment: 0
   KnockBack: {x: 0, y: 0, z: 0}
   Parent: {fileID: 0}
 --- !u!135 &13545868
@@ -10932,6 +10932,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Volume
       value: .800000012
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
