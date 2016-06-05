@@ -15,6 +15,8 @@ public class CharacterDamage : MonoBehaviour {
     *  プレイヤも敵も一緒くたにできるように
     *  とりあえず敵だけ？
     *  一応プレイヤにも適用してる
+    *  ヒットエフェクト追加
+    *  毒追加
     */
     /******************************************************************************/
     
@@ -35,6 +37,22 @@ public class CharacterDamage : MonoBehaviour {
     private List<GameObject> Effects = new List<GameObject>();//出すエフェクト
     private List<Vector3> Effect_basePos = new List<Vector3>();//エフェクトの基準位置
 
+    //使用するエフェクト
+    /*
+            0   Hit
+            1   Fire
+            2   Water
+            3   Poison
+    */
+    private enum EffectKind
+    {
+        Hit,
+        Fire,
+        Water,
+        Poison
+    }
+    private EffectKind effectKind = EffectKind.Hit;
+
     void Start()
     {
         //親を取得
@@ -50,11 +68,9 @@ public class CharacterDamage : MonoBehaviour {
         }
 
         //エフェクトを取得(共通エフェクトなので決め打ち)
-        /*
-            0   Hit
-            1   Poison
-        */
         Effects.Add(Parent.transform.FindChild("Effects").gameObject.transform.FindChild("Eff_Hit").gameObject);//ヒットエフェクト
+        Effects.Add(Parent.transform.FindChild("Effects").gameObject.transform.FindChild("Eff_Fire").gameObject);//火エフェクト
+        Effects.Add(Parent.transform.FindChild("Effects").gameObject.transform.FindChild("Eff_Water").gameObject);//水エフェクト
         Effects.Add(Parent.transform.FindChild("Effects").gameObject.transform.FindChild("Eff_Poison").gameObject);//毒エフェクト
         
         //エフェクト消す
@@ -188,27 +204,34 @@ public class CharacterDamage : MonoBehaviour {
 
                 //こっから演出////////////////////////////////////////////////////////////////
 
-                //(できれば攻撃された部分にエフェクトを出したい)
-                //(そのうち地水火風で分ける)
-                //位置合わせ
-                Effects[0].transform.position = col.transform.position;//弾が当たった場所
+                //属性エフェクト
+                switch (col.GetComponent<Attack_Parameter>().GetElement())
+                {
+                    case Attack_Parameter.MagicElement.Earth:
+                        //effectKind = EffectKind.Earth;
+                        break;
+                    case Attack_Parameter.MagicElement.Water:
+                        effectKind = EffectKind.Water;
+                        break;
+                    case Attack_Parameter.MagicElement.Fire:
+                        effectKind = EffectKind.Fire;
+                        break;
+                    case Attack_Parameter.MagicElement.Wind:
+                        //effectKind = EffectKind.Wind;
+                        break;
+
+                }
+                Effects[(int)effectKind].transform.position = col.transform.position;//弾が当たった場所
+                //一瞬だけ消してつけるともう一回再生してくれる
+                Effects[(int)effectKind].SetActive(false);
+                Effects[(int)effectKind].SetActive(true);
+
+                Effects[(int)EffectKind.Hit].transform.position = col.transform.position;//弾が当たった場所
 
                 //一瞬だけ消してつけるともう一回再生してくれる
-                Effects[0].SetActive(false);
-                Effects[0].SetActive(true);
-                for (int i = 0; i < Effects.Count; i++)
-                {
-
-                    /*Effects[i].transform.localPosition = Effect_basePos[i];//位置合わせ
-                    Effects[i].transform.localPosition -= new Vector3(
-                        (col.transform.position.x - Parent.transform.position.x) * 1.5f,
-                        (col.transform.position.y - Parent.transform.position.y) * -0.1f,
-                        (col.transform.position.z - Parent.transform.position.z) * 1.5f);//位置合わせ
-                    */
-
-                    
-                    //StartCoroutine(ErasseEffect(Effects[i]));
-                }
+                Effects[(int)EffectKind.Hit].SetActive(false);
+                Effects[(int)EffectKind.Hit].SetActive(true);
+                
                 
             }
 
@@ -220,7 +243,7 @@ public class CharacterDamage : MonoBehaviour {
                 if (!Cpara.flag_poison)//毒状態は重ならない
                 {
                     Cpara.flag_poison = true;
-                    Effects[1].SetActive(true);
+                    Effects[(int)EffectKind.Poison].SetActive(true);
                     StartCoroutine(Poison());//一回動かせばいい
                 }
             }
@@ -249,7 +272,7 @@ public class CharacterDamage : MonoBehaviour {
             {
 
                 Cpara.flag_poison = false;//毒の自然治癒
-                Effects[1].SetActive(false);
+                Effects[(int)EffectKind.Poison].SetActive(false);
                 
             }
 

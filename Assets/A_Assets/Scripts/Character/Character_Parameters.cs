@@ -54,19 +54,19 @@ public class Character_Parameters : MonoBehaviour {
     public float GetJump() { return jump; }
     public void SetJump(float jump) { this.jump = jump; }
 
-    public string[] weak_element;//弱点属性
-    public string[] GetWeak() { return weak_element; }
-    public void SetWeak(int num,string element)
+    public Attack_Parameter.MagicElement[] weak_element;//弱点属性
+    public Attack_Parameter.MagicElement[] GetWeak() { return weak_element; }
+    public void SetWeak(int num, Attack_Parameter.MagicElement element)
     { this.weak_element[num] = element; }//numが置き換える弱点の場所。elementが新しい弱点属性(nullも可)
 
-    public string[] proof_element;//耐性属性
-    public string[] GetProof() { return proof_element; }
-    public void SetProof(int num, string element)
+    public Attack_Parameter.MagicElement[] proof_element;//耐性属性
+    public Attack_Parameter.MagicElement[] GetProof() { return proof_element; }
+    public void SetProof(int num, Attack_Parameter.MagicElement element)
     { this.proof_element[num] = element; }//numが置き換える耐性の場所。elementが新しい耐性属性(nullも可)
 
-    public string[] invalid_element;//無効化属性
-    public string[] GetInvalid() { return invalid_element; }
-    public void SetInvalid(int num, string element)
+    public Attack_Parameter.MagicElement[] invalid_element;//無効化属性
+    public Attack_Parameter.MagicElement[] GetInvalid() { return invalid_element; }
+    public void SetInvalid(int num, Attack_Parameter.MagicElement element)
     { this.invalid_element[num] = element; }//numが置き換える耐性の場所。elementが新しい耐性属性(nullも可)
 
     public Vector3 move_direction = Vector3.zero;//キャラクタの移動方向

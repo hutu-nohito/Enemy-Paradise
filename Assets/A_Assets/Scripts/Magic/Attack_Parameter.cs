@@ -25,7 +25,7 @@ public class Attack_Parameter : MonoBehaviour {
         Wind,//風
     }
     public MagicElement magicElement = MagicElement.Earth;
-    public string GetElement() { return magicElement.ToString(); }
+    public MagicElement GetElement() { return magicElement; }
 
     public enum Property
     {//攻撃の特性
