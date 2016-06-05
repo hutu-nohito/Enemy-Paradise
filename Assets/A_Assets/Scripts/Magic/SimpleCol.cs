@@ -27,10 +27,11 @@ public class SimpleCol : MonoBehaviour {
     void OnTriggerEnter(Collider col)
     {
         //Debug.Log(col.gameObject.name);
-        if (col.gameObject.name == "Vision" || col.gameObject.name == "Search" || col.gameObject.name == "Territory")
+        //設定で当たらなくした
+        /*if (col.gameObject.name == "Vision" || col.gameObject.name == "Search" || col.gameObject.name == "Territory")
         {
             return;
-        }
+        }*/
         if (col.tag == "Reflect")
         {
             return;
@@ -42,22 +43,7 @@ public class SimpleCol : MonoBehaviour {
                 break;
             case Type.Through:
 
-                if (col.tag == "Enemy")
-                {
-                    if (ThroughEnemy) break;
-                    else
-                    {
-                        Destroy(this.gameObject);
-                    }
-                }
-                if (col.tag == "Bullet")
-                {
-                    if (ThroughBullet) break;
-                    else
-                    {
-                        Destroy(this.gameObject);
-                    }
-                }
+                //貫通するかどうか
                 if (col.tag == "Player")
                 {
                     if (ThroughPlayer) break;
@@ -66,7 +52,26 @@ public class SimpleCol : MonoBehaviour {
                         Destroy(this.gameObject);
                     }
                 }
-                if (col.gameObject.name == "Terrain")
+                if (col.tag == "Enemy")
+                {
+                    if (ThroughEnemy) break;
+                    else
+                    {
+                        Destroy(this.gameObject);
+                    }
+                }
+
+                if (col.tag == "Bullet")//相殺するかどうか
+                {
+                    if (ThroughBullet) break;
+                    else
+                    {
+                        Destroy(this.gameObject);
+                    }
+                }
+                
+                //地形貫通
+                if (col.gameObject.layer == 1)//レイやがDefaultの時(地形とキャラ)
                 {
                     if (ThroughTerrain) break;
                     else
