@@ -1,94 +1,96 @@
 fileFormatVersion: 2
-guid: d52e8bac72247c249bac4fd27b499942
-timeCreated: 1465732286
+guid: d0445abf484b34f4f8acc1f386f7fe67
+timeCreated: 1465733556
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: Armature
-    100002: Bone
-    100004: Bone_001
-    100006: Bone_002
-    100008: Bone_002_L
-    100010: Bone_002_L_002
-    100012: Bone_002_L_004
-    100014: Bone_002_L_005
-    100016: Bone_002_L_007
-    100018: Bone_002_L_008
-    100020: Bone_002_L_009
-    100022: Bone_002_L_010
-    100024: Bone_002_L_011
-    100026: Bone_002_L_012
-    100028: Bone_002_L_014
-    100030: Bone_002_L_015
-    100032: Bone_002_L_016
-    100034: Bone_002_R
-    100036: Bone_002_R_002
-    100038: Bone_002_R_004
-    100040: Bone_002_R_005
-    100042: Bone_002_R_007
-    100044: Bone_002_R_008
-    100046: Bone_002_R_009
-    100048: Bone_002_R_010
-    100050: Bone_002_R_011
-    100052: Bone_002_R_012
-    100054: Bone_002_R_014
-    100056: Bone_002_R_015
-    100058: Bone_002_R_016
-    100060: Bone_003
-    100062: Bone_004_L
-    100064: Bone_004_L_001
-    100066: Bone_004_L_002
-    100068: Bone_004_R
-    100070: Bone_004_R_001
-    100072: Bone_004_R_002
-    100074: Bone_006
-    100076: Bone_007
-    100078: Bone_008
-    100080: //RootNode
-    100082: Plane
+    100002: Armature_001
+    100004: Bone
+    100006: Bone_001
+    100008: Bone_002
+    100010: Bone_002_L
+    100012: Bone_002_L_002
+    100014: Bone_002_L_004
+    100016: Bone_002_L_005
+    100018: Bone_002_L_007
+    100020: Bone_002_L_008
+    100022: Bone_002_L_009
+    100024: Bone_002_L_010
+    100026: Bone_002_L_011
+    100028: Bone_002_L_012
+    100030: Bone_002_L_014
+    100032: Bone_002_L_015
+    100034: Bone_002_L_016
+    100036: Bone_002_R
+    100038: Bone_002_R_002
+    100040: Bone_002_R_004
+    100042: Bone_002_R_005
+    100044: Bone_002_R_007
+    100046: Bone_002_R_008
+    100048: Bone_002_R_009
+    100050: Bone_002_R_010
+    100052: Bone_002_R_011
+    100054: Bone_002_R_012
+    100056: Bone_002_R_014
+    100058: Bone_002_R_015
+    100060: Bone_002_R_016
+    100062: Bone_003
+    100064: Bone_004_L
+    100066: Bone_004_L_001
+    100068: Bone_004_L_002
+    100070: Bone_004_R
+    100072: Bone_004_R_001
+    100074: Bone_004_R_002
+    100076: Bone_006
+    100078: Bone_007
+    100080: Bone_008
+    100082: //RootNode
+    100084: Plane
     400000: Armature
-    400002: Bone
-    400004: Bone_001
-    400006: Bone_002
-    400008: Bone_002_L
-    400010: Bone_002_L_002
-    400012: Bone_002_L_004
-    400014: Bone_002_L_005
-    400016: Bone_002_L_007
-    400018: Bone_002_L_008
-    400020: Bone_002_L_009
-    400022: Bone_002_L_010
-    400024: Bone_002_L_011
-    400026: Bone_002_L_012
-    400028: Bone_002_L_014
-    400030: Bone_002_L_015
-    400032: Bone_002_L_016
-    400034: Bone_002_R
-    400036: Bone_002_R_002
-    400038: Bone_002_R_004
-    400040: Bone_002_R_005
-    400042: Bone_002_R_007
-    400044: Bone_002_R_008
-    400046: Bone_002_R_009
-    400048: Bone_002_R_010
-    400050: Bone_002_R_011
-    400052: Bone_002_R_012
-    400054: Bone_002_R_014
-    400056: Bone_002_R_015
-    400058: Bone_002_R_016
-    400060: Bone_003
-    400062: Bone_004_L
-    400064: Bone_004_L_001
-    400066: Bone_004_L_002
-    400068: Bone_004_R
-    400070: Bone_004_R_001
-    400072: Bone_004_R_002
-    400074: Bone_006
-    400076: Bone_007
-    400078: Bone_008
-    400080: //RootNode
-    400082: Plane
+    400002: Armature_001
+    400004: Bone
+    400006: Bone_001
+    400008: Bone_002
+    400010: Bone_002_L
+    400012: Bone_002_L_002
+    400014: Bone_002_L_004
+    400016: Bone_002_L_005
+    400018: Bone_002_L_007
+    400020: Bone_002_L_008
+    400022: Bone_002_L_009
+    400024: Bone_002_L_010
+    400026: Bone_002_L_011
+    400028: Bone_002_L_012
+    400030: Bone_002_L_014
+    400032: Bone_002_L_015
+    400034: Bone_002_L_016
+    400036: Bone_002_R
+    400038: Bone_002_R_002
+    400040: Bone_002_R_004
+    400042: Bone_002_R_005
+    400044: Bone_002_R_007
+    400046: Bone_002_R_008
+    400048: Bone_002_R_009
+    400050: Bone_002_R_010
+    400052: Bone_002_R_011
+    400054: Bone_002_R_012
+    400056: Bone_002_R_014
+    400058: Bone_002_R_015
+    400060: Bone_002_R_016
+    400062: Bone_003
+    400064: Bone_004_L
+    400066: Bone_004_L_001
+    400068: Bone_004_L_002
+    400070: Bone_004_R
+    400072: Bone_004_R_001
+    400074: Bone_004_R_002
+    400076: Bone_006
+    400078: Bone_007
+    400080: Bone_008
+    400082: //RootNode
+    400084: Plane
     4300000: Plane
     7400000: Default Take
     7400002: Action
@@ -127,8 +129,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
+      loopTime: 0
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -222,6 +224,8 @@ ModelImporter:
       - path: Armature/Bone_004_R/Bone_004_R_001/Bone_004_R_002
         weight: 1
       - path: Armature/Bone_008
+        weight: 1
+      - path: Armature_001
         weight: 1
       - path: Plane
         weight: 1
@@ -335,6 +339,8 @@ ModelImporter:
         weight: 1
       - path: Armature/Bone_008
         weight: 1
+      - path: Armature_001
+        weight: 1
       - path: Plane
         weight: 1
       maskType: 0
@@ -446,6 +452,8 @@ ModelImporter:
       - path: Armature/Bone_004_R/Bone_004_R_001/Bone_004_R_002
         weight: 1
       - path: Armature/Bone_008
+        weight: 1
+      - path: Armature_001
         weight: 1
       - path: Plane
         weight: 1
