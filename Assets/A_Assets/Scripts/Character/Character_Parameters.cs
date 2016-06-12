@@ -125,6 +125,10 @@ public class Character_Parameters : MonoBehaviour {
     public bool GetPoison() { return flag_poison; }
     public void ReversePoison() { flag_poison = !flag_poison; }
 
+    //ノックバックは状態異常
+    public bool flag_knock = false;//ノックバック状態
+    public bool GetKnock() { return flag_knock; }
+    public void ReverseKnock() { flag_knock = !flag_knock; }
     //状態変化(conversion)/////////////////////////////////////////////////////////////////
 
     public bool flag_invincible = false;//無敵かどうか

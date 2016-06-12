@@ -60,7 +60,7 @@ public class CharacterDamage : MonoBehaviour {
         }
         else
         {
-            Cpara = Parent.GetComponent<monster_Cont2>();//敵だったらこっち
+            Cpara = Parent.GetComponent<Enemy_Base>();//敵だったらこっち
         }
 
         //エフェクトを取得(共通エフェクトなので決め打ち)
@@ -89,11 +89,13 @@ public class CharacterDamage : MonoBehaviour {
     {
 
         //着地判定(敵側で必要)
-        if (Parent.GetComponent<Character_Parameters>().GetF_Damage())//これはCharacterController用
+        if (Parent.GetComponent<Character_Parameters>().GetKnock())//これを入れておかないとすぐに着地したことになる
         {
             if (Parent.GetComponent<Character_Parameters>().GetGround())
             {
+                //ノックバックして着地した時に動かせるように
                 Cpara.SetActive();//動かす
+                Cpara.ReverseKnock();
             }
         }
         
@@ -171,33 +173,6 @@ public class CharacterDamage : MonoBehaviour {
                     Invoke("ReverseDamage", 0.5f);
                 }
 
-                //こっからノックバック////////////////////////////////////////////////////////////////
-
-                if (attack.GetKnockBack().magnitude > 0)
-                {
-                    //vec2をvec1に向かって角度差分だけ回転させる
-                    var vec1 = (col.gameObject.transform.position - Parent.gameObject.transform.position);
-                    var vec2 = attack.GetKnockBack();
-                    var axis = Vector3.Cross(vec2, vec1);
-                    var res = Quaternion.AngleAxis(Vector3.Angle(vec2,vec1), axis) * vec2;
-
-                    //吹っ飛ぶ(後ろか上にしか吹っ飛ばないけど横に飛ぶことはないだろうしいいか)
-                    iTween.MoveTo(Parent.gameObject, iTween.Hash(
-                            "position", new Vector3(
-                            Parent.gameObject.transform.position.x - res.x,
-                            Parent.gameObject.transform.position.y + attack.GetKnockBack().y,
-                            Parent.gameObject.transform.position.z - res.z)
-                            /*Parent.gameObject.transform.position.x - (col.gameObject.transform.position.x - Parent.gameObject.transform.position.x) * attack.GetKnockBack().x,
-                            Parent.gameObject.transform.position.y + attack.GetKnockBack().y,
-                            Parent.gameObject.transform.position.z - (col.gameObject.transform.position.z - Parent.gameObject.transform.position.z) * attack.GetKnockBack().z)*/
-                            //- (col.gameObject.transform.position - Parent.gameObject.transform.position)
-                            /*Parent.transform.TransformDirection(attack.GetKnockBack())*/,
-                            "time", 0.3f/*,
-                            "easetype", iTween.EaseType.easeOutBack*/)
-                            );
-                    Cpara.SetKeylock();//行動不能だったと思う
-                }
-
                 //こっから演出////////////////////////////////////////////////////////////////
 
                 //属性エフェクト
@@ -233,7 +208,35 @@ public class CharacterDamage : MonoBehaviour {
 
             //こっから状態異常///////////////////////////////////////////////////////////
 
-            //弾に付加されてるからここでやるのが手っ取り早い
+            //ノックバック
+            if (attack.GetKnockBack().magnitude > 0)
+            {
+                Cpara.ReverseKnock();//ノックバック状態ですよ
+
+                //vec2をvec1に向かって角度差分だけ回転させる
+                var vec1 = (col.gameObject.transform.position - Parent.gameObject.transform.position);
+                var vec2 = attack.GetKnockBack();
+                var axis = Vector3.Cross(vec2, vec1);
+                var res = Quaternion.AngleAxis(Vector3.Angle(vec2, vec1), axis) * vec2;
+
+                //吹っ飛ぶ(後ろか上にしか吹っ飛ばないけど横に飛ぶことはないだろうしいいか)
+                iTween.MoveTo(Parent.gameObject, iTween.Hash(
+                        "position", new Vector3(
+                        Parent.gameObject.transform.position.x - res.x,
+                        Parent.gameObject.transform.position.y + attack.GetKnockBack().y,
+                        Parent.gameObject.transform.position.z - res.z)
+                        /*Parent.gameObject.transform.position.x - (col.gameObject.transform.position.x - Parent.gameObject.transform.position.x) * attack.GetKnockBack().x,
+                        Parent.gameObject.transform.position.y + attack.GetKnockBack().y,
+                        Parent.gameObject.transform.position.z - (col.gameObject.transform.position.z - Parent.gameObject.transform.position.z) * attack.GetKnockBack().z)*/
+                        //- (col.gameObject.transform.position - Parent.gameObject.transform.position)
+                        /*Parent.transform.TransformDirection(attack.GetKnockBack())*/,
+                        "time", 0.3f/*,
+                            "easetype", iTween.EaseType.easeOutBack*/)
+                        );
+                Cpara.SetKeylock();//行動不能だったと思う
+            }
+
+            //毒
             if (attack.GetAilment() == Attack_Parameter.Ailment.Poison)
             {
                 if (!Cpara.flag_poison)//毒状態は重ならない

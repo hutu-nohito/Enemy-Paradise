@@ -1,21 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class monster_Cont2 : Enemy_Base
+public class Haniwonder : Enemy_Base
 {
-
+ 
     /******************************************************************************/
-    /** @brief モンスターAIテスト
-    * @date 2016/05/08
+    /** @brief 埴輪AIテスト
+    * @date 2016/06/12
     * @author 石川
     * @param[in] m_fringe 干渉縞の計算結果を格納
     */
     /******************************************************************************/
     /* 更新履歴
-    *   攻撃はイベント
-        まつ必要があるアニメーションはイベントを送るのを少し遅らせたほうがいい
-        見える弾を避ける
-        Itweenの調整
+    *   すごいスピードでうろうろする
     */
     /******************************************************************************/
 
@@ -23,46 +20,27 @@ public class monster_Cont2 : Enemy_Base
     public enum ActionState
     {
         Stop,//アニメーションが終わるまで待機(状態でなくアニメーションの整合性のために必要)
-        Block,//盾で防御
-        Avoid,//避ける
+        //Avoid,//避ける
         Attack,//攻撃
         Fight,//臨戦態勢
         Run,//プレイヤを見つけて近づいてる
+        Search,//うろうろしてる
 
     }//intにすれば優先度にできる
     public ActionState state = ActionState.Stop;
     public ActionState GetState() { return state; }
     public void SetState(ActionState state) { this.state = state; }
-
-    //追加中/////////////////////////////////////////////////////////
     
-
-    //関数でいいかも
-    /*
-    private bool event_find = false;
-    private bool event_damage = false;
-    */
-
     public float rotSpeed = 5;
-    
+
     // Use this for initialization
     void Start()
     {
         base.BaseStart();
 
         //初期状態セット
-        coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Run));
+        coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Search));
 
-        //AIで戦わせてみた(共通事項より後に書けばPlayerという名のターゲットを変えられる)
-        if(this.gameObject.name == "AImonster")
-        {
-            base.Player = GameObject.Find("AImonster2");
-        }
-        else if(this.gameObject.name == "AImonster2")
-        {
-            base.Player = GameObject.Find("AImonster");
-        }
-        
     }
 
     // Update is called once per frame
@@ -72,36 +50,36 @@ public class monster_Cont2 : Enemy_Base
         //状態以外で変化するもの(今んとこ移植で補う)/////////////////////////////////////////////////////////
 
         //行動を止める
-        if(!GetF_Move())
+        if (!GetF_Move())
         {
             //コルーチンは最後まで流さないと状態がおかしくなるかも(ムービーとかでは素直に時間止めたほうがいいかも)
             //StopAllCoroutines();//コルーチンはどうやって止めたらいいんだろう
             return;//これで行動不能になる(アニメーションは止まらない)
         }
-        
+
         //HPがなくなった時の処理
-        if(GetHP() <= 0)
+        if (GetHP() <= 0)
         {
             //ダウン演出
-            if (animState != (int)ActionState.Stop)
-            {
-                base.animator.SetTrigger("Die");
-                Destroy(this.gameObject, 3);//とりあえず消す
-            }
-            state = ActionState.Stop;
-            animState = (int)ActionState.Stop;
-            
+            //if (animState != (int)ActionState.Stop)
+            //{
+            //    base.animator.SetTrigger("Die");
+            //    Destroy(this.gameObject, 3);//とりあえず消す
+            //}
+            //state = ActionState.Stop;
+            //animState = (int)ActionState.Stop;
+
         }
 
         //相手がいなくなった時の処理
-        if(base.Player == null)
+        if (base.Player == null)
         {
-            StopAllCoroutines();
-            base.Player = this.gameObject;
-            state = ActionState.Stop;
-            animState = (int)ActionState.Stop;
-            //勝利のポーズ
-            base.animator.SetTrigger("Win");
+            //StopAllCoroutines();
+            //base.Player = this.gameObject;
+            //state = ActionState.Stop;
+            //animState = (int)ActionState.Stop;
+            ////勝利のポーズ
+            //base.animator.SetTrigger("Win");
         }
 
         //空中判定
@@ -123,46 +101,39 @@ public class monster_Cont2 : Enemy_Base
         {
             //アニメーションの最中など動かしたくないときに用いる
         }
-
-        //防御
-        if(state == ActionState.Block)
-        {
-            coroutine = StartCoroutine(Block());
-            
-        }
-
+        
         //避ける
-        if (state == ActionState.Avoid)
-        {
-            if (animState != (int)ActionState.Stop)
-            {
-                base.animator.SetTrigger("Idle");
-            }
+        //if (state == ActionState.Avoid)
+        //{
+        //    if (animState != (int)ActionState.Stop)
+        //    {
+        //        base.animator.SetTrigger("Idle");
+        //    }
 
-            //避ける動作
-            iTween.MoveUpdate(this.gameObject, iTween.Hash(
-                    "position", new Vector3(
-                    transform.position.x + ((transform.position - base.Player.transform.position).z / (transform.position - base.Player.transform.position).magnitude) * 1.5f,
-                    transform.position.y,
-                    transform.position.z + (-(transform.position - base.Player.transform.position).x / (transform.position - base.Player.transform.position).magnitude) * 1.5f
-                    ),
-                    "time", 0.8f,
-                    "easetype", "easeInOutBack"//全然利いてない
-                    )
-                    );
-            transform.Rotate(0,12,0);
+        //    //避ける動作
+        //    iTween.MoveUpdate(this.gameObject, iTween.Hash(
+        //            "position", new Vector3(
+        //            transform.position.x + ((transform.position - base.Player.transform.position).z / (transform.position - base.Player.transform.position).magnitude) * 1.5f,
+        //            transform.position.y,
+        //            transform.position.z + (-(transform.position - base.Player.transform.position).x / (transform.position - base.Player.transform.position).magnitude) * 1.5f
+        //            ),
+        //            "time", 0.8f,
+        //            "easetype", "easeInOutBack"//全然利いてない
+        //            )
+        //            );
+        //    transform.Rotate(0, 12, 0);
 
-            if((transform.position - base.Player.transform.position).magnitude > 10)
-            {
-                coroutine = StartCoroutine(ChangeState(0.5f, ActionState.Run));
-            }
-            else
-            {
-                coroutine = StartCoroutine(ChangeState(0.5f, ActionState.Fight));
-            }
-            
+        //    if ((transform.position - base.Player.transform.position).magnitude > 10)
+        //    {
+        //        coroutine = StartCoroutine(ChangeState(0.5f, ActionState.Run));
+        //    }
+        //    else
+        //    {
+        //        coroutine = StartCoroutine(ChangeState(0.5f, ActionState.Fight));
+        //    }
 
-        }
+
+        //}
 
         //アタックするだけ
         if (state == ActionState.Attack)
@@ -204,7 +175,6 @@ public class monster_Cont2 : Enemy_Base
             }
 
             //ランダムで攻撃
-            /*
             if ((int)Time.time % 5 == 0)//5秒ごと
             {
                 float randAt1 = Random.value;
@@ -217,33 +187,33 @@ public class monster_Cont2 : Enemy_Base
                         state = ActionState.Attack;
                     }
                 }
-            }*/
+            }
 
             //たまーに避けつつ攻撃
-            if ((int)Time.time % 5 == 0)//5秒ごと
-            {
-                float randAt1 = Random.value;
-                float randAt2 = Random.value;
+            //if ((int)Time.time % 5 == 0)//5秒ごと
+            //{
+            //    float randAt1 = Random.value;
+            //    float randAt2 = Random.value;
 
-                if (randAt1 > 0.9)
-                {
-                    if (randAt2 < 0.4)
-                    {
-                        state = ActionState.Avoid;
-                    }
-                    else
-                    {
-                        state = ActionState.Attack;
-                    }
-                }
-            }
+            //    if (randAt1 > 0.9)
+            //    {
+            //        if (randAt2 < 0.4)
+            //        {
+            //            state = ActionState.Avoid;
+            //        }
+            //        else
+            //        {
+            //            state = ActionState.Attack;
+            //        }
+            //    }
+            //}
 
         }
 
         //見つけて近づいてる
         if (state == ActionState.Run)
         {
-            
+
             if (animState != (int)ActionState.Run)
             {
                 base.animator.SetTrigger("Run");
@@ -268,7 +238,20 @@ public class monster_Cont2 : Enemy_Base
 
         }
 
-        
+        //うろうろしてる
+        if (state == ActionState.Search)
+        {
+
+            if (animState != (int)ActionState.Search)
+            {
+                //base.animator.SetTrigger("Run");
+            }
+
+            coroutine = StartCoroutine(Search());
+
+        }
+
+
     }
 
     /////////////////////////////////////
@@ -286,41 +269,13 @@ public class monster_Cont2 : Enemy_Base
     //汎用
     private Coroutine coroutine;//一度に動かすコルーチンは1つ ここでとっとけば止めるのが楽
     private bool isCoroutine = false;//コルーチンを止めるときにはfalseに戻すこと
-
-
-    //防御
-    IEnumerator Block()
-    {
-        if (isCoroutine) yield break;
-        isCoroutine = true;
-
-        //回転してほしくない
-        shield.gameObject.GetComponent<BoxCollider>().enabled = true;
-        GetComponent<Rigidbody>().isKinematic = true;
-        state = ActionState.Stop;//とりあえず動きを止める
-        base.animator.SetTrigger("Block");
-
-        //防御してる時間
-        float rand = Random.Range(1,2);
-        yield return new WaitForSeconds(rand);//こーゆーパラメータもインスペクタで決めるべきだと思うけどごちゃごちゃしそうでいや
-
-        //重力に従ってほしい
-        shield.gameObject.GetComponent<BoxCollider>().enabled = false;
-        GetComponent<Rigidbody>().isKinematic = false;
-
-        //coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Fight));
-        base.animator.SetTrigger("Fight");
-        state = ActionState.Fight;
-
-        isCoroutine = false;
-    }
     
     //攻撃
     IEnumerator Attack()
     {
         if (isCoroutine) yield break;
         isCoroutine = true;
-        
+
         //攻撃前のため
         yield return new WaitForSeconds(0.5f);//こーゆーパラメータもインスペクタで決めるべきだと思うけどごちゃごちゃしそうでいや
 
@@ -339,14 +294,11 @@ public class monster_Cont2 : Enemy_Base
 
         //武器を振り下ろすまで
         yield return new WaitForSeconds(0.4f);//こーゆーパラメータもインスペクタで決めるべきだと思うけどごちゃごちゃしそうでいや
-
-        weapon.gameObject.GetComponent<BoxCollider>().enabled = true;
+        
         base.animator.SetTrigger("Attack");
 
         yield return new WaitForSeconds(0.8f);
-
-        weapon.gameObject.GetComponent<BoxCollider>().enabled = false;
-
+        
         //ちょい戻る
         base.animator.SetTrigger("Fight");
         iTween.MoveTo(this.gameObject, iTween.Hash(
@@ -365,41 +317,125 @@ public class monster_Cont2 : Enemy_Base
         isCoroutine = false;
     }
 
+    //索敵
+    IEnumerator Search()
+    {
+        if (isCoroutine) yield break;
+        isCoroutine = true;
+
+        while (true)
+        {
+            transform.eulerAngles = new Vector3(45, 90, 0);
+
+            //右移動
+            iTween.MoveTo(this.gameObject, iTween.Hash(
+                    "position", transform.position + new Vector3(15,0,0),
+                    "time", 0.5f,
+                    "easetype", iTween.EaseType.easeInOutBack)
+
+                    );
+
+            //移動時間
+            yield return new WaitForSeconds(0.45f);
+
+            iTween.RotateBy(this.gameObject, iTween.Hash(
+                    "y", 90,
+                    "time", 0.75f,
+                    "easetype", iTween.EaseType.linear)
+
+                    );
+
+            //回ってる時間
+            yield return new WaitForSeconds(0.75f);
+
+            transform.eulerAngles = new Vector3(45, 0, 0);
+
+            //前移動
+            iTween.MoveTo(this.gameObject, iTween.Hash(
+                    "position", transform.position + new Vector3(0, 0, 15),
+                    "time", 0.5f,
+                    "easetype", iTween.EaseType.easeInOutBack)
+
+                    );
+
+            //移動時間
+            yield return new WaitForSeconds(0.45f);
+
+            iTween.RotateBy(this.gameObject, iTween.Hash(
+                    "y", 90,
+                    "time", 0.75f,
+                    "easetype", iTween.EaseType.linear)
+
+                    );
+
+            //回ってる時間
+            yield return new WaitForSeconds(0.75f);
+
+            transform.eulerAngles = new Vector3(45, 270, 0);
+
+            //左移動
+            iTween.MoveTo(this.gameObject, iTween.Hash(
+                    "position", transform.position + new Vector3(-15, 0, 0),
+                    "time", 0.5f,
+                    "easetype", iTween.EaseType.easeInOutBack)
+
+                    );
+
+            //移動時間
+            yield return new WaitForSeconds(0.45f);
+
+            iTween.RotateBy(this.gameObject, iTween.Hash(
+                    "y", 90,
+                    "time", 0.75f,
+                    "easetype", iTween.EaseType.linear)
+
+                    );
+
+            //回ってる時間
+            yield return new WaitForSeconds(0.75f);
+
+            transform.eulerAngles = new Vector3(45, 180, 0);
+
+            //後移動
+            iTween.MoveTo(this.gameObject, iTween.Hash(
+                    "position", transform.position + new Vector3(0, 0, -15),
+                    "time", 0.5f,
+                    "easetype", iTween.EaseType.easeInOutBack)
+
+                    );
+
+            //移動時間
+            yield return new WaitForSeconds(0.45f);
+
+            iTween.RotateBy(this.gameObject, iTween.Hash(
+                    "y", 90,
+                    "time", 0.75f,
+                    "easetype", iTween.EaseType.linear)
+
+                    );
+
+            //回ってる時間
+            yield return new WaitForSeconds(0.75f);
+        }
+        
+        isCoroutine = false;
+    }
+
     public void Damage()
     {
         //イベント側で優先度を確認すればよい
-        if (state > ActionState.Fight)//これで臨戦態勢より高ければやってくれる
-        {
-            switch (state)//今の状態によって行動を変化
-            {
-                case ActionState.Attack:
-                    break;
-                default:
-                    break;
-            }
-        }
+        //if (state > ActionState.Fight)//これで臨戦態勢より高ければやってくれる
+        //{
+        //    switch (state)//今の状態によって行動を変化
+        //    {
+        //        case ActionState.Attack:
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
     }
-
-    public void FindDamage()
-    {
-        if (state == ActionState.Run)
-        {
-            
-            //避ける前のため
-            coroutine = StartCoroutine(ChangeState(0.1f, ActionState.Avoid));
-            
-        }
-    }
-
-    public void Mikiri()
-    {
-        if(state == ActionState.Fight)
-        {
-            state = ActionState.Block;
-        }
-        
-    }
-
+    
     //接地判定欲しい
     void OnCollisionEnter()
     {
@@ -418,13 +454,7 @@ public class monster_Cont2 : Enemy_Base
         animState = (int)ActionState.Stop;
 
     }
-
-    public void AnimBlock()
-    {
-        animState = (int)ActionState.Block;
-        
-    }
-
+    
     public void AnimAttack()
     {
         //animState = 1;
@@ -443,45 +473,6 @@ public class monster_Cont2 : Enemy_Base
         //animState = 3;
         animState = (int)ActionState.Fight;
     }
-
-    //武器を持つよう////////////////////////
-    public Transform shield;
-    public Transform weapon;
-    public Transform lefthandpos;
-    public Transform righthandpos;
-    public Transform chestposshield;
-    public Transform chestposweapon;
-    private bool fightmodus = false;
-
-    void grabshield()
-    {
-        shield.parent = lefthandpos;
-        shield.position = lefthandpos.position;
-        shield.rotation = lefthandpos.rotation;
-        fightmodus = true;
-    }
-
-    void grabweapon()
-    {
-        weapon.parent = righthandpos;
-        weapon.position = righthandpos.position;
-        weapon.rotation = righthandpos.rotation;
-
-    }
-
-    void holstershield()
-    {
-        shield.parent = chestposshield;
-        shield.position = chestposshield.position;
-        shield.rotation = chestposshield.rotation;
-
-    }
-
-    void holsterweapon()
-    {
-        fightmodus = false;
-        weapon.parent = chestposweapon;
-        weapon.position = chestposweapon.position;
-        weapon.rotation = chestposweapon.rotation;
-    }
+    
 }
+

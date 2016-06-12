@@ -30,7 +30,7 @@ public class Enemy_ControllerZ : Enemy_Parameter
     public bool frontWall = false;//前に壁がある
 
     //汎用
-    
+
 
     //初期パラメタ(邪魔なのでインスペクタに表示しない)
     [System.NonSerialized]
@@ -135,10 +135,10 @@ public class Enemy_ControllerZ : Enemy_Parameter
 
         //レイキャストで何とかして壁に当たらないようにする
         RaycastHit hit;
-        Vector3 StartPos = transform.position + new Vector3(0,transform.localScale.y,0);//とりあえず頭から出す
+        Vector3 StartPos = transform.position + new Vector3(0, transform.localScale.y, 0);//とりあえず頭から出す
 
         //これのとき前に壁がある
-        if (Physics.Raycast(StartPos, transform.TransformDirection(Vector3.forward), out hit ,20))
+        if (Physics.Raycast(StartPos, transform.TransformDirection(Vector3.forward), out hit, 20))
         {
             //Debug.DrawLine(StartPos, hit.point, Color.green);
             frontWall = true;
@@ -167,7 +167,7 @@ public class Enemy_ControllerZ : Enemy_Parameter
                 Move(Vector3.down, speed);
             }
         }
-            
+
 
         direction = transform.TransformDirection(Vector3.forward);//向き
 
@@ -205,7 +205,7 @@ public class Enemy_ControllerZ : Enemy_Parameter
         StartPos = transform.position;
         time = (EndPos - StartPos).magnitude / speed;//道のり÷速さ
         deltaPos = (EndPos - StartPos) / time;
-        
+
         isMove = true;
     }
 
