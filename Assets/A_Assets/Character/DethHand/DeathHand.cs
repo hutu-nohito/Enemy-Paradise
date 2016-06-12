@@ -108,14 +108,14 @@ public class DeathHand : Enemy_Base {
         if (isFade)
         {
             if (color < 0.9) color += Time.deltaTime * 1;
-            Model.GetComponent<SkinnedMeshRenderer>().materials[0].color = new Color(Model.GetComponent<SkinnedMeshRenderer>().materials[0].color.r, Model.GetComponent<SkinnedMeshRenderer>().materials[0].color.g, Model.GetComponent<SkinnedMeshRenderer>().materials[0].color.b, color);
+            Model.GetComponent<SkinnedMeshRenderer>().materials[5].color = new Color(Model.GetComponent<SkinnedMeshRenderer>().materials[5].color.r, Model.GetComponent<SkinnedMeshRenderer>().materials[5].color.g, Model.GetComponent<SkinnedMeshRenderer>().materials[5].color.b, color);
             //Model.GetComponent<Renderer>().material.color = new Color(Model.GetComponent<Renderer>().material.color.r, Model.GetComponent<Renderer>().material.color.g, Model.GetComponent<Renderer>().material.color.b, color);
 
         }
         else
         {
             if (color > 0) color -= Time.deltaTime * 1;
-            Model.GetComponent<SkinnedMeshRenderer>().materials[0].color = new Color(Model.GetComponent<SkinnedMeshRenderer>().materials[0].color.r, Model.GetComponent<SkinnedMeshRenderer>().materials[0].color.g, Model.GetComponent<SkinnedMeshRenderer>().materials[0].color.b, color);
+            Model.GetComponent<SkinnedMeshRenderer>().materials[5].color = new Color(Model.GetComponent<SkinnedMeshRenderer>().materials[5].color.r, Model.GetComponent<SkinnedMeshRenderer>().materials[5].color.g, Model.GetComponent<SkinnedMeshRenderer>().materials[5].color.b, color);
             //Model.GetComponent<Renderer>().material.color = new Color(Model.GetComponent<Renderer>().material.color.r, Model.GetComponent<Renderer>().material.color.g, Model.GetComponent<Renderer>().material.color.b, color);
         }
 
@@ -150,7 +150,7 @@ public class DeathHand : Enemy_Base {
             coroutine = StartCoroutine(Search());
 
             //サーチ中にたまにプレイヤの後ろにワープしてくる
-            if ((int)Time.time % 5 == 0)//5秒ごと
+            if ((int)Time.time % 3 == 0)//3秒ごと(止まってっるタイミングじゃないとちゃんとワープしてくれない)
             {
                 float randAt1 = Random.value;
                 float randAt2 = Random.value;
@@ -231,17 +231,17 @@ public class DeathHand : Enemy_Base {
         if (isCoroutine) yield break;
         isCoroutine = true;
 
-        //isFade = false;
+        isFade = false;
 
-        yield return new WaitForSeconds(1);//消えるまで
+        yield return new WaitForSeconds(2);//消えるまで
 
-        transform.position = base.Player.transform.position + new Vector3(0, 3, 0);// + base.Player.transform.TransformDirection(Vector3.back) * 5;//ﾌﾟﾚｲﾔの背後にワープ
+        transform.position = base.Player.transform.position + new Vector3(0, 3, 0) + base.Player.transform.TransformDirection(Vector3.back) * 10;//ﾌﾟﾚｲﾔの背後にワープ
 
         yield return new WaitForSeconds(1);//移動
 
-        //isFade = true;
+        isFade = true;
 
-        yield return new WaitForSeconds(1);//現れるまで
+        yield return new WaitForSeconds(2);//現れるまで
 
         state = ActionState.Attack;
         isCoroutine = false;
