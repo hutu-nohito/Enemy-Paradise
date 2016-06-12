@@ -85,9 +85,8 @@ public class SimpleMove : MonoBehaviour {
 
 	void Sin (){
 
-        MS.Move(MC.End,moveSpeed);
-
-	}
+        MS.Move(Control,moveSpeed);
+    }
 
 	void Scale (){
 

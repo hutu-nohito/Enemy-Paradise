@@ -30,7 +30,7 @@ public class Haniwonder : Enemy_Base
     public ActionState state = ActionState.Stop;
     public ActionState GetState() { return state; }
     public void SetState(ActionState state) { this.state = state; }
-    
+
     public float rotSpeed = 5;
 
     // Use this for initialization
@@ -273,48 +273,7 @@ public class Haniwonder : Enemy_Base
     //攻撃
     IEnumerator Attack()
     {
-        if (isCoroutine) yield break;
-        isCoroutine = true;
-
-        //攻撃前のため
-        yield return new WaitForSeconds(0.5f);//こーゆーパラメータもインスペクタで決めるべきだと思うけどごちゃごちゃしそうでいや
-
-        Vector3 OldPlayerPos = base.Player.transform.position;
-
-        //とびかかる
-        iTween.MoveTo(this.gameObject, iTween.Hash(
-                "position", new Vector3(
-                transform.position.x + (-(transform.position - base.Player.transform.position).x /* / (transform.position - base.Player.transform.position).magnitude */) * (transform.position - base.Player.transform.position).magnitude * 0.1f,
-                transform.position.y + 1,
-                transform.position.z + (-(transform.position - base.Player.transform.position).z /* / (transform.position - base.Player.transform.position).magnitude */) * (transform.position - base.Player.transform.position).magnitude * 0.1f
-                ),
-                "time", 0.5f,
-                "easetype", iTween.EaseType.easeInOutBack)
-                );
-
-        //武器を振り下ろすまで
-        yield return new WaitForSeconds(0.4f);//こーゆーパラメータもインスペクタで決めるべきだと思うけどごちゃごちゃしそうでいや
-        
-        base.animator.SetTrigger("Attack");
-
-        yield return new WaitForSeconds(0.8f);
-        
-        //ちょい戻る
-        base.animator.SetTrigger("Fight");
-        iTween.MoveTo(this.gameObject, iTween.Hash(
-                "position", new Vector3(
-                transform.position.x + ((transform.position - OldPlayerPos).x /* / (transform.position - base.Player.transform.position).magnitude */) / (transform.position - OldPlayerPos).magnitude * 2,
-                transform.position.y + 0.5f,
-                transform.position.z + ((transform.position - OldPlayerPos).z /* / (transform.position - base.Player.transform.position).magnitude */) / (transform.position - OldPlayerPos).magnitude * 2
-                ),
-                "time", 0.5f,
-                "easetype", iTween.EaseType.easeInBack)
-                );
-
-        yield return new WaitForSeconds(0.8f);
-
-        state = ActionState.Fight;
-        isCoroutine = false;
+        yield return new WaitForSeconds(1);//どないすべ
     }
 
     //索敵
