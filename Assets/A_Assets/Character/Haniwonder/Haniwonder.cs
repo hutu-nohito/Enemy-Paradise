@@ -284,97 +284,109 @@ public class Haniwonder : Enemy_Base
 
         while (true)
         {
-            transform.eulerAngles = new Vector3(45, 90, 0);
+            transform.eulerAngles = new Vector3(0, 90, 0);
+            base.animator.SetTrigger("Run");
 
             //右移動
             iTween.MoveTo(this.gameObject, iTween.Hash(
                     "position", transform.position + new Vector3(15,0,0),
-                    "time", 0.5f,
+                    "time", 1.0f,
                     "easetype", iTween.EaseType.easeInOutBack)
 
                     );
 
             //移動時間
-            yield return new WaitForSeconds(0.45f);
+            yield return new WaitForSeconds(0.95f);
 
-            iTween.RotateBy(this.gameObject, iTween.Hash(
-                    "y", 90,
-                    "time", 0.75f,
-                    "easetype", iTween.EaseType.linear)
+            base.animator.SetTrigger("Idle");
 
-                    );
+            //iTween.RotateBy(this.gameObject, iTween.Hash(
+            //        "y", 90,
+            //        "time", 0.75f,
+            //        "easetype", iTween.EaseType.linear)
 
+            //        );
+            
             //回ってる時間
-            yield return new WaitForSeconds(0.75f);
+            yield return new WaitForSeconds(1.65f);
 
-            transform.eulerAngles = new Vector3(45, 0, 0);
+            transform.eulerAngles = new Vector3(0, 0, 0);
+            base.animator.SetTrigger("Run");
 
             //前移動
             iTween.MoveTo(this.gameObject, iTween.Hash(
                     "position", transform.position + new Vector3(0, 0, 15),
-                    "time", 0.5f,
+                    "time", 1.0f,
                     "easetype", iTween.EaseType.easeInOutBack)
 
                     );
 
             //移動時間
-            yield return new WaitForSeconds(0.45f);
+            yield return new WaitForSeconds(0.95f);
 
-            iTween.RotateBy(this.gameObject, iTween.Hash(
-                    "y", 90,
-                    "time", 0.75f,
-                    "easetype", iTween.EaseType.linear)
+            base.animator.SetTrigger("Idle");
 
-                    );
+            //iTween.RotateBy(this.gameObject, iTween.Hash(
+            //        "y", 90,
+            //        "time", 0.75f,
+            //        "easetype", iTween.EaseType.linear)
+
+            //        );
 
             //回ってる時間
-            yield return new WaitForSeconds(0.75f);
+            yield return new WaitForSeconds(1.65f);
 
-            transform.eulerAngles = new Vector3(45, 270, 0);
+            transform.eulerAngles = new Vector3(0, 270, 0);
+            base.animator.SetTrigger("Run");
 
             //左移動
             iTween.MoveTo(this.gameObject, iTween.Hash(
                     "position", transform.position + new Vector3(-15, 0, 0),
-                    "time", 0.5f,
+                    "time", 1.0f,
                     "easetype", iTween.EaseType.easeInOutBack)
 
                     );
 
             //移動時間
-            yield return new WaitForSeconds(0.45f);
+            yield return new WaitForSeconds(0.95f);
 
-            iTween.RotateBy(this.gameObject, iTween.Hash(
-                    "y", 90,
-                    "time", 0.75f,
-                    "easetype", iTween.EaseType.linear)
+            base.animator.SetTrigger("Idle");
 
-                    );
+            //iTween.RotateBy(this.gameObject, iTween.Hash(
+            //        "y", 90,
+            //        "time", 0.75f,
+            //        "easetype", iTween.EaseType.linear)
+
+            //        );
 
             //回ってる時間
-            yield return new WaitForSeconds(0.75f);
+            yield return new WaitForSeconds(1.65f);
 
-            transform.eulerAngles = new Vector3(45, 180, 0);
+            transform.eulerAngles = new Vector3(0, 180, 0);
+            base.animator.SetTrigger("Run");
 
             //後移動
             iTween.MoveTo(this.gameObject, iTween.Hash(
                     "position", transform.position + new Vector3(0, 0, -15),
-                    "time", 0.5f,
+                    "time", 1.0f,
                     "easetype", iTween.EaseType.easeInOutBack)
 
                     );
 
             //移動時間
-            yield return new WaitForSeconds(0.45f);
+            yield return new WaitForSeconds(0.95f);
 
-            iTween.RotateBy(this.gameObject, iTween.Hash(
-                    "y", 90,
-                    "time", 0.75f,
-                    "easetype", iTween.EaseType.linear)
+            base.animator.SetTrigger("Idle");
 
-                    );
+            //iTween.RotateBy(this.gameObject, iTween.Hash(
+            //        "y", 90,
+            //        "time", 0.75f,
+            //        "easetype", iTween.EaseType.linear)
+
+            //        );
 
             //回ってる時間
-            yield return new WaitForSeconds(0.75f);
+            yield return new WaitForSeconds(1.65f);
         }
         
         isCoroutine = false;

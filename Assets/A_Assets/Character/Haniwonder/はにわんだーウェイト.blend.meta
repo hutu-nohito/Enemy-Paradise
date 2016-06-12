@@ -1,0 +1,343 @@
+fileFormatVersion: 2
+guid: e7b16028799e27648a497c6cbe62cf26
+timeCreated: 1465730420
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Bone
+    100002: Bone_L_001
+    100004: Bone_L_002
+    100006: Bone_R_002
+    100008: //RootNode
+    100010: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+    100012: "\u30D9\u30B8\u30A8\u30AB\u30FC\u30D6"
+    100014: "\u4E0A\u8DB3_L"
+    100016: "\u5186\u67F1_003"
+    100018: "\u5E73\u9762"
+    100020: "\u80F4\u4E0A"
+    100022: "\u80F4\u4E0B"
+    100024: "\u8155_L_001"
+    100026: "\u8155_L_002"
+    100028: "\u8155_L_003"
+    100030: "\u8155_L_004"
+    100032: "\u8155_R_001"
+    100034: "\u8155_R_002"
+    100036: "\u8155_R_003"
+    100038: "\u8155_R_004"
+    100040: "\u982D"
+    100042: "\u982D\u9802"
+    400000: Bone
+    400002: Bone_L_001
+    400004: Bone_L_002
+    400006: Bone_R_002
+    400008: //RootNode
+    400010: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+    400012: "\u30D9\u30B8\u30A8\u30AB\u30FC\u30D6"
+    400014: "\u4E0A\u8DB3_L"
+    400016: "\u5186\u67F1_003"
+    400018: "\u5E73\u9762"
+    400020: "\u80F4\u4E0A"
+    400022: "\u80F4\u4E0B"
+    400024: "\u8155_L_001"
+    400026: "\u8155_L_002"
+    400028: "\u8155_L_003"
+    400030: "\u8155_L_004"
+    400032: "\u8155_R_001"
+    400034: "\u8155_R_002"
+    400036: "\u8155_R_003"
+    400038: "\u8155_R_004"
+    400040: "\u982D"
+    400042: "\u982D\u9802"
+    2300000: "\u30D9\u30B8\u30A8\u30AB\u30FC\u30D6"
+    2300002: "\u5E73\u9762"
+    3300000: "\u30D9\u30B8\u30A8\u30AB\u30FC\u30D6"
+    3300002: "\u5E73\u9762"
+    4300000: "\u5186\u67F1_003"
+    4300002: "\u30D9\u30B8\u30A8\u30AB\u30FC\u30D6"
+    4300004: "\u5E73\u9762"
+    7400000: Default Take
+    7400002: "\u30C0\u30C3\u30B7\u30E5"
+    7400004: "\u4F53\u64CD"
+    9500000: //RootNode
+    13700000: "\u5186\u67F1_003"
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Default Take
+      takeName: Default Take
+      firstFrame: 49
+      lastFrame: 69
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001/Bone_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L/Bone_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003/\u8155_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003/\u8155_R_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802"
+        weight: 1
+      - path: "\u30D9\u30B8\u30A8\u30AB\u30FC\u30D6"
+        weight: 1
+      - path: "\u5186\u67F1_003"
+        weight: 1
+      - path: "\u5E73\u9762"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: "\u30C0\u30C3\u30B7\u30E5"
+      takeName: "\u30C0\u30C3\u30B7\u30E5"
+      firstFrame: 50
+      lastFrame: 55
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001/Bone_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L/Bone_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003/\u8155_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003/\u8155_R_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802"
+        weight: 1
+      - path: "\u30D9\u30B8\u30A8\u30AB\u30FC\u30D6"
+        weight: 1
+      - path: "\u5186\u67F1_003"
+        weight: 1
+      - path: "\u5E73\u9762"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: "\u4F53\u64CD"
+      takeName: "\u4F53\u64CD"
+      firstFrame: 0
+      lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001/Bone_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L/Bone_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003/\u8155_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003/\u8155_R_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802"
+        weight: 1
+      - path: "\u30D9\u30B8\u30A8\u30AB\u30FC\u30D6"
+        weight: 1
+      - path: "\u5186\u67F1_003"
+        weight: 1
+      - path: "\u5E73\u9762"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
