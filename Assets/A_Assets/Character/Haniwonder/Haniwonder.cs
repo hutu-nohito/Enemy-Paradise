@@ -17,6 +17,8 @@ public class Haniwonder : Enemy_Base
     */
     /******************************************************************************/
 
+    public GameObject A;
+    
     //キャラクタの状態
     public enum ActionState
     {
@@ -39,6 +41,8 @@ public class Haniwonder : Enemy_Base
 
         //初期状態セット
         coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Exercise));
+
+        //Player = A;
 
     }
 

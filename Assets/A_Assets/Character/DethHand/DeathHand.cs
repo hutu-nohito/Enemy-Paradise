@@ -12,9 +12,15 @@ public class DeathHand : Enemy_Base {
     */
     /******************************************************************************/
     /* 更新履歴
+    *   ランダムにふよふよする
     *   消えながら弾を撃つ
     */
     /******************************************************************************/
+
+
+    private AudioSource SE;//音
+
+    public GameObject A;
 
     //キャラクタの状態
     public enum ActionState
@@ -46,11 +52,16 @@ public class DeathHand : Enemy_Base {
         //初期状態セット
         coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Search));
 
+        //Player = A;
+
+        SE = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        base.BaseUpdate();
 
         //状態以外で変化するもの(今んとこ移植で補う)/////////////////////////////////////////////////////////
 
@@ -102,8 +113,7 @@ public class DeathHand : Enemy_Base {
             }
 
         }
-
-
+        
         //ワープ時にスーって消える
         if (isFade)
         {
@@ -148,23 +158,6 @@ public class DeathHand : Enemy_Base {
             }
 
             coroutine = StartCoroutine(Search());
-
-            //サーチ中にたまにプレイヤの後ろにワープしてくる
-            if ((int)Time.time % 3 == 0)//3秒ごと(止まってっるタイミングじゃないとちゃんとワープしてくれない)
-            {
-                float randAt1 = Random.value;
-                float randAt2 = Random.value;
-
-                if (randAt1 > 0.9)
-                {
-                    if (randAt2 < 0.1)
-                    {
-                        StopAllCoroutines();
-                        state = ActionState.Warp;
-                        isCoroutine = false;
-                    }
-                }
-            }
 
         }
 
@@ -235,15 +228,43 @@ public class DeathHand : Enemy_Base {
 
         yield return new WaitForSeconds(2);//消えるまで
 
-        transform.position = base.Player.transform.position + new Vector3(0, 3, 0) + base.Player.transform.TransformDirection(Vector3.back) * 10;//ﾌﾟﾚｲﾔの背後にワープ
+        float randomWarp = Random.Range(-0.5f,0.5f);
+
+        transform.position = new Vector3(
+            base.Player.transform.position.x + (base.Player.transform.TransformDirection(Vector3.back).x /*+ randomWarp*/) * 10,
+            home_position.y + (randomWarp / 2),
+            base.Player.transform.position.z + (base.Player.transform.TransformDirection(Vector3.back).z /*+ randomWarp*/) * 10
+            );//ﾌﾟﾚｲﾔの背後にワープ
 
         yield return new WaitForSeconds(1);//移動
 
         isFade = true;
+        //効果音と演出
+        if (!SE.isPlaying)
+        {
+
+            SE.PlayOneShot(SE.clip);//SE
+
+        }
 
         yield return new WaitForSeconds(2);//現れるまで
 
-        state = ActionState.Attack;
+        float randomvalue = Random.Range(0.0f, 1.0f);
+        if (randomvalue < 0.8)
+        {
+            state = ActionState.Attack;
+
+        }
+        else if(randomvalue < 0.9)
+        {
+            state = ActionState.Search;
+
+        }
+        else
+        {
+            state = ActionState.Warp;
+        }
+        
         isCoroutine = false;
 
     }
@@ -253,67 +274,34 @@ public class DeathHand : Enemy_Base {
     {
         if (isCoroutine) yield break;
         isCoroutine = true;
+        
+        //ランダムにふよふよ
+        iTween.MoveTo(this.gameObject, iTween.Hash(
+                "x", home_position.x + Random.Range(-5.0f, 5.0f),
+                "y", home_position.y + Random.Range(-1.0f, 1.0f),
+                "z", home_position.z + Random.Range(-5.0f, 5.0f),
+                "time", 2.5f,
+                "easetype", iTween.EaseType.easeInOutCubic)
+                );
 
-        while (true)
+        yield return new WaitForSeconds(2.5f);
+
+        //サーチ中にたまにプレイヤの後ろにワープしてくる
+
+        float randAt1 = Random.value;
+        float randAt2 = Random.value;
+
+        if (randAt1 > 0.7)
         {
-            //右移動
-            iTween.MoveTo(this.gameObject, iTween.Hash(
-                    "position", transform.position + new Vector3(10, 0, 0),
-                    "time", 2.5f,
-                    "easetype", iTween.EaseType.easeInOutBack)
-
-                    );
-
-            //移動時間
-            yield return new WaitForSeconds(2.5f);
-
-            //待ってる時間
-            yield return new WaitForSeconds(0.5f);
-
-            //前移動
-            iTween.MoveTo(this.gameObject, iTween.Hash(
-                    "position", transform.position + new Vector3(0, 0, 10),
-                    "time", 2.5f,
-                    "easetype", iTween.EaseType.easeInOutBack)
-
-                    );
-
-            //移動時間
-            yield return new WaitForSeconds(2.5f);
-
-            //待ってる時間
-            yield return new WaitForSeconds(0.5f);
-
-            //左移動
-            iTween.MoveTo(this.gameObject, iTween.Hash(
-                    "position", transform.position + new Vector3(-10, 0, 0),
-                    "time", 2.5f,
-                    "easetype", iTween.EaseType.easeInOutBack)
-
-                    );
-
-            //移動時間
-            yield return new WaitForSeconds(2.5f);
-
-            //待ってる時間
-            yield return new WaitForSeconds(0.5f);
-
-            //後移動
-            iTween.MoveTo(this.gameObject, iTween.Hash(
-                    "position", transform.position + new Vector3(0, 0, -10),
-                    "time", 2.5f,
-                    "easetype", iTween.EaseType.easeInOutBack)
-
-                    );
-
-            //移動時間
-            yield return new WaitForSeconds(2.5f);
-
-            //待ってる時間
-            yield return new WaitForSeconds(0.5f);
-
+            if (randAt2 < 0.5)
+            {
+                StopAllCoroutines();
+                state = ActionState.Warp;
+                isCoroutine = false;
+            }
         }
 
+        isCoroutine = false;
     }
 
     public void Damage()
