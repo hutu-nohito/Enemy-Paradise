@@ -25,6 +25,8 @@ public class Enemy_Base : Character_Parameters
     [System.NonSerialized]
     public GameObject Player;
 
+    private Vector3 Old_position;//計測用の1フレーム前の位置
+
     // Use this for initialization
     public void BaseStart () {
 
@@ -36,10 +38,25 @@ public class Enemy_Base : Character_Parameters
         {
             Player = GameObject.FindWithTag("Player");
         }
+
+        //初期位置
+        home_position = transform.position;//初期位置を
+        Old_position = home_position;
+
 	}
 	
 	// Update is called once per frame
 	public void BaseUpdate () {
 
+        //現在向いている方向をVector3で保持
+        SetDirection(transform.TransformDirection(Vector3.forward).normalized);
+
+        //進行方向を取る
+        if (transform.position != Old_position)//位置が変化していたら
+        {
+            SetMove((transform.position - Old_position).normalized);//進行方向の向きベクトルを渡す
+        }
+
+        Old_position = transform.position;//OldPosを更新しないと動きません
     }
 }

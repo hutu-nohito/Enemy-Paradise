@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Haniwonder : Enemy_Base
 {
- 
+
     /******************************************************************************/
     /** @brief 埴輪AIテスト
     * @date 2016/06/12
@@ -12,7 +12,8 @@ public class Haniwonder : Enemy_Base
     */
     /******************************************************************************/
     /* 更新履歴
-    *   すごいスピードでうろうろする
+    *   普段は体操してて、プレイヤーが近づくと突撃してくる
+    *   プレイヤーの動きに反応するので見つけるとかはない
     */
     /******************************************************************************/
 
@@ -20,18 +21,16 @@ public class Haniwonder : Enemy_Base
     public enum ActionState
     {
         Stop,//アニメーションが終わるまで待機(状態でなくアニメーションの整合性のために必要)
-        //Avoid,//避ける
         Attack,//攻撃
-        Fight,//臨戦態勢
-        Run,//プレイヤを見つけて近づいてる
-        Search,//うろうろしてる
+        Counter,//攻撃に対してカウンターしてくる
+        Exercise,//体操
 
     }//intにすれば優先度にできる
     public ActionState state = ActionState.Stop;
     public ActionState GetState() { return state; }
     public void SetState(ActionState state) { this.state = state; }
 
-    public float rotSpeed = 5;
+    public GameObject AttackCol;//攻撃判定
 
     // Use this for initialization
     void Start()
@@ -39,13 +38,14 @@ public class Haniwonder : Enemy_Base
         base.BaseStart();
 
         //初期状態セット
-        coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Search));
+        coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Exercise));
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        base.BaseUpdate();//基本機能
 
         //状態以外で変化するもの(今んとこ移植で補う)/////////////////////////////////////////////////////////
 
@@ -66,20 +66,22 @@ public class Haniwonder : Enemy_Base
             //    base.animator.SetTrigger("Die");
             //    Destroy(this.gameObject, 3);//とりあえず消す
             //}
-            //state = ActionState.Stop;
-            //animState = (int)ActionState.Stop;
+            transform.Rotate(2,0,0);//たおしてみる
+            Destroy(this.gameObject, 1);//とりあえず消す
+            state = ActionState.Stop;
+            animState = (int)ActionState.Stop;
 
         }
 
         //相手がいなくなった時の処理
-        if (base.Player == null)
+        if (base.Player.GetComponent<Character_Parameters>().GetHP() <= 0)
         {
             //StopAllCoroutines();
-            //base.Player = this.gameObject;
-            //state = ActionState.Stop;
-            //animState = (int)ActionState.Stop;
+            state = ActionState.Stop;
+            animState = (int)ActionState.Stop;
             ////勝利のポーズ
             //base.animator.SetTrigger("Win");
+            transform.Rotate(0, 10, 0);//とりあえず回転させとく
         }
 
         //空中判定
@@ -102,153 +104,33 @@ public class Haniwonder : Enemy_Base
             //アニメーションの最中など動かしたくないときに用いる
         }
         
-        //避ける
-        //if (state == ActionState.Avoid)
-        //{
-        //    if (animState != (int)ActionState.Stop)
-        //    {
-        //        base.animator.SetTrigger("Idle");
-        //    }
-
-        //    //避ける動作
-        //    iTween.MoveUpdate(this.gameObject, iTween.Hash(
-        //            "position", new Vector3(
-        //            transform.position.x + ((transform.position - base.Player.transform.position).z / (transform.position - base.Player.transform.position).magnitude) * 1.5f,
-        //            transform.position.y,
-        //            transform.position.z + (-(transform.position - base.Player.transform.position).x / (transform.position - base.Player.transform.position).magnitude) * 1.5f
-        //            ),
-        //            "time", 0.8f,
-        //            "easetype", "easeInOutBack"//全然利いてない
-        //            )
-        //            );
-        //    transform.Rotate(0, 12, 0);
-
-        //    if ((transform.position - base.Player.transform.position).magnitude > 10)
-        //    {
-        //        coroutine = StartCoroutine(ChangeState(0.5f, ActionState.Run));
-        //    }
-        //    else
-        //    {
-        //        coroutine = StartCoroutine(ChangeState(0.5f, ActionState.Fight));
-        //    }
-
-
-        //}
+        //カウンター
+        if (state == ActionState.Counter)
+        {
+            coroutine = StartCoroutine(Counter());
+        }
 
         //アタックするだけ
         if (state == ActionState.Attack)
         {
             coroutine = StartCoroutine(Attack());
         }
-
-        //相手の周りを旋回
-        if (state == ActionState.Fight)
+        
+        //体操
+        if (state == ActionState.Exercise)
         {
 
-            if (animState != (int)ActionState.Fight)
+            if (animState != (int)ActionState.Exercise)
             {
-                base.animator.SetTrigger("Fight");
+                base.animator.SetTrigger("Exercise");
             }
 
-            //前を向ける
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(base.Player.transform.position - transform.position), 0.05f);
-            transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
-
-            //アフィン変換　回転
-            Vector3 LocalPos = transform.position - base.Player.transform.position;//ターゲットに対するローカル座標に変換
-            Vector3 cal = new Vector3(0, transform.position.y, 0);
-            float degreeTheta = -0.1f;
-            degreeTheta = -speed * rotSpeed / LocalPos.magnitude * Time.deltaTime;//動かすときはスペックで違いが出ないようにDeltatime
-            cal.x = LocalPos.x * Mathf.Cos(degreeTheta * Mathf.Deg2Rad) - LocalPos.z * Mathf.Sin(degreeTheta * Mathf.Deg2Rad);
-            cal.z = LocalPos.x * Mathf.Sin(degreeTheta * Mathf.Deg2Rad) + LocalPos.z * Mathf.Cos(degreeTheta * Mathf.Deg2Rad);
-            LocalPos = cal;//座標に代入
-            LocalPos.y = transform.position.y - base.Player.transform.position.y;//ジャンプさせるからYの値は変えない
-            transform.position = LocalPos + base.Player.transform.position;//ワールド座標に直す*/
-
-            //離れたら追いかける
-            if ((transform.position - base.Player.transform.position).magnitude > 10)
+            if((transform.position - Player.transform.position).magnitude < 10)//プレイヤーとの距離が近くなったら
             {
-                base.animator.SetTrigger("H_Weapon");
-                state = ActionState.Stop;
-                coroutine = StartCoroutine(ChangeState(1.4f, ActionState.Run));
-
+                float randomtime = Random.Range(0.0f, 1.0f);
+                coroutine = StartCoroutine(ChangeState(0.0f,ActionState.Attack));//ばらつきを出す
             }
-
-            //ランダムで攻撃
-            if ((int)Time.time % 5 == 0)//5秒ごと
-            {
-                float randAt1 = Random.value;
-                float randAt2 = Random.value;
-                
-                if (randAt1 > 0.9)
-                {
-                    if (randAt2 < 0.2)
-                    {
-                        state = ActionState.Attack;
-                    }
-                }
-            }
-
-            //たまーに避けつつ攻撃
-            //if ((int)Time.time % 5 == 0)//5秒ごと
-            //{
-            //    float randAt1 = Random.value;
-            //    float randAt2 = Random.value;
-
-            //    if (randAt1 > 0.9)
-            //    {
-            //        if (randAt2 < 0.4)
-            //        {
-            //            state = ActionState.Avoid;
-            //        }
-            //        else
-            //        {
-            //            state = ActionState.Attack;
-            //        }
-            //    }
-            //}
-
-        }
-
-        //見つけて近づいてる
-        if (state == ActionState.Run)
-        {
-
-            if (animState != (int)ActionState.Run)
-            {
-                base.animator.SetTrigger("Run");
-            }
-
-            //前を向ける
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(base.Player.transform.position - transform.position), 0.05f);
-            transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
-
-            iTween.MoveUpdate(this.gameObject, iTween.Hash(
-                "position", new Vector3(base.Player.transform.position.x, transform.position.y, base.Player.transform.position.z),
-                "time", 20 / speed)
-                );
-
-            //近づいたら戦闘状態に移行
-            if ((transform.position - base.Player.transform.position).magnitude < 5)
-            {
-                base.animator.SetTrigger("G_Weapon");
-                state = ActionState.Stop;
-                coroutine = StartCoroutine(ChangeState(1.6f, ActionState.Fight));
-            }
-
-        }
-
-        //うろうろしてる
-        if (state == ActionState.Search)
-        {
-
-            if (animState != (int)ActionState.Search)
-            {
-                //base.animator.SetTrigger("Run");
-            }
-
-            coroutine = StartCoroutine(Search());
-
+            
         }
 
 
@@ -261,7 +143,7 @@ public class Haniwonder : Enemy_Base
         yield return new WaitForSeconds(waitTime);
 
         state = nextState;
-
+        
     }
 
     //イベントが起きた時/////////////////////
@@ -273,7 +155,96 @@ public class Haniwonder : Enemy_Base
     //攻撃
     IEnumerator Attack()
     {
-        yield return new WaitForSeconds(1);//どないすべ
+        if (isCoroutine) yield break;
+        isCoroutine = true;
+        
+        base.animator.SetTrigger("Run");
+        AttackCol.SetActive(true);
+
+        //プレイヤに突進
+        iTween.MoveTo(this.gameObject, iTween.Hash(
+                "x", transform.position.x + (Player.transform.position - transform.position).normalized.x * 10,//定数が突進距離
+                "z", transform.position.z + (Player.transform.position - transform.position).normalized.z * 10,//定数が突進距離
+                "time", 1.0f,
+                "easetype", iTween.EaseType.easeInOutBack)
+
+                );
+
+        yield return new WaitForSeconds(0.1f);
+
+        //前を向ける
+        iTween.RotateTo(this.gameObject, iTween.Hash(
+                "y", Mathf.Repeat(Quaternion.LookRotation(-GetMove()).eulerAngles.y, 360.0f) ,//(たまにおかしくなるので後で検証)
+                "time", 0.25f,
+                "easetype", iTween.EaseType.linear)
+
+                );
+        
+        yield return new WaitForSeconds(1);
+
+        AttackCol.SetActive(false);
+        state = ActionState.Exercise;
+        isCoroutine = false;
+    }
+
+    //カウンター
+    IEnumerator Counter()
+    {
+        if (isCoroutine) yield break;
+        isCoroutine = true;
+
+        base.animator.SetTrigger("Run");
+        AttackCol.SetActive(true);
+
+        float randomdist = Random.Range(0.0f,1.0f);
+        randomdist = 0.5f;
+
+        //ジグザグ突進
+        iTween.MoveTo(this.gameObject, iTween.Hash(
+                "x", transform.position.x + (Player.transform.position.x - transform.position.x + 5) * randomdist * 2,
+                "z", transform.position.z + (Player.transform.position.z - transform.position.z + 5) * (1 - randomdist) * 2,//定数が突進距離
+                "time", randomdist,
+                "easetype", iTween.EaseType.linear)
+
+                );
+
+
+        yield return new WaitForSeconds(0.1f);
+
+        //前を向ける
+        iTween.RotateTo(this.gameObject, iTween.Hash(
+                "y", Mathf.Repeat(Quaternion.LookRotation(-GetMove()).eulerAngles.y, 360.0f),//(たまにおかしくなるので後で検証)
+                "time", 0.25f,
+                "easetype", iTween.EaseType.linear)
+
+                );
+
+        yield return new WaitForSeconds(randomdist);
+
+        iTween.MoveTo(this.gameObject, iTween.Hash(
+                "x", transform.position.x + (Player.transform.position.x - transform.position.x - 5) * (1 - randomdist) * 2,
+                "z", transform.position.z + (Player.transform.position.z - transform.position.z - 5) * randomdist * 2,//定数が突進距離
+                "time", (1 - randomdist),
+                "easetype", iTween.EaseType.easeOutBack)
+
+                );
+
+
+        yield return new WaitForSeconds(0.1f);
+
+        //前を向ける
+        iTween.RotateTo(this.gameObject, iTween.Hash(
+                "y", Mathf.Repeat(Quaternion.LookRotation(-GetMove()).eulerAngles.y, 360.0f),//(たまにおかしくなるので後で検証)
+                "time", 0.25f,
+                "easetype", iTween.EaseType.linear)
+
+                );
+
+        yield return new WaitForSeconds(1 - randomdist);
+        
+        AttackCol.SetActive(false);
+        state = ActionState.Exercise;
+        isCoroutine = false;
     }
 
     //索敵
@@ -395,16 +366,10 @@ public class Haniwonder : Enemy_Base
     public void Damage()
     {
         //イベント側で優先度を確認すればよい
-        //if (state > ActionState.Fight)//これで臨戦態勢より高ければやってくれる
-        //{
-        //    switch (state)//今の状態によって行動を変化
-        //    {
-        //        case ActionState.Attack:
-        //            break;
-        //        default:
-        //            break;
-        //    }
-        //}
+        if (state >= ActionState.Exercise)//体操より優先順位が下
+        {
+            state = ActionState.Counter;
+        }
     }
     
     //接地判定欲しい
@@ -423,27 +388,22 @@ public class Haniwonder : Enemy_Base
     public void AnimIdle()
     {
         animState = (int)ActionState.Stop;
-
     }
     
     public void AnimAttack()
     {
-        //animState = 1;
         animState = (int)ActionState.Attack;
+    }
 
+    public void AnimExercise()
+    {
+        animState = (int)ActionState.Exercise;
     }
 
     public void AnimRun()
     {
-        //animState = 2;
-        animState = (int)ActionState.Run;
+        animState = (int)ActionState.Attack;
     }
 
-    public void Animfight()
-    {
-        //animState = 3;
-        animState = (int)ActionState.Fight;
-    }
-    
 }
 

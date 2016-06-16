@@ -167,7 +167,7 @@ public class CharacterDamage : MonoBehaviour {
                 if (Cpara.GetF_Damage())
                 {
                     Cpara.H_point -= damage;
-                    //Cpara.Damage();//とりあえずダメージを受けたことを知らせる
+                    Cpara.SendMessage("Damage",SendMessageOptions.DontRequireReceiver);//とりあえずダメージを受けたことを知らせる
                     ReverseDamage();//ダメージを連続で受けないようにする
                     //StartCoroutine(Blink());
                     Invoke("ReverseDamage", 0.5f);

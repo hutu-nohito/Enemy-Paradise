@@ -95,7 +95,7 @@ public class Player_ControllerZ : Character_Parameters{
             {
 
                 //デバッグ用なので満タンに戻す
-                H_point = max_HP;
+                //H_point = max_HP;
 
             }
             else

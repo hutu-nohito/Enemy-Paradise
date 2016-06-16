@@ -25,7 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
-  m_SkyboxMaterial: {fileID: 2100000, guid: e7471c7bc3e48f8408ba34ff15fec1e5, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 7e4024464a7f63a408ac3c1225f094f9, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -2530,7 +2530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   QuestStageID: 0
   CharaName: Lilith
-  H_point: 3
+  H_point: 10
   M_point: 10
   power: 1
   def: 0
@@ -2539,6 +2539,7 @@ MonoBehaviour:
   weak_element: 
   proof_element: 
   invalid_element: 
+  home_position: {x: 0, y: 0, z: 0}
   move_direction: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   flag_move: 1
@@ -2550,8 +2551,8 @@ MonoBehaviour:
   flag_knock: 0
   flag_invincible: 0
   flag_watch: 0
-  state: 4
-  rotSpeed: 5
+  state: 3
+  AttackCol: {fileID: 1925340297}
 --- !u!54 &254048786
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2586,7 +2587,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400008, guid: e7b16028799e27648a497c6cbe62cf26, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 254048784}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
@@ -4158,6 +4159,7 @@ MonoBehaviour:
   weak_element: 
   proof_element: 
   invalid_element: 
+  home_position: {x: 0, y: 0, z: 0}
   move_direction: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   flag_move: 1
@@ -5851,6 +5853,7 @@ MonoBehaviour:
   weak_element: 
   proof_element: 
   invalid_element: 
+  home_position: {x: 0, y: 0, z: 0}
   move_direction: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   flag_move: 1
@@ -9037,8 +9040,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 858047825}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0.2}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.106}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.5}
   m_Children: []
   m_Father: {fileID: 254048788}
   m_RootOrder: 2
@@ -10520,6 +10523,7 @@ MonoBehaviour:
   weak_element: 
   proof_element: 
   invalid_element: 
+  home_position: {x: 0, y: 0, z: 0}
   move_direction: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   flag_move: 1
@@ -11195,6 +11199,10 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: e7b1918834515d54190983bcd01ebbdd, type: 2}
+    - target: {fileID: 100082, guid: d0445abf484b34f4f8acc1f386f7fe67, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d0445abf484b34f4f8acc1f386f7fe67, type: 3}
   m_IsPrefabParent: 0
@@ -11882,12 +11890,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1137163834}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b38e4f3fbc8b11943b11cbf847eb638a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Monster: {fileID: 1846145283}
+  Monster: {fileID: 254048784}
 --- !u!114 &1137163837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15297,7 +15305,7 @@ GameObject:
   - 114: {fileID: 1595968639}
   - 114: {fileID: 1595968638}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: HPCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16660,8 +16668,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1713705333}
-  m_LocalRotation: {x: -0.001417806, y: -0.99174863, z: 0.011009537, w: -0.12771606}
-  m_LocalPosition: {x: 107.692856, y: -7.0811396, z: 105.08885}
+  m_LocalRotation: {x: -0.09866198, y: 0.68708163, z: 0.09500248, w: 0.71355397}
+  m_LocalPosition: {x: 87.28946, y: -9.874735, z: 84.79954}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -17323,7 +17331,7 @@ Light:
   serializedVersion: 6
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -17666,6 +17674,7 @@ MonoBehaviour:
   weak_element: 
   proof_element: 
   invalid_element: 
+  home_position: {x: 0, y: 0, z: 0}
   move_direction: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   flag_move: 1
@@ -18370,7 +18379,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1924814100}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 103.83, y: 6.006226, z: 56.1}
+  m_LocalPosition: {x: 105.6, y: 6.006226, z: 62.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1932226782}
@@ -18395,7 +18404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   QuestStageID: 0
   CharaName: Lilith
-  H_point: 100
+  H_point: 10
   M_point: 100
   power: 1
   def: 0
@@ -18404,6 +18413,7 @@ MonoBehaviour:
   weak_element: 
   proof_element: 
   invalid_element: 
+  home_position: {x: 0, y: 0, z: 0}
   move_direction: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   flag_move: 1
@@ -18457,7 +18467,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1925340298
 Transform:
   m_ObjectHideFlags: 0
@@ -19443,7 +19453,7 @@ Prefab:
       objectReference: {fileID: 699858772}
     - target: {fileID: 120794, guid: 62621b5bef2106447946f81ac250e966, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 185544, guid: 62621b5bef2106447946f81ac250e966, type: 2}
       propertyPath: m_TagString
@@ -19650,6 +19660,7 @@ MonoBehaviour:
   weak_element: 
   proof_element: 
   invalid_element: 
+  home_position: {x: 0, y: 0, z: 0}
   move_direction: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   flag_move: 1
@@ -19662,7 +19673,7 @@ MonoBehaviour:
   flag_invincible: 0
   flag_watch: 0
   state: 4
-  rotSpeed: 5
+  AttackCol: {fileID: 0}
 --- !u!1001 &2033469355
 Prefab:
   m_ObjectHideFlags: 0
@@ -19833,6 +19844,7 @@ MonoBehaviour:
   weak_element: 
   proof_element: 
   invalid_element: 
+  home_position: {x: 0, y: 0, z: 0}
   move_direction: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   flag_move: 1

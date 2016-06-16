@@ -69,11 +69,14 @@ public class Character_Parameters : MonoBehaviour {
     public void SetInvalid(int num, Attack_Parameter.MagicElement element)
     { this.invalid_element[num] = element; }//numが置き換える耐性の場所。elementが新しい耐性属性(nullも可)
 
+    public Vector3 home_position = Vector3.zero;//キャラクタの初期位置
+    public Vector3 GetHome() { return home_position; }
+
     public Vector3 move_direction = Vector3.zero;//キャラクタの移動方向
     public Vector3 GetMove() { return move_direction; }
     public void SetMove(Vector3 move_direction) { this.move_direction = move_direction; }
 
-    public Vector3 direction = Vector3.zero;//キャラクタが向いている方向
+    public Vector3 direction = Vector3.zero;//キャラクタが向いている方向(ほぼPlayerが向いてる方向として使ってる)
     public Vector3 GetDirection() { return direction; }
     public void SetDirection(Vector3 direction) { this.direction = direction; }
 
@@ -129,6 +132,7 @@ public class Character_Parameters : MonoBehaviour {
     public bool flag_knock = false;//ノックバック状態
     public bool GetKnock() { return flag_knock; }
     public void ReverseKnock() { flag_knock = !flag_knock; }
+
     //状態変化(conversion)/////////////////////////////////////////////////////////////////
 
     public bool flag_invincible = false;//無敵かどうか
