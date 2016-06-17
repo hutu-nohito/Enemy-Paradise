@@ -18,6 +18,7 @@ public class Haniwonder : Enemy_Base
     */
     /******************************************************************************/
 
+    private AudioSource SE;//音
     public GameObject AI;
 
     //弾
@@ -46,10 +47,10 @@ public class Haniwonder : Enemy_Base
         base.BaseStart();
 
         //初期状態セット
-        //coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Exercise));
-        coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Beam));
+        coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Exercise));
 
-        //Player = AI;
+        Player = AI;
+        SE = GetComponent<AudioSource>();
 
     }
 
@@ -118,7 +119,7 @@ public class Haniwonder : Enemy_Base
         //カウンター
         if (state == ActionState.Counter)
         {
-            coroutine = StartCoroutine(Counter());
+            coroutine = StartCoroutine(Beam());
         }
 
         //アタックするだけ
@@ -225,7 +226,14 @@ public class Haniwonder : Enemy_Base
         Bullet[1].SetActive(true);
 
         Bullet[1].transform.Rotate(-Mathf.Atan((Player.transform.position.y - transform.position.y)/ (Player.transform.position - transform.position).magnitude) * (180 / Mathf.PI),0,0);
-        Debug.Log(Mathf.Atan((Player.transform.position.y - transform.position.y) / (Player.transform.position - transform.position).magnitude * (180 / Mathf.PI)));
+
+        //効果音と演出
+        if (!SE.isPlaying)
+        {
+
+            SE.PlayOneShot(SE.clip);//SE
+
+        }
 
         //アニメーションセット
         //animator.SetTrigger("Beam");//攻撃
@@ -239,7 +247,7 @@ public class Haniwonder : Enemy_Base
         //bullet.transform.position = Muzzle[0].position;//Muzzleの位置
         //bullet.transform.rotation = Quaternion.LookRotation((Player.transform.position - Muzzle[0].transform.position).normalized);//回転させて弾頭を進行方向に向ける
 
-        
+
         //bullet.GetComponent<Rigidbody>().velocity = ((Player.transform.position + new Vector3(0,1,0)) - Muzzle[0].transform.position).normalized * bullet.GetComponent<Attack_Parameter>().speed;//ﾌﾟﾚｲﾔに向けて撃つ
         //Destroy(bullet, bullet.GetComponent<Attack_Parameter>().GetA_Time());
 
@@ -256,7 +264,7 @@ public class Haniwonder : Enemy_Base
         Bullet[1].SetActive(false);
         Bullet[1].transform.rotation = new Quaternion(0, 0, 0, 0);
 
-        state = ActionState.Beam;
+        state = ActionState.Exercise;
         isCoroutine = false;
     }
 

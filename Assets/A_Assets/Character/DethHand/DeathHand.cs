@@ -20,7 +20,7 @@ public class DeathHand : Enemy_Base {
 
     private AudioSource SE;//音
 
-    public GameObject A;
+    public GameObject AI;
 
     //キャラクタの状態
     public enum ActionState
@@ -52,7 +52,7 @@ public class DeathHand : Enemy_Base {
         //初期状態セット
         coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Search));
 
-        //Player = A;
+        Player = AI;
 
         SE = GetComponent<AudioSource>();
     }
@@ -64,10 +64,6 @@ public class DeathHand : Enemy_Base {
         base.BaseUpdate();
 
         //状態以外で変化するもの(今んとこ移植で補う)/////////////////////////////////////////////////////////
-
-        //常にプレイヤーのほうを向いている
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Player.transform.position - transform.position), 0.05f);
-        transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
 
         //行動を止める
         if (!GetF_Move())
@@ -86,20 +82,31 @@ public class DeathHand : Enemy_Base {
             //    base.animator.SetTrigger("Die");
             //    Destroy(this.gameObject, 3);//とりあえず消す
             //}
-            //state = ActionState.Stop;
-            //animState = (int)ActionState.Stop;
+            StopAllCoroutines();
+            state = ActionState.Stop;
+            animState = (int)ActionState.Stop;
+            isFade = false;
 
         }
 
         //相手がいなくなった時の処理
         if (base.Player == null)
         {
-            //StopAllCoroutines();
-            //base.Player = this.gameObject;
-            //state = ActionState.Stop;
-            //animState = (int)ActionState.Stop;
+            StopAllCoroutines();
+            base.Player = this.gameObject;
+            state = ActionState.Stop;
+            animState = (int)ActionState.Stop;
             ////勝利のポーズ
             //base.animator.SetTrigger("Win");
+            //効果音と演出
+            if (!SE.isPlaying)
+            {
+
+                SE.loop = true;
+                SE.Play();//SE
+
+            }
+
         }
 
         //空中判定
@@ -113,7 +120,11 @@ public class DeathHand : Enemy_Base {
             }
 
         }
-        
+
+        //常にプレイヤーのほうを向いている
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Player.transform.position - transform.position), 0.05f);
+        transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+
         //ワープ時にスーって消える
         if (isFade)
         {
@@ -291,12 +302,18 @@ public class DeathHand : Enemy_Base {
         float randAt1 = Random.value;
         float randAt2 = Random.value;
 
-        if (randAt1 > 0.7)
+        if (randAt1 > 0.2)
         {
             if (randAt2 < 0.5)
             {
                 StopAllCoroutines();
                 state = ActionState.Warp;
+                isCoroutine = false;
+            }
+            else
+            {
+                StopAllCoroutines();
+                state = ActionState.Attack;
                 isCoroutine = false;
             }
         }
