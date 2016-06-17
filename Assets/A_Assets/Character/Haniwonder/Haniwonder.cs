@@ -14,16 +14,22 @@ public class Haniwonder : Enemy_Base
     /* 更新履歴
     *   普段は体操してて、プレイヤーが近づくと突撃してくる
     *   プレイヤーの動きに反応するので見つけるとかはない
+    *   ビーム
     */
     /******************************************************************************/
 
-    public GameObject A;
-    
+    public GameObject AI;
+
+    //弾
+    public GameObject[] Bullet;//攻撃
+    public Transform[] Muzzle;//攻撃が出てくる場所
+
     //キャラクタの状態
     public enum ActionState
     {
         Stop,//アニメーションが終わるまで待機(状態でなくアニメーションの整合性のために必要)
         Attack,//攻撃
+        Beam,//ビーム
         Counter,//攻撃に対してカウンターしてくる
         Exercise,//体操
 
@@ -40,9 +46,10 @@ public class Haniwonder : Enemy_Base
         base.BaseStart();
 
         //初期状態セット
-        coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Exercise));
+        //coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Exercise));
+        coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Beam));
 
-        //Player = A;
+        //Player = AI;
 
     }
 
@@ -119,7 +126,13 @@ public class Haniwonder : Enemy_Base
         {
             coroutine = StartCoroutine(Attack());
         }
-        
+
+        //ビーム
+        if (state == ActionState.Beam)
+        {
+            coroutine = StartCoroutine(Beam());
+        }
+
         //体操
         if (state == ActionState.Exercise)
         {
@@ -188,6 +201,62 @@ public class Haniwonder : Enemy_Base
 
         AttackCol.SetActive(false);
         state = ActionState.Exercise;
+        isCoroutine = false;
+    }
+
+    //ビーム
+    IEnumerator Beam()
+    {
+        if (isCoroutine) yield break;
+        isCoroutine = true;
+
+        yield return new WaitForSeconds(1.0f);//
+
+        //前を向ける
+        iTween.RotateTo(this.gameObject, iTween.Hash(
+                "y", Mathf.Repeat(Quaternion.LookRotation(Player.transform.position - Muzzle[0].transform.position).eulerAngles.y, 360.0f),//(たまにおかしくなるので後で検証),
+                "time", 0.25f,
+                "easetype", iTween.EaseType.linear)
+
+                );
+
+        yield return new WaitForSeconds(0.25f);//
+
+        Bullet[1].SetActive(true);
+
+        Bullet[1].transform.Rotate(-Mathf.Atan((Player.transform.position.y - transform.position.y)/ (Player.transform.position - transform.position).magnitude) * (180 / Mathf.PI),0,0);
+        Debug.Log(Mathf.Atan((Player.transform.position.y - transform.position.y) / (Player.transform.position - transform.position).magnitude * (180 / Mathf.PI)));
+
+        //アニメーションセット
+        //animator.SetTrigger("Beam");//攻撃
+
+        //GameObject bullet;
+
+        //bullet = GameObject.Instantiate(Bullet[0]);//通常弾
+        //bullet.GetComponent<Attack_Parameter>().Parent = this.gameObject;//誰が撃ったかを渡す
+
+        ////弾を飛ばす処理
+        //bullet.transform.position = Muzzle[0].position;//Muzzleの位置
+        //bullet.transform.rotation = Quaternion.LookRotation((Player.transform.position - Muzzle[0].transform.position).normalized);//回転させて弾頭を進行方向に向ける
+
+        
+        //bullet.GetComponent<Rigidbody>().velocity = ((Player.transform.position + new Vector3(0,1,0)) - Muzzle[0].transform.position).normalized * bullet.GetComponent<Attack_Parameter>().speed;//ﾌﾟﾚｲﾔに向けて撃つ
+        //Destroy(bullet, bullet.GetComponent<Attack_Parameter>().GetA_Time());
+
+        //効果音と演出
+        /*if (!SE[0].isPlaying)
+        {
+
+            SE[0].PlayOneShot(SE[0].clip);//SE
+
+        }*/
+
+        yield return new WaitForSeconds(0.7f);//撃った後の硬直
+
+        Bullet[1].SetActive(false);
+        Bullet[1].transform.rotation = new Quaternion(0, 0, 0, 0);
+
+        state = ActionState.Beam;
         isCoroutine = false;
     }
 
