@@ -106,7 +106,7 @@ public class Enemy_Base : Character_Parameters
 
         }
 
-        Destroy(AfterImage, 0.5f / speed);
+        Destroy(AfterImage, 1 / speed);
 
     }
 

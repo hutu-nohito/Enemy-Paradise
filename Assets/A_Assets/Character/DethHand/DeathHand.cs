@@ -48,7 +48,7 @@ public class DeathHand : Enemy_Base {
         coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Search));
         //coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Warp));
 
-        //Player = AI;
+        Player = AI;
 
         SE = GetComponent<AudioSource>();
     }
@@ -194,7 +194,7 @@ public class DeathHand : Enemy_Base {
         bullet.transform.position = Muzzle[0].position;//Muzzleの位置
         bullet.transform.rotation = Quaternion.LookRotation(direction);//回転させて弾頭を進行方向に向ける
 
-        bullet.GetComponent<Rigidbody>().velocity = (Player.transform.position - transform.position).normalized * bullet.GetComponent<Attack_Parameter>().speed;//ﾌﾟﾚｲﾔに向けて撃つ
+        bullet.GetComponent<Rigidbody>().velocity = (Player.transform.position + new Vector3(0,Player.transform.localScale.y / 2 ,0) - transform.position).normalized * bullet.GetComponent<Attack_Parameter>().speed;//ﾌﾟﾚｲﾔに向けて撃つ
 
         Destroy(bullet, bullet.GetComponent<Attack_Parameter>().GetA_Time());
 

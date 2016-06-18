@@ -53,7 +53,7 @@ public class Haniwonder : Enemy_Base
         //初期状態セット
         coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Exercise));
 
-        //Player = AI;
+        Player = AI;
         SE = GetComponent<AudioSource>();
 
     }
@@ -82,6 +82,7 @@ public class Haniwonder : Enemy_Base
             //    base.animator.SetTrigger("Die");
             //    Destroy(this.gameObject, 3);//とりあえず消す
             //}
+            flag_fade = true;
             transform.Rotate(2,0,0);//たおしてみる
             Destroy(this.gameObject, 1);//とりあえず消す
             state = ActionState.Stop;
@@ -132,11 +133,13 @@ public class Haniwonder : Enemy_Base
         //アタックするだけ
         if (state == ActionState.Attack)
         {
+
             //残像
             StartCoroutine(AfterImage());
-
             coroutine = StartCoroutine(Attack());
         }
+
+        
 
         //ビーム
         if (state == ActionState.Beam)
@@ -173,44 +176,7 @@ public class Haniwonder : Enemy_Base
         state = nextState;
         
     }
-
-    //残像
-    //IEnumerator AfterImage (GameObject Image)
-    //{
-    //    yield return new WaitForSeconds(0.5f);
-
-    //    GameObject AfterImage = Instantiate(Image);
-    //    AfterImage.transform.position = Old_position;
-    //    AfterImage.transform.rotation = Quaternion.Euler(Image.transform.eulerAngles.x, transform.rotation.y + 90 , Image.transform.eulerAngles.x);//なぜか90度ずれてる
-
-    //    SkinnedMeshRenderer[] AfterImageMesh = AfterImage.GetComponentsInChildren<SkinnedMeshRenderer>();
-
-    //    //消したいメッシュの時だけ消す
-    //    for (int i = 0;i < AfterImageMesh.Length; i++)
-    //    {
-    //        Material[] AfterImageMaterial = AfterImageMesh[i].materials;
-
-    //        //消したいマテリアルの時だけ消す(条件分岐で何とかする)
-    //        for(int j = 0;j < AfterImageMaterial.Length; j++)
-    //        {
-    //            //RenderingModeを切り替えるためにはこの7個の設定を変えなければならない(Standard Shader)
-    //            AfterImageMaterial[j].SetFloat("_Mode", 2);//たぶんFade
-    //            AfterImageMaterial[j].SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-    //            AfterImageMaterial[j].SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-    //            AfterImageMaterial[j].SetInt("_ZWrite", 0);
-    //            AfterImageMaterial[j].DisableKeyword("_ALPHATEST_ON");
-    //            AfterImageMaterial[j].EnableKeyword("_ALPHABLEND_ON");
-    //            AfterImageMaterial[j].DisableKeyword("_ALPHAPREMULTIPLY_ON");
-
-    //            AfterImageMaterial[j].color = new Color(AfterImageMaterial[j].color.r, AfterImageMaterial[j].color.g, AfterImageMaterial[j].color.b, 0.2f); ;
-    //        }
-            
-    //    }
-                
-    //    Destroy(AfterImage, 0.1f);
-
-    //}
-
+    
     //イベントが起きた時/////////////////////
 
     //汎用
@@ -258,12 +224,10 @@ public class Haniwonder : Enemy_Base
         if (isCoroutine) yield break;
         isCoroutine = true;
 
-        yield return new WaitForSeconds(1.0f);//
-
         //前を向ける
         iTween.RotateTo(this.gameObject, iTween.Hash(
                 "y", Mathf.Repeat(Quaternion.LookRotation(Player.transform.position - Muzzle[0].transform.position).eulerAngles.y, 360.0f),//(たまにおかしくなるので後で検証),
-                "time", 0.25f,
+                "time", 0.2f,
                 "easetype", iTween.EaseType.linear)
 
                 );
@@ -324,14 +288,13 @@ public class Haniwonder : Enemy_Base
         base.animator.SetTrigger("Run");
         AttackCol.SetActive(true);
 
-        float randomdist = Random.Range(0.0f,1.0f);
-        randomdist = 0.5f;
+        float randomdist = Random.Range(-3.0f,3.0f);
 
         //ジグザグ突進
         iTween.MoveTo(this.gameObject, iTween.Hash(
-                "x", transform.position.x + (Player.transform.position.x - transform.position.x + 5) * randomdist * 2,
-                "z", transform.position.z + (Player.transform.position.z - transform.position.z + 5) * (1 - randomdist) * 2,//定数が突進距離
-                "time", randomdist,
+                "x", transform.position.x + (Player.transform.position.x - transform.position.x + randomdist) * randomdist * 0.8f,
+                "z", transform.position.z + (Player.transform.position.z - transform.position.z - randomdist) * randomdist * 0.8f,//定数が突進距離
+                "time", Mathf.Abs(randomdist / 3),
                 "easetype", iTween.EaseType.linear)
 
                 );
@@ -341,37 +304,37 @@ public class Haniwonder : Enemy_Base
 
         //前を向ける
         iTween.RotateTo(this.gameObject, iTween.Hash(
-                "y", Mathf.Repeat(Quaternion.LookRotation(-GetMove()).eulerAngles.y, 360.0f),//(たまにおかしくなるので後で検証)
+                "y", Mathf.Repeat(Quaternion.LookRotation(GetMove()).eulerAngles.y, 360.0f),//(たまにおかしくなるので後で検証)
                 "time", 0.25f,
                 "easetype", iTween.EaseType.linear)
 
                 );
 
-        yield return new WaitForSeconds(randomdist);
+        yield return new WaitForSeconds(Mathf.Abs(randomdist / 3));
 
-        iTween.MoveTo(this.gameObject, iTween.Hash(
-                "x", transform.position.x + (Player.transform.position.x - transform.position.x - 5) * (1 - randomdist) * 2,
-                "z", transform.position.z + (Player.transform.position.z - transform.position.z - 5) * randomdist * 2,//定数が突進距離
-                "time", (1 - randomdist),
-                "easetype", iTween.EaseType.easeOutBack)
+        //iTween.MoveTo(this.gameObject, iTween.Hash(
+        //        "x", transform.position.x + (Player.transform.position.x - transform.position.x - 5) * (1 - randomdist) * 2,
+        //        "z", transform.position.z + (Player.transform.position.z - transform.position.z - 5) * randomdist * 2,//定数が突進距離
+        //        "time", (1 - randomdist),
+        //        "easetype", iTween.EaseType.easeOutBack)
 
-                );
+        //        );
 
 
-        yield return new WaitForSeconds(0.1f);
+        //yield return new WaitForSeconds(0.1f);
 
-        //前を向ける
-        iTween.RotateTo(this.gameObject, iTween.Hash(
-                "y", Mathf.Repeat(Quaternion.LookRotation(-GetMove()).eulerAngles.y, 360.0f),//(たまにおかしくなるので後で検証)
-                "time", 0.25f,
-                "easetype", iTween.EaseType.linear)
+        ////前を向ける
+        //iTween.RotateTo(this.gameObject, iTween.Hash(
+        //        "y", Mathf.Repeat(Quaternion.LookRotation(-GetMove()).eulerAngles.y, 360.0f),//(たまにおかしくなるので後で検証)
+        //        "time", 0.25f,
+        //        "easetype", iTween.EaseType.linear)
 
-                );
+        //        );
 
-        yield return new WaitForSeconds(1 - randomdist);
+        //yield return new WaitForSeconds(1 - randomdist);
         
         AttackCol.SetActive(false);
-        state = ActionState.Exercise;
+        state = ActionState.Beam;
         isCoroutine = false;
     }
 
