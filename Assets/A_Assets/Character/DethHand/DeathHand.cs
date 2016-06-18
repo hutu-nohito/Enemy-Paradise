@@ -39,11 +39,6 @@ public class DeathHand : Enemy_Base {
     public GameObject[] Bullet;//攻撃
     public Transform[] Muzzle;//攻撃が出てくる場所
 
-    //ワープ時のフェード用
-    public GameObject Model;//モデル
-    private bool isFade = true;//魔方陣フェード用
-    private float color = 0.25f;//透明度
-
     // Use this for initialization
     void Start()
     {
@@ -52,7 +47,7 @@ public class DeathHand : Enemy_Base {
         //初期状態セット
         coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Search));
 
-        Player = AI;
+        //Player = AI;
 
         SE = GetComponent<AudioSource>();
     }
@@ -85,8 +80,7 @@ public class DeathHand : Enemy_Base {
             StopAllCoroutines();
             state = ActionState.Stop;
             animState = (int)ActionState.Stop;
-            isFade = false;
-
+            flag_fade = true;
         }
 
         //相手がいなくなった時の処理
@@ -125,21 +119,6 @@ public class DeathHand : Enemy_Base {
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Player.transform.position - transform.position), 0.05f);
         transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
 
-        //ワープ時にスーって消える
-        if (isFade)
-        {
-            if (color < 0.9) color += Time.deltaTime * 1;
-            Model.GetComponent<SkinnedMeshRenderer>().materials[5].color = new Color(Model.GetComponent<SkinnedMeshRenderer>().materials[5].color.r, Model.GetComponent<SkinnedMeshRenderer>().materials[5].color.g, Model.GetComponent<SkinnedMeshRenderer>().materials[5].color.b, color);
-            //Model.GetComponent<Renderer>().material.color = new Color(Model.GetComponent<Renderer>().material.color.r, Model.GetComponent<Renderer>().material.color.g, Model.GetComponent<Renderer>().material.color.b, color);
-
-        }
-        else
-        {
-            if (color > 0) color -= Time.deltaTime * 1;
-            Model.GetComponent<SkinnedMeshRenderer>().materials[5].color = new Color(Model.GetComponent<SkinnedMeshRenderer>().materials[5].color.r, Model.GetComponent<SkinnedMeshRenderer>().materials[5].color.g, Model.GetComponent<SkinnedMeshRenderer>().materials[5].color.b, color);
-            //Model.GetComponent<Renderer>().material.color = new Color(Model.GetComponent<Renderer>().material.color.r, Model.GetComponent<Renderer>().material.color.g, Model.GetComponent<Renderer>().material.color.b, color);
-        }
-
         //状態遷移//////////////////////////////////////////////////////////////////////////////////
 
         //何もしない
@@ -167,6 +146,9 @@ public class DeathHand : Enemy_Base {
             {
                 //base.animator.SetTrigger("Run");
             }
+
+            //残像
+            //StartCoroutine(AfterImage());
 
             coroutine = StartCoroutine(Search());
 
@@ -235,7 +217,7 @@ public class DeathHand : Enemy_Base {
         if (isCoroutine) yield break;
         isCoroutine = true;
 
-        isFade = false;
+        flag_fade = true;
 
         yield return new WaitForSeconds(2);//消えるまで
 
@@ -249,7 +231,8 @@ public class DeathHand : Enemy_Base {
 
         yield return new WaitForSeconds(1);//移動
 
-        isFade = true;
+        flag_fade = false;
+        
         //効果音と演出
         if (!SE.isPlaying)
         {
@@ -283,6 +266,7 @@ public class DeathHand : Enemy_Base {
     //索敵
     IEnumerator Search()
     {
+        
         if (isCoroutine) yield break;
         isCoroutine = true;
         

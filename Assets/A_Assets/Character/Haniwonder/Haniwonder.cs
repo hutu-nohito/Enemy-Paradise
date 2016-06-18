@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;//List用
 
 public class Haniwonder : Enemy_Base
 {
@@ -21,8 +22,8 @@ public class Haniwonder : Enemy_Base
     private AudioSource SE;//音
     public GameObject AI;
 
-    public GameObject Model;//アーマチュア
-    private SkinnedMeshRenderer[] Skin;
+    //残像用
+    //public GameObject Model;//アーマチュア
 
     //弾
     public GameObject[] Bullet;//攻撃
@@ -54,7 +55,6 @@ public class Haniwonder : Enemy_Base
 
         //Player = AI;
         SE = GetComponent<AudioSource>();
-        Skin = Model.GetComponentsInChildren<SkinnedMeshRenderer>();
 
     }
 
@@ -112,11 +112,6 @@ public class Haniwonder : Enemy_Base
 
         }
 
-        //残像(メッシュを格納してコピーしてちらちらさせればいいのか？)
-        GameObject AfterImageObj = Model;
-        SkinnedMeshRenderer AfterImageSkin = Skin[0];
-        StartCoroutine(AfterImage(AfterImageObj,AfterImageSkin));
-
         //状態遷移//////////////////////////////////////////////////////////////////////////////////
 
         //何もしない
@@ -128,12 +123,18 @@ public class Haniwonder : Enemy_Base
         //カウンター
         if (state == ActionState.Counter)
         {
-            coroutine = StartCoroutine(Beam());
+            //残像
+            StartCoroutine(AfterImage());
+
+            coroutine = StartCoroutine(Counter());
         }
 
         //アタックするだけ
         if (state == ActionState.Attack)
         {
+            //残像
+            StartCoroutine(AfterImage());
+
             coroutine = StartCoroutine(Attack());
         }
 
@@ -174,28 +175,41 @@ public class Haniwonder : Enemy_Base
     }
 
     //残像
-    IEnumerator AfterImage (GameObject Image ,SkinnedMeshRenderer SkinMaterials)
-    {
-        yield return new WaitForSeconds(0.5f);
+    //IEnumerator AfterImage (GameObject Image)
+    //{
+    //    yield return new WaitForSeconds(0.5f);
 
-        GameObject AfterImage = Instantiate(Image);
-        AfterImage.transform.position = Old_position;
-        AfterImage.transform.rotation = Quaternion.Euler(270, transform.eulerAngles.y, 0);
-        Material AfterImageMaterial = AfterImage.GetComponentInChildren<SkinnedMeshRenderer>().material;
+    //    GameObject AfterImage = Instantiate(Image);
+    //    AfterImage.transform.position = Old_position;
+    //    AfterImage.transform.rotation = Quaternion.Euler(Image.transform.eulerAngles.x, transform.rotation.y + 90 , Image.transform.eulerAngles.x);//なぜか90度ずれてる
 
-        //RenderingModeを切り替えるためにはこの7個の設定を変えなければならない(Standard Shader)
-        AfterImageMaterial.SetFloat("_Mode", 2);//たぶんFade
-        AfterImageMaterial.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-        AfterImageMaterial.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-        AfterImageMaterial.SetInt("_ZWrite", 0);
-        AfterImageMaterial.DisableKeyword("_ALPHATEST_ON");
-        AfterImageMaterial.EnableKeyword("_ALPHABLEND_ON");
-        AfterImageMaterial.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+    //    SkinnedMeshRenderer[] AfterImageMesh = AfterImage.GetComponentsInChildren<SkinnedMeshRenderer>();
 
-        AfterImageMaterial.color = new Color(AfterImageMaterial.color.r, AfterImageMaterial.color.g, AfterImageMaterial.color.b, 0.2f); ;
-        Destroy(AfterImage, 0.1f);
+    //    //消したいメッシュの時だけ消す
+    //    for (int i = 0;i < AfterImageMesh.Length; i++)
+    //    {
+    //        Material[] AfterImageMaterial = AfterImageMesh[i].materials;
 
-    }
+    //        //消したいマテリアルの時だけ消す(条件分岐で何とかする)
+    //        for(int j = 0;j < AfterImageMaterial.Length; j++)
+    //        {
+    //            //RenderingModeを切り替えるためにはこの7個の設定を変えなければならない(Standard Shader)
+    //            AfterImageMaterial[j].SetFloat("_Mode", 2);//たぶんFade
+    //            AfterImageMaterial[j].SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+    //            AfterImageMaterial[j].SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+    //            AfterImageMaterial[j].SetInt("_ZWrite", 0);
+    //            AfterImageMaterial[j].DisableKeyword("_ALPHATEST_ON");
+    //            AfterImageMaterial[j].EnableKeyword("_ALPHABLEND_ON");
+    //            AfterImageMaterial[j].DisableKeyword("_ALPHAPREMULTIPLY_ON");
+
+    //            AfterImageMaterial[j].color = new Color(AfterImageMaterial[j].color.r, AfterImageMaterial[j].color.g, AfterImageMaterial[j].color.b, 0.2f); ;
+    //        }
+            
+    //    }
+                
+    //    Destroy(AfterImage, 0.1f);
+
+    //}
 
     //イベントが起きた時/////////////////////
 

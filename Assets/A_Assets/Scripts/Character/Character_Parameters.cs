@@ -122,6 +122,10 @@ public class Character_Parameters : MonoBehaviour {
     public bool GetGround() { return flag_ground; }
     public void ReverseGround() { flag_ground = !flag_ground; }
 
+    public bool flag_fade = false;//消えてるかどうか
+    public bool GetFade() { return flag_fade; }
+    public void ReverseFade() { flag_fade = !flag_fade; }
+
     //状態異常(ailment)/////////////////////////////////////////////////////////////////
 
     public bool flag_poison = false;//毒状態
