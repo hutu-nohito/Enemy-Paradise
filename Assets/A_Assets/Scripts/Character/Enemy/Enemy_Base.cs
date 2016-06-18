@@ -58,7 +58,7 @@ public class Enemy_Base : Character_Parameters
         //現在向いている方向をVector3で保持
         SetDirection(transform.TransformDirection(Vector3.forward).normalized);
 
-        //フェードも登場時・死亡時に使いたいのでここに
+        //フェードも登場時・死亡時に使いたいのでここに(マテリアルで対応するのは難しい)
         StartCoroutine(Fade());
 
         //進行方向を取る
@@ -90,6 +90,7 @@ public class Enemy_Base : Character_Parameters
             for (int j = 0; j < AfterImageMaterial.Length; j++)
             {
                 //RenderingModeを切り替えるためにはこの7個の設定を変えなければならない(Standard Shader)
+                AfterImageMaterial[j].SetOverrideTag("RenderType", "Transparent");
                 AfterImageMaterial[j].SetFloat("_Mode", 2);//たぶんFade
                 AfterImageMaterial[j].SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
                 AfterImageMaterial[j].SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
@@ -97,6 +98,7 @@ public class Enemy_Base : Character_Parameters
                 AfterImageMaterial[j].DisableKeyword("_ALPHATEST_ON");
                 AfterImageMaterial[j].EnableKeyword("_ALPHABLEND_ON");
                 AfterImageMaterial[j].DisableKeyword("_ALPHAPREMULTIPLY_ON");
+                AfterImageMaterial[j].renderQueue = 3000;
 
                 AfterImageMaterial[j].color = new Color(AfterImageMaterial[j].color.r, AfterImageMaterial[j].color.g, AfterImageMaterial[j].color.b, 0.2f); ;
                 
@@ -124,7 +126,10 @@ public class Enemy_Base : Character_Parameters
                 ml[j].SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
                 ml[j].SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
                 ml[j].SetInt("_ZWrite", 0);
-                ml[j].renderQueue = -1;
+                ml[j].DisableKeyword("_ALPHATEST_ON");
+                ml[j].EnableKeyword("_ALPHABLEND_ON");
+                ml[j].DisableKeyword("_ALPHAPREMULTIPLY_ON");
+                ml[j].renderQueue = 3000;
             }
             
             if (color > 0)
@@ -154,14 +159,17 @@ public class Enemy_Base : Character_Parameters
                     ml[j].SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
                     ml[j].SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
                     ml[j].SetInt("_ZWrite", 1);
-                    ml[j].renderQueue = 3000;
+                    ml[j].DisableKeyword("_ALPHATEST_ON");
+                    ml[j].EnableKeyword("_ALPHABLEND_ON");
+                    ml[j].DisableKeyword("_ALPHAPREMULTIPLY_ON");
+                    ml[j].renderQueue = -1;
                 }
             }
         }
 
         for (int i = 0; i < Skin.materials.Length; i++)
         {
-            Skin.materials[i].color = new Color(Skin.materials[i].color.r, Skin.materials[i].color.g, Skin.materials[i].color.b, color);
+            ml[i].color = new Color(Skin.materials[i].color.r, Skin.materials[i].color.g, Skin.materials[i].color.b, color);
         }
         
     }

@@ -46,6 +46,7 @@ public class DeathHand : Enemy_Base {
 
         //初期状態セット
         coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Search));
+        //coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Warp));
 
         //Player = AI;
 
@@ -148,7 +149,7 @@ public class DeathHand : Enemy_Base {
             }
 
             //残像
-            //StartCoroutine(AfterImage());
+            StartCoroutine(AfterImage());
 
             coroutine = StartCoroutine(Search());
 
@@ -249,7 +250,7 @@ public class DeathHand : Enemy_Base {
             state = ActionState.Attack;
 
         }
-        else if(randomvalue < 0.9)
+        else if (randomvalue < 0.9)
         {
             state = ActionState.Search;
 
@@ -258,7 +259,7 @@ public class DeathHand : Enemy_Base {
         {
             state = ActionState.Warp;
         }
-        
+
         isCoroutine = false;
 
     }
