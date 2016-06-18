@@ -21,6 +21,9 @@ public class Haniwonder : Enemy_Base
     private AudioSource SE;//音
     public GameObject AI;
 
+    public GameObject Model;//アーマチュア
+    private SkinnedMeshRenderer[] Skin;
+
     //弾
     public GameObject[] Bullet;//攻撃
     public Transform[] Muzzle;//攻撃が出てくる場所
@@ -49,8 +52,9 @@ public class Haniwonder : Enemy_Base
         //初期状態セット
         coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Exercise));
 
-        Player = AI;
+        //Player = AI;
         SE = GetComponent<AudioSource>();
+        Skin = Model.GetComponentsInChildren<SkinnedMeshRenderer>();
 
     }
 
@@ -108,6 +112,11 @@ public class Haniwonder : Enemy_Base
 
         }
 
+        //残像(メッシュを格納してコピーしてちらちらさせればいいのか？)
+        GameObject AfterImageObj = Model;
+        SkinnedMeshRenderer AfterImageSkin = Skin[0];
+        StartCoroutine(AfterImage(AfterImageObj,AfterImageSkin));
+
         //状態遷移//////////////////////////////////////////////////////////////////////////////////
 
         //何もしない
@@ -162,6 +171,30 @@ public class Haniwonder : Enemy_Base
 
         state = nextState;
         
+    }
+
+    //残像
+    IEnumerator AfterImage (GameObject Image ,SkinnedMeshRenderer SkinMaterials)
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        GameObject AfterImage = Instantiate(Image);
+        AfterImage.transform.position = Old_position;
+        AfterImage.transform.rotation = Quaternion.Euler(270, transform.eulerAngles.y, 0);
+        Material AfterImageMaterial = AfterImage.GetComponentInChildren<SkinnedMeshRenderer>().material;
+
+        //RenderingModeを切り替えるためにはこの7個の設定を変えなければならない(Standard Shader)
+        AfterImageMaterial.SetFloat("_Mode", 2);//たぶんFade
+        AfterImageMaterial.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+        AfterImageMaterial.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+        AfterImageMaterial.SetInt("_ZWrite", 0);
+        AfterImageMaterial.DisableKeyword("_ALPHATEST_ON");
+        AfterImageMaterial.EnableKeyword("_ALPHABLEND_ON");
+        AfterImageMaterial.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+
+        AfterImageMaterial.color = new Color(AfterImageMaterial.color.r, AfterImageMaterial.color.g, AfterImageMaterial.color.b, 0.2f); ;
+        Destroy(AfterImage, 0.1f);
+
     }
 
     //イベントが起きた時/////////////////////

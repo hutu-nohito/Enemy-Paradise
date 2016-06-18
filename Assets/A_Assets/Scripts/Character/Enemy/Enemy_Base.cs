@@ -25,7 +25,8 @@ public class Enemy_Base : Character_Parameters
     [System.NonSerialized]
     public GameObject Player;
 
-    private Vector3 Old_position;//計測用の1フレーム前の位置
+    [System.NonSerialized]
+    public Vector3 Old_position;//計測用の1フレーム前の位置
 
     // Use this for initialization
     public void BaseStart () {
