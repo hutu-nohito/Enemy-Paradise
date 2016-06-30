@@ -158,7 +158,7 @@ public class ViveHaniwonder : Enemy_Base
         if(state == ActionState.AfterImage)
         {
             //残像
-            //StartCoroutine(AfterImage());
+            StartCoroutine(AfterImage());
             coroutine = StartCoroutine(AvatarAttack());
         }
 
@@ -326,9 +326,11 @@ public class ViveHaniwonder : Enemy_Base
             //Avatars[i].GetComponentInChildren<Haniwonder>().animator.SetTrigger("Run");
             //Avatars[i].GetComponentInChildren<Haniwonder>().AttackCol.SetActive(true);
             Avatars[i].transform.position = new Vector3(transform.position.x + (i * 2 - 3) * 4, transform.position.y, transform.position.z);
+            Avatars[i].transform.LookAt(-Player.transform.position);
         }
 
         Avatars[4] = this.gameObject;//５番目が自分自身
+        transform.LookAt(-Player.transform.position);
         base.animator.SetTrigger("Run");
         AttackCol.SetActive(true);
 
@@ -391,7 +393,11 @@ public class ViveHaniwonder : Enemy_Base
         }
 
         AttackCol.SetActive(false);
-        state = ActionState.Exercise;
+
+        yield return new WaitForSeconds(3);
+
+        state = ActionState.AfterImage;
+
         isCoroutine = false;
     }
 
