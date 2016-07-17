@@ -117,7 +117,7 @@ public class Enemy_Base : Character_Parameters
                 //AfterImageMaterial[j].DisableKeyword("_ALPHAPREMULTIPLY_ON");
                 //AfterImageMaterial[j].renderQueue = 3000;
 
-                AfterImageMaterial[j].color = new Color(AfterImageMaterial[j].color.r, AfterImageMaterial[j].color.g, AfterImageMaterial[j].color.b, 0.2f); ;
+                AfterImageMaterial[j].color = new Color(AfterImageMaterial[j].color.r, AfterImageMaterial[j].color.g, AfterImageMaterial[j].color.b, 0.5f); ;
                 
             }
 
