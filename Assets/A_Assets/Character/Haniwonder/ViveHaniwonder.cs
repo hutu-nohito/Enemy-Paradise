@@ -158,7 +158,8 @@ public class ViveHaniwonder : Enemy_Base
         if(state == ActionState.AfterImage)
         {
             //残像
-            StartCoroutine(AfterImage());
+            //StartCoroutine(AfterImage());
+
             coroutine = StartCoroutine(AvatarAttack());
         }
 
@@ -375,12 +376,14 @@ public class ViveHaniwonder : Enemy_Base
             }
             else
             {
+                ReverseAfterImage();//残像
                 iTween.RotateTo(Avatars[number[i]], iTween.Hash(
                     "y", Mathf.Repeat(Quaternion.LookRotation(-GetMove()).eulerAngles.y, 360.0f),//(たまにおかしくなるので後で検証)
                     "time", 0.25f,
                     "easetype", iTween.EaseType.linear)
 
                     );
+                Invoke("ReverseAfterImage", 1.5f);//残像が消せるかな？
 
             }
 

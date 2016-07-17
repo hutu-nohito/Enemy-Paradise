@@ -126,6 +126,10 @@ public class Character_Parameters : MonoBehaviour {
     public bool GetFade() { return flag_fade; }
     public void ReverseFade() { flag_fade = !flag_fade; }
 
+    public bool flag_AfterImage = false;//残像を出しているかどうか
+    public bool GetAfterImage() { return flag_AfterImage; }
+    public void ReverseAfterImage() { flag_AfterImage = !flag_AfterImage; }
+
     //状態異常(ailment)/////////////////////////////////////////////////////////////////
 
     public bool flag_poison = false;//毒状態

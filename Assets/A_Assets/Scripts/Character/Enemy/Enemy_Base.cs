@@ -76,6 +76,12 @@ public class Enemy_Base : Character_Parameters
             SetMove((transform.position - Old_position).normalized);//進行方向の向きベクトルを渡す
         }
 
+        //残像を出す
+        if (GetAfterImage())
+        {
+            StartCoroutine(AfterImage());
+        }
+
         Old_position = transform.position;//OldPosを更新しないと動きません
     }
 
@@ -101,15 +107,15 @@ public class Enemy_Base : Character_Parameters
             for (int j = 0; j < AfterImageMaterial.Length; j++)
             {
                 //RenderingModeを切り替えるためにはこの7個の設定を変えなければならない(Standard Shader)
-                AfterImageMaterial[j].SetOverrideTag("RenderType", "Transparent");
-                AfterImageMaterial[j].SetFloat("_Mode", 2);//たぶんFade
-                AfterImageMaterial[j].SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-                AfterImageMaterial[j].SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-                AfterImageMaterial[j].SetInt("_ZWrite", 0);
-                AfterImageMaterial[j].DisableKeyword("_ALPHATEST_ON");
-                AfterImageMaterial[j].EnableKeyword("_ALPHABLEND_ON");
-                AfterImageMaterial[j].DisableKeyword("_ALPHAPREMULTIPLY_ON");
-                AfterImageMaterial[j].renderQueue = 3000;
+                //AfterImageMaterial[j].SetOverrideTag("RenderType", "Transparent");
+                //AfterImageMaterial[j].SetFloat("_Mode", 2);//たぶんFade
+                //AfterImageMaterial[j].SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                //AfterImageMaterial[j].SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                //AfterImageMaterial[j].SetInt("_ZWrite", 0);
+                //AfterImageMaterial[j].DisableKeyword("_ALPHATEST_ON");
+                //AfterImageMaterial[j].EnableKeyword("_ALPHABLEND_ON");
+                //AfterImageMaterial[j].DisableKeyword("_ALPHAPREMULTIPLY_ON");
+                //AfterImageMaterial[j].renderQueue = 3000;
 
                 AfterImageMaterial[j].color = new Color(AfterImageMaterial[j].color.r, AfterImageMaterial[j].color.g, AfterImageMaterial[j].color.b, 0.2f); ;
                 
