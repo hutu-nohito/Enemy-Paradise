@@ -216,10 +216,15 @@ public class CharacterDamage : MonoBehaviour {
                 //vec2をvec1に向かって角度差分だけ回転させる
                 var vec1 = (col.gameObject.transform.position - Parent.gameObject.transform.position);
                 var vec2 = attack.GetKnockBack();
-                var axis = Vector3.Cross(vec2, vec1);
-                var res = Quaternion.AngleAxis(Vector3.Angle(vec2, vec1), axis) * vec2;
 
-                //吹っ飛ぶ(後ろか上にしか吹っ飛ばないけど横に飛ぶことはないだろうしいいか)
+                //Y軸は別計算で
+                vec1 = new Vector3(vec1.x, 0, vec1.z);
+                vec2 = new Vector3(vec2.x, 0, vec2.z);
+                
+                var axis = Vector3.Cross(vec2, vec1);//２つのベクトルに直行するベクトルを求める(外積)
+                var res = Quaternion.AngleAxis(Vector3.Angle(vec2, vec1), axis) * vec2;//axisを軸にして第1引数の角度だけ回転させる
+
+                //吹っ飛ぶ(後ろか上にしか吹っ飛ばないけど横に飛ぶことはないだろうしいいか(良くなかった))
                 iTween.MoveTo(Parent.gameObject, iTween.Hash(
                         "position", new Vector3(
                         Parent.gameObject.transform.position.x - res.x,

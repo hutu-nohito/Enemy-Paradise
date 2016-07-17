@@ -55,6 +55,15 @@ public class Enemy_Base : Character_Parameters
 	// Update is called once per frame
 	public void BaseUpdate () {
 
+        //Y軸以外の回転を補正(基本的に0で固定、見上げたりしたい場合は別途モーションを作製)
+        if(GetComponent<Rigidbody>() != null)//RigidBodyの有無
+        {
+            if(GetComponent<Rigidbody>().constraints == RigidbodyConstraints.FreezePositionX)//Xが止められてたら
+            {
+                transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
+            }
+        }
+
         //現在向いている方向をVector3で保持
         SetDirection(transform.TransformDirection(Vector3.forward).normalized);
 
@@ -77,7 +86,9 @@ public class Enemy_Base : Character_Parameters
 
         GameObject AfterImage = Instantiate(Model);
         AfterImage.transform.position = Old_position;
+        Debug.Log(Model.transform.eulerAngles.z);
         AfterImage.transform.rotation = Quaternion.Euler(Model.transform.eulerAngles.x, transform.eulerAngles.y, Model.transform.eulerAngles.z);
+        //AfterImage.transform.rotation = Quaternion.Euler(Model.transform.eulerAngles.x, transform.eulerAngles.y, 0);
 
         SkinnedMeshRenderer[] AfterImageMesh = AfterImage.GetComponentsInChildren<SkinnedMeshRenderer>();
 

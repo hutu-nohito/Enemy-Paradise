@@ -312,6 +312,7 @@ public class ViveHaniwonder : Enemy_Base
     }
 
     //影分身突進
+    //分身はBullet扱い
     IEnumerator AvatarAttack()
     {
         if (isCoroutine) yield break;
@@ -327,10 +328,11 @@ public class ViveHaniwonder : Enemy_Base
             //Avatars[i].GetComponentInChildren<Haniwonder>().AttackCol.SetActive(true);
             Avatars[i].transform.position = new Vector3(transform.position.x + (i * 2 - 3) * 4, transform.position.y, transform.position.z);
             Avatars[i].transform.LookAt(Player.transform.position);
+            Avatars[i].GetComponentInChildren<Attack_Parameter>().SetParent(this.gameObject);//親を設定
         }
 
         Avatars[4] = this.gameObject;//５番目が自分自身
-        transform.LookAt(Player.transform.position);
+        transform.LookAt(Player.transform.position);//方向のみを合わせたいならXとYを0に
         base.animator.SetTrigger("Run");
         AttackCol.SetActive(true);
 
@@ -359,7 +361,7 @@ public class ViveHaniwonder : Enemy_Base
             iTween.MoveTo(Avatars[number[i]], iTween.Hash(
                     "x", Avatars[number[i]].transform.position.x + (Player.transform.position - Avatars[number[i]].transform.position).normalized.x * 30,//定数が突進距離
                     "z", Avatars[number[i]].transform.position.z + (Player.transform.position - Avatars[number[i]].transform.position).normalized.z * 30,//定数が突進距離
-                    "time", 1.0f,
+                    "time", 1.5f,
                     "easetype", iTween.EaseType.easeInOutBack)
 
                     );
