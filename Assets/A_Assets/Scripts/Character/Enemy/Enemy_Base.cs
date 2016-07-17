@@ -86,7 +86,7 @@ public class Enemy_Base : Character_Parameters
 
         GameObject AfterImage = Instantiate(Model);
         AfterImage.transform.position = Old_position;
-        Debug.Log(Model.transform.eulerAngles.z);
+        //Debug.Log(Model.transform.eulerAngles.z);
         AfterImage.transform.rotation = Quaternion.Euler(Model.transform.eulerAngles.x, transform.eulerAngles.y, Model.transform.eulerAngles.z);
         //AfterImage.transform.rotation = Quaternion.Euler(Model.transform.eulerAngles.x, transform.eulerAngles.y, 0);
 

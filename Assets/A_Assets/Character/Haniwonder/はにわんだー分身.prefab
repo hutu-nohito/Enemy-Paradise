@@ -1430,7 +1430,7 @@ MonoBehaviour:
   magicElement: 0
   property: 0
   ailment: 0
-  KnockBack: {x: 0, y: 5, z: 10}
+  KnockBack: {x: 0, y: 5, z: 5}
   Parent: {fileID: 0}
 --- !u!114 &11464058
 MonoBehaviour:

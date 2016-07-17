@@ -214,22 +214,42 @@ public class CharacterDamage : MonoBehaviour {
                 Cpara.ReverseKnock();//ノックバック状態ですよ
 
                 //vec2をvec1に向かって角度差分だけ回転させる
-                var vec1 = (col.gameObject.transform.position - Parent.gameObject.transform.position);
+                //var vec1 = (col.gameObject.transform.position - Parent.gameObject.transform.position);
+                var vec1 = (Parent.gameObject.transform.position - col.gameObject.transform.position);
                 var vec2 = attack.GetKnockBack();
-
+                Debug.Log(vec1);
+                Debug.Log(Quaternion.LookRotation(vec1).eulerAngles.y);
+                
                 //Y軸は別計算で
-                vec1 = new Vector3(vec1.x, 0, vec1.z);
-                vec2 = new Vector3(vec2.x, 0, vec2.z);
+                vec1 = new Vector3(vec1.x, 0, vec1.z).normalized;
+                vec2 = new Vector3(vec2.x, 0, vec2.z).normalized;
                 
                 var axis = Vector3.Cross(vec2, vec1);//２つのベクトルに直行するベクトルを求める(外積)
-                var res = Quaternion.AngleAxis(Vector3.Angle(vec2, vec1), axis) * vec2;//axisを軸にして第1引数の角度だけ回転させる
+                //角度を求めてオイラーに直して引く。これでvec1とvec2の間の角度がオイラーで求まる？
+                //var ang = ((Mathf.Acos(vec2.z) * 180)/Mathf.PI) - ((Mathf.Acos(vec1.z) * 180) / Mathf.PI);
+                var ang = Quaternion.LookRotation(vec2).eulerAngles.y - Quaternion.LookRotation(vec1).eulerAngles.y;
+                Debug.Log((Mathf.Acos(vec2.z) * 180) / Mathf.PI);
+                Debug.Log((Mathf.Acos(vec1.z) * 180) / Mathf.PI);
+                Debug.Log(ang);
+                
+                var res = Vector3.zero;
+
+                if (ang > -180)
+                {
+                    res = Quaternion.AngleAxis(-ang, axis) * attack.GetKnockBack();//axisを軸にして第1引数の角度だけ回転させる
+                }
+                else
+                {
+                    res = Quaternion.AngleAxis(ang, axis) * attack.GetKnockBack();//axisを軸にして第1引数の角度だけ回転させる
+                }
+                Debug.Log(res);
 
                 //吹っ飛ぶ(後ろか上にしか吹っ飛ばないけど横に飛ぶことはないだろうしいいか(良くなかった))
                 iTween.MoveTo(Parent.gameObject, iTween.Hash(
                         "position", new Vector3(
-                        Parent.gameObject.transform.position.x - res.x,
+                        Parent.gameObject.transform.position.x + res.x,
                         Parent.gameObject.transform.position.y + attack.GetKnockBack().y,
-                        Parent.gameObject.transform.position.z - res.z)
+                        Parent.gameObject.transform.position.z + res.z)
                         /*Parent.gameObject.transform.position.x - (col.gameObject.transform.position.x - Parent.gameObject.transform.position.x) * attack.GetKnockBack().x,
                         Parent.gameObject.transform.position.y + attack.GetKnockBack().y,
                         Parent.gameObject.transform.position.z - (col.gameObject.transform.position.z - Parent.gameObject.transform.position.z) * attack.GetKnockBack().z)*/
