@@ -60,7 +60,7 @@ public class Enemy_Base : Character_Parameters
         {
             if(GetComponent<Rigidbody>().constraints == RigidbodyConstraints.FreezePositionX)//Xが止められてたら
             {
-                transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
+                transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
             }
         }
 
@@ -87,8 +87,8 @@ public class Enemy_Base : Character_Parameters
         GameObject AfterImage = Instantiate(Model);
         AfterImage.transform.position = Old_position;
         //Debug.Log(Model.transform.eulerAngles.z);
-        AfterImage.transform.rotation = Quaternion.Euler(Model.transform.eulerAngles.x, transform.eulerAngles.y, Model.transform.eulerAngles.z);
-        //AfterImage.transform.rotation = Quaternion.Euler(Model.transform.eulerAngles.x, transform.eulerAngles.y, 0);
+        //AfterImage.transform.rotation = Quaternion.Euler(Model.transform.eulerAngles.x, transform.eulerAngles.y, Model.transform.eulerAngles.z);
+        AfterImage.transform.rotation = Quaternion.Euler(Model.transform.eulerAngles.x, transform.eulerAngles.y, 0);//zが必要になったら何とかする
 
         SkinnedMeshRenderer[] AfterImageMesh = AfterImage.GetComponentsInChildren<SkinnedMeshRenderer>();
 
