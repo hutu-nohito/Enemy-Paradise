@@ -34,8 +34,6 @@ public class Player_ControllerVR : Character_Parameters {
         playerController = GetComponent<CharacterController>();//rigidbodyを使う場合は外す
         animator = GetComponentInChildren<Animator>();//アニメータを使うとき
         
-        //メインカメラが設定されてなかったらする
-        if (MainCamera == null) MainCamera = Camera.main.gameObject;
         
         //初期パラメタを保存
         max_HP = H_point;

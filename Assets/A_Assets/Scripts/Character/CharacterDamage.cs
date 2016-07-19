@@ -56,7 +56,7 @@ public class CharacterDamage : MonoBehaviour {
 
         if (Parent.gameObject.tag == "Player")
         {
-            Cpara = Parent.GetComponent<Player_ControllerZ>();//プレイヤーだったらこっち
+            Cpara = Parent.GetComponent<Player_ControllerVR>();//プレイヤーだったらこっち
         }
         else
         {

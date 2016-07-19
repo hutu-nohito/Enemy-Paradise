@@ -19,7 +19,7 @@ public class Bullet : Magic_Parameter {
     public GameObject bullet_Prefab;//弾のプレハブ
 
     private Magic_Controller MC;
-    private Player_ControllerZ pcZ;
+    private Player_ControllerVR pcZ;
 
     private Animator animator;//アニメ
     private AudioSource SE;//音
@@ -28,7 +28,7 @@ public class Bullet : Magic_Parameter {
     void Start()
     {
         MC = GameObject.FindGameObjectWithTag("Player").GetComponent<Magic_Controller>();
-        pcZ = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_ControllerZ>();
+        pcZ = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_ControllerVR>();
         animator = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>();
         SE = GetComponent<AudioSource>();
     }
@@ -52,7 +52,7 @@ public class Bullet : Magic_Parameter {
         animator.SetTrigger("Shoot");
 
         bullet = GameObject.Instantiate(bullet_Prefab);//弾生成
-        MC.AddExistBullet(bullet);//現在の弾数を増やす
+        //MC.AddExistBullet(bullet);//現在の弾数を増やす
         bullet.GetComponent<Attack_Parameter>().Parent = this.Parent;//もらった親を渡しておく必要がある
 
         //MPの処理

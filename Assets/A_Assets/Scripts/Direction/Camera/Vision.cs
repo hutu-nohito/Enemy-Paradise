@@ -147,7 +147,7 @@ public class Vision : MonoBehaviour {
         if (Target.Count == 0) { Camera.main.GetComponent<Z_Camera>().SetTarget(null,near); }
         else
         {
-            Camera.main.GetComponent<Z_Camera>().SetTarget(nearTarget,near);
+            //Camera.main.GetComponent<Z_Camera>().SetTarget(nearTarget,near);
 
         }
 
