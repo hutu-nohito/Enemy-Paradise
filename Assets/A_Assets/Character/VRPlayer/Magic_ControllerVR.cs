@@ -2,11 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;//List用
 
-public class Magic_Controller : MonoBehaviour{
+public class Magic_ControllerVR : MonoBehaviour {
 
     /******************************************************************************/
-    /** @brief プレイヤーの魔法管理
-    * @date 2016/01/01
+    /** @brief VRプレイヤーの魔法管理
+    * @date 2016/07/19
     * @author 石川
     * @param[in] m_fringe 干渉縞の計算結果を格納
     * 
@@ -17,7 +17,7 @@ public class Magic_Controller : MonoBehaviour{
     *  魔法の発動
     */
     /******************************************************************************/
-    
+
     //デバック用
     public bool isDemo = false;
 
@@ -47,12 +47,12 @@ public class Magic_Controller : MonoBehaviour{
     //GameObject/////////////////////////////////////////////
     public GameObject[] Magic;//魔法の大本。PlayerのみこれをMuzzleとして使う
     public GameObject[] SelectMagic = new GameObject[5];//隙間にセットされた魔法
-    
 
-	//コルーチン
-	private Coroutine coroutine;
-	//private int count;//汎用のカウント用の箱(使い終わったら0に戻すこと)
-	private bool isCoroutine = false;
+
+    //コルーチン
+    private Coroutine coroutine;
+    //private int count;//汎用のカウント用の箱(使い終わったら0に戻すこと)
+    private bool isCoroutine = false;
 
     //使うもの
 
@@ -71,7 +71,7 @@ public class Magic_Controller : MonoBehaviour{
         }
 
         //選択されてる魔法の番号を渡す。
-        MagicSet (0,1,0,1,0);
+        MagicSet(0, 1, 0, 1, 0);
         /*
         MagicSet(
             _static.SelectMagicID[0],
@@ -81,15 +81,16 @@ public class Magic_Controller : MonoBehaviour{
             _static.SelectMagicID[4]);
         */
 
-        for (int i = 0;i < Magic.Length;i++){
+        for (int i = 0; i < Magic.Length; i++)
+        {
 
             Magic[i].GetComponent<Magic_Parameter>().SetParent(this.gameObject);//親はプレイヤー
 
         }
-        
+
     }
 
-    void MagicSet(int a,int b,int c,int d,int e)
+    void MagicSet(int a, int b, int c, int d, int e)
     {
         /*
          * 
@@ -135,9 +136,9 @@ public class Magic_Controller : MonoBehaviour{
 
         }
 
-		coroutine = StartCoroutine (MPRecover ());
+        coroutine = StartCoroutine(MPRecover());
 
-        if(magic_num != old_magic_num)
+        if (magic_num != old_magic_num)
         {
 
             switch (magic_num)
@@ -185,7 +186,7 @@ public class Magic_Controller : MonoBehaviour{
         }
 
         //弾がなくなったかどうかはこっちで判断
-        for (int i = 0;i < Bullet0.Count;i++)
+        for (int i = 0; i < Bullet0.Count; i++)
         {
             if (Bullet0[i] == null)
             {
@@ -242,20 +243,21 @@ public class Magic_Controller : MonoBehaviour{
     {
 
         //マウスホイール式
-        if (!isHold){
+        if (!isHold)
+        {
         }
         if (Input.GetAxis("Mouse ScrollWheel") == 1.0f)
         {
 
             if (magic_num == 0)
             {
-                
+
                 magic_num = selectmagic.Length - 1;
 
             }
             else
             {
-                
+
                 magic_num -= (int)Input.GetAxis("Mouse ScrollWheel");
 
             }
@@ -274,7 +276,7 @@ public class Magic_Controller : MonoBehaviour{
             }
             else
             {
-                
+
                 magic_num -= (int)Input.GetAxis("Mouse ScrollWheel");
 
             }
@@ -398,16 +400,17 @@ public class Magic_Controller : MonoBehaviour{
         }
     }
 
-	IEnumerator MPRecover(){//MPは自然回復
+    IEnumerator MPRecover()
+    {//MPは自然回復
 
-		if(isCoroutine){yield break;}
-		isCoroutine = true;
-		
-		yield return new WaitForSeconds(1.0f);//回復スピード
-		
-        if(Pz.M_point < Pz.max_MP){Pz.M_point += 1;}//最大MPを超えないようにする
-		
-		isCoroutine = false;
+        if (isCoroutine) { yield break; }
+        isCoroutine = true;
 
-	}
+        yield return new WaitForSeconds(1.0f);//回復スピード
+
+        if (Pz.M_point < Pz.max_MP) { Pz.M_point += 1; }//最大MPを超えないようにする
+
+        isCoroutine = false;
+
+    }
 }
