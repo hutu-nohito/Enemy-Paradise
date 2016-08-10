@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
 // Shader created with Shader Forge v1.04 
 // Shader Forge (c) Neat Corporation / Joachim Holmer - http://www.acegikmo.com/shaderforge/
 // Note: Manually altering this data may prevent you from opening it in Shader Forge
@@ -56,12 +58,12 @@ Shader "custom/alphavertexAnimated" {
                 VertexOutput o = (VertexOutput)0;
                 o.uv0 = v.texcoord0;
                 o.vertexColor = v.vertexColor;
-                o.normalDir = mul(_Object2World, float4(v.normal,0)).xyz;
-                o.tangentDir = normalize( mul( _Object2World, float4( v.tangent.xyz, 0.0 ) ).xyz );
+                o.normalDir = mul(unity_ObjectToWorld, float4(v.normal,0)).xyz;
+                o.tangentDir = normalize( mul( unity_ObjectToWorld, float4( v.tangent.xyz, 0.0 ) ).xyz );
                 o.binormalDir = normalize(cross(o.normalDir, o.tangentDir) * v.tangent.w);
                 float4 node_392 = _Time + _TimeEditor;
                 v.vertex.xyz += (normalize((float3(1,0.3970588,0.3970588)+v.normal))*o.vertexColor.r*sin(((o.vertexColor.b*3.141592654)+node_392.b))*0.1);
-                o.posWorld = mul(_Object2World, v.vertex);
+                o.posWorld = mul(unity_ObjectToWorld, v.vertex);
                 float3 lightColor = _LightColor0.rgb;
                 o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
                 return o;
@@ -153,12 +155,12 @@ Shader "custom/alphavertexAnimated" {
                 VertexOutput o = (VertexOutput)0;
                 o.uv0 = v.texcoord0;
                 o.vertexColor = v.vertexColor;
-                o.normalDir = mul(_Object2World, float4(v.normal,0)).xyz;
-                o.tangentDir = normalize( mul( _Object2World, float4( v.tangent.xyz, 0.0 ) ).xyz );
+                o.normalDir = mul(unity_ObjectToWorld, float4(v.normal,0)).xyz;
+                o.tangentDir = normalize( mul( unity_ObjectToWorld, float4( v.tangent.xyz, 0.0 ) ).xyz );
                 o.binormalDir = normalize(cross(o.normalDir, o.tangentDir) * v.tangent.w);
                 float4 node_392 = _Time + _TimeEditor;
                 v.vertex.xyz += (normalize((float3(1,0.3970588,0.3970588)+v.normal))*o.vertexColor.r*sin(((o.vertexColor.b*3.141592654)+node_392.b))*0.1);
-                o.posWorld = mul(_Object2World, v.vertex);
+                o.posWorld = mul(unity_ObjectToWorld, v.vertex);
                 float3 lightColor = _LightColor0.rgb;
                 o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
                 TRANSFER_VERTEX_TO_FRAGMENT(o)
@@ -242,7 +244,7 @@ Shader "custom/alphavertexAnimated" {
                 VertexOutput o = (VertexOutput)0;
                 o.uv0 = v.texcoord0;
                 o.vertexColor = v.vertexColor;
-                o.normalDir = mul(_Object2World, float4(v.normal,0)).xyz;
+                o.normalDir = mul(unity_ObjectToWorld, float4(v.normal,0)).xyz;
                 float4 node_392 = _Time + _TimeEditor;
                 v.vertex.xyz += (normalize((float3(1,0.3970588,0.3970588)+v.normal))*o.vertexColor.r*sin(((o.vertexColor.b*3.141592654)+node_392.b))*0.1);
                 o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
@@ -295,7 +297,7 @@ Shader "custom/alphavertexAnimated" {
                 VertexOutput o = (VertexOutput)0;
                 o.uv0 = v.texcoord0;
                 o.vertexColor = v.vertexColor;
-                o.normalDir = mul(_Object2World, float4(v.normal,0)).xyz;
+                o.normalDir = mul(unity_ObjectToWorld, float4(v.normal,0)).xyz;
                 float4 node_392 = _Time + _TimeEditor;
                 v.vertex.xyz += (normalize((float3(1,0.3970588,0.3970588)+v.normal))*o.vertexColor.r*sin(((o.vertexColor.b*3.141592654)+node_392.b))*0.1);
                 o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
