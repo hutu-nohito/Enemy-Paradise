@@ -94,13 +94,13 @@ public class Player_ControllerVR : Character_Parameters {
                     transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);//Playerのx,zの回転を直す。回転嫌い。全部Eulerにしてしまえばよい
 
                 }
-                if (Input.GetKey(KeyCode.S))
-                {
-                    //Playerの方向 = (最初の方向,向けたい方向,向けたい速度)
-                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(MainCamera.transform.TransformDirection(Vector3.back)), RotSpeed);//Playerをターゲットのほうにゆっくり向ける
-                    transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);//Playerのx,zの回転を直す。回転嫌い。全部Eulerにしてしまえばよい
+                //if (Input.GetKey(KeyCode.S))
+                //{
+                //    //Playerの方向 = (最初の方向,向けたい方向,向けたい速度)
+                //    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(MainCamera.transform.TransformDirection(Vector3.back)), RotSpeed);//Playerをターゲットのほうにゆっくり向ける
+                //    transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);//Playerのx,zの回転を直す。回転嫌い。全部Eulerにしてしまえばよい
 
-                }
+                //}
                 if (Input.GetKey(KeyCode.A))
                 {
                     //Playerの方向 = (最初の方向,向けたい方向,向けたい速度)
@@ -162,11 +162,11 @@ public class Player_ControllerVR : Character_Parameters {
             move_direction.z += direction.z;
 
         }
-        if (Input.GetKey(KeyCode.S))
-        {
-            move_direction.x -= direction.x;
-            move_direction.z -= direction.z;
-        }
+        //if (Input.GetKey(KeyCode.S))
+        //{
+        //    move_direction.x -= direction.x;
+        //    move_direction.z -= direction.z;
+        //}
         if (Input.GetKey(KeyCode.A))
         {
             move_direction.x -= direction.z;

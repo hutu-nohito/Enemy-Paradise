@@ -45,7 +45,7 @@ public class Magic_ControllerVR : MonoBehaviour {
         Pz = GetComponent<Player_ControllerVR>();
         
         //選択されてる魔法の番号を渡す。(スキマが間に合わないのでとりあえず魔法は固定)
-        MagicSet(0, 0, 0, 0, 0);
+        MagicSet(0, 1, 2, 0, 0);
         /*
         MagicSet(
             _static.SelectMagicID[0],
@@ -105,6 +105,14 @@ public class Magic_ControllerVR : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             SelectMagic[0].SendMessage("Fire");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SelectMagic[1].SendMessage("Fire");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SelectMagic[2].SendMessage("Fire");
         }
     }
 }

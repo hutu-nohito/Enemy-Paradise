@@ -2,24 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;//リスト
 
-public class CharacterDamage : MonoBehaviour {
+public class CharacterDamageVR : MonoBehaviour
+{
 
     /******************************************************************************/
-    /** @brief キャラクターのダメージ処理全般(状態異常も)
-    * @date 2016/05/29
+    /** @brief キャラクターのダメージ処理全般(VR用)
+    * @date 2016/08/14
     * @author 石川
     * @param[in] m_fringe 干渉縞の計算結果を格納
 */
     /******************************************************************************/
     /* 更新履歴
-    *  プレイヤも敵も一緒くたにできるように
-    *  とりあえず敵だけ？
-    *  一応プレイヤにも適用してる
-    *  ヒットエフェクト追加(属性ごと)
-    *  毒追加
+    *  
     */
     /******************************************************************************/
-    
+
     private GameObject Parent;//このあたり判定を持つキャラ
     public bool weak_point = false;
     private Character_Parameters Cpara;//キャラクタのパラメタ
@@ -27,7 +24,7 @@ public class CharacterDamage : MonoBehaviour {
     private Renderer[] Renderer;//レンダー1
     private Renderer[] SkinRenderer;//レンダー2
     public GameObject Model;//モデル
-    
+
 
     //演出(最初に取得)
     private List<GameObject> Effects = new List<GameObject>();//出すエフェクト
@@ -56,7 +53,7 @@ public class CharacterDamage : MonoBehaviour {
 
         if (Parent.gameObject.tag == "Player")
         {
-            Cpara = Parent.GetComponent<Player_ControllerZ>();//プレイヤーだったらこっち
+            Cpara = Parent.GetComponent<Player_ControllerVR>();//プレイヤーだったらこっち
         }
         else
         {
@@ -68,7 +65,7 @@ public class CharacterDamage : MonoBehaviour {
         Effects.Add(Parent.transform.FindChild("Effects").gameObject.transform.FindChild("Eff_Fire").gameObject);//火エフェクト
         Effects.Add(Parent.transform.FindChild("Effects").gameObject.transform.FindChild("Eff_Water").gameObject);//水エフェクト
         Effects.Add(Parent.transform.FindChild("Effects").gameObject.transform.FindChild("Eff_Poison").gameObject);//毒エフェクト
-        
+
         //エフェクト消す
         //エフェクトの基準位置を取得
         for (int i = 0; i < Effects.Count; i++)
@@ -76,7 +73,7 @@ public class CharacterDamage : MonoBehaviour {
             Effects[i].SetActive(false);
             Effect_basePos.Add(Effects[i].transform.localPosition);
         }
-        
+
         //今はいらない
         /*
         Renderer = Model.GetComponentsInChildren<MeshRenderer>();
@@ -98,7 +95,7 @@ public class CharacterDamage : MonoBehaviour {
                 Cpara.ReverseKnock();
             }
         }
-        
+
     }
 
     void OnTriggerEnter(Collider col)
@@ -162,12 +159,12 @@ public class CharacterDamage : MonoBehaviour {
                     damage *= 2;
 
                 }
-                
+
                 //実際のダメージ処理
                 if (Cpara.GetF_Damage())
                 {
                     Cpara.H_point -= damage;
-                    Cpara.SendMessage("Damage",SendMessageOptions.DontRequireReceiver);//とりあえずダメージを受けたことを知らせる
+                    Cpara.SendMessage("Damage", SendMessageOptions.DontRequireReceiver);//とりあえずダメージを受けたことを知らせる
                     ReverseDamage();//ダメージを連続で受けないようにする
                     //StartCoroutine(Blink());
                     Invoke("ReverseDamage", 0.5f);
@@ -202,8 +199,8 @@ public class CharacterDamage : MonoBehaviour {
                 //一瞬だけ消してつけるともう一回再生してくれる
                 Effects[(int)EffectKind.Hit].SetActive(false);
                 Effects[(int)EffectKind.Hit].SetActive(true);
-                
-                
+
+
             }
 
             //こっから状態異常///////////////////////////////////////////////////////////
@@ -219,7 +216,7 @@ public class CharacterDamage : MonoBehaviour {
                 //Y軸は別計算で
                 vec1 = new Vector3(vec1.x, 0, vec1.z).normalized;
                 vec2 = new Vector3(vec2.x, 0, vec2.z).normalized;
-                
+
                 var axis = Vector3.Cross(vec2, vec1);//２つのベクトルに直行するベクトルを求める(外積)
                 var ang = Quaternion.LookRotation(vec2).eulerAngles.y - Quaternion.LookRotation(vec1).eulerAngles.y;//二つのベクトルの角度差
                 var res = Vector3.zero;//吹っ飛ぶ方向
@@ -268,13 +265,14 @@ public class CharacterDamage : MonoBehaviour {
     {
         Cpara.Reverse_Damage();
     }
-    
+
     //状態異常管理//////////////////////////////////////////////
 
     IEnumerator Poison()
     {
         //自然治癒する毒
-        for (int i = 0; i < 5; i++) {//ここで指定した回数分ダメージ
+        for (int i = 0; i < 5; i++)
+        {//ここで指定した回数分ダメージ
 
             yield return new WaitForSeconds(1.0f);//継続ダメージの入る間隔
 
@@ -286,7 +284,7 @@ public class CharacterDamage : MonoBehaviour {
 
                 Cpara.flag_poison = false;//毒の自然治癒
                 Effects[(int)EffectKind.Poison].SetActive(false);
-                
+
             }
 
         }
