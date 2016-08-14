@@ -18,6 +18,7 @@ public class FlameVR : Magic_Parameter
 
 
     public GameObject bullet_Prefab;//弾のプレハブ
+    public GameObject Target;//ホーミングのターゲット
 
     private Magic_Controller MC;
     private Player_ControllerVR pcVR;
@@ -32,6 +33,9 @@ public class FlameVR : Magic_Parameter
         pcVR = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_ControllerVR>();
         animator = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>();
         SE = GetComponent<AudioSource>();
+
+        //Target = GameObject.FindGameObjectWithTag("Enemy");
+        
     }
 
     // Update is called once per frame
@@ -60,6 +64,8 @@ public class FlameVR : Magic_Parameter
         pcVR.SetMP(pcVR.GetMP() - GetSMP());
 
         //弾を飛ばす処理
+        bullet.GetComponent<HomingVR>().TargetSet(Target);//ホーミングのターゲットをセット
+
         bullet.transform.position = transform.position;//Muzzleの位置
         bullet.transform.rotation = Quaternion.LookRotation(Parent.transform.TransformDirection(Vector3.forward).normalized);//回転させて弾頭を進行方向に向ける
         //カメラとキャラの向きが90°以上ずれてたら

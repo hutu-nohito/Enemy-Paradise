@@ -18,7 +18,6 @@ public class Homing_Bullet : Attack_Parameter {
 
 	// Use this for initialization
 	void Start () {
-	
 	}
 	
 	// Update is called once per frame
