@@ -16,7 +16,9 @@ public class Camera_ControllerZ : MonoBehaviour {
     public GameObject lookTarget;
     public Vector3 Offset = Vector3.zero;//これで位置調整
 
-    private Player_ControllerZ pcZ;
+    //private Player_ControllerZ pcZ;
+    private Player_ControllerVR pcZ;
+
     private Z_Camera Zcamara;
 
     private bool flag_TopView = false;
@@ -44,7 +46,9 @@ public class Camera_ControllerZ : MonoBehaviour {
         //Playerをセットし忘れてたら探す
         if (lookTarget == null) lookTarget = GameObject.FindGameObjectWithTag("Player");
 
-        pcZ = lookTarget.GetComponent<Player_ControllerZ>();
+        //pcZ = lookTarget.GetComponent<Player_ControllerZ>();
+        pcZ = lookTarget.GetComponent<Player_ControllerVR>();
+
         Zcamara = GetComponent<Z_Camera>();
 
         //現在の向きから割り出さないとだめ
