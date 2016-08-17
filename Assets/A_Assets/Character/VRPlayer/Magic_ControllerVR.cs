@@ -24,11 +24,11 @@ public class Magic_ControllerVR : MonoBehaviour {
 
     //変数(ex:time)////////////////////////////////
 
-    public int[] selectmagic = new int[5];//選ばれた魔法の番号
+    public int[] selectmagic = new int[6];//選ばれた魔法の番号
 
     //GameObject/////////////////////////////////////////////
     public GameObject[] Magic;//魔法の大本。PlayerのみこれをMuzzleとして使う
-    public GameObject[] SelectMagic = new GameObject[5];//隙間にセットされた魔法
+    public GameObject[] SelectMagic = new GameObject[6];//隙間にセットされた魔法
 
     //コルーチン
     private Coroutine coroutine;
@@ -45,7 +45,7 @@ public class Magic_ControllerVR : MonoBehaviour {
         Pz = GetComponent<Player_ControllerVR>();
         
         //選択されてる魔法の番号を渡す。(スキマが間に合わないのでとりあえず魔法は固定)
-        MagicSet(0, 1, 2, 3, 4);
+        MagicSet(0, 1, 2, 3, 4, 5);
         /*
         MagicSet(
             _static.SelectMagicID[0],
@@ -64,7 +64,7 @@ public class Magic_ControllerVR : MonoBehaviour {
 
     }
 
-    void MagicSet(int a, int b, int c, int d, int e)
+    void MagicSet(int a, int b, int c, int d, int e, int f)
     {
         /*
          * 
@@ -80,12 +80,14 @@ public class Magic_ControllerVR : MonoBehaviour {
         SelectMagic[2] = Magic[c];
         SelectMagic[3] = Magic[d];
         SelectMagic[4] = Magic[e];
+        SelectMagic[5] = Magic[f];
 
         selectmagic[0] = a;
         selectmagic[1] = b;
         selectmagic[2] = c;
         selectmagic[3] = d;
         selectmagic[4] = e;
+        selectmagic[5] = f;
 
     }
 
@@ -121,6 +123,10 @@ public class Magic_ControllerVR : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             SelectMagic[4].SendMessage("Fire");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            SelectMagic[5].SendMessage("Fire");
         }
     }
 }

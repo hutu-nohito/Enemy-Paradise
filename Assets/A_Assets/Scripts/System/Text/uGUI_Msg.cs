@@ -79,6 +79,7 @@ public class uGUI_Msg : MonoBehaviour {
                 nextTime = Time.time + (1.0f - Text_spead);	//次の文字の表示間隔
             }
 
+            //一文の末尾まで行ったら
             if (lengthMsg >= dispMsg[lengthSecenario].Length)
             {       //メッセージを全部表示していたら 
 
@@ -94,6 +95,7 @@ public class uGUI_Msg : MonoBehaviour {
 
                 }
 
+                //文末まで行ったら
                 if (lengthSecenario > dispMsg.Length - 1)
                 {
 
