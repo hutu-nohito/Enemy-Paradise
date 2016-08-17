@@ -51,7 +51,6 @@ public class IcicleVR : Magic_Parameter {
             if (bullet[i] != null)
             {
 
-                MC.AddExistBullet(bullet[i]);//現在の弾数を増やす
                 bullet[i].GetComponent<Attack_Parameter>().Parent = this.Parent;//もらった親を渡しておく必要がある
 
                 bullet[i].transform.position = transform.position + Parent.transform.TransformDirection(new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5)));//ランダム
