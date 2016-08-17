@@ -115,6 +115,8 @@ public class Player_ControllerVR : Character_Parameters {
                 //    transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);//Playerのx,zの回転を直す。回転嫌い。全部Eulerにしてしまえばよい
 
                 //}
+
+                transform.localEulerAngles = new Vector3(0, Camera.main.transform.localEulerAngles.y, 0);
             }
 
 

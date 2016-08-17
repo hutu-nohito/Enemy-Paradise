@@ -55,6 +55,11 @@ public class MouseLook : MonoBehaviour
             transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
         }
 
+        if (Input.GetMouseButtonDown(1))
+        {
+            rotationY = 0;
+        }
+
     }
 
     void Start()
