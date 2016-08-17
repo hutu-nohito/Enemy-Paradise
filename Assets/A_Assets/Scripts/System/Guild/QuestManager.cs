@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class QuestManager : Quest_Parameter {
 
@@ -20,7 +21,7 @@ public class QuestManager : Quest_Parameter {
 
 	//Script//////////////////////////////////////////////////////////
 	private Static _static;
-    private SceneManager sM;
+    private SceneTransition ST;
     private uGUI_Msg GUImsg;//メッセージ操作用
 
     //コルーチン用
@@ -44,7 +45,7 @@ public class QuestManager : Quest_Parameter {
     {
 
         _static = GetComponent<Static>();
-        sM = GetComponent<SceneManager>();
+        ST = GetComponent<SceneTransition>();
 
     }
 
@@ -63,7 +64,7 @@ public class QuestManager : Quest_Parameter {
         Player = GameObject.FindGameObjectWithTag("Player");//切り替わってからでないと読めない
         F_camera = Player.transform.FindChild("FrontCamera").GetComponent<Camera>();
         _static = GetComponent<Static>();
-        sM = GetComponent<SceneManager>();
+        ST = GetComponent<SceneTransition>();
         clear_count = clear_num;
 
         //敵やらなんやら配置構成 全部アクティブにしておく///////////////////////////////////////////////////////////////////////////////////////////
@@ -182,7 +183,7 @@ public class QuestManager : Quest_Parameter {
         isCoroutine = false;
 
         //クエストが終わったら特別なことがない限りギルドへ
-        sM.Guild();
+        ST.Guild();
 
     }
 
@@ -225,7 +226,7 @@ public class QuestManager : Quest_Parameter {
         isCoroutine = false;
 
         //クエストが終わったら特別なことがない限りギルドへ
-        sM.Guild();
+        ST.Guild();
         yield return new WaitForSeconds(0);//ないとコルーチンにできない
 
     }

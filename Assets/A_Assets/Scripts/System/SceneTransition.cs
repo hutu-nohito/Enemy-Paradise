@@ -1,28 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class SceneManager : MonoBehaviour {
+public class SceneTransition : MonoBehaviour {
 
-	//Scene系は全部ここで管理
+    //Scene系は全部ここで管理
 
-	private Static _static;
+    private Static _static;
 
     private string SceneName = "Home";
     private Coroutine coroutine;
     private bool isCoroutine;
     private Event_Manager EM;
 
-	// Use this for initialization
-	void Start () {
-	
-		_static = GetComponent<Static>();
+    // Use this for initialization
+    void Start()
+    {
+
+        _static = GetComponent<Static>();
         EM = GetComponent<Event_Manager>();
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
 
         if (isFade)
         {
@@ -39,7 +42,7 @@ public class SceneManager : MonoBehaviour {
                     isFade = false;
                     elapsedTime = 0;
                     fadeOut = false;
-                    Invoke("Fade",2);//フェードアウトしたらたいていはフェードインする
+                    Invoke("Fade", 2);//フェードアウトしたらたいていはフェードインする
                 }
             }
             //フェードイン
@@ -58,34 +61,37 @@ public class SceneManager : MonoBehaviour {
                     fade.enabled = false;
                 }
             }
-                
-        }
-	}
 
-	public void GameStart (){
+        }
+    }
+
+    public void GameStart()
+    {
 
         SceneName = "Home";
         coroutine = StartCoroutine(TransScene());
         //Application.LoadLevel("Home");
         _static.count_Start++;
 
-	}
+    }
 
-	public void Guild (){
+    public void Guild()
+    {
 
         SceneName = "guild";
         coroutine = StartCoroutine(TransScene());
         //Application.LoadLevel("guild");
 
-	}
+    }
 
-	public void Home (){
+    public void Home()
+    {
 
         SceneName = "Home";
         coroutine = StartCoroutine(TransScene());
         //Application.LoadLevel("Home");
-		
-	}
+
+    }
 
     public void Sukima()
     {
@@ -185,7 +191,8 @@ public class SceneManager : MonoBehaviour {
         isCoroutine = true;
         Fade();
 
-        Asy = Application.LoadLevelAsync(SceneName);
+        //Asy = Application.LoadLevelAsync(SceneName);
+        Asy = SceneManager.LoadSceneAsync(SceneName);
 
         Asy.allowSceneActivation = false;
 

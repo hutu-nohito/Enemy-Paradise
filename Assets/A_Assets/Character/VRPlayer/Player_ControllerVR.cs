@@ -116,7 +116,6 @@ public class Player_ControllerVR : Character_Parameters {
 
                 //}
 
-                transform.localEulerAngles = new Vector3(0, Camera.main.transform.localEulerAngles.y, 0);
             }
 
 
@@ -125,6 +124,13 @@ public class Player_ControllerVR : Character_Parameters {
         //カメラの方向を取得　それに合わせて動かす
         //direction = transform.TransformDirection(Vector3.forward);
         direction = MainCamera.transform.TransformDirection(Vector3.forward);
+        
+        //transform.Rotate(0, Quaternion.LookRotation(direction).eulerAngles.y - Quaternion.LookRotation(transform.TransformDirection(Vector3.forward)).eulerAngles.y, 0);
+        transform.eulerAngles = new Vector3(0, Quaternion.LookRotation(direction).eulerAngles.y, 0);
+        //transform.eulerAngles = new Vector3(0 , Quaternion.LookRotation(direction).eulerAngles.y, 0);
+        //Debug.Log((Quaternion.LookRotation(direction).eulerAngles.y));
+        //Debug.Log((transform.rotation.eulerAngles.y));
+        //Debug.Log(Quaternion.AngleAxis(Quaternion.LookRotation(direction).y, Vector3.up));
 
         //キャラクタ移動処理
         if (inputDirection.magnitude > 0.1)

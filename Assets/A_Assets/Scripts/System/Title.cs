@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour {
 
@@ -44,11 +45,11 @@ public class Title : MonoBehaviour {
         Manager.GetComponent<Static>().lank_P = 0;
         Manager.GetComponent<Static>().bonus_P = 0;
 
-        Manager.GetComponent<SceneManager>().GameStart();//ホームへ
+        Manager.GetComponent<SceneTransition>().GameStart();//ホームへ
     }
 
     public void Continue()
     {
-        Manager.GetComponent<SceneManager>().GameStart();//ホームへ
+        Manager.GetComponent<SceneTransition>().GameStart();//ホームへ
     }
 }

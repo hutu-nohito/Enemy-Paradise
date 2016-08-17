@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Home : MonoBehaviour {
 
@@ -86,7 +87,7 @@ public class Home : MonoBehaviour {
 
     public void Guild()
     {
-        Manager.GetComponent<SceneManager>().Guild();
+        Manager.GetComponent<SceneTransition>().Guild();
     }
     public void SaveText()
     {
@@ -109,7 +110,7 @@ public class Home : MonoBehaviour {
         //確認を出す
         
         //これで暗転して戻るはず
-        Manager.GetComponent<SceneManager>().Fade();
+        Manager.GetComponent<SceneTransition>().Fade();
         Manager.GetComponent<Static>().SetDay(0.5f);//半日進める
         Manager.GetComponent<Static>().SetHP(100);//体力全快
 
@@ -123,7 +124,7 @@ public class Home : MonoBehaviour {
     public void Sukima()
     {
         //スキマのシーンへ
-        Manager.GetComponent<SceneManager>().Sukima();
+        Manager.GetComponent<SceneTransition>().Sukima();
     }
 
     public void Right()

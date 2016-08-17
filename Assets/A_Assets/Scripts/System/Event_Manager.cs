@@ -33,7 +33,7 @@ public class Event_Manager : MonoBehaviour {
     private uGUI_Msg uGM;
 
     private Static save;//日数、起動回数、HP、MP、名声、ボーナスポイント
-    private SceneManager SM;
+    private SceneTransition ST;
     private Player_ControllerVR pcVR;
 
 	//コルーチン
@@ -42,14 +42,17 @@ public class Event_Manager : MonoBehaviour {
 	private bool isCoroutineH = false;
 	private bool isCoroutineG = false;
     private bool isCoroutineBY = false;
-    private int TutorialStep = 0;//チュートリアルのステップ数(頑張れば使いまわせそう)
     private bool olduGM = false;//メッセージウィンドウを開いていたかどうか
+
+    //チュートリアル用（突貫　後でどうにかする）
+    public int TutorialStep = 0;//チュートリアルのステップ数(頑張れば使いまわせそう)
+    public GameObject[] TutorialCube;//とりあえず直入れ
 
     // Use this for initialization
     void Start () {
 	
         save = GetComponent<Static>();
-        SM = GetComponent<SceneManager>();
+        ST = GetComponent<SceneTransition>();
 		Canvas = GameObject.Find ("Msg_Canvas");
         pcVR = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_ControllerVR>();
 
@@ -64,6 +67,12 @@ public class Event_Manager : MonoBehaviour {
         //デバッグ用
         StartCoroutine(Backyard_T());
 
+        //チュートリアル
+        for (int i = 0; i < TutorialCube.Length; i++)
+        {
+            TutorialCube[i].SetActive(false);//消しとく
+        }
+
     }
 	
 	// Update is called once per frame
@@ -71,10 +80,10 @@ public class Event_Manager : MonoBehaviour {
 
         if (olduGM)
         {
-            //たぶんメッセージが非表示になった瞬間
+            //メッセージが非表示になった瞬間
             if(olduGM != uGM.enabled)
             {
-                Debug.Log("www");
+                TutorialClear();
             }
         }
 
@@ -84,13 +93,13 @@ public class Event_Manager : MonoBehaviour {
     //シーンが変わったらイベントチェック
     void Check_Event()
     {
-        if(Application.loadedLevelName == "Home")
+        if(SceneManager.GetActiveScene().name == "Home")
             StartCoroutine(Home_T());
 
-        if (Application.loadedLevelName == "guild")
+        if (SceneManager.GetActiveScene().name == "guild")
             StartCoroutine(guild_T());
 
-        if (Application.loadedLevelName == "Title")
+        if (SceneManager.GetActiveScene().name == "Title")
         {
             Information.SetActive(false);
         }
@@ -148,43 +157,54 @@ public class Event_Manager : MonoBehaviour {
         if (isCoroutineBY) { yield break; }
         isCoroutineBY = true;
 
-        while (true)
+        //偶数番目で説明、奇数番目で実践(奇数の時はメッセージを表示しない)
+        if (TutorialStep == 0)
         {
-            //偶数番目で説明、奇数番目で実践(奇数の時はメッセージを表示しない)
-            if(TutorialStep == 0)
-            {
-                pcVR.SetKeylock();
-                uGM.enabled = true;//つける
-                uGM.dispMessage(EventText[2]);//表示する
-                TutorialStep++;
-            }
-            if (TutorialStep == 1)
-            {
-                pcVR.SetActive();
-            }
-                if (TutorialStep == 2)
-            {
-                pcVR.SetKeylock();
-                uGM.enabled = true;//つける
-                uGM.dispMessage(EventText[3]);//表示する
-                TutorialStep++;
-            }
-            if (TutorialStep == 3)
-            {
-                pcVR.SetActive();
-            }
-
-            if (Application.loadedLevelName != "Backyard")//裏庭から移動したら抜ける
-            {
-                break;
-            }
+            pcVR.SetKeylock();
+            uGM.enabled = true;//つける
+            uGM.dispMessage(EventText[2]);//表示する
         }
+        if (TutorialStep == 1)
+        {
+            pcVR.SetActive();
+            TutorialCube[0].SetActive(true);
+        }
+        if (TutorialStep == 2)
+        {
+            pcVR.SetKeylock();
+            uGM.enabled = true;//つける
+            uGM.dispMessage(EventText[3]);//表示する
+        }
+        if (TutorialStep == 3)
+        {
+            pcVR.SetActive();
+            TutorialCube[1].SetActive(true);
+        }
+        if (TutorialStep == 4)
+        {
+            pcVR.SetKeylock();
+            uGM.enabled = true;//つける
+            uGM.dispMessage(EventText[4]);//表示する
+        }
+        if (TutorialStep == 5)
+        {
+            pcVR.SetActive();
+            TutorialCube[2].SetActive(true);
+        }
+
+        isCoroutineBY = false;
     }
 
     //チュートリアルのステップを外から進める
     public void TutorialClear()
     {
         TutorialStep++;
+
+        if (SceneManager.GetActiveScene().name == "Backyard")
+        {
+            StartCoroutine(Backyard_T());
+        }
+            
     }
 
 }

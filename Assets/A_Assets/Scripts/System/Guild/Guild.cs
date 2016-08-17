@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Guild : MonoBehaviour {
 
@@ -11,7 +12,7 @@ public class Guild : MonoBehaviour {
 
 	private QuestManager qM;
 	private Quest_Parameter quest_parameter;
-    private SceneManager sM;
+    private SceneTransition ST;
     private Static _static;
 
     //チュートリアル用
@@ -21,7 +22,7 @@ public class Guild : MonoBehaviour {
     void Awake()
     {
         qM = GameObject.FindGameObjectWithTag("Manager").GetComponent<QuestManager>();
-        sM = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneManager>();
+        ST = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneTransition>();
         _static = GameObject.FindGameObjectWithTag("Manager").GetComponent<Static>();
 
         Camera.main.transform.position = CameraPos[0].transform.position;
@@ -59,7 +60,7 @@ public class Guild : MonoBehaviour {
     public float MoveTime = 2;
     private float elapsedTime = 0;
     public GameObject[] CameraPos;
-    private bool isMove = false;
+    private bool iSTove = false;
     private int camNum = 0;//カメラを移動する位置
     public GameObject QuestBoad;
     public GameObject EntranceBoad;
@@ -76,7 +77,7 @@ public class Guild : MonoBehaviour {
             }
         }
 
-        if (isMove)//カメラ用
+        if (iSTove)//カメラ用
         {
             elapsedTime += Time.deltaTime;
             Camera.main.transform.position += (CameraPos[camNum].transform.position - Camera.main.transform.position).normalized * 15 * Time.deltaTime;
@@ -85,7 +86,7 @@ public class Guild : MonoBehaviour {
             {
                 Camera.main.transform.position = CameraPos[camNum].transform.position;
                 elapsedTime = 0;
-                isMove = false;
+                iSTove = false;
                 if(camNum == 1)
                 {
                     QuestBoad.SetActive(true);
@@ -111,7 +112,7 @@ public class Guild : MonoBehaviour {
         }
         
         EntranceBoad.SetActive(false);
-        isMove = true;
+        iSTove = true;
         camNum = 1;
     }
 
@@ -125,13 +126,13 @@ public class Guild : MonoBehaviour {
 
         QuestBoad.SetActive(false);
 
-        isMove = true;
+        iSTove = true;
         camNum = 0;
     }
 
     public void Home()
     {
-        sM.Home();
+        ST.Home();
     }
 
     //クエスト掲示板/////////////////////////////////////////////////////////
@@ -234,31 +235,31 @@ public class Guild : MonoBehaviour {
         switch (qM.stage)
         {
             case Quest_Parameter.Stage.Gaidou:
-                sM.Gaidou();
+                ST.Gaidou();
                 break;
             case Quest_Parameter.Stage.Forest:
-                sM.Forest();
+                ST.Forest();
                 break;
             case Quest_Parameter.Stage.Pond:
-                sM.Pond();
+                ST.Pond();
                 break;
             case Quest_Parameter.Stage.Kougen:
-                sM.Kougen();
+                ST.Kougen();
                 break;
             case Quest_Parameter.Stage.Green:
-                sM.Green();
+                ST.Green();
                 break;
             case Quest_Parameter.Stage.Mine:
-                sM.Mine();
+                ST.Mine();
                 break;
             case Quest_Parameter.Stage.Town:
-                sM.Town();
+                ST.Town();
                 break;
             case Quest_Parameter.Stage.Swamp:
-                sM.Swamp();
+                ST.Swamp();
                 break;
             case Quest_Parameter.Stage.Ruins:
-                sM.Ruins();
+                ST.Ruins();
                 break;
             default:
                 break;
