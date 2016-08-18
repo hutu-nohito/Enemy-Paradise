@@ -27,44 +27,38 @@ public class HomingVR : Attack_Parameter
     void Update()
     {
 
-        if (Parent.tag == "Player")
+        if (Target != null)
         {
-            if (Target != null)
+            Vector3 next = Target.transform.position;
+            Vector3 now = transform.position;
+            // 目的となる角度を取得する
+            var d = next - now;
+            var targetAngle = Mathf.Atan2(d.z, d.x) * Mathf.Rad2Deg;
+            // 角度差を求める
+            var deltaAngle = Mathf.DeltaAngle(Direction, targetAngle);
+            var newAngle = Direction;
+            if (Mathf.Abs(deltaAngle) < _rotSpeed)
             {
-                Vector3 next = Target.transform.position;
-                Vector3 now = transform.position;
-                // 目的となる角度を取得する
-                var d = next - now;
-                var targetAngle = Mathf.Atan2(d.z, d.x) * Mathf.Rad2Deg;
-                // 角度差を求める
-                var deltaAngle = Mathf.DeltaAngle(Direction, targetAngle);
-                var newAngle = Direction;
-                if (Mathf.Abs(deltaAngle) < _rotSpeed)
-                {
-                    // 旋回速度を下回る角度差なので何もしない
-
-                }
-                else if (deltaAngle > 0)
-                {
-                    // 左回り
-                    newAngle += _rotSpeed;
-
-                }
-                else
-                {
-                    // 右回り
-                    newAngle -= _rotSpeed;
-
-                }
-
-                // 新しい速度を設定する
-                SetVelocity(newAngle, speed);
+                // 旋回速度を下回る角度差なので何もしない
 
             }
+            else if (deltaAngle > 0)
+            {
+                // 左回り
+                newAngle += _rotSpeed;
+
+            }
+            else
+            {
+                // 右回り
+                newAngle -= _rotSpeed;
+
+            }
+
+            // 新しい速度を設定する
+            SetVelocity(newAngle, speed);
+
         }
-
-
-
     }
 
     public void TargetSet(GameObject Target)

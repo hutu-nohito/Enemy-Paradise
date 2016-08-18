@@ -303,18 +303,21 @@ public class Guild : MonoBehaviour {
     {
         qM.SetQuestStageID(0);
         ST.BattleField();
+        qM.QuestStart();
     }
 
     public void Battle1()
     {
         qM.SetQuestStageID(1);
         ST.BattleField();
+        qM.QuestStart();
     }
 
     public void Battle2()
     {
         qM.SetQuestStageID(2);
         ST.BattleField();
+        qM.QuestStart();
     }
 
     //情報掲示板/////////////////////////////////////////////////////////

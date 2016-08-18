@@ -11933,6 +11933,14 @@ Prefab:
       propertyPath: CameraPos.Array.data[2]
       value: 
       objectReference: {fileID: 1498743700}
+    - target: {fileID: 137492, guid: b9eaabd5923f3574c8be6e8e2f9f9589, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11401286, guid: b9eaabd5923f3574c8be6e8e2f9f9589, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b9eaabd5923f3574c8be6e8e2f9f9589, type: 2}
   m_IsPrefabParent: 0

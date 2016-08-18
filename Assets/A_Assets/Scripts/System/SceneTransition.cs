@@ -78,7 +78,7 @@ public class SceneTransition : MonoBehaviour {
     public void Guild()
     {
 
-        SceneName = "guild";
+        SceneName = "Guild";
         coroutine = StartCoroutine(TransScene());
         //Application.LoadLevel("guild");
 

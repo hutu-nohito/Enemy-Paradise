@@ -48,7 +48,8 @@ public class DeathHand : Enemy_Base {
         coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Search));
         //coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Warp));
 
-        Player = AI;
+        //CPU戦用
+        //Player = AI;
 
         SE = GetComponent<AudioSource>();
     }
@@ -187,10 +188,11 @@ public class DeathHand : Enemy_Base {
         //アニメーションセット
         //animator.SetTrigger("Attack");//攻撃
 
-
         bullet = GameObject.Instantiate(Bullet[0]);//通常弾
         bullet.GetComponent<Attack_Parameter>().Parent = this.gameObject;//誰が撃ったかを渡す
-                                                                         //弾を飛ばす処理
+
+        bullet.GetComponent<HomingVR>().TargetSet(Player);//ホーミングのターゲットをセット
+                                                          //弾を飛ばす処理
         bullet.transform.position = Muzzle[0].position;//Muzzleの位置
         bullet.transform.rotation = Quaternion.LookRotation(direction);//回転させて弾頭を進行方向に向ける
 

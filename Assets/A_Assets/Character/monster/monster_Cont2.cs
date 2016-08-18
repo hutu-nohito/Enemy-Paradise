@@ -54,14 +54,14 @@ public class monster_Cont2 : Enemy_Base
         coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Run));
 
         //AIで戦わせてみた(共通事項より後に書けばPlayerという名のターゲットを変えられる)
-        if(this.gameObject.name == "AImonster")
-        {
-            base.Player = GameObject.Find("AImonster2");
-        }
-        else if(this.gameObject.name == "AImonster2")
-        {
-            base.Player = GameObject.Find("AImonster");
-        }
+        //if(this.gameObject.name == "AImonster")
+        //{
+        //    base.Player = GameObject.Find("AImonster2");
+        //}
+        //else if(this.gameObject.name == "AImonster2")
+        //{
+        //    base.Player = GameObject.Find("AImonster");
+        //}
         
     }
 

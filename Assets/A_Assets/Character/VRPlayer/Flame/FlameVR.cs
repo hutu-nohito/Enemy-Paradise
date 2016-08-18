@@ -34,7 +34,7 @@ public class FlameVR : Magic_Parameter
         animator = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>();
         SE = GetComponent<AudioSource>();
 
-        //Target = GameObject.FindGameObjectWithTag("Enemy");
+        Target = GameObject.FindGameObjectWithTag("Enemy");
         
     }
 
@@ -55,6 +55,8 @@ public class FlameVR : Magic_Parameter
         GameObject bullet;
 
         animator.SetTrigger("Shoot");
+
+        Target = GameObject.FindGameObjectWithTag("Enemy");
 
         bullet = GameObject.Instantiate(bullet_Prefab);//弾生成
         //MC.AddExistBullet(bullet);//現在の弾数を増やす
