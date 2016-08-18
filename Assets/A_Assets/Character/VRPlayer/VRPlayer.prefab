@@ -5452,7 +5452,7 @@ MonoBehaviour:
   magic_name: Icicle
   inputtype: 0
   spend_MP: 5
-  existedNum: 3
+  existedNum: 7
   magicElement: 1
   Parent: {fileID: 0}
   bullet_Prefab: {fileID: 190864, guid: ceb8d0dc8a147f3499f04f22ae0fc7fa, type: 2}

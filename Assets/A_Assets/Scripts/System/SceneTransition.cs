@@ -109,6 +109,13 @@ public class SceneTransition : MonoBehaviour {
 
     }
 
+    public void Backyard()//チュートリアル
+    {
+        SceneName = "Backyard";
+        coroutine = StartCoroutine(TransScene());
+
+    }
+
     public void Magic_Lab()//デバック用ステージ
     {
         SceneName = "Magic_Lab";

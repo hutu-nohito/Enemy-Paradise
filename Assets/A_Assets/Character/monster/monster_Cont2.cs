@@ -227,7 +227,7 @@ public class monster_Cont2 : Enemy_Base
 
                 if (randAt1 > 0.9)
                 {
-                    if (randAt2 < 0.4)
+                    if (randAt2 < 0.2)
                     {
                         state = ActionState.Avoid;
                     }

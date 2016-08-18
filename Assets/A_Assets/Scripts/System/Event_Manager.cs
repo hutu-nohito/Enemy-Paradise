@@ -77,9 +77,7 @@ public class Event_Manager : MonoBehaviour {
             {
                 TutorialCube[i].SetActive(false);//消しとく
             }
-        }            
-
-        
+        }
 
     }
 	
@@ -110,6 +108,16 @@ public class Event_Manager : MonoBehaviour {
         if (SceneManager.GetActiveScene().name == "Title")
         {
             Information.SetActive(false);
+        }
+        if (SceneManager.GetActiveScene().name == "Backyard")
+        {
+            StartCoroutine(Backyard_T());
+
+            //チュートリアル
+            for (int i = 0; i < TutorialCube.Length; i++)
+            {
+                TutorialCube[i].SetActive(false);//消しとく
+            }
         }
         else
         {

@@ -187,6 +187,14 @@ Prefab:
       propertyPath: TutorialCube.Array.data[2]
       value: 
       objectReference: {fileID: 1710210690}
+    - target: {fileID: 11402198, guid: 839d83c29d370f44fa280efe8267256a, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11442230, guid: 839d83c29d370f44fa280efe8267256a, type: 2}
+      propertyPath: EventText.Array.data[5]
+      value: 
+      objectReference: {fileID: 4900000, guid: 0f2ceb2a3c4a7ed4ba856cda30ff8846, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 839d83c29d370f44fa280efe8267256a, type: 2}
   m_IsPrefabParent: 0
