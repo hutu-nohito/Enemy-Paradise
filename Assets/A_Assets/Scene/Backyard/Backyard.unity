@@ -224,7 +224,7 @@ Prefab:
     - target: {fileID: 11434564, guid: 839d83c29d370f44fa280efe8267256a, type: 2}
       propertyPath: Text
       value: 
-      objectReference: {fileID: 4900000, guid: ab10954e88817544f809a9e9236d9313, type: 3}
+      objectReference: {fileID: 4900000, guid: b28c9782945e206458b4f3ae56008ff7, type: 3}
     - target: {fileID: 11442230, guid: 839d83c29d370f44fa280efe8267256a, type: 2}
       propertyPath: Canvas
       value: 
@@ -270,6 +270,10 @@ Prefab:
       propertyPath: TutorialCube.Array.data[2]
       value: 
       objectReference: {fileID: 1710210690}
+    - target: {fileID: 11434564, guid: 839d83c29d370f44fa280efe8267256a, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11415398, guid: 839d83c29d370f44fa280efe8267256a, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 839d83c29d370f44fa280efe8267256a, type: 2}

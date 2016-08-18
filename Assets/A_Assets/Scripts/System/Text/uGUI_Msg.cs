@@ -19,7 +19,7 @@ public class uGUI_Msg : MonoBehaviour {
     public static TextAsset _Text;//テキストファイル
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         _Text = Text;
         guiText = UI_Text.GetComponent<Text>();
@@ -89,7 +89,7 @@ public class uGUI_Msg : MonoBehaviour {
                 {
 
                     lengthSecenario++;
-                    Debug.Log(lengthSecenario);
+                    //Debug.Log(lengthSecenario);
                     lengthMsg = 0;		//0文字目にリセット
                     TextFinish.SetActive(false);
 

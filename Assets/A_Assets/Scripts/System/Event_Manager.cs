@@ -53,7 +53,10 @@ public class Event_Manager : MonoBehaviour {
 	
         save = GetComponent<Static>();
         ST = GetComponent<SceneTransition>();
-		Canvas = GameObject.Find ("Msg_Canvas");
+        if(Canvas == null)
+        {
+            Canvas = GameObject.Find("Msg_Canvas");
+        }
         pcVR = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_ControllerVR>();
 
         uGM = Canvas.GetComponent<uGUI_Msg>();
@@ -157,6 +160,7 @@ public class Event_Manager : MonoBehaviour {
         if (isCoroutineBY) { yield break; }
         isCoroutineBY = true;
 
+        
         //偶数番目で説明、奇数番目で実践(奇数の時はメッセージを表示しない)
         if (TutorialStep == 0)
         {
@@ -171,6 +175,7 @@ public class Event_Manager : MonoBehaviour {
         }
         if (TutorialStep == 2)
         {
+            TutorialCube[0].SetActive(false);
             pcVR.SetKeylock();
             uGM.enabled = true;//つける
             uGM.dispMessage(EventText[3]);//表示する
@@ -182,6 +187,7 @@ public class Event_Manager : MonoBehaviour {
         }
         if (TutorialStep == 4)
         {
+            TutorialCube[1].SetActive(false);
             pcVR.SetKeylock();
             uGM.enabled = true;//つける
             uGM.dispMessage(EventText[4]);//表示する
