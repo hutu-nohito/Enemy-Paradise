@@ -197,6 +197,17 @@ public class Event_Manager : MonoBehaviour {
             pcVR.SetActive();
             TutorialCube[2].SetActive(true);
         }
+        if (TutorialStep == 6)
+        {
+            TutorialCube[2].SetActive(false);
+            pcVR.SetKeylock();
+            uGM.enabled = true;//つける
+            uGM.dispMessage(EventText[5]);//表示する
+        }
+        if (TutorialStep == 7)
+        {
+            pcVR.SetActive();
+        }
 
         isCoroutineBY = false;
     }

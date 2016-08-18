@@ -16,6 +16,8 @@ TagManager:
   - 9
   - 10
   - Bullet
+  - shield
+  - explosion
   layers:
   - Default
   - TransparentFX
@@ -27,7 +29,7 @@ TagManager:
   - 
   - Damage
   - Search
-  - 
+  - Event
   - 
   - 
   - 

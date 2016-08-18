@@ -36,6 +36,10 @@ public class SimpleCol : MonoBehaviour {
         {
             return;
         }
+        if(col.gameObject.layer == LayerMask.NameToLayer("Event"))//イベントレイヤ
+        {
+            return;
+        }
         switch (type){
             case Type.Destroy:
 
