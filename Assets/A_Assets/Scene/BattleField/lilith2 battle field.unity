@@ -4050,7 +4050,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11440372, guid: 0f7a27c1aeda75747ac5cea5412c41a0, type: 2}
       propertyPath: H_point
-      value: 300
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 135664, guid: 0f7a27c1aeda75747ac5cea5412c41a0, type: 2}
       propertyPath: m_IsActive
@@ -7354,6 +7354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Monster: {fileID: 2066041553}
+  Player: 0
 --- !u!114 &775545553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8890,6 +8891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Monster: {fileID: 505473166}
+  Player: 1
 --- !u!114 &939736816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10544,7 +10546,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1137163835
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10575,6 +10577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Monster: {fileID: 991193773}
+  Player: 0
 --- !u!114 &1137163837
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -48,7 +48,7 @@ public class ViveHaniwonder : Enemy_Base
         base.BaseStart();
 
         //初期状態セット
-        coroutine = StartCoroutine(ChangeState(3.0f, ActionState.AfterImage));
+        coroutine = StartCoroutine(ChangeState(5.0f, ActionState.AfterImage));
 
         //Player = AI;
         SE = GetComponent<AudioSource>();

@@ -113,7 +113,7 @@ public class Event_Manager : MonoBehaviour {
         }
         else
         {
-            Information.SetActive(true);
+            //Information.SetActive(true);
         }
 
     }

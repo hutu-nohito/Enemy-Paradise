@@ -51,7 +51,7 @@ public class monster_Cont2 : Enemy_Base
         base.BaseStart();
 
         //初期状態セット
-        coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Run));
+        coroutine = StartCoroutine(ChangeState(5.0f, ActionState.Run));
 
         //AIで戦わせてみた(共通事項より後に書けばPlayerという名のターゲットを変えられる)
         //if(this.gameObject.name == "AImonster")
