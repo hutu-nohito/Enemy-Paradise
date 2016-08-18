@@ -102,6 +102,13 @@ public class SceneTransition : MonoBehaviour {
 
     }
 
+    public void BattleField()//コロシアム
+    {
+        SceneName = "lilith2 battle field";
+        coroutine = StartCoroutine(TransScene());
+
+    }
+
     public void Magic_Lab()//デバック用ステージ
     {
         SceneName = "Magic_Lab";

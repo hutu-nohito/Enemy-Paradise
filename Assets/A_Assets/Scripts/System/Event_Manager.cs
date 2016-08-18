@@ -49,11 +49,11 @@ public class Event_Manager : MonoBehaviour {
     public GameObject[] TutorialCube;//とりあえず直入れ
 
     // Use this for initialization
-    void Start () {
-	
+    void Start() {
+
         save = GetComponent<Static>();
         ST = GetComponent<SceneTransition>();
-        if(Canvas == null)
+        if (Canvas == null)
         {
             Canvas = GameObject.Find("Msg_Canvas");
         }
@@ -62,19 +62,24 @@ public class Event_Manager : MonoBehaviour {
         uGM = Canvas.GetComponent<uGUI_Msg>();
         uGM.enabled = false;//消しとく
 
-        for(int i = 0;i < EventFlag.Length; i++)
+        for (int i = 0; i < EventFlag.Length; i++)
         {
             EventFlag[i] = false;//初期化　イベントをセーブするようになったらその時考える
         }
 
         //デバッグ用
-        StartCoroutine(Backyard_T());
-
-        //チュートリアル
-        for (int i = 0; i < TutorialCube.Length; i++)
+        if (SceneManager.GetActiveScene().name == "Backyard")
         {
-            TutorialCube[i].SetActive(false);//消しとく
-        }
+            StartCoroutine(Backyard_T());
+
+            //チュートリアル
+            for (int i = 0; i < TutorialCube.Length; i++)
+            {
+                TutorialCube[i].SetActive(false);//消しとく
+            }
+        }            
+
+        
 
     }
 	

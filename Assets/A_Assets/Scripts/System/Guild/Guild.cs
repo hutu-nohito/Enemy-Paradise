@@ -15,9 +15,9 @@ public class Guild : MonoBehaviour {
     private SceneTransition ST;
     private Static _static;
 
-    //チュートリアル用
-    private bool flag_onetime = false;
-    public GameObject Tyuto;
+    //チュートリアル用(不要か？)
+    //private bool flag_onetime = false;
+    //public GameObject Tyuto;
 
     void Awake()
     {
@@ -57,25 +57,26 @@ public class Guild : MonoBehaviour {
 	}
 
     //カメラ動かすよう
-    public float MoveTime = 2;
+    public float MoveTime = 2;//移動時間
     private float elapsedTime = 0;
     public GameObject[] CameraPos;
     private bool iSTove = false;
     private int camNum = 0;//カメラを移動する位置
-    public GameObject QuestBoad;
-    public GameObject EntranceBoad;
+    public GameObject QuestBoad;//通常クエスト
+    public GameObject EntranceBoad;//エントランス
+    public GameObject BattleBoad;//コロシアムクエスト
 
     // Update is called once per frame
     void Update () {
 
         //チュートリアル用
-        if (flag_onetime)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                Tyuto.SetActive(false);
-            }
-        }
+        //if (flag_onetime)
+        //{
+        //    if (Input.GetMouseButtonDown(0))
+        //    {
+        //        Tyuto.SetActive(false);
+        //    }
+        //}
 
         if (iSTove)//カメラ用
         {
@@ -87,7 +88,11 @@ public class Guild : MonoBehaviour {
                 Camera.main.transform.position = CameraPos[camNum].transform.position;
                 elapsedTime = 0;
                 iSTove = false;
-                if(camNum == 1)
+                if (camNum == 2)
+                {
+                    BattleBoad.SetActive(true);
+                }
+                if (camNum == 1)
                 {
                     QuestBoad.SetActive(true);
                 }
@@ -100,32 +105,49 @@ public class Guild : MonoBehaviour {
 	}
 
     //カメラ
+    public void Battle()
+    {
+
+        QuestBoad.SetActive(false);
+        EntranceBoad.SetActive(false);
+
+        MoveTime = (Camera.main.transform.position - CameraPos[2].transform.position).magnitude / 15;
+        iSTove = true;
+        camNum = 2;
+        
+    }
+
     public void Quest()
     {
-        if (_static.day == 1)
-        {
-            if (!flag_onetime)
-            {
-                flag_onetime = true;
-                Invoke("OneTime", 2);
-            }
-        }
+        //if (_static.day == 1)
+        //{
+        //    if (!flag_onetime)
+        //    {
+        //        flag_onetime = true;
+        //        Invoke("OneTime", 2);
+        //    }
+        //}
         
         EntranceBoad.SetActive(false);
+        BattleBoad.SetActive(false);
+
+        MoveTime = (Camera.main.transform.position - CameraPos[1].transform.position).magnitude / 15;
         iSTove = true;
         camNum = 1;
     }
 
-    void OneTime()
-    {
-        Tyuto.SetActive(true);
-    }
+    //void OneTime()
+    //{
+    //    Tyuto.SetActive(true);
+    //}
 
     public void Entrance()
     {
 
         QuestBoad.SetActive(false);
+        BattleBoad.SetActive(false);
 
+        MoveTime = (Camera.main.transform.position - CameraPos[0].transform.position).magnitude / 15;
         iSTove = true;
         camNum = 0;
     }
@@ -274,6 +296,26 @@ public class Guild : MonoBehaviour {
 		Quest_paper[quest_num].SetActive(!Quest_paper[quest_num].activeSelf);
 		
 	}
+
+    //バトル掲示板/////////////////////////////////////////////////////////
+
+    public void Battle0()
+    {
+        qM.SetQuestStageID(0);
+        ST.BattleField();
+    }
+
+    public void Battle1()
+    {
+        qM.SetQuestStageID(1);
+        ST.BattleField();
+    }
+
+    public void Battle2()
+    {
+        qM.SetQuestStageID(2);
+        ST.BattleField();
+    }
 
     //情報掲示板/////////////////////////////////////////////////////////
 
