@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: e11e906f054fee948ba780250da86e75
+timeCreated: 1445796106
+licenseType: Store
 SubstanceImporter:
   serializedVersion: 5
   materialInstances:
@@ -27,16 +29,16 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Contrast
       value:
-        scalar[0]: 0
+        scalar[0]: .179000005
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Color
       value:
-        scalar[0]: .176470578
-        scalar[1]: .176470578
-        scalar[2]: .176470578
+        scalar[0]: .220588207
+        scalar[1]: .155709326
+        scalar[2]: .126513824
         scalar[3]: 1
         texture: {instanceID: 0}
     - name: Color_2
@@ -48,7 +50,7 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Contrast_2
       value:
-        scalar[0]: 0
+        scalar[0]: -.0460000001
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
@@ -76,9 +78,9 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Color_4
       value:
-        scalar[0]: .727941155
-        scalar[1]: .727941155
-        scalar[2]: .727941155
+        scalar[0]: .375
+        scalar[1]: .281440169
+        scalar[2]: .209558815
         scalar[3]: 1
         texture: {instanceID: 0}
     - name: Contrast_5
@@ -118,9 +120,9 @@ SubstanceImporter:
         texture: {instanceID: 0}
     - name: Color_7
       value:
-        scalar[0]: .309803993
-        scalar[1]: .288823009
-        scalar[2]: .264851004
+        scalar[0]: .397058845
+        scalar[1]: .346640915
+        scalar[2]: .289035499
         scalar[3]: 1
         texture: {instanceID: 0}
     - name: Contrast_8
@@ -228,8 +230,7 @@ SubstanceImporter:
           first:
             name: _MainTex
           second:
-            texture: {fileID: 1215447233, guid: 00000000000000000000000000000000,
-              type: 0}
+            texture: {instanceID: 0}
             scale: {x: 1, y: 1}
             offset: {x: 0, y: 0}
         data:
