@@ -28,7 +28,11 @@ public class Character_Parameters : MonoBehaviour {
     public string CharaName = "Lilith";//キャラの種族名
     public string GetCharaName() { return CharaName; }
     public void SetCharaName(string CharaName) { this.CharaName = CharaName; }
-    
+
+    public int level = 1;//レベル
+    public int GetLevel() { return level; }
+    public void SetLevel(int level) { this.level = level; }
+
     //派生クラスで現在のHPが取れる
     public int H_point = 3;//体力の最大値
     public int GetHP() { return H_point; }

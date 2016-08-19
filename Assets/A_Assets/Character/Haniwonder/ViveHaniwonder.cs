@@ -17,7 +17,6 @@ public class ViveHaniwonder : Enemy_Base
     /******************************************************************************/
 
     private AudioSource SE;//音
-    public GameObject AI;
     
     //弾
     public GameObject[] Bullet;//攻撃
@@ -50,7 +49,6 @@ public class ViveHaniwonder : Enemy_Base
         //初期状態セット
         coroutine = StartCoroutine(ChangeState(5.0f, ActionState.AfterImage));
 
-        //Player = AI;
         SE = GetComponent<AudioSource>();
 
     }
@@ -122,7 +120,7 @@ public class ViveHaniwonder : Enemy_Base
         if (state == ActionState.Counter)
         {
             //残像
-            StartCoroutine(AfterImage());
+            //StartCoroutine(AfterImage());
 
             coroutine = StartCoroutine(Counter());
         }
@@ -132,7 +130,7 @@ public class ViveHaniwonder : Enemy_Base
         {
 
             //残像
-            StartCoroutine(AfterImage());
+            //StartCoroutine(AfterImage());
             coroutine = StartCoroutine(Attack());
         }
 
@@ -191,6 +189,7 @@ public class ViveHaniwonder : Enemy_Base
         AttackCol.SetActive(true);
 
         //プレイヤに突進
+        ReverseAfterImage();//残像
         iTween.MoveTo(this.gameObject, iTween.Hash(
                 "x", transform.position.x + (Player.transform.position - transform.position).normalized.x * 10,//定数が突進距離
                 "z", transform.position.z + (Player.transform.position - transform.position).normalized.z * 10,//定数が突進距離
@@ -210,6 +209,7 @@ public class ViveHaniwonder : Enemy_Base
                 );
 
         yield return new WaitForSeconds(1);
+        ReverseAfterImage();//残像
 
         AttackCol.SetActive(false);
         state = ActionState.Exercise;
@@ -265,6 +265,7 @@ public class ViveHaniwonder : Enemy_Base
         float randomdist = Random.Range(-3.0f, 3.0f);
 
         //ジグザグ突進
+        ReverseAfterImage();//残像
         iTween.MoveTo(this.gameObject, iTween.Hash(
                 "x", transform.position.x + (Player.transform.position.x - transform.position.x + randomdist) * randomdist * 0.8f,
                 "z", transform.position.z + (Player.transform.position.z - transform.position.z - randomdist) * randomdist * 0.8f,//定数が突進距離
@@ -285,6 +286,8 @@ public class ViveHaniwonder : Enemy_Base
                 );
 
         yield return new WaitForSeconds(Mathf.Abs(randomdist / 3));
+
+        ReverseAfterImage();//残像
 
         //iTween.MoveTo(this.gameObject, iTween.Hash(
         //        "x", transform.position.x + (Player.transform.position.x - transform.position.x - 5) * (1 - randomdist) * 2,
@@ -322,17 +325,37 @@ public class ViveHaniwonder : Enemy_Base
         GameObject[] Avatars = new GameObject[5];
 
         //分身を4体出す
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < Avatars.Length / 2; i++)//半分より前
         {
+            //分身ははじめから走ってる
             Avatars[i] = GameObject.Instantiate(Avatar);
             //Avatars[i].GetComponentInChildren<Haniwonder>().animator.SetTrigger("Run");
             //Avatars[i].GetComponentInChildren<Haniwonder>().AttackCol.SetActive(true);
-            Avatars[i].transform.position = new Vector3(transform.position.x + (i * 2 - 3) * 4, transform.position.y, transform.position.z);
+            Avatars[i].transform.position = new Vector3(
+                transform.position.x + distPlayer * Mathf.Sin((i - 2) * 30 * Mathf.PI / 180),
+                transform.position.y,
+                transform.position.z + distPlayer * (1 - Mathf.Cos((i - 2) * 30 * Mathf.PI / 180))
+                );
+            Avatars[i].transform.LookAt(Player.transform.position);
+            Avatars[i].GetComponentInChildren<Attack_Parameter>().SetParent(this.gameObject);//親を設定
+        }
+        for (int i = Avatars.Length / 2; i < Avatars.Length - 1; i++)//半分より後
+        {
+            //分身ははじめから走ってる
+            Avatars[i] = GameObject.Instantiate(Avatar);
+            //Avatars[i].GetComponentInChildren<Haniwonder>().animator.SetTrigger("Run");
+            //Avatars[i].GetComponentInChildren<Haniwonder>().AttackCol.SetActive(true);
+            Avatars[i].transform.position = new Vector3(
+                transform.position.x + distPlayer * Mathf.Sin((i - Avatars.Length / 2 + 1) * 30 * Mathf.PI / 180),
+                transform.position.y,
+                transform.position.z + distPlayer * (1 - Mathf.Cos((i - Avatars.Length / 2 + 1) * 30 * Mathf.PI / 180))
+                );
             Avatars[i].transform.LookAt(Player.transform.position);
             Avatars[i].GetComponentInChildren<Attack_Parameter>().SetParent(this.gameObject);//親を設定
         }
 
         Avatars[4] = this.gameObject;//５番目が自分自身
+
         transform.LookAt(Player.transform.position);//方向のみを合わせたいならXとYを0に
         base.animator.SetTrigger("Run");
         AttackCol.SetActive(true);

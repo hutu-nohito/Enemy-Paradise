@@ -2403,7 +2403,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100826, guid: 62621b5bef2106447946f81ac250e966, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 438246, guid: 62621b5bef2106447946f81ac250e966, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -2416,7 +2416,7 @@ Prefab:
     - target: {fileID: 11411378, guid: 62621b5bef2106447946f81ac250e966, type: 2}
       propertyPath: Model
       value: 
-      objectReference: {fileID: 1465339320}
+      objectReference: {fileID: 1456328606}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62621b5bef2106447946f81ac250e966, type: 2}
   m_IsPrefabParent: 0
@@ -4259,6 +4259,10 @@ Prefab:
     - target: {fileID: 112272, guid: 0f7a27c1aeda75747ac5cea5412c41a0, type: 2}
       propertyPath: m_Layer
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11440372, guid: 0f7a27c1aeda75747ac5cea5412c41a0, type: 2}
+      propertyPath: flag_vsCom
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0f7a27c1aeda75747ac5cea5412c41a0, type: 2}
@@ -13063,10 +13067,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1c28602268ade034dbb8f08048b2f566, type: 3}
   m_IsPrefabParent: 0
---- !u!1 &1465339320 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 159956, guid: 62621b5bef2106447946f81ac250e966, type: 2}
-  m_PrefabInternal: {fileID: 226256592}
 --- !u!1 &1467777565 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 1c28602268ade034dbb8f08048b2f566, type: 3}
@@ -16643,6 +16643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   QuestStageID: 0
   CharaName: Lilith
+  level: 1
   H_point: 1000
   M_point: 100
   power: 1
@@ -17223,7 +17224,7 @@ Prefab:
       objectReference: {fileID: 254048784}
     - target: {fileID: 150974, guid: 0469b30b32c702543a0552a6e3ec2dbe, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11488026, guid: 0469b30b32c702543a0552a6e3ec2dbe, type: 2}
       propertyPath: Bullet.Array.data[0]

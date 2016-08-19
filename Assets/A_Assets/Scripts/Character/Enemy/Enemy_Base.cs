@@ -16,8 +16,12 @@ public class Enemy_Base : Character_Parameters
     /* 更新履歴
     *   どの敵にも必要な初期化、判定はこっち
     *   どんな敵にでもアニメーションはついてるのもとする(ない場合はダミーつけとく)
+    *   プレイヤーとの距離を常に拾ってるので重くなったら消す
+    *   プレイヤーを基準とした座標「Playeraxis」を作る
     */
     /******************************************************************************/
+
+    //publicにしとかないと継承先で使えないので注意
 
     [System.NonSerialized]
     public Animator animator;
@@ -25,10 +29,11 @@ public class Enemy_Base : Character_Parameters
     [System.NonSerialized]
     public GameObject Player;
 
-    [System.NonSerialized]
-    public Vector3 Old_position;//計測用の1フレーム前の位置
+    private Vector3 Old_position;//計測用の1フレーム前の位置
 
-    public GameObject Model;//アーマチュア
+    public bool flag_vsCom;//コンピュータ同士で戦わせたいときにつける(コロシアム専用)(1対1しか想定してない)
+
+    public GameObject Model;//アーマチュア(残像用)
     private SkinnedMeshRenderer Skin;
     private float color = 0.25f;//透明度
 
@@ -43,11 +48,23 @@ public class Enemy_Base : Character_Parameters
         {
             Player = GameObject.FindWithTag("Player");
         }
+        if (flag_vsCom)
+        {
+            //とりあえず2体しかいない想定。自分と名前が同じなら違う方が敵
+            GameObject[] enemy = new GameObject[2];
+            enemy = GameObject.FindGameObjectsWithTag("Enemy");
+            Player = enemy[0];
+            if(Player.name == this.name)
+            {
+                Player = enemy[1];
+            }
+        }
 
         //初期位置
         home_position = transform.position;//初期位置を
         Old_position = home_position;
 
+        //メッシュは分かれてたりするから対策した方がいいかも
         Skin = Model.GetComponentInChildren<SkinnedMeshRenderer>();
 
     }
@@ -84,6 +101,60 @@ public class Enemy_Base : Character_Parameters
 
         Old_position = transform.position;//OldPosを更新しないと動きません
     }
+
+    //プレイヤーとの位置関係/////////////////////////////////////
+    //プレイヤーとの距離
+    public float GetDistansP()
+    {
+        Vector3 dist = Player.transform.position - transform.position;
+        return dist.magnitude;
+    }
+
+    //プレイヤーから見た敵の座標
+    public Vector3 GetPostionP()
+    {
+        Vector3 pos = transform.position - Player.transform.position;
+        return pos;
+    }
+
+    //プレイヤーからみてワールド座標系でどこにいるか
+    public enum Direction
+    {
+        front,//(316~45)
+        right,//(46~135)
+        back,//(136~225)
+        left,//(226~315)
+
+    }
+    public Direction GetDirectionP()
+    {
+        
+        float theta = Mathf.Acos((transform.position.x * Player.transform.position.x + transform.position.z * Player.transform.position.z) /
+            (Mathf.Sqrt(transform.position.x * transform.position.x + transform.position.z + transform.position.z) *
+            Mathf.Sqrt(Player.transform.position.x * Player.transform.position.x + Player.transform.position.z + Player.transform.position.z)));
+
+        Direction state = Direction.front;
+        int thetaDegree = (int)(theta * 180 / Mathf.PI);
+        if(thetaDegree <= 45 || thetaDegree > 315)
+        {
+            state = Direction.front;
+        }
+        if (thetaDegree > 45 && thetaDegree <= 135)
+        {
+            state = Direction.right;
+        }
+        if (thetaDegree > 135 && thetaDegree <= 225)
+        {
+            state = Direction.back;
+        }
+        if (thetaDegree > 225 && thetaDegree <= 315)
+        {
+            state = Direction.right;
+        }
+
+        return state;
+    }
+    ////////////////////////////////////////////////////////
 
     //残像
     public IEnumerator AfterImage()
