@@ -324,6 +324,11 @@ public class ViveHaniwonder : Enemy_Base
 
         GameObject[] Avatars = new GameObject[5];
 
+        float Angle = GetAngleP();
+        if(GetPositionP().z < 0)
+        {
+            Angle = -Angle;
+        }
         //分身を4体出す
         for(int i = 0; i < Avatars.Length / 2; i++)//半分より前
         {
@@ -331,12 +336,13 @@ public class ViveHaniwonder : Enemy_Base
             Avatars[i] = GameObject.Instantiate(Avatar);
             //Avatars[i].GetComponentInChildren<Haniwonder>().animator.SetTrigger("Run");
             //Avatars[i].GetComponentInChildren<Haniwonder>().AttackCol.SetActive(true);
-            //Avatars[i].transform.position = new Vector3(
-            //    transform.position.x + distPlayer * Mathf.Sin((i - 2) * 30 * Mathf.PI / 180),
-            //    transform.position.y,
-            //    transform.position.z + distPlayer * (1 - Mathf.Cos((i - 2) * 30 * Mathf.PI / 180))
-            //    );
-            Avatars[i].transform.LookAt(Player.transform.position);
+            Avatars[i].transform.position = new Vector3(
+                Player.transform.position.x + GetDistansP() * Mathf.Cos(Angle + ((i - 2) * 30 * Mathf.PI / 180)),
+                transform.position.y,
+                Player.transform.position.z + GetDistansP() * (Mathf.Sin(Angle + ((i - 2) * 30 * Mathf.PI / 180)))
+                );
+            //Avatars[i].transform.position = AffineRot(Avatars[i].transform.position);//playerとの位置関係で変換
+                Avatars[i].transform.LookAt(Player.transform.position);
             Avatars[i].GetComponentInChildren<Attack_Parameter>().SetParent(this.gameObject);//親を設定
         }
         for (int i = Avatars.Length / 2; i < Avatars.Length - 1; i++)//半分より後
@@ -345,11 +351,12 @@ public class ViveHaniwonder : Enemy_Base
             Avatars[i] = GameObject.Instantiate(Avatar);
             //Avatars[i].GetComponentInChildren<Haniwonder>().animator.SetTrigger("Run");
             //Avatars[i].GetComponentInChildren<Haniwonder>().AttackCol.SetActive(true);
-            //Avatars[i].transform.position = new Vector3(
-            //    transform.position.x + distPlayer * Mathf.Sin((i - Avatars.Length / 2 + 1) * 30 * Mathf.PI / 180),
-            //    transform.position.y,
-            //    transform.position.z + distPlayer * (1 - Mathf.Cos((i - Avatars.Length / 2 + 1) * 30 * Mathf.PI / 180))
-            //    );
+            Avatars[i].transform.position = new Vector3(
+                Player.transform.position.x + GetDistansP() * Mathf.Cos(Angle + ((i - 1) * 30 * Mathf.PI / 180)),
+                transform.position.y,
+                Player.transform.position.z + GetDistansP() * (Mathf.Sin(Angle + ((i - 1) * 30 * Mathf.PI / 180)))
+                );
+            //Avatars[i].transform.position = AffineRot(Avatars[i].transform.position);//playerとの位置関係で変換
             Avatars[i].transform.LookAt(Player.transform.position);
             Avatars[i].GetComponentInChildren<Attack_Parameter>().SetParent(this.gameObject);//親を設定
         }

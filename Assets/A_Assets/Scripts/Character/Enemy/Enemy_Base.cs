@@ -111,10 +111,38 @@ public class Enemy_Base : Character_Parameters
     }
 
     //プレイヤーから見た敵の座標
-    public Vector3 GetPostionP()
+    public Vector3 GetPositionP()
     {
         Vector3 pos = transform.position - Player.transform.position;
         return pos;
+    }
+
+    //内積(Playerを基準にした敵の角度)
+    public float GetAngleP()
+    {
+        //内積(Playerを基準にした敵の角度)
+        //(どっちかの位置が0だとまずいのでずらしておくようにする)
+        Vector3 PlayerEnemyPos = GetPositionP();
+        float EnemyLength = Mathf.Sqrt(PlayerEnemyPos.x * PlayerEnemyPos.x + PlayerEnemyPos.z * PlayerEnemyPos.z);
+        float dot_EP = PlayerEnemyPos.x;//内積
+        float theta = Mathf.Acos(dot_EP / EnemyLength);//中で複雑な計算はしないほうがいい
+
+        return theta;//radian
+    }
+
+    //敵とプレイヤーの位置関係によって座標を入れ替える
+    public Vector3 AffineRot(Vector3 Position)
+    {
+        var theta = GetAngleP();
+        var cal = Vector3.zero;
+        var relativePos = Position - Player.transform.position;
+        cal.x = relativePos.x * Mathf.Cos(theta) - relativePos.z * Mathf.Sin(theta);
+        cal.z = relativePos.x * Mathf.Sin(theta) + relativePos.z * Mathf.Cos(theta);
+        var calPos = cal;//座標に代入
+        calPos.y = Position.y - Player.transform.position.y;//ジャンプさせるからYの値は変えない
+
+        return calPos + Player.transform.position;//ワールド座標を返す
+
     }
 
     //プレイヤーからみてワールド座標系でどこにいるか
@@ -129,29 +157,53 @@ public class Enemy_Base : Character_Parameters
     public Direction GetDirectionP()
     {
         
-        float theta = Mathf.Acos((transform.position.x * Player.transform.position.x + transform.position.z * Player.transform.position.z) /
-            (Mathf.Sqrt(transform.position.x * transform.position.x + transform.position.z + transform.position.z) *
-            Mathf.Sqrt(Player.transform.position.x * Player.transform.position.x + Player.transform.position.z + Player.transform.position.z)));
-
+        int thetaDegree = (int)(GetAngleP() * 180 / Mathf.PI);
         Direction state = Direction.front;
-        int thetaDegree = (int)(theta * 180 / Mathf.PI);
-        if(thetaDegree <= 45 || thetaDegree > 315)
+        if (GetPositionP().x >=0 && GetPositionP().z >= 0)
         {
-            state = Direction.front;
+            if (thetaDegree >= 45 && thetaDegree < 135)
+            {
+                state = Direction.front;
+            }
+            if (thetaDegree >= 0 && thetaDegree < 45)
+            {
+                state = Direction.right;
+            }
         }
-        if (thetaDegree > 45 && thetaDegree <= 135)
+        if (GetPositionP().x < 0 && GetPositionP().z >= 0)
         {
-            state = Direction.right;
+            if (thetaDegree >= 45 && thetaDegree < 135)
+            {
+                state = Direction.front;
+            }
+            if (thetaDegree >= 135 && thetaDegree < 180)
+            {
+                state = Direction.left;
+            }
         }
-        if (thetaDegree > 135 && thetaDegree <= 225)
+        if (GetPositionP().x < 0 && GetPositionP().z < 0)
         {
-            state = Direction.back;
+            if (thetaDegree >= 45 && thetaDegree < 135)
+            {
+                state = Direction.back;
+            }
+            if (thetaDegree >= 0 && thetaDegree < 45)
+            {
+                state = Direction.right;
+            }
         }
-        if (thetaDegree > 225 && thetaDegree <= 315)
+        if (GetPositionP().x >= 0 && GetPositionP().z < 0)
         {
-            state = Direction.right;
+            if (thetaDegree >= 45 && thetaDegree < 135)
+            {
+                state = Direction.back;
+            }
+            if (thetaDegree >= 135 && thetaDegree < 180)
+            {
+                state = Direction.left;
+            }
         }
-
+        
         return state;
     }
     ////////////////////////////////////////////////////////
