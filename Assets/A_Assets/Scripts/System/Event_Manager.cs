@@ -68,7 +68,7 @@ public class Event_Manager : MonoBehaviour {
         }
 
         //デバッグ用
-        if (SceneManager.GetActiveScene().name == "Backyard")
+        if (SceneManager.GetActiveScene().name == "Backyard" || SceneManager.GetActiveScene().name == "BackyardVR")
         {
             StartCoroutine(Backyard_T());
 
@@ -222,7 +222,7 @@ public class Event_Manager : MonoBehaviour {
     {
         TutorialStep++;
 
-        if (SceneManager.GetActiveScene().name == "Backyard")
+        if (SceneManager.GetActiveScene().name == "Backyard" || SceneManager.GetActiveScene().name == "BackyardVR")
         {
             StartCoroutine(Backyard_T());
         }
