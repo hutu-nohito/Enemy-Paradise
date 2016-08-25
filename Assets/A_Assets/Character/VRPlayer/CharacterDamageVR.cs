@@ -57,6 +57,10 @@ public class CharacterDamageVR : MonoBehaviour
         }
         else
         {
+            while (Parent.GetComponent<Enemy_Base>() == null)//エネミーベースが見つかるまで親をたどる
+            {
+                Parent = Parent.transform.parent.gameObject;
+            }
             Cpara = Parent.GetComponent<Enemy_Base>();//敵だったらこっち
         }
 

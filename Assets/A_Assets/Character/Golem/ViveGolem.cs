@@ -33,13 +33,18 @@ public class ViveGolem : Enemy_Base {
     public GameObject[] AttackCol;//攻撃判定
     public Transform[] JumpPoint;//とりあえず決まったとこにジャンプ
 
+    //演出
+    private Camera_ControllerZ CCZ;
+
     // Use this for initialization
     void Start()
     {
         base.BaseStart();
 
+        CCZ = Camera.main.gameObject.GetComponent<Camera_ControllerZ>();
+
         //初期状態セット
-        coroutine = StartCoroutine(ChangeState(5.0f, ActionState.HammerAttack));
+        coroutine = StartCoroutine(ChangeState(2.0f, ActionState.HammerAttack));
 
         //SE = GetComponent<AudioSource>();
 
@@ -85,7 +90,7 @@ public class ViveGolem : Enemy_Base {
             animState = (int)ActionState.Stop;
             ////勝利のポーズ
             //base.animator.SetTrigger("Win");
-            transform.Rotate(0, 10, 0);//とりあえず回転させとく
+            //transform.Rotate(0, 10, 0);//とりあえず回転させとく
         }
 
         //空中判定
@@ -170,14 +175,14 @@ public class ViveGolem : Enemy_Base {
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(base.Player.transform.position - transform.position), 0.05f);
         transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
 
-        yield return new WaitForSeconds(1);//予備動作
+        yield return new WaitForSeconds(0.5f);//予備動作
 
         AttackCol[0].SetActive(true);
 
-        yield return new WaitForSeconds(1);//攻撃後のため
+        yield return new WaitForSeconds(1.5f);//攻撃後のため
         
         AttackCol[0].SetActive(false);
-        state = ActionState.Fight;
+        state = ActionState.SpikeAttack;
         isCoroutine = false;
     }
 
@@ -195,11 +200,23 @@ public class ViveGolem : Enemy_Base {
         yield return new WaitForSeconds(0.5f);//予備動作
 
         AttackCol[1].SetActive(true);
+        AttackCol[1].GetComponent<CapsuleCollider>().enabled = false;//振ってるときは接触判定をなくす
 
-        yield return new WaitForSeconds(2);//攻撃後のため
+        yield return new WaitForSeconds(0.2f);//攻撃後のため
+
+        CCZ.flag_quake = true;
+
+        yield return new WaitForSeconds(0.3f);//攻撃後のため
+
+        CCZ.flag_quake = false;
+
+        yield return new WaitForSeconds(0.5f);//攻撃後のため
 
         AttackCol[1].SetActive(false);
-        state = ActionState.Jump;
+        AttackCol[1].GetComponent<CapsuleCollider>().enabled = true;//接触判定つける
+        
+
+        state = ActionState.HammerAttack;
         isCoroutine = false;
     }
 
@@ -220,27 +237,35 @@ public class ViveGolem : Enemy_Base {
 
         //上
         iTween.MoveTo(this.gameObject, iTween.Hash(
-                "x", transform.position.x + (JumpPoint[0].position - transform.position).normalized.x,//定数が突進距離
-                "z", transform.position.z + (JumpPoint[0].position - transform.position).normalized.z,//定数が突進距離
-                "time", 1.0f,
-                "easetype", iTween.EaseType.easeInBack)
+                "x", transform.position.x + (JumpPoint[0].position - transform.position).x,//定数が突進距離
+                "y", transform.position.y + (JumpPoint[0].position - transform.position).y,//定数が突進距離
+                "z", transform.position.z + (JumpPoint[0].position - transform.position).z,//定数が突進距離
+                "time", 0.5f,
+                "easetype", iTween.EaseType.linear)
 
                 );
         
-        yield return new WaitForSeconds(2);//攻撃後のため
+        yield return new WaitForSeconds(0.5f);//攻撃後のため
 
         //下
         iTween.MoveTo(this.gameObject, iTween.Hash(
-                "x", transform.position.x + (JumpPoint[1].position - transform.position).normalized.x,//定数が突進距離
-                "z", transform.position.z + (JumpPoint[1].position - transform.position).normalized.z,//定数が突進距離
-                "time", 1.0f,
-                "easetype", iTween.EaseType.easeOutBack)
+                "x", transform.position.x + (JumpPoint[1].position - transform.position).x,//定数が突進距離
+                "y", transform.position.y + (JumpPoint[1].position - transform.position).y,//定数が突進距離
+                "z", transform.position.z + (JumpPoint[1].position - transform.position).z,//定数が突進距離
+                "time", 0.5f,
+                "easetype", iTween.EaseType.easeInBack)
 
                 );
 
         base.animator.SetTrigger("postJump");
 
         yield return new WaitForSeconds(0.5f);//予備動作
+
+        CCZ.flag_quake = true;
+
+        yield return new WaitForSeconds(1.0f);//予備動作
+
+        CCZ.flag_quake = false;
 
         base.animator.SetTrigger("preJump");
         //前を向ける
@@ -253,29 +278,37 @@ public class ViveGolem : Enemy_Base {
 
         //上
         iTween.MoveTo(this.gameObject, iTween.Hash(
-                "x", transform.position.x + (JumpPoint[0].position - transform.position).normalized.x,//定数が突進距離
-                "z", transform.position.z + (JumpPoint[0].position - transform.position).normalized.z,//定数が突進距離
-                "time", 1.0f,
-                "easetype", iTween.EaseType.easeInBack)
+                "x", transform.position.x + (JumpPoint[0].position - transform.position).x,//定数が突進距離
+                "y", transform.position.y + (JumpPoint[0].position - transform.position).y,//定数が突進距離
+                "z", transform.position.z + (JumpPoint[0].position - transform.position).z,//定数が突進距離
+                "time", 0.5f,
+                "easetype", iTween.EaseType.linear)
 
                 );
 
-        yield return new WaitForSeconds(2);//攻撃後のため
+        yield return new WaitForSeconds(0.5f);//攻撃後のため
 
         //下
         iTween.MoveTo(this.gameObject, iTween.Hash(
-                "x", transform.position.x + (JumpPoint[2].position - transform.position).normalized.x,//定数が突進距離
-                "z", transform.position.z + (JumpPoint[2].position - transform.position).normalized.z,//定数が突進距離
-                "time", 1.0f,
-                "easetype", iTween.EaseType.easeOutBack)
+                "x", transform.position.x + (JumpPoint[2].position - transform.position).x,//定数が突進距離
+                "y", transform.position.y + (JumpPoint[2].position - transform.position).y,//定数が突進距離
+                "z", transform.position.z + (JumpPoint[2].position - transform.position).z,//定数が突進距離
+                "time", 0.5f,
+                "easetype", iTween.EaseType.easeInBack)
 
                 );
 
         base.animator.SetTrigger("postJump");
 
         yield return new WaitForSeconds(0.5f);//予備動作
-        
-        state = ActionState.Fight;
+
+        CCZ.flag_quake = true;
+
+        yield return new WaitForSeconds(1.0f);//予備動作
+
+        CCZ.flag_quake = false;
+
+        state = ActionState.Jump;
         isCoroutine = false;
     }
 
