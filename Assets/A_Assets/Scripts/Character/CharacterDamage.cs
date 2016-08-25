@@ -53,6 +53,7 @@ public class CharacterDamage : MonoBehaviour {
     {
         //親を取得
         Parent = gameObject.transform.parent.gameObject;
+        
 
         if (Parent.gameObject.tag == "Player")
         {
@@ -60,7 +61,11 @@ public class CharacterDamage : MonoBehaviour {
         }
         else
         {
-            Cpara = Parent.GetComponent<Enemy_Base>();//敵だったらこっち
+            while (Parent.GetComponent<Enemy_Base>() == null)//エネミーベースが見つかるまで親をたどる
+            {
+                Parent = Parent.transform.parent.gameObject;
+            }
+                Cpara = Parent.GetComponent<Enemy_Base>();//敵だったらこっち
         }
 
         //エフェクトを取得(共通エフェクトなので決め打ち)

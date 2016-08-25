@@ -607,7 +607,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0
+        functionName: AnimSpikeAttack
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: d1e10476510ea4341b08be839e845e6d,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -715,7 +723,7 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 119
     - serializedVersion: 16
       name: "\u653B\u6483\u3000200_240"
       takeName: "\u653B\u6483\u3000200_240"
@@ -739,7 +747,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0
+        functionName: AnimHammerAttack
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: d1e10476510ea4341b08be839e845e6d,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -847,7 +863,7 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 199
     - serializedVersion: 16
       name: "\u6B69\u884C\u300020_60"
       takeName: "\u6B69\u884C\u300020_60"
@@ -859,7 +875,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -871,7 +887,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0
+        functionName: AnimWalk
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: d1e10476510ea4341b08be839e845e6d,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -979,7 +1003,7 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 19
     - serializedVersion: 16
       name: "\u8DF3\u8E8D_\u653B\u6483_\u300070_110"
       takeName: "\u8DF3\u8E8D_\u653B\u6483_\u300070_110"
@@ -1135,7 +1159,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0
+        functionName: AnimJump
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: d1e10476510ea4341b08be839e845e6d,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -1243,7 +1275,7 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 249
     - serializedVersion: 16
       name: "\u8DF3\u8E8D\u524D\u3000270_290"
       takeName: "\u8DF3\u8E8D\u524D\u3000270_290"
