@@ -12,7 +12,7 @@ public class ViveGolem : Enemy_Base {
     */
     /******************************************************************************/
     /* 更新履歴
-    *   
+    *   とげ攻撃、ハンマー攻撃、ジャンプ追加
     */
     /******************************************************************************/
 
@@ -182,7 +182,7 @@ public class ViveGolem : Enemy_Base {
         yield return new WaitForSeconds(1.5f);//攻撃後のため
         
         AttackCol[0].SetActive(false);
-        state = ActionState.SpikeAttack;
+        state = ActionState.HammerAttack;
         isCoroutine = false;
     }
 
@@ -216,7 +216,7 @@ public class ViveGolem : Enemy_Base {
         AttackCol[1].GetComponent<CapsuleCollider>().enabled = true;//接触判定つける
         
 
-        state = ActionState.HammerAttack;
+        state = ActionState.Jump;
         isCoroutine = false;
     }
 
@@ -308,7 +308,7 @@ public class ViveGolem : Enemy_Base {
 
         CCZ.flag_quake = false;
 
-        state = ActionState.Jump;
+        state = ActionState.SpikeAttack;
         isCoroutine = false;
     }
 
