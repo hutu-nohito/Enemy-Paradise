@@ -259,7 +259,7 @@ public class Enemy_Base : Character_Parameters
         if (flag_fade)
         {
             //RenderingModeを切り替えるためにはこの7個の設定を変えなければならない(Standard Shader)
-            for(int j = 0;j < ml.Length; j++)
+            for (int j = 0; j < ml.Length; j++)
             {
                 ml[j].SetOverrideTag("RenderType", "Transparent");
                 ml[j].SetFloat("_Mode", 2);//たぶんFade
@@ -271,7 +271,7 @@ public class Enemy_Base : Character_Parameters
                 ml[j].DisableKeyword("_ALPHAPREMULTIPLY_ON");
                 ml[j].renderQueue = 3000;
             }
-            
+
             if (color > 0)
             {
                 color -= Time.deltaTime * 1;

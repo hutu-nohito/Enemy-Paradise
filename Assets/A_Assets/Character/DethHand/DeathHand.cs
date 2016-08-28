@@ -38,7 +38,7 @@ public class DeathHand : Enemy_Base {
     //弾
     public GameObject[] Bullet;//攻撃
     public Transform[] Muzzle;//攻撃が出てくる場所
-
+    
     // Use this for initialization
     void Start()
     {
@@ -150,7 +150,7 @@ public class DeathHand : Enemy_Base {
             }
 
             //残像
-            StartCoroutine(AfterImage());
+            //StartCoroutine(AfterImage());
 
             coroutine = StartCoroutine(Search());
 
@@ -209,7 +209,7 @@ public class DeathHand : Enemy_Base {
         }*/
 
         yield return new WaitForSeconds(bullet.GetComponent<Attack_Parameter>().GetR_Time());//撃った後の硬直
-
+        
         state = ActionState.Search;
         isCoroutine = false;
     }
@@ -221,7 +221,7 @@ public class DeathHand : Enemy_Base {
         isCoroutine = true;
 
         flag_fade = true;
-
+        
         yield return new WaitForSeconds(2);//消えるまで
 
         float randomWarp = Random.Range(-0.5f,0.5f);
@@ -235,7 +235,7 @@ public class DeathHand : Enemy_Base {
         yield return new WaitForSeconds(1);//移動
 
         flag_fade = false;
-        
+
         //効果音と演出
         if (!SE.isPlaying)
         {
@@ -261,7 +261,7 @@ public class DeathHand : Enemy_Base {
         {
             state = ActionState.Warp;
         }
-
+        
         isCoroutine = false;
 
     }

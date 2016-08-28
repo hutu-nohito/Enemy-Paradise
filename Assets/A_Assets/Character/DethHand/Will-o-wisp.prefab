@@ -475,7 +475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05923c8583ed7d5479f659db41e477f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 10
+  power: 5
   speed: 5
   attack_time: 5
   rigid_time: 1
@@ -484,7 +484,7 @@ MonoBehaviour:
   ailment: 0
   KnockBack: {x: 0, y: 0, z: 0}
   Parent: {fileID: 0}
-  _rotSpeed: 10
+  _rotSpeed: 0.5
 --- !u!114 &114000011530713700
 MonoBehaviour:
   m_ObjectHideFlags: 1

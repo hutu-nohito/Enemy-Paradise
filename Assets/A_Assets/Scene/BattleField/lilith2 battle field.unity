@@ -9857,7 +9857,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100826, guid: 62621b5bef2106447946f81ac250e966, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 438246, guid: 62621b5bef2106447946f81ac250e966, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -41279,7 +41279,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 150974, guid: 0469b30b32c702543a0552a6e3ec2dbe, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11488026, guid: 0469b30b32c702543a0552a6e3ec2dbe, type: 2}
       propertyPath: Bullet.Array.data[0]
@@ -41288,6 +41288,10 @@ Prefab:
         type: 2}
     - target: {fileID: 11488026, guid: 0469b30b32c702543a0552a6e3ec2dbe, type: 2}
       propertyPath: QuestStageID
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235950, guid: 0469b30b32c702543a0552a6e3ec2dbe, type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
