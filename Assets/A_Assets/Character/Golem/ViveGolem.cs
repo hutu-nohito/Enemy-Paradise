@@ -44,7 +44,7 @@ public class ViveGolem : Enemy_Base {
         CCZ = Camera.main.gameObject.GetComponent<Camera_ControllerZ>();
 
         //初期状態セット
-        coroutine = StartCoroutine(ChangeState(2.0f, ActionState.HammerAttack));
+        coroutine = StartCoroutine(ChangeState(2.0f, ActionState.Fight));
 
         //SE = GetComponent<AudioSource>();
 
@@ -91,6 +91,9 @@ public class ViveGolem : Enemy_Base {
             ////勝利のポーズ
             //base.animator.SetTrigger("Win");
             //transform.Rotate(0, 10, 0);//とりあえず回転させとく
+            
+            //何もしない
+        
         }
 
         //空中判定
@@ -137,9 +140,34 @@ public class ViveGolem : Enemy_Base {
             //とりあえず向けとく
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(base.Player.transform.position - transform.position), 0.05f);
 
+            //とりあえず追跡
+            iTween.MoveUpdate(this.gameObject, iTween.Hash(
+                "position", new Vector3(base.Player.transform.position.x, transform.position.y, base.Player.transform.position.z),
+                "time", 10 / speed)
+                );
+
             if (animState != (int)ActionState.Fight)
             {
                 base.animator.SetTrigger("Idle");
+            }
+
+            //たまーに避けつつ攻撃
+            if ((int)Time.time % 3 == 0)//5秒ごと
+            {
+                float randAt1 = Random.value;
+                float randAt2 = Random.value;
+
+                if (randAt1 > 0.5)
+                {
+                    if (randAt2 < 0.7)
+                    {
+                        state = ActionState.HammerAttack;
+                    }
+                    else
+                    {
+                        state = ActionState.SpikeAttack;
+                    }
+                }
             }
 
         }
@@ -170,19 +198,41 @@ public class ViveGolem : Enemy_Base {
         if (isCoroutine) yield break;
         isCoroutine = true;
 
+        var currentPos = transform.position;
         base.animator.SetTrigger("SpikeAttack");
         //前を向ける
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(base.Player.transform.position - transform.position), 0.05f);
-        transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(base.Player.transform.position - transform.position), 0.05f);
+        //transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+        transform.LookAt(Player.transform);
+
+        //プレイヤに突進
+        iTween.MoveTo(this.gameObject, iTween.Hash(
+                "x", transform.position.x + (Player.transform.position - transform.position).normalized.x * (GetDistansP() - 3),//定数が突進距離
+                "z", transform.position.z + (Player.transform.position - transform.position).normalized.z * (GetDistansP() - 3),//定数が突進距離
+                "time", 0.5f,
+                "easetype", iTween.EaseType.easeInBack)
+
+                );
 
         yield return new WaitForSeconds(0.5f);//予備動作
 
         AttackCol[0].SetActive(true);
 
-        yield return new WaitForSeconds(1.5f);//攻撃後のため
-        
+        yield return new WaitForSeconds(0.5f);//攻撃後のため
+
+        //元の位置へ
+        iTween.MoveTo(this.gameObject, iTween.Hash(
+                "x", transform.position.x + (currentPos - transform.position).x,//定数が突進距離
+                "z", transform.position.z + (currentPos - transform.position).z,//定数が突進距離
+                "time", 0.5f,
+                "easetype", iTween.EaseType.easeInBack)
+
+                );
+
+        yield return new WaitForSeconds(1.0f);//攻撃後のため
+
         AttackCol[0].SetActive(false);
-        state = ActionState.HammerAttack;
+        state = ActionState.Fight;
         isCoroutine = false;
     }
 
@@ -197,26 +247,34 @@ public class ViveGolem : Enemy_Base {
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(base.Player.transform.position - transform.position), 0.05f);
         transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
 
-        yield return new WaitForSeconds(0.5f);//予備動作
+        base.animator.speed = 0.2f;//振り上げ
+        yield return new WaitForSeconds(2.5f);//予備動作
 
-        AttackCol[1].SetActive(true);
-        AttackCol[1].GetComponent<CapsuleCollider>().enabled = false;//振ってるときは接触判定をなくす
+        AttackCol[1].tag = ("Bullet");//攻撃にする
+        AttackCol[1].GetComponents<CapsuleCollider>()[1].enabled = true;//攻撃判定
+        AttackCol[1].GetComponents<CapsuleCollider>()[0].enabled = false;//接触判定
 
-        yield return new WaitForSeconds(0.2f);//攻撃後のため
+        //base.animator.speed = 1.5f;//振り降ろし
+        base.animator.speed = 3.0f;//振り降ろし
+        yield return new WaitForSeconds(0.1f);//たたいた瞬間
+        base.animator.speed = 1.0f;//振り降ろし
 
         CCZ.flag_quake = true;
+        Player.GetComponent<Player_ControllerVR>().SetKeylock();
 
-        yield return new WaitForSeconds(0.3f);//攻撃後のため
+        yield return new WaitForSeconds(0.3f);//揺れが収まる
+        
 
         CCZ.flag_quake = false;
 
         yield return new WaitForSeconds(0.5f);//攻撃後のため
 
-        AttackCol[1].SetActive(false);
+        Player.GetComponent<Player_ControllerVR>().SetActive();
+        AttackCol[1].tag = ("Untagged");//攻撃でなくす
+        AttackCol[1].GetComponents<CapsuleCollider>()[1].enabled = false;//攻撃判定なくす
         AttackCol[1].GetComponent<CapsuleCollider>().enabled = true;//接触判定つける
         
-
-        state = ActionState.Jump;
+        state = ActionState.Fight;
         isCoroutine = false;
     }
 

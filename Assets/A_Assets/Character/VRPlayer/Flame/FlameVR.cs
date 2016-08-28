@@ -71,20 +71,22 @@ public class FlameVR : Magic_Parameter
         bullet.transform.position = transform.position;//Muzzleの位置
         bullet.transform.rotation = Quaternion.LookRotation(Parent.transform.TransformDirection(Vector3.forward).normalized);//回転させて弾頭を進行方向に向ける
         //カメラとキャラの向きが90°以上ずれてたら
-        if (Vector3.Dot(pcVR.direction.normalized, Parent.transform.TransformDirection(Vector3.forward).normalized) < 0)//二つのベクトル間の角度が90°以上(たぶん)
-        {
-            bullet.GetComponent<Rigidbody>().velocity = Parent.transform.TransformDirection(Vector3.forward).normalized * bullet.GetComponent<Attack_Parameter>().speed;//キャラの向いてる方向
-        }
-        else
-        {
-            bullet.GetComponent<Rigidbody>().velocity = (Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 50)) - transform.position).normalized * bullet.GetComponent<Attack_Parameter>().speed;//画面の真ん中
-        }
-        //注目中だったら
-        if (pcVR.GetF_Watch())
-        {
-            //ちょっと上を狙わないと地面に向かってく
-            bullet.GetComponent<Rigidbody>().velocity = (Camera.main.GetComponent<Z_Camera>().Target.transform.position + new Vector3(0, Camera.main.GetComponent<Z_Camera>().Target.transform.localScale.y, 0) - transform.position).normalized * bullet.GetComponent<Attack_Parameter>().speed;//敵の方向
-        }
+        //if (Vector3.Dot(pcVR.direction.normalized, Parent.transform.TransformDirection(Vector3.forward).normalized) < 0)//二つのベクトル間の角度が90°以上(たぶん)
+        //{
+        //    bullet.GetComponent<Rigidbody>().velocity = Parent.transform.TransformDirection(Vector3.forward).normalized * bullet.GetComponent<Attack_Parameter>().speed;//キャラの向いてる方向
+        //}
+        //else
+        //{
+        //    bullet.GetComponent<Rigidbody>().velocity = (Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 50)) - transform.position).normalized * bullet.GetComponent<Attack_Parameter>().speed;//画面の真ん中
+        //}
+        ////注目中だったら
+        //if (pcVR.GetF_Watch())
+        //{
+        //    //ちょっと上を狙わないと地面に向かってく
+        //    bullet.GetComponent<Rigidbody>().velocity = (Camera.main.GetComponent<Z_Camera>().Target.transform.position + new Vector3(0, Camera.main.GetComponent<Z_Camera>().Target.transform.localScale.y, 0) - transform.position).normalized * bullet.GetComponent<Attack_Parameter>().speed;//敵の方向
+        //}
+
+        bullet.GetComponent<Rigidbody>().velocity = (Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 50)) - transform.position).normalized * bullet.GetComponent<Attack_Parameter>().speed;//画面の真ん中
 
         //効果音と演出
         if (!SE.isPlaying)
