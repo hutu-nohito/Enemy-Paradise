@@ -26,6 +26,8 @@ public class FlameVR : Magic_Parameter
     private Animator animator;//アニメ
     private AudioSource SE;//音
 
+    public GameObject contR;//VRコントローラR
+
     // Use this for initialization
     void Start()
     {
@@ -35,6 +37,7 @@ public class FlameVR : Magic_Parameter
         SE = GetComponent<AudioSource>();
 
         Target = GameObject.FindGameObjectWithTag("Enemy");
+        
         
     }
 
@@ -68,7 +71,7 @@ public class FlameVR : Magic_Parameter
         //弾を飛ばす処理
         bullet.GetComponent<HomingVR>().TargetSet(Target);//ホーミングのターゲットをセット
 
-        bullet.transform.position = transform.position;//Muzzleの位置
+        bullet.transform.position = Camera.main.transform.position + Camera.main.transform.TransformDirection(Vector3.forward) * 2;//Muzzleの位置
         bullet.transform.rotation = Quaternion.LookRotation(Parent.transform.TransformDirection(Vector3.forward).normalized);//回転させて弾頭を進行方向に向ける
         //カメラとキャラの向きが90°以上ずれてたら
         //if (Vector3.Dot(pcVR.direction.normalized, Parent.transform.TransformDirection(Vector3.forward).normalized) < 0)//二つのベクトル間の角度が90°以上(たぶん)
@@ -86,7 +89,9 @@ public class FlameVR : Magic_Parameter
         //    bullet.GetComponent<Rigidbody>().velocity = (Camera.main.GetComponent<Z_Camera>().Target.transform.position + new Vector3(0, Camera.main.GetComponent<Z_Camera>().Target.transform.localScale.y, 0) - transform.position).normalized * bullet.GetComponent<Attack_Parameter>().speed;//敵の方向
         //}
 
-        bullet.GetComponent<Rigidbody>().velocity = (Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 50)) - transform.position).normalized * bullet.GetComponent<Attack_Parameter>().speed;//画面の真ん中
+        //bullet.GetComponent<Rigidbody>().velocity = (Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 0.8f, Screen.height * 1.2f, 10)) - transform.position).normalized * bullet.GetComponent<Attack_Parameter>().speed;//画面の真ん中
+        bullet.GetComponent<Rigidbody>().velocity = (Camera.main.transform.TransformDirection(Vector3.forward)) * bullet.GetComponent<Attack_Parameter>().speed;//画面の真ん中
+        //bullet.GetComponent<Rigidbody>().velocity = (transform.position - contR.transform.position).normalized * bullet.GetComponent<Attack_Parameter>().speed;//コントローラの方
 
         //効果音と演出
         if (!SE.isPlaying)

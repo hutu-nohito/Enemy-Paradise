@@ -39,6 +39,11 @@ public class Magic_ControllerVR : MonoBehaviour {
 
     private Magic_Parameter.InputType InputType;
 
+    //VR
+    public bool flag_VR = false;
+    public GameObject VRcontR;
+    private SteamVR_TrackedObject VRcontR_object;
+
     void Awake()
     {
 
@@ -61,6 +66,10 @@ public class Magic_ControllerVR : MonoBehaviour {
             Magic[i].GetComponent<Magic_Parameter>().SetParent(this.gameObject);//親はプレイヤー
 
         }
+
+        //VR
+        if(flag_VR)
+        VRcontR_object = VRcontR.GetComponent<SteamVR_TrackedObject>();
 
     }
 
@@ -93,6 +102,15 @@ public class Magic_ControllerVR : MonoBehaviour {
 
     void Update()
     {
+        if (flag_VR)
+        {
+            var device = SteamVR_Controller.Input((int)VRcontR_object.index);//コントローラから取得
+            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
+            {
+                Debug.Log("トリガーを深く引いた");
+                SelectMagic[2].SendMessage("Fire");
+            }
+        }
         
         if (Pz.GetF_Magic())//魔法が打てる状態かどうかを確認
         {

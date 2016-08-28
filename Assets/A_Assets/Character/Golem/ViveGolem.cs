@@ -44,7 +44,7 @@ public class ViveGolem : Enemy_Base {
         CCZ = Camera.main.gameObject.GetComponent<Camera_ControllerZ>();
 
         //初期状態セット
-        coroutine = StartCoroutine(ChangeState(2.0f, ActionState.Fight));
+        coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Fight));
 
         //SE = GetComponent<AudioSource>();
 
