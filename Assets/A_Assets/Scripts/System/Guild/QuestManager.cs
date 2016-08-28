@@ -75,7 +75,6 @@ public class QuestManager : Quest_Parameter {
         //敵
         for (int i = 0;i < eB.Length;i++)
         {
-           Debug.Log("222");
            if(eB[i].GetQuestStage() != queststageID)
             {
                 eB[i].gameObject.SetActive(false);
