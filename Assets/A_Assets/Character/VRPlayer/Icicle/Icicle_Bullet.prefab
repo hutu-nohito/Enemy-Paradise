@@ -66,7 +66,7 @@ GameObject:
   - 114: {fileID: 11422760}
   - 114: {fileID: 11438686}
   - 114: {fileID: 114000012418886586}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Icicle_Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}

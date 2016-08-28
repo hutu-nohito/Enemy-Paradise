@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000012098708772}
   - 198: {fileID: 198000012246704698}
   - 199: {fileID: 199000011047504202}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - 114: {fileID: 114000011273412602}
   - 114: {fileID: 114000013142232046}
   - 114: {fileID: 114000010557776544}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Saber_Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013916039082}
   - 137: {fileID: 137000013068980314}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - 4: {fileID: 4000012685518980}
   - 33: {fileID: 33000012850839482}
   - 23: {fileID: 23000013565120008}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010884258834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 108.38134, y: 6.006226, z: 74.726456}
+  m_LocalPosition: {x: 114.348236, y: 6.006226, z: 79.08527}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:

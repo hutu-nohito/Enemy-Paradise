@@ -125,9 +125,9 @@ GameObject:
   - 65: {fileID: 65000010586357788}
   - 23: {fileID: 23000013837721810}
   - 114: {fileID: 114000014016097704}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Piller
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

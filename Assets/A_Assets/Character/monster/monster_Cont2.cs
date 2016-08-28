@@ -51,7 +51,8 @@ public class monster_Cont2 : Enemy_Base
         base.BaseStart();
 
         //初期状態セット
-        coroutine = StartCoroutine(ChangeState(5.0f, ActionState.Run));
+        base.animator.SetTrigger("G_Weapon");
+        coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Run));
 
         //AIで戦わせてみた(共通事項より後に書けばPlayerという名のターゲットを変えられる)
         //if(this.gameObject.name == "AImonster")
@@ -94,7 +95,7 @@ public class monster_Cont2 : Enemy_Base
         }
 
         //相手がいなくなった時の処理
-        if(base.Player == null)
+        if(base.Player.GetComponent<Character_Parameters>().GetHP() <= 0)
         {
             StopAllCoroutines();
             base.Player = this.gameObject;
@@ -134,34 +135,7 @@ public class monster_Cont2 : Enemy_Base
         //避ける
         if (state == ActionState.Avoid)
         {
-            if (animState != (int)ActionState.Stop)
-            {
-                base.animator.SetTrigger("Idle");
-            }
-
-            //避ける動作
-            iTween.MoveUpdate(this.gameObject, iTween.Hash(
-                    "position", new Vector3(
-                    transform.position.x + ((transform.position - base.Player.transform.position).z / (transform.position - base.Player.transform.position).magnitude) * 1.5f,
-                    transform.position.y,
-                    transform.position.z + (-(transform.position - base.Player.transform.position).x / (transform.position - base.Player.transform.position).magnitude) * 1.5f
-                    ),
-                    "time", 0.8f,
-                    "easetype", "easeInOutBack"//全然利いてない
-                    )
-                    );
-            transform.Rotate(0,12,0);
-
-            if((transform.position - base.Player.transform.position).magnitude > 10)
-            {
-                coroutine = StartCoroutine(ChangeState(0.5f, ActionState.Run));
-            }
-            else
-            {
-                coroutine = StartCoroutine(ChangeState(0.5f, ActionState.Fight));
-            }
-            
-
+            coroutine = StartCoroutine(Avoid());
         }
 
         //アタックするだけ
@@ -197,9 +171,10 @@ public class monster_Cont2 : Enemy_Base
             //離れたら追いかける
             if ((transform.position - base.Player.transform.position).magnitude > 10)
             {
-                base.animator.SetTrigger("H_Weapon");
-                state = ActionState.Stop;
-                coroutine = StartCoroutine(ChangeState(1.4f, ActionState.Run));
+                //base.animator.SetTrigger("H_Weapon");
+                //state = ActionState.Stop;
+                //coroutine = StartCoroutine(ChangeState(1.4f, ActionState.Run));
+                state = ActionState.Run;
 
             }
 
@@ -261,9 +236,12 @@ public class monster_Cont2 : Enemy_Base
             //近づいたら戦闘状態に移行
             if ((transform.position - base.Player.transform.position).magnitude < 5)
             {
-                base.animator.SetTrigger("G_Weapon");
-                state = ActionState.Stop;
-                coroutine = StartCoroutine(ChangeState(1.6f, ActionState.Fight));
+                //base.animator.SetTrigger("G_Weapon");
+                //state = ActionState.Stop;
+                //coroutine = StartCoroutine(ChangeState(1.6f, ActionState.Fight));
+
+                state = ActionState.Fight;
+
             }
 
         }
@@ -314,7 +292,56 @@ public class monster_Cont2 : Enemy_Base
 
         isCoroutine = false;
     }
-    
+
+    //避ける
+    IEnumerator Avoid()
+    {
+        if (isCoroutine) yield break;
+        isCoroutine = true;
+
+        //避ける前のため
+        yield return new WaitForSeconds(0.5f);//こーゆーパラメータもインスペクタで決めるべきだと思うけどごちゃごちゃしそうでいや
+
+        if (animState != (int)ActionState.Stop)
+        {
+            base.animator.SetTrigger("Jump");
+            animState = (int)ActionState.Stop;
+        }
+
+        //避ける動作
+        iTween.MoveTo(this.gameObject, iTween.Hash(
+                "position", new Vector3(
+                transform.position.x + ((transform.position - base.Player.transform.position).z / (transform.position - base.Player.transform.position).magnitude) * 3.5f,
+                transform.position.y,
+                transform.position.z + (-(transform.position - base.Player.transform.position).x / (transform.position - base.Player.transform.position).magnitude) * 3.5f
+                ),
+                "time", 0.35f,
+                "easetype", iTween.EaseType.easeInBack
+                )
+                );
+        //transform.Rotate(0,12,0);
+        //前を向ける
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(base.Player.transform.position - transform.position), 0.05f);
+        transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+
+        yield return new WaitForSeconds(0.35f);//
+
+        base.animator.SetTrigger("Land");
+
+        if ((transform.position - base.Player.transform.position).magnitude > 10)
+        {
+            //coroutine = StartCoroutine(ChangeState(0.5f, ActionState.Run));
+            state = ActionState.Run;
+        }
+        else
+        {
+            //coroutine = StartCoroutine(ChangeState(0.5f, ActionState.Fight));
+            state = ActionState.Fight;
+        }
+
+        isCoroutine = false;
+    }
+
     //攻撃
     IEnumerator Attack()
     {

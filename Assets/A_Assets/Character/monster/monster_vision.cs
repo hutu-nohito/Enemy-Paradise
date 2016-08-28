@@ -19,7 +19,7 @@ public class monster_vision : MonoBehaviour {
     {
         if(col.tag == "Bullet")
         {
-            if(col.gameObject.GetComponent<Attack_Parameter>().Parent.name == "Player")
+            if(col.gameObject.GetComponent<Attack_Parameter>().Parent.name == "VRPlayer")
             {
                 Parent.GetComponent<monster_Cont2>().FindDamage();
             }
