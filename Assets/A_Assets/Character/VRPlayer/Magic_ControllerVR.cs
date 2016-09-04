@@ -148,7 +148,7 @@ public class Magic_ControllerVR : MonoBehaviour {
                 OldPos.Clear();
                 Move.Clear();
             }
-            if ((int)((elapsedTime * 100) % 50) == 0)//たぶん0.5秒ごとに入るはず
+            if ((int)((elapsedTime * 100) % 30) == 0)//たぶん0.5秒ごとに入るはず
             {
                 Debug.Log(elapsedTime);
                 CalHandPosition();//ハンドポジを計算
@@ -175,66 +175,90 @@ public class Magic_ControllerVR : MonoBehaviour {
         }
 
         //ウェルオーウィスプ
-        if(Move[Move.Count - 1] == MoveDirection.Front)//腕を前に突き出す
+        //if(Move[Move.Count - 1] == MoveDirection.Front)//腕を前に突き出す
+        //{
+        //    Debug.Log("前");
+        //    flag_Input = false;
+        //    elapsedTime = 0;
+        //    MoveCount = 0;
+        //    OldPos.Clear();
+        //    Move.Clear();
+        //    SelectMagic[2].SendMessage("Fire");
+        //}
+        //if (Move[Move.Count - 1] == MoveDirection.FrontUp)//腕を前に突き出す
+        //{
+        //    Debug.Log("上前");
+        //    flag_Input = false;
+        //    elapsedTime = 0;
+        //    MoveCount = 0;
+        //    OldPos.Clear();
+        //    Move.Clear();
+        //    SelectMagic[2].SendMessage("Fire");
+        //}
+        //if (Move[Move.Count - 1] == MoveDirection.FrontUpRight)//腕を前に突き出す
+        //{
+        //    Debug.Log("右上前");
+        //    flag_Input = false;
+        //    elapsedTime = 0;
+        //    MoveCount = 0;
+        //    OldPos.Clear();
+        //    Move.Clear();
+        //    SelectMagic[2].SendMessage("Fire");
+        //}
+        //if (Move[Move.Count - 1] == MoveDirection.FrontUpLeft)//腕を前に突き出す
+        //{
+        //    Debug.Log("左上前");
+        //    flag_Input = false;
+        //    elapsedTime = 0;
+        //    MoveCount = 0;
+        //    OldPos.Clear();
+        //    Move.Clear();
+        //    SelectMagic[2].SendMessage("Fire");
+        //}
+        //if (Move[Move.Count - 1] == MoveDirection.FrontLeft)//腕を前に突き出す
+        //{
+        //    Debug.Log("左前");
+        //    flag_Input = false;
+        //    elapsedTime = 0;
+        //    MoveCount = 0;
+        //    OldPos.Clear();
+        //    Move.Clear();
+        //    SelectMagic[2].SendMessage("Fire");
+        //}
+        //if (Move[Move.Count - 1] == MoveDirection.FrontRight)//腕を前に突き出す
+        //{
+        //    Debug.Log("右前");
+        //    flag_Input = false;
+        //    elapsedTime = 0;
+        //    MoveCount = 0;
+        //    OldPos.Clear();
+        //    Move.Clear();
+        //    SelectMagic[2].SendMessage("Fire");
+        //}
+
+        if (Move[Move.Count - 1] == MoveDirection.Up)//腕を前に突き出す
         {
-            Debug.Log("前");
+            Debug.Log("上");
             flag_Input = false;
             elapsedTime = 0;
             MoveCount = 0;
             OldPos.Clear();
             Move.Clear();
-            SelectMagic[2].SendMessage("Fire");
+            SelectMagic[3].SendMessage("Fire");
+            if (Move[Move.Count - 1] == MoveDirection.Front)
+            {
+                Debug.Log("www");
+                flag_Input = false;
+                elapsedTime = 0;
+                MoveCount = 0;
+                OldPos.Clear();
+                Move.Clear();
+                SelectMagic[3].SendMessage("Fire");
+            }
+               
         }
-        if (Move[Move.Count - 1] == MoveDirection.FrontUp)//腕を前に突き出す
-        {
-            Debug.Log("上前");
-            flag_Input = false;
-            elapsedTime = 0;
-            MoveCount = 0;
-            OldPos.Clear();
-            Move.Clear();
-            SelectMagic[2].SendMessage("Fire");
-        }
-        if (Move[Move.Count - 1] == MoveDirection.FrontUpRight)//腕を前に突き出す
-        {
-            Debug.Log("右上前");
-            flag_Input = false;
-            elapsedTime = 0;
-            MoveCount = 0;
-            OldPos.Clear();
-            Move.Clear();
-            SelectMagic[2].SendMessage("Fire");
-        }
-        if (Move[Move.Count - 1] == MoveDirection.FrontUpLeft)//腕を前に突き出す
-        {
-            Debug.Log("左上前");
-            flag_Input = false;
-            elapsedTime = 0;
-            MoveCount = 0;
-            OldPos.Clear();
-            Move.Clear();
-            SelectMagic[2].SendMessage("Fire");
-        }
-        if (Move[Move.Count - 1] == MoveDirection.FrontLeft)//腕を前に突き出す
-        {
-            Debug.Log("左前");
-            flag_Input = false;
-            elapsedTime = 0;
-            MoveCount = 0;
-            OldPos.Clear();
-            Move.Clear();
-            SelectMagic[2].SendMessage("Fire");
-        }
-        if (Move[Move.Count - 1] == MoveDirection.FrontRight)//腕を前に突き出す
-        {
-            Debug.Log("右前");
-            flag_Input = false;
-            elapsedTime = 0;
-            MoveCount = 0;
-            OldPos.Clear();
-            Move.Clear();
-            SelectMagic[2].SendMessage("Fire");
-        }
+
+
     }
 
     //コントローラの軌跡を取得してとっとく
