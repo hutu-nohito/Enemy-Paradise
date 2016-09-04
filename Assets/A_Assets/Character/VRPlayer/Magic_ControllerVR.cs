@@ -46,7 +46,7 @@ public class Magic_ControllerVR : MonoBehaviour {
     //入力受付
     private bool flag_Input = false;//トリガーで発動しとく
     public float inputTime = 5.0f;//入力受付時間
-    private float elapsedTime;
+    private float elapsedTime = 0;
 
     private List<Vector3> OldPos = new List<Vector3>();//計算用
     private List<MoveDirection> Move = new List<MoveDirection>();//コントローラの軌跡をとる
@@ -144,13 +144,16 @@ public class Magic_ControllerVR : MonoBehaviour {
             {
                 flag_Input = false;
                 elapsedTime = 0;
+                MoveCount = 0;
                 OldPos.Clear();
                 Move.Clear();
             }
-            if ((int)(elapsedTime % 0.5f) == 0)//たぶん0.5秒ごとに入るはず
+            if ((int)((elapsedTime * 100) % 50) == 0)//たぶん0.5秒ごとに入るはず
             {
+                Debug.Log(elapsedTime);
+                CalHandPosition();//ハンドポジを計算
                 CheckMove();
-                OldPos.Add(transform.position);//0.5秒ごとに更新
+                
                 MoveCount++;//5秒のうちに増える
                 CheckMagic();//魔法が完成してるかチェック
             }       
@@ -166,10 +169,71 @@ public class Magic_ControllerVR : MonoBehaviour {
     //コントローラの軌跡が魔法になってるかどうか
     void CheckMagic()
     {
-        //ウェルオーウィスプ
-        if(Move[MoveCount - 1] == MoveDirection.Front)//腕を前に突き出す
+        if(Move.Count <= 1)
         {
-            Debug.Log("www");
+            return;
+        }
+
+        //ウェルオーウィスプ
+        if(Move[Move.Count - 1] == MoveDirection.Front)//腕を前に突き出す
+        {
+            Debug.Log("前");
+            flag_Input = false;
+            elapsedTime = 0;
+            MoveCount = 0;
+            OldPos.Clear();
+            Move.Clear();
+            SelectMagic[2].SendMessage("Fire");
+        }
+        if (Move[Move.Count - 1] == MoveDirection.FrontUp)//腕を前に突き出す
+        {
+            Debug.Log("上前");
+            flag_Input = false;
+            elapsedTime = 0;
+            MoveCount = 0;
+            OldPos.Clear();
+            Move.Clear();
+            SelectMagic[2].SendMessage("Fire");
+        }
+        if (Move[Move.Count - 1] == MoveDirection.FrontUpRight)//腕を前に突き出す
+        {
+            Debug.Log("右上前");
+            flag_Input = false;
+            elapsedTime = 0;
+            MoveCount = 0;
+            OldPos.Clear();
+            Move.Clear();
+            SelectMagic[2].SendMessage("Fire");
+        }
+        if (Move[Move.Count - 1] == MoveDirection.FrontUpLeft)//腕を前に突き出す
+        {
+            Debug.Log("左上前");
+            flag_Input = false;
+            elapsedTime = 0;
+            MoveCount = 0;
+            OldPos.Clear();
+            Move.Clear();
+            SelectMagic[2].SendMessage("Fire");
+        }
+        if (Move[Move.Count - 1] == MoveDirection.FrontLeft)//腕を前に突き出す
+        {
+            Debug.Log("左前");
+            flag_Input = false;
+            elapsedTime = 0;
+            MoveCount = 0;
+            OldPos.Clear();
+            Move.Clear();
+            SelectMagic[2].SendMessage("Fire");
+        }
+        if (Move[Move.Count - 1] == MoveDirection.FrontRight)//腕を前に突き出す
+        {
+            Debug.Log("右前");
+            flag_Input = false;
+            elapsedTime = 0;
+            MoveCount = 0;
+            OldPos.Clear();
+            Move.Clear();
+            SelectMagic[2].SendMessage("Fire");
         }
     }
 
@@ -177,147 +241,147 @@ public class Magic_ControllerVR : MonoBehaviour {
     void CheckMove()
     {
         //前///////////////////////////////////////////////////////////////////////////////////////////////
-        if (transform.position.z - OldPos[OldPos.Count - 1].z >= 0.3f)//前へ
+        if (OldPos[OldPos.Count - 1].z - OldPos[OldPos.Count - 2].z >= 0.3f)//前へ
         {
-            if (transform.position.y - OldPos[OldPos.Count - 1].y >= 0.3f)//上前
+            if (OldPos[OldPos.Count - 1].y - OldPos[OldPos.Count - 2].y >= 0.3f)//上前
             {
-                if (transform.position.x - OldPos[OldPos.Count - 1].x >= 0.3f)//右上前
+                if (OldPos[OldPos.Count - 1].x - OldPos[OldPos.Count - 2].x >= 0.3f)//右上前
                 {
-                    Move[MoveCount] = MoveDirection.FrontUpRight;
+                    Move.Add(MoveDirection.FrontUpRight);
                 }
-                else if (transform.position.x - OldPos[OldPos.Count - 1].x > -0.3f)//上前
+                else if (OldPos[OldPos.Count - 1].x - OldPos[OldPos.Count - 2].x > -0.3f)//上前
                 {
-                    Move[MoveCount] = MoveDirection.FrontUp;
+                    Move.Add(MoveDirection.FrontUp);
                 }
                 else//左上前
                 {
-                    Move[MoveCount] = MoveDirection.FrontUpLeft;
+                    Move.Add(MoveDirection.FrontUpLeft);
                 }
             }
-            else if (transform.position.y - OldPos[OldPos.Count - 1].y > -0.3f)//真ん中
+            else if (OldPos[OldPos.Count - 1].y - OldPos[OldPos.Count - 2].y > -0.3f)//真ん中
             {
-                if (transform.position.x - OldPos[OldPos.Count - 1].x >= 0.3f)//右前
+                if (OldPos[OldPos.Count - 1].x - OldPos[OldPos.Count - 2].x >= 0.3f)//右前
                 {
-                    Move[MoveCount] = MoveDirection.FrontRight;
+                    Move.Add(MoveDirection.FrontRight);
                 }
-                else if (transform.position.x - OldPos[OldPos.Count - 1].x > -0.3f)//前
+                else if (OldPos[OldPos.Count - 1].x - OldPos[OldPos.Count - 2].x > -0.3f)//前
                 {
-                    Move[MoveCount] = MoveDirection.Front;
+                    Move.Add(MoveDirection.Front);
                 }
                 else//左前
                 {
-                    Move[MoveCount] = MoveDirection.FrontLeft;
+                    Move.Add(MoveDirection.FrontLeft);
                 }
             }
             else//下前
             {
-                if (transform.position.x - OldPos[OldPos.Count - 1].x >= 0.3f)//右下前
+                if (OldPos[OldPos.Count - 1].x - OldPos[OldPos.Count - 2].x >= 0.3f)//右下前
                 {
-                    Move[MoveCount] = MoveDirection.FrontDownRight;
+                    Move.Add(MoveDirection.FrontDownRight);
                 }
-                else if (transform.position.x - OldPos[OldPos.Count - 1].x > -0.3f)//下前
+                else if (OldPos[OldPos.Count - 1].x - OldPos[OldPos.Count - 2].x > -0.3f)//下前
                 {
-                    Move[MoveCount] = MoveDirection.FrontDown;
+                    Move.Add(MoveDirection.FrontDown);
                 }
                 else//左下前
                 {
-                    Move[MoveCount] = MoveDirection.FrontDownLeft;
+                    Move.Add(MoveDirection.FrontDownLeft);
                 }
             }
         }
-        else if (transform.position.z - OldPos[OldPos.Count - 1].z >= -0.3f)//真ん中/////////////////////////////////////////////////////
+        else if (OldPos[OldPos.Count - 1].z - OldPos[OldPos.Count - 2].z >= -0.3f)//真ん中/////////////////////////////////////////////////////
         {
-            if (transform.position.y - OldPos[OldPos.Count - 1].y >= 0.3f)//上
+            if (OldPos[OldPos.Count - 1].y - OldPos[OldPos.Count - 2].y >= 0.3f)//上
             {
-                if (transform.position.x - OldPos[OldPos.Count - 1].x >= 0.3f)//右上
+                if (OldPos[OldPos.Count - 1].x - OldPos[OldPos.Count - 2].x >= 0.3f)//右上
                 {
-                    Move[MoveCount] = MoveDirection.UpRight;
+                    Move.Add(MoveDirection.UpRight);
                 }
-                else if (transform.position.x - OldPos[OldPos.Count - 1].x > -0.3f)//上
+                else if (OldPos[OldPos.Count - 1].x - OldPos[OldPos.Count - 2].x > -0.3f)//上
                 {
-                    Move[MoveCount] = MoveDirection.Up;
+                    Move.Add(MoveDirection.Up);
                 }
                 else//左上
                 {
-                    Move[MoveCount] = MoveDirection.UpLeft;
+                    Move.Add(MoveDirection.UpLeft);
                 }
             }
-            else if (transform.position.y - OldPos[OldPos.Count - 1].y > -0.3f)//真ん中
+            else if (OldPos[OldPos.Count - 1].y - OldPos[OldPos.Count - 2].y > -0.3f)//真ん中
             {
-                if (transform.position.x - OldPos[OldPos.Count - 1].x >= 0.3f)//右
+                if (OldPos[OldPos.Count - 1].x - OldPos[OldPos.Count - 2].x >= 0.3f)//右
                 {
-                    Move[MoveCount] = MoveDirection.Right;
+                    Move.Add(MoveDirection.Right);
                 }
-                else if (transform.position.x - OldPos[OldPos.Count - 1].x > -0.3f)//ホールド
+                else if (OldPos[OldPos.Count - 1].x - OldPos[OldPos.Count - 2].x > -0.3f)//ホールド
                 {
-                    Move[MoveCount] = MoveDirection.Hold;
+                    Move.Add(MoveDirection.Hold);
                 }
                 else//左
                 {
-                    Move[MoveCount] = MoveDirection.Left;
+                    Move.Add(MoveDirection.Left);
                 }
             }
             else//下
             {
-                if (transform.position.x - OldPos[OldPos.Count - 1].x >= 0.3f)//右下
+                if (OldPos[OldPos.Count - 1].x - OldPos[OldPos.Count - 2].x >= 0.3f)//右下
                 {
-                    Move[MoveCount] = MoveDirection.DownRight;
+                    Move.Add(MoveDirection.DownRight);
                 }
-                else if (transform.position.x - OldPos[OldPos.Count - 1].x > -0.3f)//下
+                else if (OldPos[OldPos.Count - 1].x - OldPos[OldPos.Count - 2].x > -0.3f)//下
                 {
-                    Move[MoveCount] = MoveDirection.Down;
+                    Move.Add(MoveDirection.Down);
                 }
                 else//左下
                 {
-                    Move[MoveCount] = MoveDirection.DownLeft;
+                    Move.Add(MoveDirection.DownLeft);
                 }
             }
         }
         else//後ろ/////////////////////////////////////////////////////
         {
-            if (transform.position.y - OldPos[OldPos.Count - 1].y >= 0.3f)//上
+            if (OldPos[OldPos.Count - 1].y - OldPos[OldPos.Count - 2].y >= 0.3f)//上
             {
-                if (transform.position.x - OldPos[OldPos.Count - 1].x >= 0.3f)//右上後
+                if (OldPos[OldPos.Count - 1].x - OldPos[OldPos.Count - 2].x >= 0.3f)//右上後
                 {
-                    Move[MoveCount] = MoveDirection.BackUpRight;
+                    Move.Add(MoveDirection.BackUpRight);
                 }
-                else if (transform.position.x - OldPos[OldPos.Count - 1].x > -0.3f)//上後
+                else if (OldPos[OldPos.Count - 1].x - OldPos[OldPos.Count - 2].x > -0.3f)//上後
                 {
-                    Move[MoveCount] = MoveDirection.BackUp;
+                    Move.Add(MoveDirection.BackUp);
                 }
                 else//左上後
                 {
-                    Move[MoveCount] = MoveDirection.BackUpLeft;
+                    Move.Add(MoveDirection.BackUpLeft);
                 }
             }
-            else if (transform.position.y - OldPos[OldPos.Count - 1].y > -0.3f)//真ん中
+            else if (OldPos[OldPos.Count - 1].y - OldPos[OldPos.Count - 2].y > -0.3f)//真ん中
             {
-                if (transform.position.x - OldPos[OldPos.Count - 1].x >= 0.3f)//右後
+                if (OldPos[OldPos.Count - 1].x - OldPos[OldPos.Count - 2].x >= 0.3f)//右後
                 {
-                    Move[MoveCount] = MoveDirection.BackRight;
+                    Move.Add(MoveDirection.BackRight);
                 }
-                else if (transform.position.x - OldPos[OldPos.Count - 1].x > -0.3f)//ホールド
+                else if (OldPos[OldPos.Count - 1].x - OldPos[OldPos.Count - 2].x > -0.3f)//ホールド
                 {
-                    Move[MoveCount] = MoveDirection.Back;
+                    Move.Add(MoveDirection.Back);
                 }
                 else//左後
                 {
-                    Move[MoveCount] = MoveDirection.BackLeft;
+                    Move.Add(MoveDirection.BackLeft);
                 }
             }
             else//下
             {
-                if (transform.position.x - OldPos[OldPos.Count - 1].x >= 0.3f)//右下後
+                if (OldPos[OldPos.Count - 1].x - OldPos[OldPos.Count - 2].x >= 0.3f)//右下後
                 {
-                    Move[MoveCount] = MoveDirection.BackDownRight;
+                    Move.Add(MoveDirection.BackDownRight);
                 }
-                else if (transform.position.x - OldPos[OldPos.Count - 1].x > -0.3f)//下後
+                else if (OldPos[OldPos.Count - 1].x - OldPos[OldPos.Count - 2].x > -0.3f)//下後
                 {
-                    Move[MoveCount] = MoveDirection.BackDown;
+                    Move.Add(MoveDirection.BackDown);
                 }
                 else//左下後
                 {
-                    Move[MoveCount] = MoveDirection.BackDownLeft;
+                    Move.Add(MoveDirection.BackDownLeft);
                 }
             }
         }
@@ -354,20 +418,30 @@ public class Magic_ControllerVR : MonoBehaviour {
         calHandRPos.y = HandRPos.y;
 
         OldPos.Add(calHandRPos);
-        //flag_Input = true;//なんか押されたらチェック
+        Debug.Log(OldPos[OldPos.Count - 1]);
+
     }
 
     //トリガーを深く引くと呼ばれる（左右区別なし）
     public void PressTrigger()
     {
-        //CalHandPosition();
+        if (!flag_Input)
+        {
+            flag_Input = true;//なんか押されたらチェック
+            CalHandPosition();
+        }
+        
         Debug.Log("トリガーを深く引いた");
     }
 
     public void UpTrigger()
     {
-        //CalHandPosition();
-        Debug.Log("トリガーを離した");
+        if (!flag_Input)
+        {
+            //flag_Input = true;//なんか押されたらチェック
+        }
+
+        //Debug.Log("トリガーを離した");
     }
 
     void MagicFire()

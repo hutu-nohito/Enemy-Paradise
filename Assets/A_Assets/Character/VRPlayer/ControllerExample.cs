@@ -16,8 +16,8 @@ public class ControllerExample : MonoBehaviour {
         }
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
         {
-            //Player_Magic.PressTrigger();
-            Debug.Log("トリガーを深く引いた");
+            Player_Magic.PressTrigger();
+            //Debug.Log("トリガーを深く引いた");
         }
         if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
         {
