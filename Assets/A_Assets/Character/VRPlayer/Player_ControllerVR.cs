@@ -157,6 +157,7 @@ public class Player_ControllerVR : Character_Parameters {
 
         //キャラの移動実行（動かす方向＊動かすスピード＊補正）
         playerController.Move(move_direction * speed * Time.deltaTime);
+        transform.position = new Vector3(Camera.main.transform.position.x,transform.position.y, Camera.main.transform.position.z);//カメラの位置に移動
 
     }
     

@@ -41,8 +41,46 @@ public class Magic_ControllerVR : MonoBehaviour {
 
     //VR
     public bool flag_VR = false;
-    public GameObject VRcontR;
-    private SteamVR_TrackedObject VRcontR_object;
+    public GameObject HandR,HandL;
+
+    //入力受付
+    private bool flag_Input = false;//トリガーで発動しとく
+    public float inputTime = 5.0f;//入力受付時間
+    private float elapsedTime;
+
+    private List<Vector3> OldPos = new List<Vector3>();//計算用
+    private List<MoveDirection> Move = new List<MoveDirection>();//コントローラの軌跡をとる
+    private int MoveCount = 0;//何個Moveを拾ってるか
+    private enum MoveDirection
+    {
+        Hold,
+        Front,
+        Right,
+        Back,
+        Left,
+        Up,
+        Down,
+        UpRight,
+        UpLeft,
+        DownRight,
+        DownLeft,
+        FrontUp,
+        FrontDown,
+        FrontRight,
+        FrontLeft,
+        FrontUpRight,
+        FrontUpLeft,
+        FrontDownRight,
+        FrontDownLeft,
+        BackUp,
+        BackDown,
+        BackRight,
+        BackLeft,
+        BackUpRight,
+        BackUpLeft,
+        BackDownRight,
+        BackDownLeft,
+    }
 
     void Awake()
     {
@@ -66,10 +104,6 @@ public class Magic_ControllerVR : MonoBehaviour {
             Magic[i].GetComponent<Magic_Parameter>().SetParent(this.gameObject);//親はプレイヤー
 
         }
-
-        //VR
-        if(flag_VR)
-        VRcontR_object = VRcontR.GetComponent<SteamVR_TrackedObject>();
 
     }
 
@@ -102,16 +136,26 @@ public class Magic_ControllerVR : MonoBehaviour {
 
     void Update()
     {
-        if (flag_VR)
+        //入力受付
+        if (flag_Input)
         {
-            var device = SteamVR_Controller.Input((int)VRcontR_object.index);//コントローラから取得
-            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
+            elapsedTime += Time.deltaTime;
+            if (elapsedTime > inputTime)
             {
-                Debug.Log("トリガーを深く引いた");
-                SelectMagic[2].SendMessage("Fire");
+                flag_Input = false;
+                elapsedTime = 0;
+                OldPos.Clear();
+                Move.Clear();
             }
+            if ((int)(elapsedTime % 0.5f) == 0)//たぶん0.5秒ごとに入るはず
+            {
+                CheckMove();
+                OldPos.Add(transform.position);//0.5秒ごとに更新
+                MoveCount++;//5秒のうちに増える
+                CheckMagic();//魔法が完成してるかチェック
+            }       
         }
-        
+
         if (Pz.GetF_Magic())//魔法が打てる状態かどうかを確認
         {
             MagicFire();
@@ -119,6 +163,213 @@ public class Magic_ControllerVR : MonoBehaviour {
         
     }
     
+    //コントローラの軌跡が魔法になってるかどうか
+    void CheckMagic()
+    {
+        //ウェルオーウィスプ
+        if(Move[MoveCount - 1] == MoveDirection.Front)//腕を前に突き出す
+        {
+            Debug.Log("www");
+        }
+    }
+
+    //コントローラの軌跡を取得してとっとく
+    void CheckMove()
+    {
+        //前///////////////////////////////////////////////////////////////////////////////////////////////
+        if (transform.position.z - OldPos[OldPos.Count - 1].z >= 0.3f)//前へ
+        {
+            if (transform.position.y - OldPos[OldPos.Count - 1].y >= 0.3f)//上前
+            {
+                if (transform.position.x - OldPos[OldPos.Count - 1].x >= 0.3f)//右上前
+                {
+                    Move[MoveCount] = MoveDirection.FrontUpRight;
+                }
+                else if (transform.position.x - OldPos[OldPos.Count - 1].x > -0.3f)//上前
+                {
+                    Move[MoveCount] = MoveDirection.FrontUp;
+                }
+                else//左上前
+                {
+                    Move[MoveCount] = MoveDirection.FrontUpLeft;
+                }
+            }
+            else if (transform.position.y - OldPos[OldPos.Count - 1].y > -0.3f)//真ん中
+            {
+                if (transform.position.x - OldPos[OldPos.Count - 1].x >= 0.3f)//右前
+                {
+                    Move[MoveCount] = MoveDirection.FrontRight;
+                }
+                else if (transform.position.x - OldPos[OldPos.Count - 1].x > -0.3f)//前
+                {
+                    Move[MoveCount] = MoveDirection.Front;
+                }
+                else//左前
+                {
+                    Move[MoveCount] = MoveDirection.FrontLeft;
+                }
+            }
+            else//下前
+            {
+                if (transform.position.x - OldPos[OldPos.Count - 1].x >= 0.3f)//右下前
+                {
+                    Move[MoveCount] = MoveDirection.FrontDownRight;
+                }
+                else if (transform.position.x - OldPos[OldPos.Count - 1].x > -0.3f)//下前
+                {
+                    Move[MoveCount] = MoveDirection.FrontDown;
+                }
+                else//左下前
+                {
+                    Move[MoveCount] = MoveDirection.FrontDownLeft;
+                }
+            }
+        }
+        else if (transform.position.z - OldPos[OldPos.Count - 1].z >= -0.3f)//真ん中/////////////////////////////////////////////////////
+        {
+            if (transform.position.y - OldPos[OldPos.Count - 1].y >= 0.3f)//上
+            {
+                if (transform.position.x - OldPos[OldPos.Count - 1].x >= 0.3f)//右上
+                {
+                    Move[MoveCount] = MoveDirection.UpRight;
+                }
+                else if (transform.position.x - OldPos[OldPos.Count - 1].x > -0.3f)//上
+                {
+                    Move[MoveCount] = MoveDirection.Up;
+                }
+                else//左上
+                {
+                    Move[MoveCount] = MoveDirection.UpLeft;
+                }
+            }
+            else if (transform.position.y - OldPos[OldPos.Count - 1].y > -0.3f)//真ん中
+            {
+                if (transform.position.x - OldPos[OldPos.Count - 1].x >= 0.3f)//右
+                {
+                    Move[MoveCount] = MoveDirection.Right;
+                }
+                else if (transform.position.x - OldPos[OldPos.Count - 1].x > -0.3f)//ホールド
+                {
+                    Move[MoveCount] = MoveDirection.Hold;
+                }
+                else//左
+                {
+                    Move[MoveCount] = MoveDirection.Left;
+                }
+            }
+            else//下
+            {
+                if (transform.position.x - OldPos[OldPos.Count - 1].x >= 0.3f)//右下
+                {
+                    Move[MoveCount] = MoveDirection.DownRight;
+                }
+                else if (transform.position.x - OldPos[OldPos.Count - 1].x > -0.3f)//下
+                {
+                    Move[MoveCount] = MoveDirection.Down;
+                }
+                else//左下
+                {
+                    Move[MoveCount] = MoveDirection.DownLeft;
+                }
+            }
+        }
+        else//後ろ/////////////////////////////////////////////////////
+        {
+            if (transform.position.y - OldPos[OldPos.Count - 1].y >= 0.3f)//上
+            {
+                if (transform.position.x - OldPos[OldPos.Count - 1].x >= 0.3f)//右上後
+                {
+                    Move[MoveCount] = MoveDirection.BackUpRight;
+                }
+                else if (transform.position.x - OldPos[OldPos.Count - 1].x > -0.3f)//上後
+                {
+                    Move[MoveCount] = MoveDirection.BackUp;
+                }
+                else//左上後
+                {
+                    Move[MoveCount] = MoveDirection.BackUpLeft;
+                }
+            }
+            else if (transform.position.y - OldPos[OldPos.Count - 1].y > -0.3f)//真ん中
+            {
+                if (transform.position.x - OldPos[OldPos.Count - 1].x >= 0.3f)//右後
+                {
+                    Move[MoveCount] = MoveDirection.BackRight;
+                }
+                else if (transform.position.x - OldPos[OldPos.Count - 1].x > -0.3f)//ホールド
+                {
+                    Move[MoveCount] = MoveDirection.Back;
+                }
+                else//左後
+                {
+                    Move[MoveCount] = MoveDirection.BackLeft;
+                }
+            }
+            else//下
+            {
+                if (transform.position.x - OldPos[OldPos.Count - 1].x >= 0.3f)//右下後
+                {
+                    Move[MoveCount] = MoveDirection.BackDownRight;
+                }
+                else if (transform.position.x - OldPos[OldPos.Count - 1].x > -0.3f)//下後
+                {
+                    Move[MoveCount] = MoveDirection.BackDown;
+                }
+                else//左下後
+                {
+                    Move[MoveCount] = MoveDirection.BackDownLeft;
+                }
+            }
+        }
+    }
+
+    void CalHandPosition()//手の位置を計算
+    {
+        //コントローラとカメラの位置関係で何が発動するか決まる
+        var HandRPos = HandR.transform.position - Camera.main.transform.position;//右手の相対位置
+        Vector3 calHandRPos = Vector3.zero;//カメラから見た右手の位置
+
+        //x,zはカメラの向きによって入れ替える
+        int thetaDegree = (int)(Camera.main.transform.eulerAngles.y);
+        if (thetaDegree <= 45 || thetaDegree > 315)//正面
+        {
+            calHandRPos.x = HandRPos.x;
+            calHandRPos.z = HandRPos.z;
+        }
+        if (thetaDegree > 45 && thetaDegree <= 135)//右
+        {
+            calHandRPos.x = -HandRPos.z;
+            calHandRPos.z = HandRPos.x;
+        }
+        if (thetaDegree > 135 && thetaDegree <= 225)//後ろ
+        {
+            calHandRPos.x = -HandRPos.x;
+            calHandRPos.z = -HandRPos.z;
+        }
+        if (thetaDegree > 225 && thetaDegree <= 315)//左
+        {
+            calHandRPos.x = HandRPos.z;
+            calHandRPos.z = -HandRPos.x;
+        }
+        calHandRPos.y = HandRPos.y;
+
+        OldPos.Add(calHandRPos);
+        //flag_Input = true;//なんか押されたらチェック
+    }
+
+    //トリガーを深く引くと呼ばれる（左右区別なし）
+    public void PressTrigger()
+    {
+        //CalHandPosition();
+        Debug.Log("トリガーを深く引いた");
+    }
+
+    public void UpTrigger()
+    {
+        //CalHandPosition();
+        Debug.Log("トリガーを離した");
+    }
+
     void MagicFire()
     {
         //ボタン毎に魔法を発動
@@ -147,4 +398,5 @@ public class Magic_ControllerVR : MonoBehaviour {
             SelectMagic[5].SendMessage("Fire");
         }
     }
+
 }

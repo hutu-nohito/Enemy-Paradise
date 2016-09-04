@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ControllerExample : MonoBehaviour {
 
+    public Magic_ControllerVR Player_Magic;
+
     void Update()
     {
         SteamVR_TrackedObject trackedObject = GetComponent<SteamVR_TrackedObject>();
@@ -10,15 +12,17 @@ public class ControllerExample : MonoBehaviour {
 
         if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
         {
-            Debug.Log("トリガーを浅く引いた");
+            //Debug.Log("トリガーを浅く引いた");
         }
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
         {
+            //Player_Magic.PressTrigger();
             Debug.Log("トリガーを深く引いた");
         }
         if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
         {
-            Debug.Log("トリガーを離した");
+            Player_Magic.UpTrigger();
+            //Debug.Log("トリガーを離した");
         }
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
         {
