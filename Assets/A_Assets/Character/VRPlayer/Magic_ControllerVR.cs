@@ -17,6 +17,7 @@ public class Magic_ControllerVR : MonoBehaviour {
     *  魔法の発動
     *  魔法は選択されているものを打つのでなく操作方法で使い分ける
     *  クールタイムは魔法個別で止める
+    *  点つなぎ法導入
     */
     /******************************************************************************/
 
@@ -42,12 +43,24 @@ public class Magic_ControllerVR : MonoBehaviour {
     //VR
     public bool flag_VR = false;
     public GameObject HandR,HandL;
+    public GameObject[] JinPoint;//魔法陣の通過点
+    private bool flag_Jin = false;//魔法陣受付中
+    private List<int> MagicList = new List<int>();//点つなぎの番号
+    //めんどくさいので魔法はここに直打ち(数は覚えとく)
+    private int[] correctMagicArray = new int[5]
+    {
+        0,          //(0)ウェルオーウィスプ
+        1,2,        //(12)ボム
+        2,1         //(34)アイシクルレイン
+    };
+    private int stockMagic = 100;//ストックする魔法(とりあえず100に戻す)
 
     //入力受付
     private bool flag_Input = false;//トリガーで発動しとく
     public float inputTime = 5.0f;//入力受付時間
     private float elapsedTime = 0;
 
+    //コントローラの動き検知（精度が良すぎて使えないので要改良）
     private List<Vector3> OldPos = new List<Vector3>();//計算用
     private List<MoveDirection> Move = new List<MoveDirection>();//コントローラの軌跡をとる
     private int MoveCount = 0;//何個Moveを拾ってるか
@@ -81,6 +94,20 @@ public class Magic_ControllerVR : MonoBehaviour {
         BackDownRight,
         BackDownLeft,
     }
+
+    //コントローラのボタン検知
+    public enum VRButton
+    {
+        TriggerTouchDown,
+        TriggerPressDown,
+        TriggerUp,
+        GripDown,
+        GripUp,
+    }
+    //おしっぱなし
+    private bool TriggerTouch = false;
+    private bool TriggerPress = false;
+    private bool Grip = false;
 
     void Awake()
     {
@@ -136,6 +163,8 @@ public class Magic_ControllerVR : MonoBehaviour {
 
     void Update()
     {
+        MagicCircle();//魔法陣の処理
+
         //入力受付
         if (flag_Input)
         {
@@ -166,6 +195,24 @@ public class Magic_ControllerVR : MonoBehaviour {
         
     }
     
+    void MagicCircle()//魔法陣の処理
+    {
+        if (flag_Jin)
+        {
+            for (int i = 0; i < JinPoint.Length; i++)
+            {
+                JinPoint[i].SetActive(true);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < JinPoint.Length; i++)
+            {
+                JinPoint[i].SetActive(false);
+            }
+        }
+    }
+
     //コントローラの軌跡が魔法になってるかどうか
     void CheckMagic()
     {
@@ -468,31 +515,94 @@ public class Magic_ControllerVR : MonoBehaviour {
         //Debug.Log("トリガーを離した");
     }
 
+    //コントローラのボタンを押すと呼ばれる（数字がボタンの種類）
+    public void ControllerPulse(VRButton kind, bool right)
+    {
+        switch (kind)
+        {
+            case VRButton.TriggerTouchDown:
+                break;
+            case VRButton.TriggerPressDown:
+                if (right)//右トリガーで魔法発動
+                {
+                    if(stockMagic != 100)
+                    {
+                        SelectMagic[stockMagic].SendMessage("Fire");
+                        stockMagic = 100;
+                    }
+                }
+                break;
+            case VRButton.TriggerUp:
+                break;
+            case VRButton.GripDown:
+                if (!right)//左グリップで魔法陣発動
+                {
+                    flag_Jin = true;
+                }
+                break;
+            case VRButton.GripUp:
+                if (!right)//左グリップ離して魔法陣しまう
+                {
+                    flag_Jin = false;
+                }
+                break;
+        }
+    }
+
+    public void DotToDot(int point)
+    {
+        MagicList.Add(point);
+        CheckMagicList();
+    }
+
+    void CheckMagicList()
+    {
+        if (MagicList[0] == correctMagicArray[0])
+        {
+            stockMagic = 2;
+            MagicList.Clear();
+        }
+        if (MagicList[0] == correctMagicArray[1])
+        {
+            if (MagicList[1] == correctMagicArray[2])
+            {
+                stockMagic = 3;
+                MagicList.Clear();
+            }
+        }
+    }
+
     void MagicFire()
     {
         //ボタン毎に魔法を発動
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
+            //アイスセイバー
             SelectMagic[0].SendMessage("Fire");
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            //アイシクルレイン
             SelectMagic[1].SendMessage("Fire");
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            //ウェルオーウィスプ
             SelectMagic[2].SendMessage("Fire");
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
+            //ボム
             SelectMagic[3].SendMessage("Fire");
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
+            //ピラー
             SelectMagic[4].SendMessage("Fire");
         }
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
+            //バリア
             SelectMagic[5].SendMessage("Fire");
         }
     }
