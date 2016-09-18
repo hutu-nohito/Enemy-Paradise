@@ -44,16 +44,22 @@ public class Magic_ControllerVR : MonoBehaviour {
     public bool flag_VR = false;
     public GameObject HandR,HandL;
     public GameObject[] JinPoint;//魔法陣の通過点
+    public GameObject[] JinUI;//魔法陣のUI
+    public GameObject[] MagicUI;//魔法アイコン
     private bool flag_Jin = false;//魔法陣受付中
     private List<int> MagicList = new List<int>();//点つなぎの番号
     //めんどくさいので魔法はここに直打ち(数は覚えとく)
-    private int[] correctMagicArray = new int[5]
+    private int[] correctMagicArray = new int[24]
     {
-        0,          //(0)ウェルオーウィスプ
-        1,2,        //(12)ボム
-        2,1         //(34)アイシクルレイン
+        2,0,3, 1,0,4,   //(0,2 3,5)セイバー
+        0,1,2,0,        //(6,9)アイシクルレイン
+        0,              //(10)ウェルオーウィスプ
+        0,3,4,0,2,      //(11,15)ボム
+        3,1, 4,2,       //(16,17 18,19)フレイムピラー
+        1,2,4,3         //(20,23)バリア
     };
     private int stockMagic = 100;//ストックする魔法(とりあえず100に戻す)
+    private int MagicLevel = 1;//いったん点つなぎを切るときよう
 
     //入力受付
     private bool flag_Input = false;//トリガーで発動しとく
@@ -202,6 +208,7 @@ public class Magic_ControllerVR : MonoBehaviour {
             for (int i = 0; i < JinPoint.Length; i++)
             {
                 JinPoint[i].SetActive(true);
+                JinUI[i].SetActive(true);
             }
         }
         else
@@ -209,7 +216,20 @@ public class Magic_ControllerVR : MonoBehaviour {
             for (int i = 0; i < JinPoint.Length; i++)
             {
                 JinPoint[i].SetActive(false);
+                JinUI[i].SetActive(false);
             }
+        }
+
+        if(stockMagic != 100)
+        {
+            MagicUI[stockMagic].SetActive(true);
+        }else
+        {
+            for (int i = 0;i < MagicUI.Length; i++)
+            {
+                MagicUI[i].SetActive(false);
+            }
+            
         }
     }
 
@@ -531,6 +551,10 @@ public class Magic_ControllerVR : MonoBehaviour {
                         stockMagic = 100;
                     }
                 }
+                if (!right)//左トリガーでレベルアップ
+                {
+                    //次のステップ
+                }
                 break;
             case VRButton.TriggerUp:
                 break;
@@ -544,6 +568,11 @@ public class Magic_ControllerVR : MonoBehaviour {
                 if (!right)//左グリップ離して魔法陣しまう
                 {
                     flag_Jin = false;
+                    if(MagicList.Count > 0)
+                    {
+                        CheckMagicList();//ここで魔法が完成しているかを判定
+                    }
+                    
                 }
                 break;
         }
@@ -552,24 +581,106 @@ public class Magic_ControllerVR : MonoBehaviour {
     public void DotToDot(int point)
     {
         MagicList.Add(point);
-        CheckMagicList();
     }
 
+    //配列が長い魔法からチェックする
+    //配列を後ろからチェック
     void CheckMagicList()
     {
-        if (MagicList[0] == correctMagicArray[0])
+        //セイバー
+        //if (MagicList[MagicList.Count - 1] == correctMagicArray[2])
+        //{
+        //    if (MagicList[MagicList.Count - 2] == correctMagicArray[1])
+        //    {
+        //        if (MagicList[MagicList.Count - 3] == correctMagicArray[0])
+        //        {
+        //            //レベル2へ（保留）
+        //        }
+        //    }
+        //}
+        //if(MagicLevel == 2)
+        //{
+        //    //(保留)
+        //}
+
+        //ボム
+        if (MagicList[MagicList.Count - 1] == correctMagicArray[15])
         {
-            stockMagic = 2;
-            MagicList.Clear();
-        }
-        if (MagicList[0] == correctMagicArray[1])
-        {
-            if (MagicList[1] == correctMagicArray[2])
+            if (MagicList[MagicList.Count - 2] == correctMagicArray[14])
             {
-                stockMagic = 3;
-                MagicList.Clear();
+                if (MagicList[MagicList.Count - 3] == correctMagicArray[13])
+                {
+                    if (MagicList[MagicList.Count - 4] == correctMagicArray[12])
+                    {
+                        if (MagicList[MagicList.Count - 5] == correctMagicArray[11])
+                        {
+                            stockMagic = 3;
+                            MagicList.Clear();//チェックしたらクリア
+                            return;
+                        }
+                    }
+                }
             }
         }
+
+        //アイシクルレイン
+        if (MagicList[MagicList.Count - 1] == correctMagicArray[9])
+        {
+            if (MagicList[MagicList.Count - 2] == correctMagicArray[8])
+            {
+                if (MagicList[MagicList.Count - 3] == correctMagicArray[7])
+                {
+                    if (MagicList[MagicList.Count - 4] == correctMagicArray[6])
+                    {
+                        stockMagic = 1;
+                        MagicList.Clear();//チェックしたらクリア
+                        return;
+                    }
+                }
+            }
+        }
+
+        //フレイムピラー
+        //if (MagicList[MagicList.Count - 1] == correctMagicArray[9])
+        //{
+        //    if (MagicList[MagicList.Count - 2] == correctMagicArray[8])
+        //    {
+        //        if (MagicList[MagicList.Count - 3] == correctMagicArray[7])
+        //        {
+        //            if (MagicList[MagicList.Count - 4] == correctMagicArray[6])
+        //            {
+
+        //            }
+        //        }
+        //    }
+        //}
+
+        //バリア
+        if (MagicList[MagicList.Count - 1] == correctMagicArray[23])
+        {
+            if (MagicList[MagicList.Count - 2] == correctMagicArray[22])
+            {
+                if (MagicList[MagicList.Count - 3] == correctMagicArray[21])
+                {
+                    if (MagicList[MagicList.Count - 4] == correctMagicArray[20])
+                    {
+                        stockMagic = 5;
+                        MagicList.Clear();//チェックしたらクリア
+                        return;
+                    }
+                }
+            }
+        }
+
+        //ウェルオーウィスプ
+        if (MagicList[MagicList.Count - 1] == correctMagicArray[0])
+        {
+            stockMagic = 2;
+            MagicList.Clear();//チェックしたらクリア
+            return;
+        }
+
+        MagicList.Clear();//チェックしたらクリア
     }
 
     void MagicFire()

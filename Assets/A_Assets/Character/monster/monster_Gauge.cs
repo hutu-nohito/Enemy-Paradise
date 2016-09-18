@@ -31,6 +31,10 @@ public class monster_Gauge : MonoBehaviour {
         {
             guiText.text = "Monster HP " + Monster.GetComponent<Character_Parameters>().H_point;
         }
+        if (Player)
+        {
+            guiText.text = "Player HP " + Monster.GetComponent<Character_Parameters>().H_point;
+        }
         
     }
 }

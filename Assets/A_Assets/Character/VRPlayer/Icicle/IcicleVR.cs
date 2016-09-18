@@ -53,7 +53,7 @@ public class IcicleVR : Magic_Parameter {
 
                 bullet[i].GetComponent<Attack_Parameter>().Parent = this.Parent;//もらった親を渡しておく必要がある
 
-                bullet[i].transform.position = transform.position + Parent.transform.TransformDirection(new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5)));//ランダム
+                bullet[i].transform.position = transform.position + Parent.transform.TransformDirection(new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10)));//ランダム
                 bullet[i].transform.rotation = Quaternion.LookRotation(Parent.transform.TransformDirection(Vector3.down));//回転させて弾頭を進行方向に向ける            
 
                 Destroy(bullet[i], bullet_Prefab.GetComponent<Attack_Parameter>().GetA_Time());
