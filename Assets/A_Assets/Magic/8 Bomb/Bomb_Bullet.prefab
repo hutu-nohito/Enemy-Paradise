@@ -13,7 +13,7 @@ GameObject:
   - 23: {fileID: 2387406}
   - 114: {fileID: 11499260}
   - 54: {fileID: 5442280}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Bomb_Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

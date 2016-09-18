@@ -25,6 +25,15 @@ public class Bomb_Bullet : Attack_Parameter {
         {
             return;
         }
+        if (col.tag == "Reflect")
+        {
+            return;
+        }
+        if (col.gameObject.layer == LayerMask.NameToLayer("Event"))//イベントレイヤ
+        {
+            return;
+        }
+        
 
         Bomb_Blast();
 

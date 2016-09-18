@@ -22,6 +22,7 @@ public class BarrierVR : Magic_Parameter
 
     private Magic_Controller MC;
     private Player_ControllerVR pcVR;
+    public GameObject Player;
 
     private Animator animator;//アニメ
     private AudioSource SE;//音

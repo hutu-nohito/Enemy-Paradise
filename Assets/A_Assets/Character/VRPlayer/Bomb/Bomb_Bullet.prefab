@@ -24,7 +24,7 @@ GameObject:
   - 23: {fileID: 23000010308663728}
   - 114: {fileID: 114000012358927470}
   - 54: {fileID: 54000013191185724}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Bomb_Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   power: 2
   speed: 20
-  attack_time: 5
+  attack_time: 100
   rigid_time: 2
   magicElement: 2
   property: 1

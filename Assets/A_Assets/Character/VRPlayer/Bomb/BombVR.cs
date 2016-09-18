@@ -7,6 +7,9 @@ public class BombVR : Magic_Parameter
     public GameObject bullet_Prefab;//弾のプレハブ
     public GameObject Hand;//右手
     private GameObject bullet;//
+    private Vector3 OldPos = Vector3.zero;
+    private Vector3 direction = Vector3.zero;
+    private float elapsedTime = 0.0f;
 
     private Magic_Controller MC;
     private Player_ControllerVR pcVR;
@@ -35,16 +38,30 @@ public class BombVR : Magic_Parameter
 
     void Fire()
     {
-        //StartCoroutine(Shot());
         bullet = GameObject.Instantiate(bullet_Prefab);//弾生成
         bullet.GetComponent<Attack_Parameter>().Parent = this.Parent;//もらった親を渡しておく必要がある
+        bullet.GetComponent<Collider>().enabled = false;
+        bullet.transform.position = Hand.transform.position;//手の位置
+        OldPos = bullet.transform.position;
 
     }
 
     //ボムをキープ
     void Hold()
     {
+        elapsedTime += Time.deltaTime;
+        bullet.GetComponent<Collider>().enabled = false;
         bullet.transform.position = Hand.transform.position;//手の位置
+        direction = bullet.transform.position - OldPos;
+
+        if(elapsedTime >= 0.5f)
+        {
+            OldPos = bullet.transform.position;
+            elapsedTime = 0.0f;
+        }
+        
+        Debug.Log(direction);
+
     }
 
     //ボムを投げる
@@ -59,6 +76,9 @@ public class BombVR : Magic_Parameter
         //GameObject bullet;
 
         animator.SetTrigger("Shoot");
+        bullet.GetComponent<Collider>().enabled = true;
+        bullet.GetComponent<Rigidbody>().velocity = (Parent.transform.TransformDirection(Vector3.forward) + direction * 1000000).normalized * bullet.GetComponent<Attack_Parameter>().speed;//キャラの向いてる方向
+        //bullet.GetComponent<Rigidbody>().velocity = direction.normalized * bullet.GetComponent<Attack_Parameter>().speed * 100;//キャラの向いてる方向
 
         //bullet = GameObject.Instantiate(bullet_Prefab);//弾生成
         //bullet.GetComponent<Attack_Parameter>().Parent = this.Parent;//もらった親を渡しておく必要がある

@@ -26,7 +26,7 @@ public class ControllerExample : MonoBehaviour {
         if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
         {
             Player_Magic.ControllerPulse(Magic_ControllerVR.VRButton.TriggerUp, right);
-            //Debug.Log("トリガーを離した");
+            Debug.Log("トリガーを離した");
         }
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
         {

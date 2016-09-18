@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;//List用
+using UnityEngine.UI;//UI用
 
 public class Magic_ControllerVR : MonoBehaviour {
 
@@ -18,6 +19,7 @@ public class Magic_ControllerVR : MonoBehaviour {
     *  魔法は選択されているものを打つのでなく操作方法で使い分ける
     *  クールタイムは魔法個別で止める
     *  点つなぎ法導入
+    *  UIもこっちでできるように
     */
     /******************************************************************************/
 
@@ -217,6 +219,7 @@ public class Magic_ControllerVR : MonoBehaviour {
             {
                 JinPoint[i].SetActive(false);
                 JinUI[i].SetActive(false);
+                JinUI[i].GetComponent<Image>().color = new Color(1.0f,1.0f,1.0f,1.0f);//戻しとく
             }
         }
 
@@ -566,22 +569,25 @@ public class Magic_ControllerVR : MonoBehaviour {
                 }
                 break;
             case VRButton.TriggerUp:
-                if (stockMagic == 0)//セイバー
+                if (right)
                 {
-                    //剣を壊す
-                    SelectMagic[stockMagic].SendMessage("Break");
-                    stockMagic = 100;
-                }
-                else if (stockMagic == 3)//ボム
-                {
-                    //ボムを投げる
-                    SelectMagic[stockMagic].SendMessage("Throw");
-                    stockMagic = 100;
-                }
-                else if (stockMagic != 100)//それ以外
-                {
-                    SelectMagic[stockMagic].SendMessage("Fire");
-                    stockMagic = 100;
+                    if (stockMagic == 0)//セイバー
+                    {
+                        //剣を壊す
+                        SelectMagic[stockMagic].SendMessage("Break");
+                        stockMagic = 100;
+                    }
+                    else if (stockMagic == 3)//ボム
+                    {
+                        //ボムを投げる
+                        SelectMagic[stockMagic].SendMessage("Throw");
+                        stockMagic = 100;
+                    }
+                    else if (stockMagic != 100)//それ以外
+                    {
+                        SelectMagic[stockMagic].SendMessage("Fire");
+                        stockMagic = 100;
+                    }
                 }
                 break;
             case VRButton.GripDown:
@@ -612,6 +618,9 @@ public class Magic_ControllerVR : MonoBehaviour {
     {
         if (right)
         {
+            SelectMagic[3].SendMessage("Hold");
+            Debug.Log("22222");
+
             if (stockMagic == 0)//セイバー
             {
                 SelectMagic[stockMagic].SendMessage("Hold");
