@@ -535,6 +535,7 @@ public class Magic_ControllerVR : MonoBehaviour {
         //Debug.Log("トリガーを離した");
     }
 
+    //コントローラ管理///////////////////////////////////////////////////////////
     //コントローラのボタンを押すと呼ばれる（数字がボタンの種類）
     public void ControllerPulse(VRButton kind, bool right)
     {
@@ -545,7 +546,15 @@ public class Magic_ControllerVR : MonoBehaviour {
             case VRButton.TriggerPressDown:
                 if (right)//右トリガーで魔法発動
                 {
-                    if(stockMagic != 100)
+                    if(stockMagic == 0)//セイバー
+                    {
+                        //こっちは送らないようにする
+                    }
+                    else if(stockMagic == 3)//ボム
+                    {
+                        SelectMagic[stockMagic].SendMessage("Fire");
+                    }
+                    else if(stockMagic != 100)//それ以外
                     {
                         SelectMagic[stockMagic].SendMessage("Fire");
                         stockMagic = 100;
@@ -557,11 +566,32 @@ public class Magic_ControllerVR : MonoBehaviour {
                 }
                 break;
             case VRButton.TriggerUp:
+                if (stockMagic == 0)//セイバー
+                {
+                    //剣を壊す
+                    SelectMagic[stockMagic].SendMessage("Break");
+                    stockMagic = 100;
+                }
+                else if (stockMagic == 3)//ボム
+                {
+                    //ボムを投げる
+                    SelectMagic[stockMagic].SendMessage("Throw");
+                    stockMagic = 100;
+                }
+                else if (stockMagic != 100)//それ以外
+                {
+                    SelectMagic[stockMagic].SendMessage("Fire");
+                    stockMagic = 100;
+                }
                 break;
             case VRButton.GripDown:
                 if (!right)//左グリップで魔法陣発動
                 {
-                    flag_Jin = true;
+                    if (!TriggerPress)//セイバー使ってる時に暴発しないように
+                    {
+                        flag_Jin = true;
+                    }
+                    
                 }
                 break;
             case VRButton.GripUp:
@@ -577,6 +607,25 @@ public class Magic_ControllerVR : MonoBehaviour {
                 break;
         }
     }
+
+    public void ControllerTrigger(bool right)
+    {
+        if (right)
+        {
+            if (stockMagic == 0)//セイバー
+            {
+                SelectMagic[stockMagic].SendMessage("Hold");
+                //セイバーが壊れた時にstockmagicを100にする処理を入れる
+            }
+            if (stockMagic == 3)
+            {
+                SelectMagic[stockMagic].SendMessage("Hold");
+                //ボムを離した時にstockmagicを100にする処理を入れる
+            }
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////
 
     public void DotToDot(int point)
     {

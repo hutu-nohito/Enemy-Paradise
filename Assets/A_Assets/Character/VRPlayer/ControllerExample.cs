@@ -39,6 +39,13 @@ public class ControllerExample : MonoBehaviour {
             Debug.Log("グリップボタンを離した");
         }
 
+        //押しっぱ系
+        if (device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
+        {
+            Player_Magic.ControllerTrigger(right);
+            //Debug.Log("トリガーを深く引いている");
+        }
+
         //まだ////////////////////////////////////////////////////////////////////////////
 
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
@@ -69,10 +76,6 @@ public class ControllerExample : MonoBehaviour {
         if (device.GetTouch(SteamVR_Controller.ButtonMask.Trigger))
         {
             //Debug.Log("トリガーを浅く引いている");
-        }
-        if (device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
-        {
-            //Debug.Log("トリガーを深く引いている");
         }
         if (device.GetTouch(SteamVR_Controller.ButtonMask.Touchpad))
         {

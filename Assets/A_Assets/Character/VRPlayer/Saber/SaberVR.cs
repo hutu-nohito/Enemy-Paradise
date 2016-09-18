@@ -95,6 +95,12 @@ public class SaberVR : Magic_Parameter {
         //}
     }
 
+    //剣を手放す
+    void Break()
+    {
+
+    }
+
     void Fire()
     {
         coroutine = StartCoroutine(Shot());
