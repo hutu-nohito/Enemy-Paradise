@@ -77,7 +77,7 @@ public class BombVR : Magic_Parameter
 
         animator.SetTrigger("Shoot");
         bullet.GetComponent<Collider>().enabled = true;
-        bullet.GetComponent<Rigidbody>().velocity = (Parent.transform.TransformDirection(Vector3.forward) + direction * 1000000).normalized * bullet.GetComponent<Attack_Parameter>().speed;//キャラの向いてる方向
+        bullet.GetComponent<Rigidbody>().velocity = (Parent.transform.TransformDirection(Vector3.forward) + direction * 100000).normalized * direction.magnitude * bullet.GetComponent<Attack_Parameter>().speed;//キャラの向いてる方向
         //bullet.GetComponent<Rigidbody>().velocity = direction.normalized * bullet.GetComponent<Attack_Parameter>().speed * 100;//キャラの向いてる方向
 
         //bullet = GameObject.Instantiate(bullet_Prefab);//弾生成

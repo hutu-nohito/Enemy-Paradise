@@ -731,7 +731,7 @@ public class Magic_ControllerVR : MonoBehaviour {
         }
 
         //ウェルオーウィスプ
-        if (MagicList[MagicList.Count - 1] == correctMagicArray[0])
+        if (MagicList[MagicList.Count - 1] == correctMagicArray[10])
         {
             stockMagic = 2;
             MagicList.Clear();//チェックしたらクリア
