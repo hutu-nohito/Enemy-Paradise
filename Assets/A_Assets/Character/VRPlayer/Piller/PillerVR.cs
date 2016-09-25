@@ -10,6 +10,7 @@ public class PillerVR : Magic_Parameter {
     public GameObject HandR;
     private Animator animator;//アニメ
     private AudioSource SE;//音
+    public GameObject TargetArea;
 
     private Z_Camera zcamera;//足元用 注目対象はここで取得
 
@@ -44,66 +45,54 @@ public class PillerVR : Magic_Parameter {
         //}
     }
 
+    //魔法を保持してる間
+    void Guide()
+    {
+        TargetArea.SetActive(true);
+        TargetArea.transform.position = new Vector3(transform.position.x + (HandR.transform.TransformDirection(Vector3.forward) * 15).x,
+                    transform.position.y + 4.5f,
+                    transform.position.z + (HandR.transform.TransformDirection(Vector3.forward) * 15).z);
+    }
+
     void Fire()
     {
+        TargetArea.SetActive(false);
         StartCoroutine(Shot());
     }
 
     IEnumerator Shot()
     {
-        Parent.GetComponent<Character_Parameters>().SetKeylock();
-        GameObject bullet;
-
+        GameObject[] bullet = new GameObject[3];
+        Vector3 direction = Parent.transform.TransformDirection(Vector3.forward);//この時点でのプレイヤの向きを基準にする
         animator.SetTrigger("Shoot");
-
-        yield return new WaitForSeconds(bullet_Prefab.GetComponent<Attack_Parameter>().GetR_Time());//撃つ前の硬直
-
-        bullet = GameObject.Instantiate(bullet_Prefab);//弾生成
-        bullet.GetComponent<Attack_Parameter>().Parent = this.Parent;//もらった親を渡しておく必要がある
-
+        
         //MPの処理
         pcVR.SetMP(pcVR.GetMP() - GetSMP());
-
-        //bullet.transform.position = zcamera.Target.transform.position - new Vector3(0, zcamera.Target.transform.localScale.y / 2, 0);//前方に飛ばす
-
-        //足元を見る
-        RaycastHit hit;
-        GameObject hitObject;
-
-        Vector3 LineStart = HandR.transform.position;
-        Vector3 LineDirection = HandR.transform.TransformDirection(Vector3.forward);//
-
-        if (Physics.Raycast(LineStart, LineDirection, out hit, 5000))
+        
+        
+        for(int i = 0; i < 1; i++)
         {
-            hitObject = hit.collider.gameObject;//レイヤーがIgnoreLayerのObjectは弾かれる。
+            bullet[i] = GameObject.Instantiate(bullet_Prefab);//弾生成
+            bullet[i].transform.rotation = Quaternion.LookRotation(Parent.transform.TransformDirection(Vector3.forward));//回転させて弾頭を進行方向に向ける
+            bullet[i].GetComponent<Attack_Parameter>().Parent = this.Parent;//もらった親を渡しておく必要がある
+            bullet[i].transform.position = new Vector3(
+                    transform.position.x + (HandR.transform.TransformDirection(Vector3.forward) * 15).x + direction.x * (i * 6),
+                    transform.position.y,
+                    transform.position.z + (HandR.transform.TransformDirection(Vector3.forward) * 15).z + direction.z * (i * 6)
+                    );//
+            
+            Destroy(bullet[i], bullet_Prefab.GetComponent<Attack_Parameter>().GetA_Time());
 
-            Debug.DrawLine(LineStart, hit.point, Color.blue);
-            //Debug.Log(hitObject);
-
-            //地面だったら
-            if (hitObject.gameObject.name == "Terrain")
+            //効果音と演出
+            if (!SE.isPlaying)
             {
 
-                bullet.transform.position = hit.point;
+                SE.PlayOneShot(SE.clip);//SE
 
             }
+
+            yield return new WaitForSeconds(1.5f);
         }
-        else
-        {
-            bullet.transform.position = transform.position;//上さしてたら
-        }
-
-        bullet.transform.rotation = Quaternion.LookRotation(Parent.transform.TransformDirection(Vector3.forward));//回転させて弾頭を進行方向に向ける
-
-        //効果音と演出
-        if (!SE.isPlaying)
-        {
-
-            SE.PlayOneShot(SE.clip);//SE
-
-        }
-
-        Destroy(bullet, bullet.GetComponent<Attack_Parameter>().GetA_Time());
 
         yield return new WaitForSeconds(0.5f);//撃った後の硬直
 

@@ -226,7 +226,9 @@ public class Magic_ControllerVR : MonoBehaviour {
         if(stockMagic != 100)
         {
             MagicUI[stockMagic].SetActive(true);
-        }else
+            SelectMagic[stockMagic].SendMessage("Guide");
+        }
+        else
         {
             for (int i = 0;i < MagicUI.Length; i++)
             {
@@ -658,19 +660,44 @@ public class Magic_ControllerVR : MonoBehaviour {
         //{
         //    //(保留)
         //}
-        if (MagicList[MagicList.Count - 1] == correctMagicArray[5])
+
+        if(MagicList.Count >= 5)//5個以上つなぐ
         {
-            if (MagicList[MagicList.Count - 2] == correctMagicArray[4])
+            //セイバー
+            if (MagicList[MagicList.Count - 1] == correctMagicArray[5])
             {
-                if (MagicList[MagicList.Count - 3] == correctMagicArray[3])
+                if (MagicList[MagicList.Count - 2] == correctMagicArray[4])
                 {
-                    if (MagicList[MagicList.Count - 4] == correctMagicArray[2])
+                    if (MagicList[MagicList.Count - 3] == correctMagicArray[3])
                     {
-                        if (MagicList[MagicList.Count - 5] == correctMagicArray[1])
+                        if (MagicList[MagicList.Count - 4] == correctMagicArray[2])
                         {
-                            if (MagicList[MagicList.Count - 6] == correctMagicArray[0])
+                            if (MagicList[MagicList.Count - 5] == correctMagicArray[1])
                             {
-                                stockMagic = 0;
+                                if (MagicList[MagicList.Count - 6] == correctMagicArray[0])
+                                {
+                                    stockMagic = 0;
+                                    MagicList.Clear();//チェックしたらクリア
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            //ボム
+            if (MagicList[MagicList.Count - 1] == correctMagicArray[15])
+            {
+                if (MagicList[MagicList.Count - 2] == correctMagicArray[14])
+                {
+                    if (MagicList[MagicList.Count - 3] == correctMagicArray[13])
+                    {
+                        if (MagicList[MagicList.Count - 4] == correctMagicArray[12])
+                        {
+                            if (MagicList[MagicList.Count - 5] == correctMagicArray[11])
+                            {
+                                stockMagic = 3;
                                 MagicList.Clear();//チェックしたらクリア
                                 return;
                             }
@@ -678,79 +705,65 @@ public class Magic_ControllerVR : MonoBehaviour {
                     }
                 }
             }
+
         }
 
-        //ボム
-        if (MagicList[MagicList.Count - 1] == correctMagicArray[15])
+        if (MagicList.Count >= 4)//4個以上つなぐ
         {
-            if (MagicList[MagicList.Count - 2] == correctMagicArray[14])
+
+            //アイシクルレイン
+            if (MagicList[MagicList.Count - 1] == correctMagicArray[9])
             {
-                if (MagicList[MagicList.Count - 3] == correctMagicArray[13])
+                if (MagicList[MagicList.Count - 2] == correctMagicArray[8])
                 {
-                    if (MagicList[MagicList.Count - 4] == correctMagicArray[12])
+                    if (MagicList[MagicList.Count - 3] == correctMagicArray[7])
                     {
-                        if (MagicList[MagicList.Count - 5] == correctMagicArray[11])
+                        if (MagicList[MagicList.Count - 4] == correctMagicArray[6])
                         {
-                            stockMagic = 3;
+                            stockMagic = 1;
                             MagicList.Clear();//チェックしたらクリア
                             return;
                         }
                     }
                 }
             }
-        }
 
-        //アイシクルレイン
-        if (MagicList[MagicList.Count - 1] == correctMagicArray[9])
-        {
-            if (MagicList[MagicList.Count - 2] == correctMagicArray[8])
+            //フレイムピラー
+            if (MagicList[MagicList.Count - 1] == correctMagicArray[19])
             {
-                if (MagicList[MagicList.Count - 3] == correctMagicArray[7])
+                if (MagicList[MagicList.Count - 2] == correctMagicArray[18])
                 {
-                    if (MagicList[MagicList.Count - 4] == correctMagicArray[6])
+                    if (MagicList[MagicList.Count - 3] == correctMagicArray[17])
                     {
-                        stockMagic = 1;
-                        MagicList.Clear();//チェックしたらクリア
-                        return;
+                        if (MagicList[MagicList.Count - 4] == correctMagicArray[16])
+                        {
+                            stockMagic = 4;
+                            MagicList.Clear();//チェックしたらクリア
+                            return;
+                        }
                     }
                 }
             }
-        }
 
-        //フレイムピラー
-        if (MagicList[MagicList.Count - 1] == correctMagicArray[19])
-        {
-            if (MagicList[MagicList.Count - 2] == correctMagicArray[18])
+            //バリア
+            if (MagicList[MagicList.Count - 1] == correctMagicArray[23])
             {
-                if (MagicList[MagicList.Count - 3] == correctMagicArray[17])
+                if (MagicList[MagicList.Count - 2] == correctMagicArray[22])
                 {
-                    if (MagicList[MagicList.Count - 4] == correctMagicArray[16])
+                    if (MagicList[MagicList.Count - 3] == correctMagicArray[21])
                     {
-                        stockMagic = 4;
-                        MagicList.Clear();//チェックしたらクリア
-                        return;
+                        if (MagicList[MagicList.Count - 4] == correctMagicArray[20])
+                        {
+                            stockMagic = 5;
+                            MagicList.Clear();//チェックしたらクリア
+                            return;
+                        }
                     }
                 }
             }
-        }
 
-        //バリア
-        if (MagicList[MagicList.Count - 1] == correctMagicArray[23])
-        {
-            if (MagicList[MagicList.Count - 2] == correctMagicArray[22])
-            {
-                if (MagicList[MagicList.Count - 3] == correctMagicArray[21])
-                {
-                    if (MagicList[MagicList.Count - 4] == correctMagicArray[20])
-                    {
-                        stockMagic = 5;
-                        MagicList.Clear();//チェックしたらクリア
-                        return;
-                    }
-                }
-            }
         }
-
+        
         //ウェルオーウィスプ
         if (MagicList[MagicList.Count - 1] == correctMagicArray[10])
         {

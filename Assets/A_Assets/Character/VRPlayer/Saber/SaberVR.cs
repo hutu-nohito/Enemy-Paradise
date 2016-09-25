@@ -35,6 +35,12 @@ public class SaberVR : Magic_Parameter {
        
     }
 
+    //魔法を保持してる間
+    void Guide()
+    {
+
+    }
+
     //剣を手放す
     void Break()
     {
@@ -80,8 +86,6 @@ public class SaberVR : Magic_Parameter {
             bullet.transform.FindChild("Armature").gameObject.transform.FindChild("Bone").gameObject.GetComponentInChildren<Attack_Parameter>().power *= 2;
         }
 
-        
-        
         SE.PlayOneShot(se[0]);//SE
         
     }

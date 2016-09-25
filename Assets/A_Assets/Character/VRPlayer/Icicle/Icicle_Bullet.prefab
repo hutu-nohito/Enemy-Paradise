@@ -376,7 +376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 8
-  speed: 10
+  speed: 20
   attack_time: 3
   rigid_time: 1.5
   magicElement: 1

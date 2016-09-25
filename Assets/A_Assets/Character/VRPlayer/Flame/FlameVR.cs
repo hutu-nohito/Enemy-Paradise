@@ -47,6 +47,12 @@ public class FlameVR : Magic_Parameter
 
     }
 
+    //魔法を保持してる間
+    void Guide()
+    {
+
+    }
+
     void Fire()
     {
         StartCoroutine(Shot());
@@ -94,8 +100,7 @@ public class FlameVR : Magic_Parameter
 
         //bullet.GetComponent<Rigidbody>().velocity = (Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 0.8f, Screen.height * 1.2f, 10)) - transform.position).normalized * bullet.GetComponent<Attack_Parameter>().speed;//画面の真ん中
         //bullet.GetComponent<Rigidbody>().velocity = (Camera.main.transform.TransformDirection(Vector3.forward)) * bullet.GetComponent<Attack_Parameter>().speed;//画面の真ん中
-        bullet.GetComponent<Rigidbody>().velocity = (HandR.transform.TransformDirection(Vector3.forward)) * bullet.GetComponent<Attack_Parameter>().speed;//画面の真ん中
-        //bullet.GetComponent<Rigidbody>().velocity = (transform.position - contR.transform.position).normalized * bullet.GetComponent<Attack_Parameter>().speed;//コントローラの方
+        bullet.GetComponent<Rigidbody>().velocity = (HandR.transform.TransformDirection(Vector3.forward)) * bullet.GetComponent<Attack_Parameter>().speed;//コントローラの向いてる方向
 
         //効果音と演出
         if (!SE.isPlaying)

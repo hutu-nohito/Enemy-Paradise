@@ -4,6 +4,8 @@ using System.Collections;
 public class IcicleVR : Magic_Parameter {
 
     public GameObject bullet_Prefab;//弾のプレハブ
+    public GameObject HandR;
+    public GameObject TargetArea;
 
     private Magic_Controller MC;
     private Player_ControllerVR pcVR;
@@ -20,17 +22,26 @@ public class IcicleVR : Magic_Parameter {
     // Update is called once per frame
     void Update()
     {
+        
+    }
 
+    //魔法を保持してる間
+    void Guide()
+    {
+        TargetArea.SetActive(true);
+        TargetArea.transform.position = new Vector3(transform.position.x + (HandR.transform.TransformDirection(Vector3.forward) * 15).x,
+                    transform.position.y - 4.5f,
+                    transform.position.z + (HandR.transform.TransformDirection(Vector3.forward) * 15).z);
     }
 
     void Fire()
     {
+        TargetArea.SetActive(false);
         StartCoroutine(Shot());
     }
 
     IEnumerator Shot()
     {
-        Parent.GetComponent<Character_Parameters>().SetKeylock();
         //MPの処理
         pcVR.SetMP(pcVR.GetMP() - GetSMP());
 
@@ -53,14 +64,19 @@ public class IcicleVR : Magic_Parameter {
 
                 bullet[i].GetComponent<Attack_Parameter>().Parent = this.Parent;//もらった親を渡しておく必要がある
 
-                bullet[i].transform.position = transform.position + Parent.transform.TransformDirection(new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10)));//ランダム
+                //bullet[i].transform.position = transform.position + Parent.transform.TransformDirection(new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5)));//ランダム
+                bullet[i].transform.position = new Vector3(
+                    transform.position.x + (HandR.transform.TransformDirection(Vector3.forward) * 15).x + Parent.transform.TransformDirection(new Vector3(Random.Range(-3, 3), 0, Random.Range(-3, 3))).x,
+                    transform.position.y,
+                    transform.position.z + (HandR.transform.TransformDirection(Vector3.forward) * 15).z + Parent.transform.TransformDirection(new Vector3(Random.Range(-3, 3), 0, Random.Range(-3, 3))).z
+                    );//
                 bullet[i].transform.rotation = Quaternion.LookRotation(Parent.transform.TransformDirection(Vector3.down));//回転させて弾頭を進行方向に向ける            
 
                 Destroy(bullet[i], bullet_Prefab.GetComponent<Attack_Parameter>().GetA_Time());
 
             }
 
-            yield return new WaitForSeconds(0.1f);//弾の生成間隔
+            //yield return new WaitForSeconds(0.1f);//弾の生成間隔
         }
 
         for (int i = 0; i < GetExNum(); i++)
@@ -68,14 +84,9 @@ public class IcicleVR : Magic_Parameter {
             if (bullet[i] != null)
             {
                 bullet[i].GetComponent<Rigidbody>().velocity = ((Parent.transform.TransformDirection(Vector3.down)) * bullet_Prefab.GetComponent<Attack_Parameter>().speed);
-                yield return new WaitForSeconds(0.2f);//落とすまでの間
+                yield return new WaitForSeconds(0.08f);//落とすまでの間
             }
         }
-
-        yield return new WaitForSeconds(bullet_Prefab.GetComponent<Attack_Parameter>().GetR_Time());//撃った後の硬直
-
-        //硬直を解除
-        Parent.GetComponent<Character_Parameters>().SetActive();
 
     }
 }

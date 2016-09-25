@@ -36,6 +36,12 @@ public class BombVR : Magic_Parameter
 
     }
 
+    //魔法を保持してる間
+    void Guide()
+    {
+
+    }
+
     void Fire()
     {
         bullet = GameObject.Instantiate(bullet_Prefab);//弾生成

@@ -42,6 +42,12 @@ public class BarrierVR : Magic_Parameter
 
     }
 
+    //魔法を保持してる間
+    void Guide()
+    {
+
+    }
+
     void Fire()
     {
         StartCoroutine(Shot());
