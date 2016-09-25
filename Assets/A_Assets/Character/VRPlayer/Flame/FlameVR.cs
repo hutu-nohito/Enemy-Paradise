@@ -78,7 +78,7 @@ public class FlameVR : Magic_Parameter
         //bullet.GetComponent<HomingVR>().TargetSet(Target);//ホーミングのターゲットをセット
 
         //bullet.transform.position = Camera.main.transform.position + Camera.main.transform.TransformDirection(Vector3.forward) * 2;//Muzzleの位置
-        bullet.transform.position = HandR.transform.position;//Muzzleの位置
+        bullet.transform.position = HandR.transform.position + HandR.transform.TransformDirection(Vector3.forward);//Muzzleの位置
         //bullet.transform.rotation = Quaternion.LookRotation(Parent.transform.TransformDirection(Vector3.forward).normalized);//回転させて弾頭を進行方向に向ける
 
 

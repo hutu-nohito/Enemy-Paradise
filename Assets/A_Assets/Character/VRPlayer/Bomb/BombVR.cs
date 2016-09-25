@@ -57,7 +57,7 @@ public class BombVR : Magic_Parameter
     {
         elapsedTime += Time.deltaTime;
         bullet.GetComponent<Collider>().enabled = false;
-        bullet.transform.position = Hand.transform.position;//手の位置
+        bullet.transform.position = Hand.transform.position + Hand.transform.TransformDirection(Vector3.forward);//手の位置
         direction = bullet.transform.position - OldPos;
 
         if(elapsedTime >= 0.5f)
