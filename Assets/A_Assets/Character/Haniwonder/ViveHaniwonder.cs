@@ -17,6 +17,7 @@ public class ViveHaniwonder : Enemy_Base
     /******************************************************************************/
 
     private AudioSource SE;//音
+    public AudioClip[] cv;//黒ちゃんの声
     
     //弾
     public GameObject[] Bullet;//攻撃
@@ -232,6 +233,8 @@ public class ViveHaniwonder : Enemy_Base
 
         yield return new WaitForSeconds(0.25f);//
 
+        SE.PlayOneShot(cv[0]);//SE
+
         Bullet[0].SetActive(true);
 
         Bullet[0].transform.Rotate(-Mathf.Atan((Player.transform.position.y - transform.position.y) / (Player.transform.position - transform.position).magnitude) * (180 / Mathf.PI), 0, 0);
@@ -243,13 +246,15 @@ public class ViveHaniwonder : Enemy_Base
             SE.PlayOneShot(SE.clip);//SE
 
         }
-        
-        yield return new WaitForSeconds(0.7f);//撃った後の硬直
+
+        //yield return new WaitForSeconds(0.7f);//撃った後の硬直
+        yield return new WaitForSeconds(2.0f);//撃った後の硬直
 
         Bullet[0].SetActive(false);
         Bullet[0].transform.rotation = new Quaternion(0, 0, 0, 0);
 
-        state = ActionState.Exercise;
+        //state = ActionState.Exercise;
+        state = ActionState.Beam;
         isCoroutine = false;
     }
 

@@ -19,6 +19,7 @@ public class DeathHand : Enemy_Base {
 
 
     private AudioSource SE;//音
+    private bool flag_die = false;
 
     public GameObject AI;
 
@@ -73,16 +74,23 @@ public class DeathHand : Enemy_Base {
         //HPがなくなった時の処理
         if (GetHP() <= 0)
         {
-            //ダウン演出
-            //if (animState != (int)ActionState.Stop)
-            //{
-            //    base.animator.SetTrigger("Die");
-            //    Destroy(this.gameObject, 3);//とりあえず消す
-            //}
-            StopAllCoroutines();
-            state = ActionState.Stop;
-            animState = (int)ActionState.Stop;
-            flag_fade = true;
+            if (!flag_die)
+            {
+                //ダウン演出
+                if (animState != (int)ActionState.Stop)
+                {
+                    //base.animator.SetTrigger("Die");
+                    Destroy(this.gameObject, 3);//とりあえず消す
+                }
+                StopAllCoroutines();//一回にしとかないと挙動がおかしくなる
+                state = ActionState.Stop;
+                animState = (int)ActionState.Stop;
+                flag_fade = true;
+                Destroy(this.gameObject, 3);//とりあえず消す
+                
+                flag_die = true;
+            }
+            
         }
 
         //相手がいなくなった時の処理

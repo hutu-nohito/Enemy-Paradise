@@ -64,21 +64,26 @@ public class PillerVR : Magic_Parameter {
     {
         GameObject[] bullet = new GameObject[3];
         Vector3 direction = Parent.transform.TransformDirection(Vector3.forward);//この時点でのプレイヤの向きを基準にする
+        Vector3 HandDirection = HandR.transform.TransformDirection(Vector3.forward) * 5;
+        Vector3 OldTransform = transform.position;
         animator.SetTrigger("Shoot");
-        
+
+        //yield return new WaitForSeconds(1.0f);
+
         //MPの処理
         pcVR.SetMP(pcVR.GetMP() - GetSMP());
         
         
-        for(int i = 0; i < 1; i++)
+        //
+        for(int i = 0; i < 3; i++)
         {
             bullet[i] = GameObject.Instantiate(bullet_Prefab);//弾生成
             bullet[i].transform.rotation = Quaternion.LookRotation(Parent.transform.TransformDirection(Vector3.forward));//回転させて弾頭を進行方向に向ける
             bullet[i].GetComponent<Attack_Parameter>().Parent = this.Parent;//もらった親を渡しておく必要がある
             bullet[i].transform.position = new Vector3(
-                    transform.position.x + (HandR.transform.TransformDirection(Vector3.forward) * 15).x + direction.x * (i * 6),
+                    OldTransform.x + HandDirection.x * ((i + 2) * 2),
                     transform.position.y,
-                    transform.position.z + (HandR.transform.TransformDirection(Vector3.forward) * 15).z + direction.z * (i * 6)
+                    OldTransform.z + HandDirection.z * ((i + 2) * 2)
                     );//
             
             Destroy(bullet[i], bullet_Prefab.GetComponent<Attack_Parameter>().GetA_Time());
