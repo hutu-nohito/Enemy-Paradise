@@ -53,11 +53,11 @@ public class Magic_ControllerVR : MonoBehaviour {
     //めんどくさいので魔法はここに直打ち(数は覚えとく)
     private int[] correctMagicArray = new int[24]
     {
-        2,0,3, 1,0,4,   //(0,2 3,5)セイバー
+        1,0,4,2,0,3,   //(0,2 3,5)セイバー
         0,1,2,0,        //(6,9)アイシクルレイン
         0,              //(10)ウェルオーウィスプ
         0,3,4,0,2,      //(11,15)ボム
-        3,1, 4,2,       //(16,17 18,19)フレイムピラー
+        3,1,4,2,       //(16,17 18,19)フレイムピラー
         1,2,4,3         //(20,23)バリア
     };
     private int stockMagic = 100;//ストックする魔法(とりあえず100に戻す)
@@ -551,7 +551,7 @@ public class Magic_ControllerVR : MonoBehaviour {
                 {
                     if(stockMagic == 0)//セイバー
                     {
-                        //こっちは送らないようにする
+                        SelectMagic[stockMagic].SendMessage("Fire");
                     }
                     else if(stockMagic == 3)//ボム
                     {
@@ -618,8 +618,6 @@ public class Magic_ControllerVR : MonoBehaviour {
     {
         if (right)
         {
-            SelectMagic[3].SendMessage("Hold");
-            Debug.Log("22222");
 
             if (stockMagic == 0)//セイバー
             {
@@ -660,6 +658,27 @@ public class Magic_ControllerVR : MonoBehaviour {
         //{
         //    //(保留)
         //}
+        if (MagicList[MagicList.Count - 1] == correctMagicArray[5])
+        {
+            if (MagicList[MagicList.Count - 2] == correctMagicArray[4])
+            {
+                if (MagicList[MagicList.Count - 3] == correctMagicArray[3])
+                {
+                    if (MagicList[MagicList.Count - 4] == correctMagicArray[2])
+                    {
+                        if (MagicList[MagicList.Count - 5] == correctMagicArray[1])
+                        {
+                            if (MagicList[MagicList.Count - 6] == correctMagicArray[0])
+                            {
+                                stockMagic = 0;
+                                MagicList.Clear();//チェックしたらクリア
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         //ボム
         if (MagicList[MagicList.Count - 1] == correctMagicArray[15])
@@ -699,19 +718,21 @@ public class Magic_ControllerVR : MonoBehaviour {
         }
 
         //フレイムピラー
-        //if (MagicList[MagicList.Count - 1] == correctMagicArray[9])
-        //{
-        //    if (MagicList[MagicList.Count - 2] == correctMagicArray[8])
-        //    {
-        //        if (MagicList[MagicList.Count - 3] == correctMagicArray[7])
-        //        {
-        //            if (MagicList[MagicList.Count - 4] == correctMagicArray[6])
-        //            {
-
-        //            }
-        //        }
-        //    }
-        //}
+        if (MagicList[MagicList.Count - 1] == correctMagicArray[19])
+        {
+            if (MagicList[MagicList.Count - 2] == correctMagicArray[18])
+            {
+                if (MagicList[MagicList.Count - 3] == correctMagicArray[17])
+                {
+                    if (MagicList[MagicList.Count - 4] == correctMagicArray[16])
+                    {
+                        stockMagic = 4;
+                        MagicList.Clear();//チェックしたらクリア
+                        return;
+                    }
+                }
+            }
+        }
 
         //バリア
         if (MagicList[MagicList.Count - 1] == correctMagicArray[23])

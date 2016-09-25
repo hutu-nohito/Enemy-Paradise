@@ -36,12 +36,18 @@ public class ColEffect : MonoBehaviour {
         {
             return;
         }
+        if (col.gameObject.layer == LayerMask.NameToLayer("Event"))//イベントレイヤ
+        {
+            return;
+        }
         if (col.tag != "Bullet")//弾と接触するときはエフェクトは出さない
         for(int i = 0;i < Effects.Length; i++)
         {
-            Effects[i].transform.parent = null;//子供にしとくとたいてい消える
-            Effects[i].SetActive(true);
-            Destroy(Effects[i], EffTime);//2秒ぐらいで消しとく
+            GameObject Effect = GameObject.Instantiate(Effects[i]);//弾生成
+                Effect.transform.position = this.gameObject.transform.position;
+            Effect.transform.parent = null;//子供にしとくとたいてい消える
+            Effect.SetActive(true);
+            Destroy(Effect, EffTime);//2秒ぐらいで消しとく
         }
 
         //SE系

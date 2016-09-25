@@ -32,7 +32,7 @@ public class SimpleCol : MonoBehaviour {
         {
             return;
         }*/
-        if (col.tag == "Reflect")
+        if (col.gameObject.GetComponent<Ref>() != null)//反射スクリプトがついてたら
         {
             return;
         }
