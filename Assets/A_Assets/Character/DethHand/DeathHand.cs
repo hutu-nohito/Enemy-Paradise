@@ -19,7 +19,6 @@ public class DeathHand : Enemy_Base {
 
 
     private AudioSource SE;//音
-    private bool flag_die = false;
 
     public GameObject AI;
 

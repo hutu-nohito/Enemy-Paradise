@@ -134,6 +134,10 @@ public class Character_Parameters : MonoBehaviour {
     public bool GetAfterImage() { return flag_AfterImage; }
     public void ReverseAfterImage() { flag_AfterImage = !flag_AfterImage; }
 
+    public bool flag_die = false;//死んでるかどうか（HP0の状態）
+    public bool GetDie() { return flag_die; }
+    public void ReverseDie() { flag_die = !flag_die; }
+
     //状態異常(ailment)/////////////////////////////////////////////////////////////////
 
     public bool flag_poison = false;//毒状態

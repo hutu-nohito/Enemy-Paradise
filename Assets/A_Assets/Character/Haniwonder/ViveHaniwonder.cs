@@ -48,7 +48,7 @@ public class ViveHaniwonder : Enemy_Base
         base.BaseStart();
 
         //初期状態セット
-        coroutine = StartCoroutine(ChangeState(1.0f, ActionState.AfterImage));
+        //coroutine = StartCoroutine(ChangeState(1.0f, ActionState.AfterImage));
 
         SE = GetComponent<AudioSource>();
 
@@ -72,17 +72,23 @@ public class ViveHaniwonder : Enemy_Base
         //HPがなくなった時の処理
         if (GetHP() <= 0)
         {
-            //ダウン演出
-            //if (animState != (int)ActionState.Stop)
-            //{
-            //    base.animator.SetTrigger("Die");
-            //    Destroy(this.gameObject, 3);//とりあえず消す
-            //}
-            flag_fade = true;
-            transform.Rotate(2, 0, 0);//たおしてみる
-            Destroy(this.gameObject, 1);//とりあえず消す
-            state = ActionState.Stop;
-            animState = (int)ActionState.Stop;
+            if (!flag_die)
+            {
+                //ダウン演出
+                //if (animState != (int)ActionState.Stop)
+                //{
+                //    base.animator.SetTrigger("Die");
+                //    Destroy(this.gameObject, 3);//とりあえず消す
+                //}
+                flag_fade = true;
+                transform.Rotate(2, 0, 0);//たおしてみる
+                SE.PlayOneShot(cv[1]);//SE
+                Destroy(this.gameObject, 3);//とりあえず消す
+                state = ActionState.Stop;
+                animState = (int)ActionState.Stop;
+                flag_die = true;
+            }
+            
 
         }
 
@@ -233,7 +239,7 @@ public class ViveHaniwonder : Enemy_Base
 
         yield return new WaitForSeconds(0.25f);//
 
-        SE.PlayOneShot(cv[0]);//SE
+        SE.PlayOneShot(cv[1]);//SE
 
         Bullet[0].SetActive(true);
 
