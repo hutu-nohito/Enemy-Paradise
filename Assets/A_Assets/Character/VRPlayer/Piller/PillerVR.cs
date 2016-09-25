@@ -7,6 +7,7 @@ public class PillerVR : Magic_Parameter {
 
     private Magic_Controller MC;
     private Player_ControllerVR pcVR;
+    public GameObject HandR;
     private Animator animator;//アニメ
     private AudioSource SE;//音
 
@@ -27,7 +28,20 @@ public class PillerVR : Magic_Parameter {
     // Update is called once per frame
     void Update()
     {
+        //RaycastHit hit;
+        //GameObject hitObject;
 
+        //Vector3 LineStart = HandR.transform.position;
+        //Vector3 LineDirection = HandR.transform.TransformDirection(Vector3.forward);//
+
+        //if (Physics.Raycast(LineStart, LineDirection, out hit, 5000))
+        //{
+        //    hitObject = hit.collider.gameObject;//レイヤーがIgnoreLayerのObjectは弾かれる。
+
+        //    Debug.DrawLine(LineStart, hit.point, Color.blue);
+        //    //Debug.Log(hitObject);
+
+        //}
     }
 
     void Fire()
@@ -50,45 +64,35 @@ public class PillerVR : Magic_Parameter {
         //MPの処理
         pcVR.SetMP(pcVR.GetMP() - GetSMP());
 
-        //弾を飛ばす処理
-        //if (pcVR.GetF_Watch())//注目してたら相手の足元
-        //{
-        //    //bullet.transform.position = zcamera.Target.transform.position - new Vector3(0, zcamera.Target.transform.localScale.y / 2,0);//前方に飛ばす
+        //bullet.transform.position = zcamera.Target.transform.position - new Vector3(0, zcamera.Target.transform.localScale.y / 2, 0);//前方に飛ばす
 
-        //    //足元を見る
-        //    RaycastHit hit;
-        //    GameObject hitObject;
+        //足元を見る
+        RaycastHit hit;
+        GameObject hitObject;
 
-        //    Vector3 LineStart = new Vector3(zcamera.Target.transform.position.x, zcamera.Target.transform.position.y /*- zcamera.Target.transform.localScale.y / 2*/, zcamera.Target.transform.position.z);
-        //    Vector3 LineDirection = Vector3.down;//下でおｋ
+        Vector3 LineStart = HandR.transform.position;
+        Vector3 LineDirection = HandR.transform.TransformDirection(Vector3.forward);//
 
-        //    if (Physics.Raycast(LineStart, LineDirection, out hit, 50))
-        //    {
-        //        hitObject = hit.collider.gameObject;//レイヤーがIgnoreLayerのObjectは弾かれる。
+        if (Physics.Raycast(LineStart, LineDirection, out hit, 5000))
+        {
+            hitObject = hit.collider.gameObject;//レイヤーがIgnoreLayerのObjectは弾かれる。
 
-        //        //Debug.DrawLine(LineStart, hit.point, Color.blue);
-        //        //Debug.Log(hitObject);
+            Debug.DrawLine(LineStart, hit.point, Color.blue);
+            //Debug.Log(hitObject);
 
-        //        //地面だったら
-        //        if (hitObject.gameObject.name == "Terrain")
-        //        {
+            //地面だったら
+            if (hitObject.gameObject.name == "Terrain")
+            {
 
-        //            bullet.transform.position = hit.point;
-        //            Debug.Log("w");
+                bullet.transform.position = hit.point;
 
-        //        }
-        //    }
-        //    else
-        //    {
-        //        bullet.transform.position = new Vector3(zcamera.Target.transform.position.x, zcamera.Target.transform.position.y - zcamera.Target.transform.localScale.y / 2, zcamera.Target.transform.position.z);//下に地面がなかったら
-        //    }
-        //}
-        //else
-        //{
-        //    bullet.transform.position = transform.position;
-        //}
+            }
+        }
+        else
+        {
+            bullet.transform.position = transform.position;//上さしてたら
+        }
 
-        bullet.transform.position = transform.position;
         bullet.transform.rotation = Quaternion.LookRotation(Parent.transform.TransformDirection(Vector3.forward));//回転させて弾頭を進行方向に向ける
 
         //効果音と演出

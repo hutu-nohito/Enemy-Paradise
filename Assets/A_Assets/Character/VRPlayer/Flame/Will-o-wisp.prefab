@@ -493,7 +493,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   power: 2
   speed: 5
-  attack_time: 5
+  attack_time: 3
   rigid_time: 1
   magicElement: 2
   property: 0
