@@ -466,7 +466,7 @@ GameObject:
   - 114: {fileID: 114000010351805060}
   m_Layer: 0
   m_Name: JewelGolem_Chara
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -527,7 +527,7 @@ GameObject:
   - 4: {fileID: 4000012095110704}
   - 65: {fileID: 65000013742148646}
   - 114: {fileID: 114000010735362532}
-  m_Layer: 1
+  m_Layer: 8
   m_Name: Hit_Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1050,11 +1050,11 @@ GameObject:
   - 114: {fileID: 114000013862966074}
   m_Layer: 8
   m_Name: Attack_Hammer
-  m_TagString: Bullet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000013907132462
 GameObject:
   m_ObjectHideFlags: 1
@@ -1191,7 +1191,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011109003626}
-  m_LocalRotation: {x: 0.70105755, y: -0.7010573, z: 0.09229551, w: 0.09229649}
+  m_LocalRotation: {x: 0.7010575, y: -0.70105726, z: 0.092295505, w: 0.09229648}
   m_LocalPosition: {x: -0.03027217, y: 4.2362947, z: -0.3712613}
   m_LocalScale: {x: 0.22488116, y: 0.2529912, z: 0.1002454}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1548,7 +1548,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012617024664}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 105.13, y: 6.1, z: 84.04}
+  m_LocalPosition: {x: 105.13, y: 6.1, z: 85.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1812,7 +1812,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011526792900}
   m_LocalRotation: {x: 0.709485, y: -0.7046665, z: -0.0061500026, w: -0.006191949}
-  m_LocalPosition: {x: 0.32720256, y: 0.013759212, z: -0.5545155}
+  m_LocalPosition: {x: 0.33, y: 0.02, z: -0.82}
   m_LocalScale: {x: 0.7010329, y: 1.0446068, z: 0.5223031}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -1910,7 +1910,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010403183422}
-  m_LocalRotation: {x: 0.70105755, y: -0.7010573, z: 0.09229551, w: 0.09229649}
+  m_LocalRotation: {x: 0.7010575, y: -0.70105726, z: 0.092295505, w: 0.09229648}
   m_LocalPosition: {x: 0.020734802, y: 4.1750827, z: 2.1070874}
   m_LocalScale: {x: 0.22488116, y: 0.2529912, z: 0.1002454}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1962,7 +1962,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010170499388}
-  m_LocalRotation: {x: 0.70105755, y: -0.7010573, z: 0.09229551, w: 0.09229649}
+  m_LocalRotation: {x: 0.7010575, y: -0.70105726, z: 0.092295505, w: 0.09229648}
   m_LocalPosition: {x: -0.03027217, y: 4.2362947, z: -0.3712613}
   m_LocalScale: {x: 0.22488116, y: 0.2529912, z: 0.1002454}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2004,7 +2004,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010124747864}
-  m_LocalRotation: {x: 0.7010575, y: -0.70105726, z: 0.092295505, w: 0.09229648}
+  m_LocalRotation: {x: 0.70105755, y: -0.7010573, z: 0.09229551, w: 0.09229649}
   m_LocalPosition: {x: -0.03027217, y: 4.2362947, z: -0.3712613}
   m_LocalScale: {x: 0.22488116, y: 0.2529912, z: 0.1002454}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2030,7 +2030,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012445410618}
-  m_LocalRotation: {x: 0.70105755, y: -0.7010573, z: 0.09229551, w: 0.09229649}
+  m_LocalRotation: {x: 0.7010575, y: -0.70105726, z: 0.092295505, w: 0.09229648}
   m_LocalPosition: {x: -0.03027217, y: 4.2362947, z: -0.3712613}
   m_LocalScale: {x: 0.22488116, y: 0.2529912, z: 0.1002454}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2096,7 +2096,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012991541508}
-  m_LocalRotation: {x: 0.7010575, y: -0.70105726, z: 0.092295505, w: 0.09229648}
+  m_LocalRotation: {x: 0.70105755, y: -0.7010573, z: 0.09229551, w: 0.09229649}
   m_LocalPosition: {x: -0.03027217, y: 4.2362947, z: -0.3712613}
   m_LocalScale: {x: 0.22488116, y: 0.2529912, z: 0.1002454}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2337,11 +2337,11 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011482620400}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 2000
   m_Drag: 0
   m_AngularDrag: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
+  m_UseGravity: 1
+  m_IsKinematic: 1
   m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 0
@@ -2421,14 +2421,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e10476510ea4341b08be839e845e6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QuestStageID: 0
-  CharaName: Lilith
+  QuestStageID: 3
+  CharaName: Golem
   level: 1
-  H_point: 3
+  H_point: 100
   M_point: 10
   power: 1
   def: 0
-  speed: 5
+  speed: 1
   jump: 6
   weak_element: 
   proof_element: 
@@ -2443,6 +2443,7 @@ MonoBehaviour:
   flag_ground: 1
   flag_fade: 0
   flag_AfterImage: 0
+  flag_die: 0
   flag_poison: 0
   flag_knock: 0
   flag_invincible: 0
@@ -2481,7 +2482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27b51ddb5f661d94991e344fc5e5092c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 50
+  power: 5
   speed: 1
   attack_time: 5
   rigid_time: 5
@@ -2501,7 +2502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27b51ddb5f661d94991e344fc5e5092c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 100
+  power: 10
   speed: 1
   attack_time: 5
   rigid_time: 5
@@ -2518,7 +2519,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1000013899098208}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 1.5
   m_Direction: 1
@@ -2532,7 +2533,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1
+  m_Radius: 0.6
   m_Height: 5
   m_Direction: 1
   m_Center: {x: 0, y: 2.5, z: 0}
