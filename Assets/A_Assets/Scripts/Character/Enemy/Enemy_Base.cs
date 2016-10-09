@@ -104,7 +104,7 @@ public class Enemy_Base : Character_Parameters
 
     //プレイヤーとの位置関係/////////////////////////////////////
     //プレイヤーとの距離
-    public float GetDistansP()
+    public float GetDistanceP()
     {
         Vector3 dist = Player.transform.position - transform.position;
         return dist.magnitude;
@@ -130,10 +130,13 @@ public class Enemy_Base : Character_Parameters
         return theta;//radian
     }
 
-    //敵とプレイヤーの位置関係によって座標を入れ替える
-    public Vector3 AffineRot(Vector3 Position)
+    //敵にプレイヤーの周りを旋回させる
+    //自分のポジションと回転させたい角度(degree)を送る
+    public Vector3 AffineRot(Vector3 Position ,float theta)
     {
-        var theta = GetAngleP();
+        //var theta = GetAngleP();
+        theta = theta * (Mathf.PI / 180); //degreeをradianに変換
+        theta = theta / GetDistanceP() * Time.deltaTime;//長さによって差が出ないように調整
         var cal = Vector3.zero;
         var relativePos = Position - Player.transform.position;
         cal.x = relativePos.x * Mathf.Cos(theta) - relativePos.z * Mathf.Sin(theta);

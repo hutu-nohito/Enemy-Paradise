@@ -207,8 +207,8 @@ public class ViveGolem : Enemy_Base {
 
         //プレイヤに突進
         iTween.MoveTo(this.gameObject, iTween.Hash(
-                "x", transform.position.x + (Player.transform.position - transform.position).normalized.x * (GetDistansP() - 3),//定数が突進距離
-                "z", transform.position.z + (Player.transform.position - transform.position).normalized.z * (GetDistansP() - 3),//定数が突進距離
+                "x", transform.position.x + (Player.transform.position - transform.position).normalized.x * (GetDistanceP() - 3),//定数が突進距離
+                "z", transform.position.z + (Player.transform.position - transform.position).normalized.z * (GetDistanceP() - 3),//定数が突進距離
                 "time", 0.5f,
                 "easetype", iTween.EaseType.easeInBack)
 

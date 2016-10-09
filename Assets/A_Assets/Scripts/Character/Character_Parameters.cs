@@ -138,6 +138,10 @@ public class Character_Parameters : MonoBehaviour {
     public bool GetDie() { return flag_die; }
     public void ReverseDie() { flag_die = !flag_die; }
 
+    public bool flag_win = false;//相手を倒した時のフラグ
+    public bool GetWin() { return flag_win; }
+    public void ReverseWin() { flag_win = !flag_win; }
+
     //状態異常(ailment)/////////////////////////////////////////////////////////////////
 
     public bool flag_poison = false;//毒状態

@@ -96,11 +96,20 @@ public class ViveHaniwonder : Enemy_Base
         if (base.Player.GetComponent<Character_Parameters>().GetHP() <= 0)
         {
             //StopAllCoroutines();
-            state = ActionState.Stop;
-            animState = (int)ActionState.Stop;
-            ////勝利のポーズ
-            //base.animator.SetTrigger("Win");
-            transform.Rotate(0, 10, 0);//とりあえず回転させとく
+            if (!flag_win)//一回だけの処理
+            {
+                flag_win = true;
+                state = ActionState.Stop;
+                animState = (int)ActionState.Attack;
+                ReverseAfterImage();//残像
+                base.animator.SetTrigger("Run");
+            }
+
+            //勝利のポーズ(相手の周りを走り回る)
+            transform.position = base.AffineRot(transform.position, 2000);
+            //前を向ける(進行方向)
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(GetMove()), 0.5f);
+
         }
 
         //空中判定
@@ -126,18 +135,12 @@ public class ViveHaniwonder : Enemy_Base
         //カウンター
         if (state == ActionState.Counter)
         {
-            //残像
-            //StartCoroutine(AfterImage());
-
             coroutine = StartCoroutine(Counter());
         }
 
         //アタックするだけ
         if (state == ActionState.Attack)
         {
-
-            //残像
-            //StartCoroutine(AfterImage());
             coroutine = StartCoroutine(Attack());
         }
 
@@ -162,9 +165,7 @@ public class ViveHaniwonder : Enemy_Base
 
         if(state == ActionState.AfterImage)
         {
-            //残像
-            //StartCoroutine(AfterImage());
-
+            
             coroutine = StartCoroutine(AvatarAttack());
         }
 
@@ -348,9 +349,9 @@ public class ViveHaniwonder : Enemy_Base
             //Avatars[i].GetComponentInChildren<Haniwonder>().animator.SetTrigger("Run");
             //Avatars[i].GetComponentInChildren<Haniwonder>().AttackCol.SetActive(true);
             Avatars[i].transform.position = new Vector3(
-                Player.transform.position.x + GetDistansP() * Mathf.Cos(Angle + ((i - 2) * 30 * Mathf.PI / 180)),
+                Player.transform.position.x + GetDistanceP() * Mathf.Cos(Angle + ((i - 2) * 30 * Mathf.PI / 180)),
                 transform.position.y,
-                Player.transform.position.z + GetDistansP() * (Mathf.Sin(Angle + ((i - 2) * 30 * Mathf.PI / 180)))
+                Player.transform.position.z + GetDistanceP() * (Mathf.Sin(Angle + ((i - 2) * 30 * Mathf.PI / 180)))
                 );
             //Avatars[i].transform.position = AffineRot(Avatars[i].transform.position);//playerとの位置関係で変換
                 Avatars[i].transform.LookAt(Player.transform.position);
@@ -363,9 +364,9 @@ public class ViveHaniwonder : Enemy_Base
             //Avatars[i].GetComponentInChildren<Haniwonder>().animator.SetTrigger("Run");
             //Avatars[i].GetComponentInChildren<Haniwonder>().AttackCol.SetActive(true);
             Avatars[i].transform.position = new Vector3(
-                Player.transform.position.x + GetDistansP() * Mathf.Cos(Angle + ((i - 1) * 30 * Mathf.PI / 180)),
+                Player.transform.position.x + GetDistanceP() * Mathf.Cos(Angle + ((i - 1) * 30 * Mathf.PI / 180)),
                 transform.position.y,
-                Player.transform.position.z + GetDistansP() * (Mathf.Sin(Angle + ((i - 1) * 30 * Mathf.PI / 180)))
+                Player.transform.position.z + GetDistanceP() * (Mathf.Sin(Angle + ((i - 1) * 30 * Mathf.PI / 180)))
                 );
             //Avatars[i].transform.position = AffineRot(Avatars[i].transform.position);//playerとの位置関係で変換
             Avatars[i].transform.LookAt(Player.transform.position);
