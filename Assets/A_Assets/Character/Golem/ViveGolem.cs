@@ -19,11 +19,14 @@ public class ViveGolem : Enemy_Base {
     //キャラクタの状態
     public enum ActionState
     {
-        Stop,//アニメーションが終わるまで待機(状態でなく網目ーションの整合性のために必要)
+        Stop,//アニメーションが終わるまで待機(状態でなくアニメーションの整合性のために必要)
+        Idle,//待機
         SpikeAttack,//とげ攻撃
         HammerAttack,//ハンマー攻撃
+        HammerRot,//回転攻撃
         Jump,//跳ぶらしい
         Fight,//臨戦態勢
+        Knockback,//必要なのか？
 
     }//intにすれば優先度にできる
     public ActionState state = ActionState.Stop;
@@ -44,7 +47,7 @@ public class ViveGolem : Enemy_Base {
         CCZ = Camera.main.gameObject.GetComponent<Camera_ControllerZ>();
 
         //初期状態セット
-        //coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Fight));
+        coroutine = StartCoroutine(ChangeState(30.0f, ActionState.Fight));
 
         //SE = GetComponent<AudioSource>();
 
@@ -116,6 +119,15 @@ public class ViveGolem : Enemy_Base {
             //アニメーションの最中など動かしたくないときに用いる
         }
 
+        //待機
+        if (state == ActionState.Idle)
+        {
+            if (animState != (int)ActionState.Idle)
+            {
+                base.animator.SetTrigger("Idle");
+            }
+        }
+
         //とげ攻撃
         if (state == ActionState.SpikeAttack)
         {
@@ -126,6 +138,12 @@ public class ViveGolem : Enemy_Base {
         if (state == ActionState.HammerAttack)
         {
             coroutine = StartCoroutine(HammerAttack());
+        }
+
+        //回転攻撃
+        if (state == ActionState.HammerRot)
+        {
+            coroutine = StartCoroutine(HammerRot());
         }
 
         //ジャーんぷ
@@ -142,32 +160,51 @@ public class ViveGolem : Enemy_Base {
 
             //とりあえず追跡
             iTween.MoveUpdate(this.gameObject, iTween.Hash(
-                "position", new Vector3(base.Player.transform.position.x, transform.position.y, base.Player.transform.position.z),
+                "position", new Vector3(transform.position.x + (base.Player.transform.position - transform.position).normalized.x,
+                                        transform.position.y,
+                                        transform.position.z + (base.Player.transform.position - transform.position).normalized.z),
                 "time", 10 / speed)
                 );
 
             if (animState != (int)ActionState.Fight)
             {
-                base.animator.SetTrigger("Idle");
+                base.animator.SetTrigger("Walk");
             }
 
-            //たまーに攻撃
-            if ((int)Time.time % 3 == 0)//5秒ごと
+            if (GetDistanceP() < 10)
+            {
+                //たまーにとげ攻撃
+                if ((int)Time.time % 10 == 0)//10秒ごと
+                {
+                    float randAt1 = Random.value;
+                    float randAt2 = Random.value;
+
+                    if (randAt1 > 0.9)
+                    {
+                        if (randAt2 < 0.3)
+                        {
+                            state = ActionState.SpikeAttack;
+                        }
+                    }
+                }
+            }
+            //近づいたらハンマー攻撃
+            if (GetDistanceP() < 5)
             {
                 float randAt1 = Random.value;
                 float randAt2 = Random.value;
 
-                if (randAt1 > 0.5)
+                if (randAt1 < 0.7)
                 {
-                    if (randAt2 < 0.7)
-                    {
-                        state = ActionState.HammerAttack;
-                    }
-                    else
-                    {
-                        state = ActionState.SpikeAttack;
-                    }
+                    state = ActionState.HammerAttack;
                 }
+                else
+                {
+                    state = ActionState.HammerRot;
+
+                }
+
+                
             }
 
         }
@@ -244,7 +281,7 @@ public class ViveGolem : Enemy_Base {
 
         base.animator.SetTrigger("HammerAttack");
         //前を向ける
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(base.Player.transform.position - transform.position), 0.05f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(base.Player.transform.position - transform.position), 0.5f);
         transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
 
         base.animator.speed = 0.2f;//振り上げ
@@ -259,13 +296,12 @@ public class ViveGolem : Enemy_Base {
         yield return new WaitForSeconds(0.1f);//たたいた瞬間
         base.animator.speed = 1.0f;//振り降ろし
 
-        CCZ.flag_quake = true;
+        //CCZ.flag_quake = true;//Viveのカメラを揺らすのは難しいので別の方法を考える
         Player.GetComponent<Player_ControllerVR>().SetKeylock();
 
         yield return new WaitForSeconds(0.3f);//揺れが収まる
         
-
-        CCZ.flag_quake = false;
+        //CCZ.flag_quake = false;
 
         yield return new WaitForSeconds(0.5f);//攻撃後のため
 
@@ -273,6 +309,67 @@ public class ViveGolem : Enemy_Base {
         AttackCol[1].tag = ("Untagged");//攻撃でなくす
         AttackCol[1].GetComponents<CapsuleCollider>()[1].enabled = false;//攻撃判定なくす
         AttackCol[1].GetComponent<CapsuleCollider>().enabled = true;//接触判定つける
+        
+        state = ActionState.Fight;
+        isCoroutine = false;
+    }
+
+    //回転攻撃
+    IEnumerator HammerRot()
+    {
+        if (isCoroutine) yield break;
+        isCoroutine = true;
+
+        base.animator.SetTrigger("HammerRot");
+        //前を向ける
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(base.Player.transform.position - transform.position), 0.5f);
+        transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+
+        //base.animator.speed = 0.2f;//振り上げ
+        yield return new WaitForSeconds(0.5f);//予備動作
+
+        AttackCol[1].tag = ("Bullet");//攻撃にする
+        AttackCol[1].GetComponents<CapsuleCollider>()[1].enabled = true;//攻撃判定
+        AttackCol[1].GetComponents<CapsuleCollider>()[0].enabled = false;//接触判定
+
+        //base.animator.speed = 1.5f;//振り降ろし
+        base.animator.speed = 3.0f;//振り降ろし
+        yield return new WaitForSeconds(0.1f);//たたいた瞬間
+        base.animator.speed = 1.0f;//振り降ろし
+
+        Player.GetComponent<Player_ControllerVR>().SetKeylock();
+
+        yield return new WaitForSeconds(6.5f);//攻撃後のため
+
+        Player.GetComponent<Player_ControllerVR>().SetActive();
+        AttackCol[1].tag = ("Untagged");//攻撃でなくす
+        AttackCol[1].GetComponents<CapsuleCollider>()[1].enabled = false;//攻撃判定なくす
+        AttackCol[1].GetComponent<CapsuleCollider>().enabled = true;//接触判定つける
+
+        state = ActionState.Fight;
+        isCoroutine = false;
+    }
+
+    IEnumerator Knockback()
+    {
+        if (isCoroutine) yield break;
+        isCoroutine = true;
+
+        if (animState != (int)ActionState.Knockback)
+        {
+            base.animator.SetTrigger("Knockback");
+        }        
+
+        //プレイヤから遠ざかる方向
+        iTween.MoveTo(this.gameObject, iTween.Hash(
+                "x", transform.position.x - (Player.transform.position - transform.position).normalized.x * 3,//定数が突進距離
+                "z", transform.position.z - (Player.transform.position - transform.position).normalized.z * 3,//定数が突進距離
+                "time", 1.5f,
+                "easetype", iTween.EaseType.easeOutBack)
+
+                );
+
+        yield return new WaitForSeconds(1.5f);//攻撃後のため
         
         state = ActionState.Fight;
         isCoroutine = false;
@@ -319,11 +416,11 @@ public class ViveGolem : Enemy_Base {
 
         yield return new WaitForSeconds(0.5f);//予備動作
 
-        CCZ.flag_quake = true;
+        //CCZ.flag_quake = true;
 
         yield return new WaitForSeconds(1.0f);//予備動作
 
-        CCZ.flag_quake = false;
+        //CCZ.flag_quake = false;
 
         base.animator.SetTrigger("preJump");
         //前を向ける
@@ -360,14 +457,37 @@ public class ViveGolem : Enemy_Base {
 
         yield return new WaitForSeconds(0.5f);//予備動作
 
-        CCZ.flag_quake = true;
+        //CCZ.flag_quake = true;//Viveではできない。別の方法を模索
 
         yield return new WaitForSeconds(1.0f);//予備動作
 
-        CCZ.flag_quake = false;
+        //CCZ.flag_quake = false;
 
         state = ActionState.SpikeAttack;
         isCoroutine = false;
+    }
+
+    public void Damage()
+    {
+        //イベント側で優先度を確認すればよい
+        if (state >= ActionState.Idle)//待機より優先順位が下
+        {
+            //CCZ.flag_quake = false;
+            base.animator.speed = 1.0f;
+            state = ActionState.Knockback;
+            isCoroutine = false;
+            StartCoroutine(Knockback());
+        }
+    }
+
+    //接地判定欲しい
+    void OnCollisionEnter()
+    {
+        RaycastHit groundHit;
+        if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.2f))
+        {
+            flag_ground = true;
+        }
     }
 
     //アニメーション///////////////////////////////////////////////////////
@@ -375,12 +495,17 @@ public class ViveGolem : Enemy_Base {
 
     public void AnimIdle()
     {
-        animState = (int)ActionState.Stop;
+        animState = (int)ActionState.Idle;
     }
 
     public void AnimWalk()
     {
         animState = (int)ActionState.Fight;
+    }
+
+    public void AnimKnockback()
+    {
+        animState = (int)ActionState.Knockback;
     }
 
     public void AnimSpikeAttack()
@@ -391,6 +516,11 @@ public class ViveGolem : Enemy_Base {
     public void AnimHammerAttack()
     {
         animState = (int)ActionState.HammerAttack;
+    }
+
+    public void AnimHammerRot()
+    {
+        animState = (int)ActionState.HammerRot;
     }
 
     public void AnimJump()
