@@ -44,7 +44,7 @@ public class ViveGolem : Enemy_Base {
         CCZ = Camera.main.gameObject.GetComponent<Camera_ControllerZ>();
 
         //初期状態セット
-        coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Fight));
+        //coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Fight));
 
         //SE = GetComponent<AudioSource>();
 
@@ -151,7 +151,7 @@ public class ViveGolem : Enemy_Base {
                 base.animator.SetTrigger("Idle");
             }
 
-            //たまーに避けつつ攻撃
+            //たまーに攻撃
             if ((int)Time.time % 3 == 0)//5秒ごと
             {
                 float randAt1 = Random.value;
