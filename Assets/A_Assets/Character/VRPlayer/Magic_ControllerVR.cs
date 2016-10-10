@@ -48,6 +48,7 @@ public class Magic_ControllerVR : MonoBehaviour {
     public GameObject[] JinPoint;//魔法陣の通過点
     public GameObject[] JinUI;//魔法陣のUI
     public GameObject[] MagicUI;//魔法アイコン
+    public GameObject HPgauge;//体力ゲージ
     private bool flag_Jin = false;//魔法陣受付中
     private List<int> MagicList = new List<int>();//点つなぎの番号
     //めんどくさいので魔法はここに直打ち(数は覚えとく)
@@ -212,6 +213,7 @@ public class Magic_ControllerVR : MonoBehaviour {
                 JinPoint[i].SetActive(true);
                 JinUI[i].SetActive(true);
             }
+            HPgauge.SetActive(true);
         }
         else
         {
@@ -221,6 +223,7 @@ public class Magic_ControllerVR : MonoBehaviour {
                 JinUI[i].SetActive(false);
                 JinUI[i].GetComponent<Image>().color = new Color(1.0f,1.0f,1.0f,1.0f);//戻しとく
             }
+            HPgauge.SetActive(false);
         }
 
         if(stockMagic != 100)

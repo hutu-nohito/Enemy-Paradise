@@ -7,7 +7,7 @@ public class HPGauge : MonoBehaviour
 
     private Image circleGauge; // CircleGauge
 
-    private Player_ControllerZ pcZ;
+    private Player_ControllerVR pcZ;
     private float maxHP = 100;
     private float oldHP = 100;
     private float maxMP = 100;
@@ -28,7 +28,7 @@ public class HPGauge : MonoBehaviour
     void Start()
     {
         circleGauge = GetComponent<Image>();
-        pcZ = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_ControllerZ>();
+        pcZ = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_ControllerVR>();
 
         switch (type)
         {
