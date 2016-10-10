@@ -20,9 +20,9 @@ public class ViveGolem : Enemy_Base {
     public enum ActionState
     {
         Stop,//アニメーションが終わるまで待機(状態でなくアニメーションの整合性のために必要)
+        HammerAttack,//ハンマー攻撃
         Idle,//待機
         SpikeAttack,//とげ攻撃
-        HammerAttack,//ハンマー攻撃
         HammerRot,//回転攻撃
         Jump,//跳ぶらしい
         Fight,//臨戦態勢
@@ -38,6 +38,7 @@ public class ViveGolem : Enemy_Base {
 
     //演出
     private Camera_ControllerZ CCZ;
+    public GameObject diedGolem;//やられたとき
 
     // Use this for initialization
     void Start()
@@ -69,20 +70,18 @@ public class ViveGolem : Enemy_Base {
         }
 
         //HPがなくなった時の処理
-        if (GetHP() <= 0)
+        if (base.GetHP() <= 0)
         {
-            //ダウン演出
-            //if (animState != (int)ActionState.Stop)
-            //{
-            //    base.animator.SetTrigger("Die");
-            //    Destroy(this.gameObject, 3);//とりあえず消す
-            //}
-            flag_fade = true;
-            transform.Rotate(2, 0, 0);//たおしてみる
-            Destroy(this.gameObject, 1);//とりあえず消す
-            state = ActionState.Stop;
-            animState = (int)ActionState.Stop;
-
+            if(flag_die == false)
+            {
+                flag_die = true;
+                diedGolem.SetActive(true);
+                this.gameObject.SetActive(false);
+                //flag_fade = true;
+                //state = ActionState.Stop;
+                //animState = (int)ActionState.Stop;
+                //Destroy(this.gameObject, 10);//とりあえず消す
+            }      
         }
 
         //相手がいなくなった時の処理
