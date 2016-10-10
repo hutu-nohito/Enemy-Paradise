@@ -53,7 +53,7 @@ public class ViveHaniwonder : Enemy_Base
         base.BaseStart();
 
         //初期状態セット
-        //coroutine = StartCoroutine(ChangeState(1.0f, ActionState.AfterImage));
+        coroutine = StartCoroutine(ChangeState(15.0f, ActionState.Idle));
 
         SE = GetComponent<AudioSource>();
 
@@ -79,6 +79,9 @@ public class ViveHaniwonder : Enemy_Base
         {
             if (!flag_die)
             {
+                StopAllCoroutines();//コルーチンはどうやって止めたらいいんだろう
+                state = ActionState.Stop;
+                animState = (int)ActionState.Stop;
                 flag_die = true;
                 base.animator.SetTrigger("Die");
                 Destroy(this.gameObject, 7);//とりあえず消す
@@ -98,18 +101,29 @@ public class ViveHaniwonder : Enemy_Base
             //StopAllCoroutines();
             if (!flag_win)//一回だけの処理
             {
+                StopAllCoroutines();//コルーチンはどうやって止めたらいいんだろう
                 flag_win = true;
                 state = ActionState.Stop;
                 animState = (int)ActionState.Run;
                 ReverseAfterImage();//残像
-                base.animator.SetTrigger("Run");
+                if (level == 1)//はにわんだー
+                {
+                    base.animator.SetTrigger("Run");
+                }
+                if (level == 3)//熱血
+                {
+                    base.animator.SetTrigger("Dance");
+                }
             }
 
-            //勝利のポーズ(相手の周りを走り回る)
-            transform.position = base.AffineRot(transform.position, 2000);
-            //前を向ける(進行方向)
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(GetMove()), 0.5f);
-
+            if(level == 1)//はにわんだー
+            {
+                //勝利のポーズ(相手の周りを走り回る)
+                transform.position = base.AffineRot(transform.position, 2000);
+                //前を向ける(進行方向)
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(GetMove()), 0.5f);
+            }
+            
         }
 
         //空中判定
@@ -130,6 +144,30 @@ public class ViveHaniwonder : Enemy_Base
         if (state == ActionState.Stop)
         {
             //アニメーションの最中など動かしたくないときに用いる
+        }
+
+        if (state == ActionState.Idle)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(base.Player.transform.position - transform.position), 0.5f);
+            if (animState != (int)ActionState.Idle)
+            {
+                base.animator.SetTrigger("Idle");
+            }
+
+            //たまーにとげ攻撃
+            if ((int)Time.time % 7 == 0)//7秒ごと
+            {
+                float randAt1 = Random.value;
+                float randAt2 = Random.value;
+
+                if (randAt1 > 0.9)
+                {
+                    if (randAt2 < 0.3)
+                    {
+                        state = ActionState.Tackle;
+                    }
+                }
+            }
         }
 
         //カウンター
@@ -193,15 +231,19 @@ public class ViveHaniwonder : Enemy_Base
         if (isCoroutine) yield break;
         isCoroutine = true;
 
+        base.animator.SetTrigger("Yell");
+
+        yield return new WaitForSeconds(2.0f);
+
         base.animator.SetTrigger("Run");
         TacleCol.SetActive(true);
 
         //プレイヤに突進
         ReverseAfterImage();//残像
         iTween.MoveTo(this.gameObject, iTween.Hash(
-                "x", transform.position.x + (Player.transform.position - transform.position).normalized.x * 10,//定数が突進距離
-                "z", transform.position.z + (Player.transform.position - transform.position).normalized.z * 10,//定数が突進距離
-                "time", 1.0f,
+                "x", transform.position.x + (Player.transform.position - transform.position).normalized.x * 30,//定数が突進距離
+                "z", transform.position.z + (Player.transform.position - transform.position).normalized.z * 30,//定数が突進距離
+                "time", 3.0f,
                 "easetype", iTween.EaseType.easeInOutBack)
 
                 );
@@ -216,11 +258,11 @@ public class ViveHaniwonder : Enemy_Base
 
                 );
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(4);
         ReverseAfterImage();//残像
 
         TacleCol.SetActive(false);
-        state = ActionState.Exercise;
+        state = ActionState.Idle;
         isCoroutine = false;
     }
 
@@ -318,7 +360,7 @@ public class ViveHaniwonder : Enemy_Base
         //yield return new WaitForSeconds(1 - randomdist);
 
         TacleCol.SetActive(false);
-        state = ActionState.Beam;
+        state = ActionState.Idle;
         isCoroutine = false;
     }
 
@@ -438,7 +480,7 @@ public class ViveHaniwonder : Enemy_Base
 
         yield return new WaitForSeconds(3);
 
-        state = ActionState.AfterImage;
+        state = ActionState.Idle;
 
         isCoroutine = false;
     }
@@ -468,16 +510,28 @@ public class ViveHaniwonder : Enemy_Base
 
         yield return new WaitForSeconds(1.5f);//攻撃後のため
 
-        state = ActionState.Counter;
+        state = ActionState.Idle;
         isCoroutine = false;
     }
 
     public void Damage()
     {
         //イベント側で優先度を確認すればよい
-        if (state > ActionState.Guard)//体操より優先順位が下
+        if (GetHP() >= 0)
         {
-            state = ActionState.Counter;
+            if (state > ActionState.Guard)//体操より優先順位が下
+            {
+                state = ActionState.Knockback;
+
+                //いろいろ消さないと・・・(後処理を別でできるといいかも)
+                StopAllCoroutines();//コルーチンはどうやって止めたらいいんだろう
+                TacleCol.SetActive(false);
+                isCoroutine = false;
+                Bullet[0].SetActive(false);
+                Bullet[0].transform.rotation = new Quaternion(0, 0, 0, 0);
+
+                StartCoroutine(Knockback());
+            }
         }
     }
 
