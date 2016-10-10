@@ -45,7 +45,7 @@ public class DeathHand : Enemy_Base {
         base.BaseStart();
 
         //初期状態セット
-        coroutine = StartCoroutine(ChangeState(30.0f, ActionState.Search));
+        //coroutine = StartCoroutine(ChangeState(30.0f, ActionState.Search));
         //coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Warp));
 
         //CPU戦用
