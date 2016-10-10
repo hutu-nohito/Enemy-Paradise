@@ -47,7 +47,8 @@ public class Magic_ControllerVR : MonoBehaviour {
     public GameObject HandR,HandL;
     public GameObject[] JinPoint;//魔法陣の通過点
     public GameObject[] JinUI;//魔法陣のUI
-    public GameObject[] MagicUI;//魔法アイコン
+    public Sprite[] MagicTexture;//
+    public GameObject[] MagicIcon;//魔法のアイコン
     public GameObject HPgauge;//体力ゲージ
     private bool flag_Jin = false;//魔法陣受付中
     private List<int> MagicList = new List<int>();//点つなぎの番号
@@ -61,7 +62,8 @@ public class Magic_ControllerVR : MonoBehaviour {
         3,1,4,2,       //(16,17 18,19)フレイムピラー
         1,2,4,3         //(20,23)バリア
     };
-    private int stockMagic = 100;//ストックする魔法(とりあえず100に戻す)
+    private List<int> stockMagic = new List<int>();//ストックする魔法(何も入ってないとき先頭は100)(特に何もなければ先頭を使う)(今は3つまで！)
+    public int Max_stockMagic = 3;
     private int MagicLevel = 1;//いったん点つなぎを切るときよう
 
     //入力受付
@@ -141,6 +143,8 @@ public class Magic_ControllerVR : MonoBehaviour {
 
         }
 
+        stockMagic.Add(100);
+
     }
 
     void MagicSet(int a, int b, int c, int d, int e, int f)
@@ -168,6 +172,36 @@ public class Magic_ControllerVR : MonoBehaviour {
         selectmagic[4] = e;
         selectmagic[5] = f;
 
+    }
+
+    //魔法を増やすとき
+    void AddStockMagic(int addMagic)
+    {
+        if (stockMagic[0] == 100)//ストックのない状態
+        {
+            stockMagic[0] = addMagic;
+        }
+        else if(stockMagic.Count < Max_stockMagic)
+        {
+            stockMagic.Add(addMagic);//末尾につけ足し
+        }
+    }
+
+    //魔法を減らすとき
+    void DisplaceStockMagic()
+    {
+        if (stockMagic.Count > 1)//魔法が2つ以上ある
+        {
+            for (int i = 0; i < stockMagic.Count - 1; i++)
+            {
+                stockMagic[i] = stockMagic[i + 1];//要素を詰める(先頭からやれば消えない)
+            }
+            stockMagic.RemoveAt(stockMagic.Count - 1);//末尾を消す
+        }
+        else//ストックに魔法が1つの場合
+        {
+            stockMagic[0] = 100;
+        }
     }
 
     void Update()
@@ -226,16 +260,25 @@ public class Magic_ControllerVR : MonoBehaviour {
             HPgauge.SetActive(false);
         }
 
-        if(stockMagic != 100)
+        if(stockMagic[0] != 100)
         {
-            MagicUI[stockMagic].SetActive(true);
-            SelectMagic[stockMagic].SendMessage("Guide");
+            for (int i = 0; i < stockMagic.Count; i++)
+            {
+                MagicIcon[i].SetActive(true);
+                MagicIcon[i].GetComponent<Image>().sprite = MagicTexture[stockMagic[i]];
+            }
+            for(int i = stockMagic.Count; i < Max_stockMagic; i++)
+            {
+                MagicIcon[i].SetActive(false);
+            }
+            SelectMagic[stockMagic[0]].SendMessage("Guide");//ガイドのある魔法はこれ使う
+
         }
         else
         {
-            for (int i = 0;i < MagicUI.Length; i++)
+            for (int i = 0;i < MagicIcon.Length; i++)
             {
-                MagicUI[i].SetActive(false);
+                MagicIcon[i].SetActive(false);
             }
             
         }
@@ -554,18 +597,18 @@ public class Magic_ControllerVR : MonoBehaviour {
             case VRButton.TriggerPressDown:
                 if (right)//右トリガーで魔法発動
                 {
-                    if(stockMagic == 0)//セイバー
+                    if(stockMagic[0] == 0)//セイバー
                     {
-                        SelectMagic[stockMagic].SendMessage("Fire");
+                        SelectMagic[stockMagic[0]].SendMessage("Fire");
                     }
-                    else if(stockMagic == 3)//ボム
+                    else if(stockMagic[0] == 3)//ボム
                     {
-                        SelectMagic[stockMagic].SendMessage("Fire");
+                        SelectMagic[stockMagic[0]].SendMessage("Fire");
                     }
-                    else if(stockMagic != 100)//それ以外
+                    else if(stockMagic[0] != 100)//それ以外
                     {
-                        SelectMagic[stockMagic].SendMessage("Fire");
-                        stockMagic = 100;
+                        SelectMagic[stockMagic[0]].SendMessage("Fire");
+                        DisplaceStockMagic();                        
                     }
                 }
                 if (!right)//左トリガーでレベルアップ
@@ -576,22 +619,22 @@ public class Magic_ControllerVR : MonoBehaviour {
             case VRButton.TriggerUp:
                 if (right)
                 {
-                    if (stockMagic == 0)//セイバー
+                    if (stockMagic[0] == 0)//セイバー
                     {
                         //剣を壊す
-                        SelectMagic[stockMagic].SendMessage("Break");
-                        stockMagic = 100;
+                        SelectMagic[stockMagic[0]].SendMessage("Break");
+                        DisplaceStockMagic();
                     }
-                    else if (stockMagic == 3)//ボム
+                    else if (stockMagic[0] == 3)//ボム
                     {
                         //ボムを投げる
-                        SelectMagic[stockMagic].SendMessage("Throw");
-                        stockMagic = 100;
+                        SelectMagic[stockMagic[0]].SendMessage("Throw");
+                        DisplaceStockMagic();
                     }
-                    else if (stockMagic != 100)//それ以外
+                    else if (stockMagic[0] != 100)//それ以外
                     {
-                        SelectMagic[stockMagic].SendMessage("Fire");
-                        stockMagic = 100;
+                        //SelectMagic[stockMagic[0]].SendMessage("Fire");
+                        //DisplaceStockMagic();
                     }
                 }
                 break;
@@ -619,19 +662,20 @@ public class Magic_ControllerVR : MonoBehaviour {
         }
     }
 
+    //押っぱの
     public void ControllerTrigger(bool right)
     {
         if (right)
         {
 
-            if (stockMagic == 0)//セイバー
+            if (stockMagic[0] == 0)//セイバー
             {
-                SelectMagic[stockMagic].SendMessage("Hold");
+                SelectMagic[stockMagic[0]].SendMessage("Hold");
                 //セイバーが壊れた時にstockmagicを100にする処理を入れる
             }
-            if (stockMagic == 3)
+            if (stockMagic[0] == 3)
             {
-                SelectMagic[stockMagic].SendMessage("Hold");
+                SelectMagic[stockMagic[0]].SendMessage("Hold");
                 //ボムを離した時にstockmagicを100にする処理を入れる
             }
         }
@@ -679,7 +723,7 @@ public class Magic_ControllerVR : MonoBehaviour {
                             {
                                 if (MagicList[MagicList.Count - 6] == correctMagicArray[0])
                                 {
-                                    stockMagic = 0;
+                                    AddStockMagic(0);
                                     MagicList.Clear();//チェックしたらクリア
                                     return;
                                 }
@@ -700,7 +744,7 @@ public class Magic_ControllerVR : MonoBehaviour {
                         {
                             if (MagicList[MagicList.Count - 5] == correctMagicArray[11])
                             {
-                                stockMagic = 3;
+                                AddStockMagic(3);
                                 MagicList.Clear();//チェックしたらクリア
                                 return;
                             }
@@ -723,7 +767,7 @@ public class Magic_ControllerVR : MonoBehaviour {
                     {
                         if (MagicList[MagicList.Count - 4] == correctMagicArray[6])
                         {
-                            stockMagic = 1;
+                            AddStockMagic(1);
                             MagicList.Clear();//チェックしたらクリア
                             return;
                         }
@@ -740,7 +784,7 @@ public class Magic_ControllerVR : MonoBehaviour {
                     {
                         if (MagicList[MagicList.Count - 4] == correctMagicArray[16])
                         {
-                            stockMagic = 4;
+                            AddStockMagic(4);
                             MagicList.Clear();//チェックしたらクリア
                             return;
                         }
@@ -757,7 +801,7 @@ public class Magic_ControllerVR : MonoBehaviour {
                     {
                         if (MagicList[MagicList.Count - 4] == correctMagicArray[20])
                         {
-                            stockMagic = 5;
+                            AddStockMagic(5);
                             MagicList.Clear();//チェックしたらクリア
                             return;
                         }
@@ -770,7 +814,7 @@ public class Magic_ControllerVR : MonoBehaviour {
         //ウェルオーウィスプ
         if (MagicList[MagicList.Count - 1] == correctMagicArray[10])
         {
-            stockMagic = 2;
+            AddStockMagic(2);
             MagicList.Clear();//チェックしたらクリア
             return;
         }

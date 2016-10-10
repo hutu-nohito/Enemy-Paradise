@@ -11,9 +11,7 @@ public class Monster_HPGauge : MonoBehaviour {
     private Enemy_Base EB;
     private float maxHP = 100;
     private float oldHP = 100;
-    private float maxMP = 100;
-    private float oldMP = 100;
-
+    
     private bool isGauge = false;
     private float time = 0;
     private float deltaGauge = 0;//ゲージの変化量
@@ -31,6 +29,8 @@ public class Monster_HPGauge : MonoBehaviour {
     void Update()
     {
         changePicturesUpdate();
+
+        transform.parent.transform.LookAt(EB.Player.transform.position);//Playerのほうに向けてみる
     }
 
     void changePicturesUpdate()
