@@ -17,6 +17,12 @@ public class ViveHaniwonder : Enemy_Base
     */
     /******************************************************************************/
 
+    /*
+     * level1 はにわんだー
+     * level2 はにまんさー
+     * level3 熱血はにわんだー
+     */
+
     private AudioSource SE;//音
     public AudioClip[] cv;//黒ちゃんの声
     
