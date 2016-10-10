@@ -200,10 +200,7 @@ public class ViveGolem : Enemy_Base {
                 else
                 {
                     state = ActionState.HammerRot;
-
-                }
-
-                
+                }                
             }
 
         }

@@ -1,0 +1,1763 @@
+fileFormatVersion: 2
+guid: f1c66e1c5219a1f49a6c7c7e4834889e
+timeCreated: 1476076830
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Bone
+    100002: Bone_L_001
+    100004: Bone_L_002
+    100006: Bone_R_002
+    100008: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+    100010: "\u30CF\u30C1\u30DE\u30AD_L_001"
+    100012: "\u30CF\u30C1\u30DE\u30AD_L_002"
+    100014: "\u30CF\u30C1\u30DE\u30AD_L_003"
+    100016: "\u30CF\u30C1\u30DE\u30AD_L_004"
+    100018: "\u30CF\u30C1\u30DE\u30AD_R_001"
+    100020: "\u30CF\u30C1\u30DE\u30AD_R_002"
+    100022: "\u30CF\u30C1\u30DE\u30AD_R_003"
+    100024: "\u30CF\u30C1\u30DE\u30AD_R_004"
+    100026: "\u30CF\u30CB\u30DE\u30F3\u30B5\u30FC\u30AA\u30D7\u30B7\u30E7\u30F3"
+    100028: "\u4E0A\u8DB3_L"
+    100030: "\u5186\u67F1"
+    100032: "\u672C\u4F53"
+    100034: //RootNode
+    100036: "\u71B1\u8840\u30AA\u30D7\u30B7\u30E7\u30F3"
+    100038: "\u80F4\u4E0A"
+    100040: "\u80F4\u4E0B"
+    100042: "\u8155_L_001"
+    100044: "\u8155_L_002"
+    100046: "\u8155_L_003"
+    100048: "\u8155_L_004"
+    100050: "\u8155_R_001"
+    100052: "\u8155_R_002"
+    100054: "\u8155_R_003"
+    100056: "\u8155_R_004"
+    100058: "\u982D"
+    100060: "\u982D\u9802"
+    400000: Bone
+    400002: Bone_L_001
+    400004: Bone_L_002
+    400006: Bone_R_002
+    400008: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+    400010: "\u30CF\u30C1\u30DE\u30AD_L_001"
+    400012: "\u30CF\u30C1\u30DE\u30AD_L_002"
+    400014: "\u30CF\u30C1\u30DE\u30AD_L_003"
+    400016: "\u30CF\u30C1\u30DE\u30AD_L_004"
+    400018: "\u30CF\u30C1\u30DE\u30AD_R_001"
+    400020: "\u30CF\u30C1\u30DE\u30AD_R_002"
+    400022: "\u30CF\u30C1\u30DE\u30AD_R_003"
+    400024: "\u30CF\u30C1\u30DE\u30AD_R_004"
+    400026: "\u30CF\u30CB\u30DE\u30F3\u30B5\u30FC\u30AA\u30D7\u30B7\u30E7\u30F3"
+    400028: "\u4E0A\u8DB3_L"
+    400030: "\u5186\u67F1"
+    400032: "\u672C\u4F53"
+    400034: //RootNode
+    400036: "\u71B1\u8840\u30AA\u30D7\u30B7\u30E7\u30F3"
+    400038: "\u80F4\u4E0A"
+    400040: "\u80F4\u4E0B"
+    400042: "\u8155_L_001"
+    400044: "\u8155_L_002"
+    400046: "\u8155_L_003"
+    400048: "\u8155_L_004"
+    400050: "\u8155_R_001"
+    400052: "\u8155_R_002"
+    400054: "\u8155_R_003"
+    400056: "\u8155_R_004"
+    400058: "\u982D"
+    400060: "\u982D\u9802"
+    2300000: "\u30CF\u30CB\u30DE\u30F3\u30B5\u30FC\u30AA\u30D7\u30B7\u30E7\u30F3"
+    2300002: "\u5186\u67F1"
+    3300000: "\u30CF\u30CB\u30DE\u30F3\u30B5\u30FC\u30AA\u30D7\u30B7\u30E7\u30F3"
+    3300002: "\u5186\u67F1"
+    4300000: "\u5186\u67F1"
+    4300002: "\u71B1\u8840\u30AA\u30D7\u30B7\u30E7\u30F3"
+    4300004: "\u672C\u4F53"
+    4300006: "\u30CF\u30CB\u30DE\u30F3\u30B5\u30FC\u30AA\u30D7\u30B7\u30E7\u30F3"
+    7400000: Default Take
+    7400002: "\u306E\u3051\u305E\u308A295\uFF5E335"
+    7400004: "\u3086\u3089\u3086\u3089200\uFF5E216"
+    7400006: "\u30AC\u30FC\u30C9340\uFF5E358"
+    7400008: "\u30C0\u30C3\u30B7\u30E520\uFF5E30"
+    7400010: "\u5206\u8EAB460\uFF5E513"
+    7400012: "\u53F3\u56DE\u907F365\uFF5E392"
+    7400014: "\u5DE6\u56DE\u907F395\uFF5E422"
+    7400016: "\u5F85\u6A5F0\uFF5E16"
+    7400018: "\u6B7B\u4EA1235\uFF5E288"
+    7400020: "\u6C17\u5408\u3044520\uFF5E548"
+    7400022: "\u717D\u308A560\uFF5E659"
+    7400024: "\u76EE\u304B\u3089\u30D3\u30FC\u30E0220\uFF5E230"
+    7400026: "\u982D\u7A81\u304D60\uFF5E80"
+    7400028: "\u982D\u7A81\u304D\uFF08\u5916\u308C\uFF0985\uFF5E144"
+    7400030: "\u982D\u7A81\u304D\uFF08\u5F53\uFF09150\uFF5E175"
+    7400032: "\u98DB\u3073\u8E74\u308A\uFF08\u5171\u901A\u90E8\u5206\uFF0940\uFF5E50"
+    9500000: //RootNode
+    13700000: "\u672C\u4F53"
+    13700002: "\u71B1\u8840\u30AA\u30D7\u30B7\u30E7\u30F3"
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Default Take
+      takeName: Default Take
+      firstFrame: 559
+      lastFrame: 658
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001/Bone_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L/Bone_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003/\u8155_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003/\u8155_R_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003/\u30CF\u30C1\u30DE\u30AD_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003/\u30CF\u30C1\u30DE\u30AD_R_004"
+        weight: 1
+      - path: "\u30CF\u30CB\u30DE\u30F3\u30B5\u30FC\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      - path: "\u5186\u67F1"
+        weight: 1
+      - path: "\u672C\u4F53"
+        weight: 1
+      - path: "\u71B1\u8840\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: "\u306E\u3051\u305E\u308A295\uFF5E335"
+      takeName: "\u306E\u3051\u305E\u308A295\uFF5E335"
+      firstFrame: 294
+      lastFrame: 334
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0
+        functionName: AnimKnockback
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: eefe63e046b61b8409d737cd6695ac3b,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001/Bone_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L/Bone_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003/\u8155_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003/\u8155_R_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003/\u30CF\u30C1\u30DE\u30AD_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003/\u30CF\u30C1\u30DE\u30AD_R_004"
+        weight: 1
+      - path: "\u30CF\u30CB\u30DE\u30F3\u30B5\u30FC\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      - path: "\u5186\u67F1"
+        weight: 1
+      - path: "\u672C\u4F53"
+        weight: 1
+      - path: "\u71B1\u8840\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 294
+    - serializedVersion: 16
+      name: "\u3086\u3089\u3086\u3089200\uFF5E216"
+      takeName: "\u3086\u3089\u3086\u3089200\uFF5E216"
+      firstFrame: 199
+      lastFrame: 215
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001/Bone_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L/Bone_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003/\u8155_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003/\u8155_R_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003/\u30CF\u30C1\u30DE\u30AD_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003/\u30CF\u30C1\u30DE\u30AD_R_004"
+        weight: 1
+      - path: "\u30CF\u30CB\u30DE\u30F3\u30B5\u30FC\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      - path: "\u5186\u67F1"
+        weight: 1
+      - path: "\u672C\u4F53"
+        weight: 1
+      - path: "\u71B1\u8840\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: "\u30AC\u30FC\u30C9340\uFF5E358"
+      takeName: "\u30AC\u30FC\u30C9340\uFF5E358"
+      firstFrame: 339
+      lastFrame: 357
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0
+        functionName: AnimGuard
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: eefe63e046b61b8409d737cd6695ac3b,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001/Bone_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L/Bone_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003/\u8155_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003/\u8155_R_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003/\u30CF\u30C1\u30DE\u30AD_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003/\u30CF\u30C1\u30DE\u30AD_R_004"
+        weight: 1
+      - path: "\u30CF\u30CB\u30DE\u30F3\u30B5\u30FC\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      - path: "\u5186\u67F1"
+        weight: 1
+      - path: "\u672C\u4F53"
+        weight: 1
+      - path: "\u71B1\u8840\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 339
+    - serializedVersion: 16
+      name: "\u30C0\u30C3\u30B7\u30E520\uFF5E30"
+      takeName: "\u30C0\u30C3\u30B7\u30E520\uFF5E30"
+      firstFrame: 19
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0
+        functionName: AnimRun
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: eefe63e046b61b8409d737cd6695ac3b,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001/Bone_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L/Bone_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003/\u8155_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003/\u8155_R_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003/\u30CF\u30C1\u30DE\u30AD_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003/\u30CF\u30C1\u30DE\u30AD_R_004"
+        weight: 1
+      - path: "\u30CF\u30CB\u30DE\u30F3\u30B5\u30FC\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      - path: "\u5186\u67F1"
+        weight: 1
+      - path: "\u672C\u4F53"
+        weight: 1
+      - path: "\u71B1\u8840\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 19
+    - serializedVersion: 16
+      name: "\u5206\u8EAB460\uFF5E513"
+      takeName: "\u5206\u8EAB460\uFF5E513"
+      firstFrame: 459
+      lastFrame: 512
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0
+        functionName: AnimAvatar
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: eefe63e046b61b8409d737cd6695ac3b,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001/Bone_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L/Bone_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003/\u8155_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003/\u8155_R_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003/\u30CF\u30C1\u30DE\u30AD_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003/\u30CF\u30C1\u30DE\u30AD_R_004"
+        weight: 1
+      - path: "\u30CF\u30CB\u30DE\u30F3\u30B5\u30FC\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      - path: "\u5186\u67F1"
+        weight: 1
+      - path: "\u672C\u4F53"
+        weight: 1
+      - path: "\u71B1\u8840\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 459
+    - serializedVersion: 16
+      name: "\u53F3\u56DE\u907F365\uFF5E392"
+      takeName: "\u53F3\u56DE\u907F365\uFF5E392"
+      firstFrame: 364
+      lastFrame: 391
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0
+        functionName: AnimGuard
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: eefe63e046b61b8409d737cd6695ac3b,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001/Bone_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L/Bone_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003/\u8155_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003/\u8155_R_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003/\u30CF\u30C1\u30DE\u30AD_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003/\u30CF\u30C1\u30DE\u30AD_R_004"
+        weight: 1
+      - path: "\u30CF\u30CB\u30DE\u30F3\u30B5\u30FC\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      - path: "\u5186\u67F1"
+        weight: 1
+      - path: "\u672C\u4F53"
+        weight: 1
+      - path: "\u71B1\u8840\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 364
+    - serializedVersion: 16
+      name: "\u5DE6\u56DE\u907F395\uFF5E422"
+      takeName: "\u5DE6\u56DE\u907F395\uFF5E422"
+      firstFrame: 394
+      lastFrame: 421
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0
+        functionName: AnimGuard
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: eefe63e046b61b8409d737cd6695ac3b,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001/Bone_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L/Bone_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003/\u8155_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003/\u8155_R_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003/\u30CF\u30C1\u30DE\u30AD_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003/\u30CF\u30C1\u30DE\u30AD_R_004"
+        weight: 1
+      - path: "\u30CF\u30CB\u30DE\u30F3\u30B5\u30FC\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      - path: "\u5186\u67F1"
+        weight: 1
+      - path: "\u672C\u4F53"
+        weight: 1
+      - path: "\u71B1\u8840\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 394
+    - serializedVersion: 16
+      name: "\u5F85\u6A5F0\uFF5E16"
+      takeName: "\u5F85\u6A5F0\uFF5E16"
+      firstFrame: -1
+      lastFrame: 15
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0
+        functionName: AnimIdle
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: eefe63e046b61b8409d737cd6695ac3b,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001/Bone_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L/Bone_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003/\u8155_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003/\u8155_R_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003/\u30CF\u30C1\u30DE\u30AD_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003/\u30CF\u30C1\u30DE\u30AD_R_004"
+        weight: 1
+      - path: "\u30CF\u30CB\u30DE\u30F3\u30B5\u30FC\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      - path: "\u5186\u67F1"
+        weight: 1
+      - path: "\u672C\u4F53"
+        weight: 1
+      - path: "\u71B1\u8840\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: "\u6B7B\u4EA1235\uFF5E288"
+      takeName: "\u6B7B\u4EA1235\uFF5E288"
+      firstFrame: 234
+      lastFrame: 287
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001/Bone_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L/Bone_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003/\u8155_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003/\u8155_R_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003/\u30CF\u30C1\u30DE\u30AD_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003/\u30CF\u30C1\u30DE\u30AD_R_004"
+        weight: 1
+      - path: "\u30CF\u30CB\u30DE\u30F3\u30B5\u30FC\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      - path: "\u5186\u67F1"
+        weight: 1
+      - path: "\u672C\u4F53"
+        weight: 1
+      - path: "\u71B1\u8840\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: "\u6C17\u5408\u3044520\uFF5E548"
+      takeName: "\u6C17\u5408\u3044520\uFF5E548"
+      firstFrame: 519
+      lastFrame: 547
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001/Bone_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L/Bone_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003/\u8155_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003/\u8155_R_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003/\u30CF\u30C1\u30DE\u30AD_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003/\u30CF\u30C1\u30DE\u30AD_R_004"
+        weight: 1
+      - path: "\u30CF\u30CB\u30DE\u30F3\u30B5\u30FC\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      - path: "\u5186\u67F1"
+        weight: 1
+      - path: "\u672C\u4F53"
+        weight: 1
+      - path: "\u71B1\u8840\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: "\u717D\u308A560\uFF5E659"
+      takeName: "\u717D\u308A560\uFF5E659"
+      firstFrame: 559
+      lastFrame: 658
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001/Bone_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L/Bone_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003/\u8155_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003/\u8155_R_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003/\u30CF\u30C1\u30DE\u30AD_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003/\u30CF\u30C1\u30DE\u30AD_R_004"
+        weight: 1
+      - path: "\u30CF\u30CB\u30DE\u30F3\u30B5\u30FC\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      - path: "\u5186\u67F1"
+        weight: 1
+      - path: "\u672C\u4F53"
+        weight: 1
+      - path: "\u71B1\u8840\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: "\u76EE\u304B\u3089\u30D3\u30FC\u30E0220\uFF5E230"
+      takeName: "\u76EE\u304B\u3089\u30D3\u30FC\u30E0220\uFF5E230"
+      firstFrame: 219
+      lastFrame: 230
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0
+        functionName: AnimBeam
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: eefe63e046b61b8409d737cd6695ac3b,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001/Bone_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L/Bone_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003/\u8155_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003/\u8155_R_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003/\u30CF\u30C1\u30DE\u30AD_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003/\u30CF\u30C1\u30DE\u30AD_R_004"
+        weight: 1
+      - path: "\u30CF\u30CB\u30DE\u30F3\u30B5\u30FC\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      - path: "\u5186\u67F1"
+        weight: 1
+      - path: "\u672C\u4F53"
+        weight: 1
+      - path: "\u71B1\u8840\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 219
+    - serializedVersion: 16
+      name: "\u982D\u7A81\u304D60\uFF5E80"
+      takeName: "\u982D\u7A81\u304D60\uFF5E80"
+      firstFrame: 59
+      lastFrame: 79
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0
+        functionName: AnimHeadbutt
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: eefe63e046b61b8409d737cd6695ac3b,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001/Bone_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L/Bone_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003/\u8155_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003/\u8155_R_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003/\u30CF\u30C1\u30DE\u30AD_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003/\u30CF\u30C1\u30DE\u30AD_R_004"
+        weight: 1
+      - path: "\u30CF\u30CB\u30DE\u30F3\u30B5\u30FC\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      - path: "\u5186\u67F1"
+        weight: 1
+      - path: "\u672C\u4F53"
+        weight: 1
+      - path: "\u71B1\u8840\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 59
+    - serializedVersion: 16
+      name: "\u982D\u7A81\u304D\uFF08\u5916\u308C\uFF0985\uFF5E144"
+      takeName: "\u982D\u7A81\u304D\uFF08\u5916\u308C\uFF0985\uFF5E144"
+      firstFrame: 84
+      lastFrame: 147
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001/Bone_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L/Bone_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003/\u8155_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003/\u8155_R_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003/\u30CF\u30C1\u30DE\u30AD_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003/\u30CF\u30C1\u30DE\u30AD_R_004"
+        weight: 1
+      - path: "\u30CF\u30CB\u30DE\u30F3\u30B5\u30FC\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      - path: "\u5186\u67F1"
+        weight: 1
+      - path: "\u672C\u4F53"
+        weight: 1
+      - path: "\u71B1\u8840\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: "\u982D\u7A81\u304D\uFF08\u5F53\uFF09150\uFF5E175"
+      takeName: "\u982D\u7A81\u304D\uFF08\u5F53\uFF09150\uFF5E175"
+      firstFrame: 149
+      lastFrame: 174
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001/Bone_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L/Bone_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003/\u8155_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003/\u8155_R_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003/\u30CF\u30C1\u30DE\u30AD_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003/\u30CF\u30C1\u30DE\u30AD_R_004"
+        weight: 1
+      - path: "\u30CF\u30CB\u30DE\u30F3\u30B5\u30FC\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      - path: "\u5186\u67F1"
+        weight: 1
+      - path: "\u672C\u4F53"
+        weight: 1
+      - path: "\u71B1\u8840\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: "\u98DB\u3073\u8E74\u308A\uFF08\u5171\u901A\u90E8\u5206\uFF0940\uFF5E50"
+      takeName: "\u98DB\u3073\u8E74\u308A\uFF08\u5171\u901A\u90E8\u5206\uFF0940\uFF5E50"
+      firstFrame: 39
+      lastFrame: 49
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/Bone_L_001/Bone_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u4E0A\u8DB3_L/Bone_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_L_001/\u8155_L_002/\u8155_L_003/\u8155_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u8155_R_001/\u8155_R_002/\u8155_R_003/\u8155_R_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_L_001/\u30CF\u30C1\u30DE\u30AD_L_002/\u30CF\u30C1\u30DE\u30AD_L_003/\u30CF\u30C1\u30DE\u30AD_L_004"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003"
+        weight: 1
+      - path: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2/Bone/\u80F4\u4E0B/\u80F4\u4E0A/\u982D/\u982D\u9802/\u30CF\u30C1\u30DE\u30AD_R_001/\u30CF\u30C1\u30DE\u30AD_R_002/\u30CF\u30C1\u30DE\u30AD_R_003/\u30CF\u30C1\u30DE\u30AD_R_004"
+        weight: 1
+      - path: "\u30CF\u30CB\u30DE\u30F3\u30B5\u30FC\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      - path: "\u5186\u67F1"
+        weight: 1
+      - path: "\u672C\u4F53"
+        weight: 1
+      - path: "\u71B1\u8840\u30AA\u30D7\u30B7\u30E7\u30F3"
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 2
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
