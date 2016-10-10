@@ -65,8 +65,6 @@ public class BombVR : Magic_Parameter
             OldPos = bullet.transform.position;
             elapsedTime = 0.0f;
         }
-        
-        Debug.Log(direction);
 
     }
 
