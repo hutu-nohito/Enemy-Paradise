@@ -37,7 +37,7 @@ public class ViveGolem : Enemy_Base {
     public Transform[] JumpPoint;//とりあえず決まったとこにジャンプ
 
     //演出
-    private Camera_ControllerZ CCZ;
+    //private Camera_ControllerZ CCZ;
     public GameObject diedGolem;//やられたとき
 
     // Use this for initialization
@@ -45,7 +45,7 @@ public class ViveGolem : Enemy_Base {
     {
         base.BaseStart();
 
-        CCZ = Camera.main.gameObject.GetComponent<Camera_ControllerZ>();
+        //CCZ = Camera.main.gameObject.GetComponent<Camera_ControllerZ>();
 
         //初期状態セット
         coroutine = StartCoroutine(ChangeState(30.0f, ActionState.Fight));
