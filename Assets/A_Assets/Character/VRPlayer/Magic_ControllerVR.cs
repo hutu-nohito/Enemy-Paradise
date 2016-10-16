@@ -49,8 +49,9 @@ public class Magic_ControllerVR : MonoBehaviour {
     public GameObject[] JinUI;//魔法陣のUI
     public Sprite[] MagicTexture;//
     public GameObject[] MagicIcon;//魔法のアイコン
-    public GameObject HPgauge;//体力ゲージ
+    //public GameObject HPgauge;//体力ゲージ
     private bool flag_Jin = false;//魔法陣受付中
+
     private List<int> MagicList = new List<int>();//点つなぎの番号
     //めんどくさいので魔法はここに直打ち(数は覚えとく)
     private int[] correctMagicArray = new int[21]
@@ -256,7 +257,7 @@ public class Magic_ControllerVR : MonoBehaviour {
                 JinPoint[i].SetActive(true);
                 JinUI[i].SetActive(true);
             }
-            HPgauge.SetActive(true);
+            //HPgauge.SetActive(true);
         }
         else
         {
@@ -264,9 +265,9 @@ public class Magic_ControllerVR : MonoBehaviour {
             {
                 JinPoint[i].SetActive(false);
                 JinUI[i].SetActive(false);
-                JinUI[i].GetComponent<Image>().color = new Color(1.0f,1.0f,1.0f,1.0f);//戻しとく
+                JinUI[i].GetComponent<Image>().color = new Color(1.0f,1.0f,1.0f, 0.2f);//戻しとく
             }
-            HPgauge.SetActive(false);
+            //HPgauge.SetActive(false);
         }
 
         if(stockMagic[0] != 100)
@@ -665,21 +666,26 @@ public class Magic_ControllerVR : MonoBehaviour {
             case VRButton.GripDown:
                 if (!right)//左グリップで魔法陣発動
                 {
-                    if (!TriggerPress)//セイバー使ってる時に暴発しないように
+                    //if (!TriggerPress)//セイバー使ってる時に暴発しないように
+                    //{
+                    //    flag_Jin = true;
+                    //}
+                    flag_Jin = false;
+                    if (MagicList.Count > 0)
                     {
-                        flag_Jin = true;
+                        CheckMagicList();//ここで魔法が完成しているかを判定
                     }
-                    
+
                 }
                 break;
             case VRButton.GripUp:
                 if (!right)//左グリップ離して魔法陣しまう
                 {
-                    flag_Jin = false;
-                    if(MagicList.Count > 0)
-                    {
-                        CheckMagicList();//ここで魔法が完成しているかを判定
-                    }
+                    //flag_Jin = false;
+                    //if(MagicList.Count > 0)
+                    //{
+                    //    CheckMagicList();//ここで魔法が完成しているかを判定
+                    //}
                     
                 }
                 break;
@@ -712,6 +718,20 @@ public class Magic_ControllerVR : MonoBehaviour {
                 //離した時にstockmagicを100にする処理を入れる
             }
         }
+    }
+
+    //杖を前に掲げたら
+    public void SetRod()
+    {
+        if (!TriggerPress)//セイバー使ってる時に暴発しないように
+        {
+            flag_Jin = true;
+        }
+    }
+
+    public void PutRod()
+    {
+        flag_Jin = false;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////

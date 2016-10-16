@@ -33,7 +33,7 @@ public class TouchJin : MonoBehaviour {
     {
         if (col.gameObject == HandR)
         {
-            UI.GetComponent<Image>().color = new Color(1.0f,1.0f,1.0f,0.2f);
+            UI.GetComponent<Image>().color = new Color(1.0f,1.0f,1.0f,1.0f);
         }
     }
 
@@ -42,7 +42,7 @@ public class TouchJin : MonoBehaviour {
 
         if (col.gameObject == HandR)
         {
-            UI.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            UI.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.2f);
         }
     }
 }
