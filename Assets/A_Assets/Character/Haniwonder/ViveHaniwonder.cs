@@ -32,6 +32,7 @@ public class ViveHaniwonder : Enemy_Base
     public GameObject Avatar;//分身
     public GameObject TacleCol;//体当たり攻撃判定
     public GameObject HeadCol;//頭突き攻撃判定
+    GameObject[] Avatars = new GameObject[5];
 
     //Timer
     float timer = 0;//使ったら0に
@@ -192,18 +193,18 @@ public class ViveHaniwonder : Enemy_Base
                 base.animator.SetTrigger("Idle");
             }
 
-            //たまーにとげ攻撃
-            if ((int)Time.time % 7 == 0)//7秒ごと
+            if ((int)Time.time % 5 == 0)//5秒ごと
             {
                 float randAt1 = Random.value;
-                float randAt2 = Random.value;
+                
 
-                if (randAt1 > 0.9)
+                if (randAt1 > 0.3)
                 {
-                    if (randAt2 < 0.3)
-                    {
-                        state = ActionState.Tackle;
-                    }
+                    state = ActionState.AfterImage;
+                }
+                else
+                {
+                    state = ActionState.Headbutt;
                 }
             }
         }
@@ -379,7 +380,11 @@ public class ViveHaniwonder : Enemy_Base
         {
             state = ActionState.Exercise;
         }
-        
+        if (level == 4)
+        {
+            state = ActionState.Idle;
+        }
+
         isCoroutine = false;
     }
 
@@ -404,6 +409,11 @@ public class ViveHaniwonder : Enemy_Base
         {
             state = ActionState.Exercise;
         }
+        if (level == 4)
+        {
+            state = ActionState.Idle;
+        }
+
 
         isCoroutine = false;
     }
@@ -417,12 +427,13 @@ public class ViveHaniwonder : Enemy_Base
         base.animator.SetTrigger("Beam");
 
         //前を向ける
-        iTween.RotateTo(this.gameObject, iTween.Hash(
-                "y", Mathf.Repeat(Quaternion.LookRotation(Player.transform.position - Muzzle[0].transform.position).eulerAngles.y, 360.0f),//(たまにおかしくなるので後で検証),
-                "time", 0.2f,
-                "easetype", iTween.EaseType.linear)
+        //iTween.RotateTo(this.gameObject, iTween.Hash(
+        //        "y", Mathf.Repeat(Quaternion.LookRotation(Player.transform.position - Muzzle[0].transform.position).eulerAngles.y, 360.0f),//(たまにおかしくなるので後で検証),
+        //        "time", 0.2f,
+        //        "easetype", iTween.EaseType.linear)
 
-                );
+        //        );
+        transform.LookAt(Player.transform.position);
 
         yield return new WaitForSeconds(0.25f);//
 
@@ -436,7 +447,7 @@ public class ViveHaniwonder : Enemy_Base
         SE.PlayOneShot(cv[0]);//SE
 
         //yield return new WaitForSeconds(0.7f);//撃った後の硬直
-        yield return new WaitForSeconds(2.0f);//撃った後の硬直
+        yield return new WaitForSeconds(1.0f);//撃った後の硬直
 
         Bullet[0].SetActive(false);
         Bullet[0].transform.rotation = new Quaternion(0, 0, 0, 0);
@@ -444,6 +455,10 @@ public class ViveHaniwonder : Enemy_Base
         if (level == 3)
         {
             state = ActionState.Exercise;
+        }
+        if (level == 4)
+        {
+            state = ActionState.Idle;
         }
 
         isCoroutine = false;
@@ -518,8 +533,6 @@ public class ViveHaniwonder : Enemy_Base
         if (isCoroutine) yield break;
         isCoroutine = true;
 
-        GameObject[] Avatars = new GameObject[5];
-
         float Angle = GetAngleP();
         if(GetPositionP().z < 0)
         {
@@ -588,7 +601,7 @@ public class ViveHaniwonder : Enemy_Base
             iTween.MoveTo(Avatars[number[i]], iTween.Hash(
                     "x", Avatars[number[i]].transform.position.x + (Player.transform.position - Avatars[number[i]].transform.position).normalized.x * 30,//定数が突進距離
                     "z", Avatars[number[i]].transform.position.z + (Player.transform.position - Avatars[number[i]].transform.position).normalized.z * 30,//定数が突進距離
-                    "time", 1.5f,
+                    "time", 3,
                     "easetype", iTween.EaseType.easeInOutBack)
 
                     );
@@ -616,7 +629,7 @@ public class ViveHaniwonder : Enemy_Base
             //本体じゃなかったら突進後消す
             if (number[i] != 4)
             {
-                Destroy(Avatars[number[i]], 1.5f);
+                Destroy(Avatars[number[i]], 3);
             }
 
             yield return new WaitForSeconds(1);
@@ -629,6 +642,39 @@ public class ViveHaniwonder : Enemy_Base
 
         state = ActionState.Idle;
 
+        isCoroutine = false;
+    }
+
+    IEnumerator Avoid()
+    {
+        if (isCoroutine) yield break;
+        isCoroutine = true;
+
+        if (animState != (int)ActionState.Guard)
+        {
+            base.animator.SetTrigger("Avoid_L");
+        }
+            
+        
+        //避ける動作
+        iTween.MoveTo(this.gameObject, iTween.Hash(
+                "position", new Vector3(
+                transform.position.x + ((transform.position - base.Player.transform.position).z / (transform.position - base.Player.transform.position).magnitude) * 3.5f,
+                transform.position.y,
+                transform.position.z + (-(transform.position - base.Player.transform.position).x / (transform.position - base.Player.transform.position).magnitude) * 3.5f
+                ),
+                "time", 0.8f,
+                "easetype", iTween.EaseType.linear
+                )
+                );
+
+        //前を向ける
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(base.Player.transform.position - transform.position), 0.05f);
+        transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+
+        yield return new WaitForSeconds(0.8f);//
+        
+        state = ActionState.Beam;
         isCoroutine = false;
     }
 
@@ -657,8 +703,28 @@ public class ViveHaniwonder : Enemy_Base
 
         yield return new WaitForSeconds(1.5f);//攻撃後のため
 
-        state = ActionState.Idle;
+        if(level == 1)
+        {
+            state = ActionState.Exercise;
+        }
+        if (level == 4)
+        {
+            state = ActionState.Idle;
+        }
+
         isCoroutine = false;
+    }
+
+    //回避用
+    public void Guard()
+    {
+        if(state == ActionState.Idle)
+        {
+            state = ActionState.Guard;
+            StopAllCoroutines();
+            StartCoroutine(Avoid());
+        }
+        
     }
 
     public void Hit()
@@ -684,6 +750,10 @@ public class ViveHaniwonder : Enemy_Base
                 Bullet[0].SetActive(false);
                 Bullet[0].transform.rotation = new Quaternion(0, 0, 0, 0);
                 timer = 0;
+                for (int i = 0;i < 4; i++)
+                {
+                    Destroy(Avatars[i]);
+                }
 
                 StartCoroutine(Knockback());
             }
