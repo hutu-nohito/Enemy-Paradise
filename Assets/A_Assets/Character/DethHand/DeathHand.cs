@@ -19,14 +19,17 @@ public class DeathHand : Enemy_Base {
 
 
     private AudioSource SE;//音
+    public AudioClip[] cv;//
 
     public GameObject AI;
+    public Transform home;
 
     //キャラクタの状態
     public enum ActionState
     {
         Stop,//アニメーションが終わるまで待機(状態でなくアニメーションの整合性のために必要)
-        Attack,//攻撃
+        Wisp,//攻撃
+        Astonish,//驚かす
         Warp,//ワープ
         Search,//うろうろしてる
 
@@ -96,7 +99,7 @@ public class DeathHand : Enemy_Base {
         if (base.Player == null)
         {
             StopAllCoroutines();
-            base.Player = this.gameObject;
+            base.Player = this.gameObject;//プレイやがいなくなると不具合が起きるのでなんか入れとく
             state = ActionState.Stop;
             animState = (int)ActionState.Stop;
             ////勝利のポーズ
@@ -136,10 +139,16 @@ public class DeathHand : Enemy_Base {
             //アニメーションの最中など動かしたくないときに用いる
         }
 
-        //アタックするだけ
-        if (state == ActionState.Attack)
+        //ホーミング火の玉
+        if (state == ActionState.Wisp)
         {
-            coroutine = StartCoroutine(Attack());
+            coroutine = StartCoroutine(Wisp());
+        }
+
+        //驚かす
+        if (state == ActionState.Astonish)
+        {
+            coroutine = StartCoroutine(Astonish());
         }
 
         if (state == ActionState.Warp)
@@ -183,10 +192,12 @@ public class DeathHand : Enemy_Base {
     private bool isCoroutine = false;//コルーチンを止めるときにはfalseに戻すこと
 
     //攻撃
-    IEnumerator Attack()
+    IEnumerator Wisp()
     {
         if (isCoroutine) yield break;
         isCoroutine = true;
+
+        SE.PlayOneShot(cv[0]);//けっけっけ
 
         yield return new WaitForSeconds(1);//ちょっと間をおいてから攻撃
 
@@ -207,17 +218,72 @@ public class DeathHand : Enemy_Base {
 
         Destroy(bullet, bullet.GetComponent<Attack_Parameter>().GetA_Time());
 
-        //効果音と演出
-        /*if (!SE[0].isPlaying)
+        yield return new WaitForSeconds(bullet.GetComponent<Attack_Parameter>().GetR_Time());//撃った後の硬直
+
+        if (level == 1)
         {
+            state = ActionState.Search;
+        }
+        if (level >= 2)
+        {
+            state = ActionState.Warp;
+        }
+        
+        isCoroutine = false;
+    }
 
-            SE[0].PlayOneShot(SE[0].clip);//SE
+    IEnumerator Astonish()
+    {
+        if (isCoroutine) yield break;
+        isCoroutine = true;
 
-        }*/
+        flag_fade = true;
+
+        yield return new WaitForSeconds(1);//消えるまで
+
+        transform.position = new Vector3(
+            base.Player.transform.position.x + (base.Player.transform.TransformDirection(Vector3.back).x /*+ randomWarp*/) * 2,
+            base.Player.transform.position.y + 2,
+            base.Player.transform.position.z + (base.Player.transform.TransformDirection(Vector3.back).z /*+ randomWarp*/) * 2
+            );//ﾌﾟﾚｲﾔの背後にワープ
+
+        yield return new WaitForSeconds(0.1f);//
+
+        flag_fade = false;
+
+        yield return new WaitForSeconds(1);//現れるまで
+
+        SE.PlayOneShot(cv[0]);
+
+        yield return new WaitForSeconds(2);//けっけっけ
+
+        GameObject bullet;
+
+        //アニメーションセット
+        //animator.SetTrigger("Attack");//攻撃
+
+        bullet = GameObject.Instantiate(Bullet[0]);//通常弾
+        bullet.GetComponent<Attack_Parameter>().Parent = this.gameObject;//誰が撃ったかを渡す
+
+        bullet.GetComponent<HomingVR>().TargetSet(Player);//ホーミングのターゲットをセット
+                                                          //弾を飛ばす処理
+        bullet.transform.position = Muzzle[0].position;//Muzzleの位置
+        bullet.transform.rotation = Quaternion.LookRotation(direction);//回転させて弾頭を進行方向に向ける
+
+        bullet.GetComponent<Rigidbody>().velocity = (Player.transform.position + new Vector3(0, Player.transform.localScale.y / 2, 0) - transform.position).normalized * bullet.GetComponent<Attack_Parameter>().speed;//ﾌﾟﾚｲﾔに向けて撃つ
+
+        Destroy(bullet, bullet.GetComponent<Attack_Parameter>().GetA_Time());
 
         yield return new WaitForSeconds(bullet.GetComponent<Attack_Parameter>().GetR_Time());//撃った後の硬直
-        
-        state = ActionState.Search;
+
+        if (level == 1)
+        {
+            state = ActionState.Search;
+        }
+        if (level >= 2)
+        {
+            state = ActionState.Warp;
+        }
         isCoroutine = false;
     }
 
@@ -229,44 +295,64 @@ public class DeathHand : Enemy_Base {
 
         flag_fade = true;
         
-        yield return new WaitForSeconds(2);//消えるまで
+        yield return new WaitForSeconds(1);//消えるまで
 
         float randomWarp = Random.Range(-0.5f,0.5f);
 
+        //transform.position = new Vector3(
+        //    base.Player.transform.position.x + (base.Player.transform.TransformDirection(Vector3.back).x /*+ randomWarp*/) * 10,
+        //    home_position.y + (randomWarp / 2),
+        //    base.Player.transform.position.z + (base.Player.transform.TransformDirection(Vector3.back).z /*+ randomWarp*/) * 10
+        //    );//ﾌﾟﾚｲﾔの背後にワープ
+
         transform.position = new Vector3(
-            base.Player.transform.position.x + (base.Player.transform.TransformDirection(Vector3.back).x /*+ randomWarp*/) * 10,
-            home_position.y + (randomWarp / 2),
-            base.Player.transform.position.z + (base.Player.transform.TransformDirection(Vector3.back).z /*+ randomWarp*/) * 10
-            );//ﾌﾟﾚｲﾔの背後にワープ
+            home.position.x + Random.Range(-10.0f, 10.0f),
+            home.position.y + Random.Range(-2.0f, 2.0f),
+            home.position.z + Random.Range(-10.0f, 10.0f)
+            );//ランダムににワープ
 
         yield return new WaitForSeconds(1);//移動
 
         flag_fade = false;
 
-        //効果音と演出
-        if (!SE.isPlaying)
-        {
+        //SE.PlayOneShot(cv[0]);
 
-            SE.PlayOneShot(SE.clip);//SE
-
-        }
-
-        yield return new WaitForSeconds(2);//現れるまで
+        yield return new WaitForSeconds(1);//現れるまで
 
         float randomvalue = Random.Range(0.0f, 1.0f);
-        if (randomvalue < 0.8)
+        float wispP, astonishP, floatP;
+        wispP = astonishP = floatP = 0.5f;
+        if (level == 1)
         {
-            state = ActionState.Attack;
+            wispP = 0.2f;
+            astonishP = 0.1f;
+            floatP = 0.7f;
+        }
+        if (level == 2)
+        {
+            wispP = 0.1f;
+            astonishP = 0.4f;
+            floatP = 0.5f;
+        }
+        if (level == 3)
+        {
+            wispP = 0.5f;
+            astonishP = 0.2f;
+            floatP = 0.3f;
+        }
+        if (randomvalue < wispP)
+        {
+            state = ActionState.Wisp;
 
         }
-        else if (randomvalue < 0.9)
+        else if (randomvalue < astonishP)
         {
-            state = ActionState.Search;
+            state = ActionState.Astonish;
 
         }
         else
         {
-            state = ActionState.Warp;
+            state = ActionState.Warp;//レベル1の可能性は今んとこない
         }
         
         isCoroutine = false;
@@ -282,9 +368,9 @@ public class DeathHand : Enemy_Base {
         
         //ランダムにふよふよ
         iTween.MoveTo(this.gameObject, iTween.Hash(
-                "x", home_position.x + Random.Range(-5.0f, 5.0f),
-                "y", home_position.y + Random.Range(-1.0f, 1.0f),
-                "z", home_position.z + Random.Range(-5.0f, 5.0f),
+                "x", home.position.x + Random.Range(-10.0f, 10.0f),
+                "y", home.position.y + Random.Range(-2.0f, 2.0f),
+                "z", home.position.z + Random.Range(-10.0f, 10.0f),
                 "time", 2.5f,
                 "easetype", iTween.EaseType.easeInOutCubic)
                 );
@@ -293,23 +379,59 @@ public class DeathHand : Enemy_Base {
 
         //サーチ中にたまにプレイヤの後ろにワープしてくる
 
-        float randAt1 = Random.value;
-        float randAt2 = Random.value;
+        //float randAt1 = Random.value;
+        //float randAt2 = Random.value;
 
-        if (randAt1 > 0.2)
+        //if (randAt1 > 0.2)
+        //{
+        //    if (randAt2 < 0.5)
+        //    {
+        //        StopAllCoroutines();
+        //        state = ActionState.Warp;
+        //        isCoroutine = false;
+        //    }
+        //    else
+        //    {
+        //        StopAllCoroutines();
+        //        state = ActionState.Wisp;
+        //        isCoroutine = false;
+        //    }
+        //}
+
+        float randomvalue = Random.Range(0.0f, 1.0f);
+        float wispP, astonishP, floatP;
+        wispP = astonishP = floatP = 0.5f;
+        if (level == 1)
         {
-            if (randAt2 < 0.5)
-            {
-                StopAllCoroutines();
-                state = ActionState.Warp;
-                isCoroutine = false;
-            }
-            else
-            {
-                StopAllCoroutines();
-                state = ActionState.Attack;
-                isCoroutine = false;
-            }
+            wispP = 0.2f;
+            astonishP = 0.1f;
+            floatP = 0.7f;
+        }
+        if (level == 2)
+        {
+            wispP = 0.1f;
+            astonishP = 0.4f;
+            floatP = 0.5f;
+        }
+        if (level == 3)
+        {
+            wispP = 0.5f;
+            astonishP = 0.2f;
+            floatP = 0.3f;
+        }
+        if (randomvalue < wispP)
+        {
+            state = ActionState.Wisp;
+
+        }
+        else if (randomvalue < astonishP)
+        {
+            state = ActionState.Astonish;
+
+        }
+        else
+        {
+            state = ActionState.Search;//レベル2,3の可能性は今んとこない
         }
 
         isCoroutine = false;
@@ -322,7 +444,7 @@ public class DeathHand : Enemy_Base {
         //{
         //    switch (state)//今の状態によって行動を変化
         //    {
-        //        case ActionState.Attack:
+        //        case ActionState.Wisp:
         //            break;
         //        default:
         //            break;
@@ -340,6 +462,12 @@ public class DeathHand : Enemy_Base {
         }
     }
 
+    //キャラクターの状態をリセットするために必要なもの
+    void Reset()
+    {
+
+    }
+
     //アニメーション///////////////////////////////////////////////////////
     private int animState = 0;//アニメータのパラメタが取得できないのでとりあえずこれで代用
 
@@ -349,10 +477,10 @@ public class DeathHand : Enemy_Base {
 
     }
 
-    public void AnimAttack()
+    public void AnimWisp()
     {
         //animState = 1;
-        animState = (int)ActionState.Attack;
+        animState = (int)ActionState.Wisp;
 
     }
 
