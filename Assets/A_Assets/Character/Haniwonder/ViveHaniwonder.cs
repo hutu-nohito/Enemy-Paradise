@@ -18,9 +18,9 @@ public class ViveHaniwonder : Enemy_Base
     /******************************************************************************/
 
     /*
-     * level1 はにわんだー
-     * level2 はにまんさー
-     * level3 熱血はにわんだー
+     * level1,2,3 はにわんだー
+     * level? はにまんさー
+     * level4 熱血はにわんだー
      */
 
     private AudioSource SE;//音
@@ -30,19 +30,24 @@ public class ViveHaniwonder : Enemy_Base
     public GameObject[] Bullet;//攻撃
     public Transform[] Muzzle;//攻撃が出てくる場所
     public GameObject Avatar;//分身
+    public GameObject TacleCol;//体当たり攻撃判定
+    public GameObject HeadCol;//頭突き攻撃判定
+
+    //Timer
+    float timer = 0;//使ったら0に
 
     //キャラクタの状態
     public enum ActionState
     {
         Stop,//アニメーションが終わるまで待機(状態でなくアニメーションの整合性のために必要)
         Guard,//回避行動全般
-        Idle,
+        Exercise,//体操 一巡100秒
+        Idle,//腕組み
         Run,//純粋に走ってる状態？
         Tackle,//体当たり
-        Beam,//ビーム
         Headbutt,//頭突き
+        Beam,//ビーム        
         Counter,//攻撃に対してカウンターしてくる
-        Exercise,//体操
         AfterImage,//影分身して突進
         Knockback//
 
@@ -51,15 +56,13 @@ public class ViveHaniwonder : Enemy_Base
     public ActionState GetState() { return state; }
     public void SetState(ActionState state) { this.state = state; }
 
-    public GameObject TacleCol;//攻撃判定
-
     // Use this for initialization
     void Start()
     {
         base.BaseStart();
 
         //初期状態セット
-        coroutine = StartCoroutine(ChangeState(15.0f, ActionState.Idle));
+        //coroutine = StartCoroutine(ChangeState(15.0f, ActionState.Idle));
 
         SE = GetComponent<AudioSource>();
 
@@ -112,17 +115,17 @@ public class ViveHaniwonder : Enemy_Base
                 state = ActionState.Stop;
                 animState = (int)ActionState.Run;
                 ReverseAfterImage();//残像
-                if (level == 1)//はにわんだー
+                if (level <= 3)//はにわんだー
                 {
                     base.animator.SetTrigger("Run");
                 }
-                if (level == 3)//熱血
+                if (level == 4)//熱血
                 {
                     base.animator.SetTrigger("Dance");
                 }
             }
 
-            if(level == 1)//はにわんだー
+            if(level <= 3)//はにわんだー
             {
                 //勝利のポーズ(相手の周りを走り回る)
                 transform.position = base.AffineRot(transform.position, 2000);
@@ -152,6 +155,35 @@ public class ViveHaniwonder : Enemy_Base
             //アニメーションの最中など動かしたくないときに用いる
         }
 
+        //体操
+        if (state == ActionState.Exercise)
+        {
+            if (animState != (int)ActionState.Exercise)
+            {
+                transform.LookAt(Player.transform.position);
+                base.animator.SetTrigger("Exercise");
+            }
+
+            timer += Time.deltaTime;
+            if(level == 2)
+            {
+                if (timer >= 6)
+                {
+                    state = ActionState.Headbutt;
+                    timer = 0;
+                }
+            }
+            if (level == 3)
+            {
+                if (timer >= 3.2f)
+                {
+                    state = ActionState.Beam;
+                    timer = 0;
+                }
+            }
+        }
+
+        //腕組み
         if (state == ActionState.Idle)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(base.Player.transform.position - transform.position), 0.5f);
@@ -188,22 +220,19 @@ public class ViveHaniwonder : Enemy_Base
             coroutine = StartCoroutine(Tackle());
         }
 
+        //頭突き
+        if (state == ActionState.Headbutt)
+        {
+            coroutine = StartCoroutine(Headbutt());
+        }
+
         //ビーム
         if (state == ActionState.Beam)
         {
             coroutine = StartCoroutine(Beam());
         }
 
-        //体操
-        if (state == ActionState.Exercise)
-        {
-
-            if (animState != (int)ActionState.Exercise)
-            {
-                base.animator.SetTrigger("Exercise");
-            }
-            
-        }
+        
 
         //パターン//////////////////////////////////////////////
 
@@ -237,15 +266,34 @@ public class ViveHaniwonder : Enemy_Base
         if (isCoroutine) yield break;
         isCoroutine = true;
 
-        base.animator.SetTrigger("Yell");
-
+        if (level == 1)
+        {
+            base.animator.SetTrigger("Knockback");
+        }
+        if (level == 4)
+        {
+            base.animator.SetTrigger("Yell");
+        }
+        
         yield return new WaitForSeconds(2.0f);
 
-        base.animator.SetTrigger("Run");
+        if (level == 1)
+        {
+            base.animator.SetTrigger("Dash");
+        }
+        if (level == 4)
+        {
+            base.animator.SetTrigger("Run");
+        }
+
         TacleCol.SetActive(true);
 
         //プレイヤに突進
-        ReverseAfterImage();//残像
+        if(level == 4)
+        {
+            ReverseAfterImage();//残像
+        }
+        
         iTween.MoveTo(this.gameObject, iTween.Hash(
                 "x", transform.position.x + (Player.transform.position - transform.position).normalized.x * 30,//定数が突進距離
                 "z", transform.position.z + (Player.transform.position - transform.position).normalized.z * 30,//定数が突進距離
@@ -264,11 +312,99 @@ public class ViveHaniwonder : Enemy_Base
 
                 );
 
-        yield return new WaitForSeconds(4);
-        ReverseAfterImage();//残像
+        yield return new WaitForSeconds(3);
+
+        if (level == 4)
+        {
+            ReverseAfterImage();//残像
+        }
 
         TacleCol.SetActive(false);
-        state = ActionState.Idle;
+
+        if (level == 1)
+        {
+            state = ActionState.Exercise;
+        }
+        
+        isCoroutine = false;
+    }
+
+    //頭突き
+    IEnumerator Headbutt()
+    {
+        if (isCoroutine) yield break;
+        isCoroutine = true;
+
+        if (level == 2)
+        {
+            base.animator.SetTrigger("Dash");
+        }
+        if (level == 4)
+        {
+            base.animator.SetTrigger("Yell");
+        }
+
+        yield return new WaitForSeconds(2.0f);
+
+        base.animator.SetTrigger("Headbutt");
+        HeadCol.SetActive(true);
+
+        //プレイヤに突進
+        iTween.MoveTo(this.gameObject, iTween.Hash(
+                "x", transform.position.x + (Player.transform.position - transform.position).normalized.x * 30,//定数が突進距離
+                "z", transform.position.z + (Player.transform.position - transform.position).normalized.z * 30,//定数が突進距離
+                "time", 3.0f,
+                "easetype", iTween.EaseType.linear)
+
+                );
+
+        yield return new WaitForSeconds(0.1f);
+
+        //前を向ける
+        iTween.RotateTo(this.gameObject, iTween.Hash(
+                "y", Mathf.Repeat(Quaternion.LookRotation(GetMove()).eulerAngles.y, 360.0f),//(たまにおかしくなるので後で検証)
+                "time", 0.25f,
+                "easetype", iTween.EaseType.linear)
+
+                );
+
+        yield return new WaitForSeconds(3);
+        //ここまでに当たらなかったら失敗
+        base.animator.SetTrigger("falseHeadbutt");
+        HeadCol.SetActive(false);
+
+        yield return new WaitForSeconds(3);
+
+        if (level == 2)
+        {
+            state = ActionState.Exercise;
+        }
+        
+        isCoroutine = false;
+    }
+
+    //頭突きが当たった
+    IEnumerator HitHead()
+    {
+        HeadCol.SetActive(false);
+        base.animator.SetTrigger("trueHeadbutt");
+
+        //反動
+        iTween.MoveTo(this.gameObject, iTween.Hash(
+                "x", transform.position.x - (Player.transform.position - transform.position).normalized.x * 1,//定数が突進距離
+                "z", transform.position.z - (Player.transform.position - transform.position).normalized.z * 1,//定数が突進距離
+                "time", 1.0f,
+                "easetype", iTween.EaseType.linear)
+
+                );
+
+        yield return new WaitForSeconds(2.0f);
+        
+        if (level == 2)
+        {
+            state = ActionState.Exercise;
+        }
+
         isCoroutine = false;
     }
 
@@ -277,6 +413,8 @@ public class ViveHaniwonder : Enemy_Base
     {
         if (isCoroutine) yield break;
         isCoroutine = true;
+
+        base.animator.SetTrigger("Beam");
 
         //前を向ける
         iTween.RotateTo(this.gameObject, iTween.Hash(
@@ -303,8 +441,11 @@ public class ViveHaniwonder : Enemy_Base
         Bullet[0].SetActive(false);
         Bullet[0].transform.rotation = new Quaternion(0, 0, 0, 0);
 
-        //state = ActionState.Exercise;
-        state = ActionState.Beam;
+        if (level == 3)
+        {
+            state = ActionState.Exercise;
+        }
+
         isCoroutine = false;
     }
 
@@ -520,12 +661,19 @@ public class ViveHaniwonder : Enemy_Base
         isCoroutine = false;
     }
 
+    public void Hit()
+    {
+        StopAllCoroutines();
+        StartCoroutine(HitHead());
+        
+    }
+
     public void Damage()
     {
         //イベント側で優先度を確認すればよい
         if (GetHP() >= 0)
         {
-            if (state > ActionState.Guard)//体操より優先順位が下
+            if (state > ActionState.Exercise)//体操より優先順位が下
             {
                 state = ActionState.Knockback;
 
@@ -535,8 +683,16 @@ public class ViveHaniwonder : Enemy_Base
                 isCoroutine = false;
                 Bullet[0].SetActive(false);
                 Bullet[0].transform.rotation = new Quaternion(0, 0, 0, 0);
+                timer = 0;
 
                 StartCoroutine(Knockback());
+            }
+            if (level == 1)
+            {
+                if (state == ActionState.Exercise)//体操
+                {
+                    state = ActionState.Tackle;
+                }
             }
         }
     }
@@ -551,6 +707,13 @@ public class ViveHaniwonder : Enemy_Base
         }
     }
 
+    //キャラクターの状態をリセットするために必要なもの
+    void Reset()
+    {
+        timer = 0;
+        isCoroutine = false;
+    }
+
     //アニメーション///////////////////////////////////////////////////////
     private int animState = 0;//アニメータのパラメタが取得できないのでとりあえずこれで代用
 
@@ -562,6 +725,11 @@ public class ViveHaniwonder : Enemy_Base
     public void AnimExercise()
     {
         animState = (int)ActionState.Exercise;
+    }
+
+    public void AnimDash()
+    {
+        animState = (int)ActionState.Run;
     }
 
     public void AnimRun()
