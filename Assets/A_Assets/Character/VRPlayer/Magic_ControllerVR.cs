@@ -281,7 +281,7 @@ public class Magic_ControllerVR : MonoBehaviour {
             //HPgauge.SetActive(false);
         }
 
-        /*
+        
         if(stockMagic[0] != 100)
         {
             for (int i = 0; i < stockMagic.Count; i++)
@@ -304,7 +304,7 @@ public class Magic_ControllerVR : MonoBehaviour {
             }
             
         }
-        */
+        
     }
 
     //コントローラの軌跡が魔法になってるかどうか
