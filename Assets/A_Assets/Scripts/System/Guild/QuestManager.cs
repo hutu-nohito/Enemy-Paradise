@@ -161,12 +161,12 @@ public class QuestManager : Quest_Parameter {
         isCoroutine = true;
 
         //クリア後だからたぶんほっといても大丈夫
-        Player.GetComponent<Player_ControllerZ>().SetKeylock();
+        //Player.GetComponent<Player_ControllerZ>().SetKeylock();
         //Camera.main.enabled = false;
         //F_camera.enabled = true;
 
 		//クリア時のHP、MPを引き継がせる
-		_static.SetHP(Player.GetComponent<Player_ControllerZ> ().GetHP ());
+		//_static.SetHP(Player.GetComponent<Player_ControllerZ> ().GetHP ());
 
         yield return new WaitForSeconds(0.5f);//カメラ切り替えの間
 
@@ -176,7 +176,7 @@ public class QuestManager : Quest_Parameter {
 
         Clear.SetActive(false);
         //一応戻しとく
-        Player.GetComponent<Player_ControllerZ>().SetActive();
+        //Player.GetComponent<Player_ControllerZ>().SetActive();
         //Camera.main.enabled = true;//カメラは保持してないのでないと取り込めない
         //F_camera.enabled = false;
 

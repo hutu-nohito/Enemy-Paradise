@@ -9,6 +9,8 @@ public class Guild : MonoBehaviour {
     private int quest_num = 0;//どのクエストを選んだか
 
 	public GameObject[] Quest_paper;
+    public GameObject[] Battle_paper;//コロシアム用
+    public int guildLevel = 0;//バトルクエスト管理用
 
 	private QuestManager qM;
 	private Quest_Parameter quest_parameter;
@@ -51,10 +53,30 @@ public class Guild : MonoBehaviour {
 
         }
     }
-	// Use this for initialization
-	void Start () {
+
+    public GameObject[] CamRigPos;
+    public GameObject CamRig;
+    public bool flag_title = false;
+    // Use this for initialization
+    void Start () {
+
+        if (flag_title)
+        {
+            CamRig = CamRigPos[0];
+        }
+
+        for(int i = 0; i <= guildLevel; i++)
+        {
+            Battle_paper[i].SetActive(true);
+        }
 
 	}
+
+    public void GameStart()
+    {
+        ST.Guild();
+
+    }
 
     //カメラ動かすよう
     public float MoveTime = 2;//移動時間
@@ -316,6 +338,48 @@ public class Guild : MonoBehaviour {
     public void Battle2()
     {
         qM.SetQuestStageID(2);
+        ST.BattleField();
+        qM.QuestStart();
+    }
+
+    public void Battle3()
+    {
+        qM.SetQuestStageID(3);
+        ST.BattleField();
+        qM.QuestStart();
+    }
+
+    public void Battle4()
+    {
+        qM.SetQuestStageID(4);
+        ST.BattleField();
+        qM.QuestStart();
+    }
+
+    public void Battle5()
+    {
+        qM.SetQuestStageID(5);
+        ST.BattleField();
+        qM.QuestStart();
+    }
+
+    public void Battle6()
+    {
+        qM.SetQuestStageID(6);
+        ST.BattleField();
+        qM.QuestStart();
+    }
+
+    public void Battle7()
+    {
+        qM.SetQuestStageID(7);
+        ST.BattleField();
+        qM.QuestStart();
+    }
+
+    public void Battle8()
+    {
+        qM.SetQuestStageID(8);
         ST.BattleField();
         qM.QuestStart();
     }
