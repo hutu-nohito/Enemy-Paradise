@@ -25,7 +25,7 @@ public class Guild : MonoBehaviour {
         ST = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneTransition>();
         _static = GameObject.FindGameObjectWithTag("Manager").GetComponent<Static>();
 
-        Camera.main.transform.position = CameraPos[0].transform.position;
+        //Camera.main.transform.position = CameraPos[0].transform.position;
 
         //ここでクエストから帰ってきた時の処理
 
