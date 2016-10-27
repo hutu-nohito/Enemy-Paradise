@@ -12,7 +12,7 @@ public class Static : MonoBehaviour {
 
 
     //保存したいデータを常にここで更新しとく
-    public float day = 1;//何日目か
+    public float day = 100;//何日目か
     public float GetDay() { return day; }
     public void SetDay(float day) { this.day += day; }
 

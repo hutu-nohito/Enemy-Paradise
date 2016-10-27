@@ -9,6 +9,18 @@ public class ControllerExample : MonoBehaviour {
     public SaveRune save;
     public bool flag_save = false;
 
+    //とりあえずメッセージ送りをできるようにしとく
+    private GameObject GM;
+
+    void Start()
+    {
+        
+        if (GM == null)
+        {
+            GM = GameObject.FindGameObjectWithTag("Manager");//マネージャは絶対あるからこれでいいや
+        }
+    }
+
     void Update()
     {
         SteamVR_TrackedObject trackedObject = GetComponent<SteamVR_TrackedObject>();
@@ -18,8 +30,14 @@ public class ControllerExample : MonoBehaviour {
 
         if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
         {
-            Player_Magic.ControllerPulse(Magic_ControllerVR.VRButton.TriggerTouchDown, right);
+            if (Player_Magic != null)
+            {
+                //あったら送る
+                Player_Magic.ControllerPulse(Magic_ControllerVR.VRButton.TriggerTouchDown, right);
+            }
+            
             //Debug.Log("トリガーを浅く引いた");
+
         }
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
         {
@@ -29,10 +47,16 @@ public class ControllerExample : MonoBehaviour {
             }
             else
             {
-                Player_Magic.ControllerPulse(Magic_ControllerVR.VRButton.TriggerPressDown, right);
+                if (Player_Magic != null)
+                {
+                    Player_Magic.ControllerPulse(Magic_ControllerVR.VRButton.TriggerPressDown, right);
+                }
+                    
             }
-            
+
             //Debug.Log("トリガーを深く引いた");
+
+            GM.GetComponentInChildren<uGUI_Msg>().Viveclick();//メッセージ送り
         }
         if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
         {
@@ -42,7 +66,10 @@ public class ControllerExample : MonoBehaviour {
             }
             else
             {
-                Player_Magic.ControllerPulse(Magic_ControllerVR.VRButton.TriggerUp, right);
+                if (Player_Magic != null)
+                {
+                    Player_Magic.ControllerPulse(Magic_ControllerVR.VRButton.TriggerUp, right);
+                }
             }
             
             Debug.Log("トリガーを離した");
@@ -55,21 +82,30 @@ public class ControllerExample : MonoBehaviour {
             }
             else
             {
-                Player_Magic.ControllerPulse(Magic_ControllerVR.VRButton.GripDown, right);
+                if (Player_Magic != null)
+                {
+                    Player_Magic.ControllerPulse(Magic_ControllerVR.VRButton.GripDown, right);
+                }
             }
             
             Debug.Log("グリップボタンをクリックした");
         }
         if (device.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
         {
-            Player_Magic.ControllerPulse(Magic_ControllerVR.VRButton.GripUp, right);
+            if (Player_Magic != null)
+            {
+                Player_Magic.ControllerPulse(Magic_ControllerVR.VRButton.GripUp, right);
+            }
             Debug.Log("グリップボタンを離した");
         }
 
         //押しっぱ系
         if (device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
         {
-            Player_Magic.ControllerTrigger(right);
+            if (Player_Magic != null)
+            {
+                Player_Magic.ControllerTrigger(right);
+            }
             //Debug.Log("トリガーを深く引いている");
         }
 

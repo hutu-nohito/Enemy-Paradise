@@ -29,22 +29,6 @@ public class SceneTransition : MonoBehaviour {
 
         if (isFade)
         {
-            //フェードアウト
-            if (fadeOut)
-            {
-                elapsedTime += Time.deltaTime;
-                fadeAlpha += Time.deltaTime;
-                fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, fadeAlpha);
-                if (elapsedTime > fadeTime)
-                {
-                    fadeAlpha = 1;
-                    fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, 1);
-                    isFade = false;
-                    elapsedTime = 0;
-                    fadeOut = false;
-                    Invoke("Fade", 2);//フェードアウトしたらたいていはフェードインする
-                }
-            }
             //フェードイン
             if (!fadeOut)
             {
@@ -59,6 +43,23 @@ public class SceneTransition : MonoBehaviour {
                     elapsedTime = 0;
                     fadeOut = true;
                     fade.enabled = false;
+                }
+            }
+
+            //フェードアウト
+            if (fadeOut)
+            {
+                elapsedTime += Time.deltaTime;
+                fadeAlpha += Time.deltaTime;
+                fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, fadeAlpha);
+                if (elapsedTime > fadeTime)
+                {
+                    fadeAlpha = 1;
+                    fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, 1);
+                    isFade = false;
+                    elapsedTime = 0;
+                    fadeOut = false;
+                    Invoke("Fade", 3);//フェードアウトしたらたいていはフェードインする
                 }
             }
 

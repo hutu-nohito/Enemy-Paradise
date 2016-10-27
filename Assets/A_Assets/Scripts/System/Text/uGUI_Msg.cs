@@ -85,6 +85,7 @@ public class uGUI_Msg : MonoBehaviour {
 
                 TextFinish.SetActive(true);
 
+                //左クリックでメッセージ送り
                 if (Input.GetMouseButtonDown(0))
                 {
 
@@ -93,6 +94,15 @@ public class uGUI_Msg : MonoBehaviour {
                     lengthMsg = 0;		//0文字目にリセット
                     TextFinish.SetActive(false);
 
+                }
+
+                //Viveでメッセージ送り
+                if (vive_click)
+                {
+                    lengthSecenario++;
+                    lengthMsg = 0;		//0文字目にリセット
+                    TextFinish.SetActive(false);
+                    vive_click = false;
                 }
 
                 //文末まで行ったら
@@ -120,6 +130,13 @@ public class uGUI_Msg : MonoBehaviour {
         lengthSecenario = 0;//そのシナリオの1文目から
         flgDisp = true;		//表示
 
+    }
+
+    //後で統一する
+    private bool vive_click = false;//viveのボタンが押されたかどうか
+    public void Viveclick()
+    {
+        vive_click = true;
     }
 
 }

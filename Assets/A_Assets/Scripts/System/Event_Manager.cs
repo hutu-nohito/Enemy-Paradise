@@ -24,8 +24,8 @@ public class Event_Manager : MonoBehaviour {
     private bool[] EventFlag = new bool[100];//イベントフラグ、使ったらおろしてく
 
     /*
-        1:ホーム一日目
-        2:ギルド一日目
+        0:ホーム一日目
+        1:ギルド一日目
     */
 
 	public GameObject Canvas;//UI
@@ -57,7 +57,9 @@ public class Event_Manager : MonoBehaviour {
         {
             Canvas = GameObject.Find("Msg_Canvas");
         }
-        pcVR = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_ControllerVR>();
+
+        //これはシーンが変わるごとに必要(とりあえずプレイヤーの動きはとめない)
+        //pcVR = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_ControllerVR>();
 
         uGM = Canvas.GetComponent<uGUI_Msg>();
         uGM.enabled = false;//消しとく
@@ -78,8 +80,6 @@ public class Event_Manager : MonoBehaviour {
                 TutorialCube[i].SetActive(false);//消しとく
             }
         }            
-
-        
 
     }
 	
@@ -104,21 +104,34 @@ public class Event_Manager : MonoBehaviour {
         if(SceneManager.GetActiveScene().name == "Home")
             StartCoroutine(Home_T());
 
-        if (SceneManager.GetActiveScene().name == "guild")
+        if (SceneManager.GetActiveScene().name == "Guild")
             StartCoroutine(guild_T());
 
-        if (SceneManager.GetActiveScene().name == "Title")
+        if (SceneManager.GetActiveScene().name == "title")
         {
             Information.SetActive(false);
         }
         else
         {
-            //Information.SetActive(true);
+            //Information.SetActive(true);/消しとく
         }
 
     }
 
-	IEnumerator Home_T(){//ホームでのイベント
+    public void Title_T(bool flag_true){//タイトルでのイベント
+        
+        uGM.enabled = true;//つける
+        if (flag_true)
+        {
+            uGM.dispMessage(EventText[0]);//表示する
+        }
+        else
+        {
+            uGM.dispMessage(EventText[1]);//表示する
+        }
+        
+    }
+    IEnumerator Home_T(){//ホームでのイベント
 
         if (isCoroutineH){yield break;}
 		isCoroutineH = true;
@@ -169,49 +182,49 @@ public class Event_Manager : MonoBehaviour {
         //偶数番目で説明、奇数番目で実践(奇数の時はメッセージを表示しない)
         if (TutorialStep == 0)
         {
-            pcVR.SetKeylock();
+            //pcVR.SetKeylock();
             uGM.enabled = true;//つける
             uGM.dispMessage(EventText[2]);//表示する
         }
         if (TutorialStep == 1)
         {
-            pcVR.SetActive();
+            //pcVR.SetActive();
             TutorialCube[0].SetActive(true);
         }
         if (TutorialStep == 2)
         {
             TutorialCube[0].SetActive(false);
-            pcVR.SetKeylock();
+            //pcVR.SetKeylock();
             uGM.enabled = true;//つける
             uGM.dispMessage(EventText[3]);//表示する
         }
         if (TutorialStep == 3)
         {
-            pcVR.SetActive();
+            //pcVR.SetActive();
             TutorialCube[1].SetActive(true);
         }
         if (TutorialStep == 4)
         {
             TutorialCube[1].SetActive(false);
-            pcVR.SetKeylock();
+            //pcVR.SetKeylock();
             uGM.enabled = true;//つける
             uGM.dispMessage(EventText[4]);//表示する
         }
         if (TutorialStep == 5)
         {
-            pcVR.SetActive();
+            //pcVR.SetActive();
             TutorialCube[2].SetActive(true);
         }
         if (TutorialStep == 6)
         {
             TutorialCube[2].SetActive(false);
-            pcVR.SetKeylock();
+            //pcVR.SetKeylock();
             uGM.enabled = true;//つける
             uGM.dispMessage(EventText[5]);//表示する
         }
         if (TutorialStep == 7)
         {
-            pcVR.SetActive();
+            //pcVR.SetActive();
         }
 
         isCoroutineBY = false;

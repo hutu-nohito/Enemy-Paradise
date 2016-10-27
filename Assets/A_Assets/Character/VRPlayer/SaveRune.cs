@@ -175,7 +175,15 @@ public class SaveRune : MonoBehaviour
                     {
                         if (RuneList[RuneList.Count - 4] == correctRuneArray[16])
                         {
-                            saveObj.SetGL(8);
+                            if (saveObj.GetGL() < 8)
+                            {
+                                saveObj.SetGL(8);
+                                saveObj.GetComponent<Event_Manager>().Title_T(true);//メッセージ
+                            }
+                            else
+                            {
+                                saveObj.GetComponent<Event_Manager>().Title_T(false);//メッセージ
+                            }
                             RuneList.Clear();//チェックしたらクリア
                             return;
                         }
@@ -192,7 +200,16 @@ public class SaveRune : MonoBehaviour
                     {
                         if (RuneList[RuneList.Count - 4] == correctRuneArray[12])
                         {
-                            saveObj.SetGL(7);
+                            if(saveObj.GetGL() < 7)
+                            {
+                                saveObj.SetGL(7);
+                                saveObj.GetComponent<Event_Manager>().Title_T(true);//メッセージ
+                            }
+                            else
+                            {
+                                saveObj.GetComponent<Event_Manager>().Title_T(false);//メッセージ
+                            }
+                            
                             RuneList.Clear();//チェックしたらクリア
                             return;
                         }
@@ -209,7 +226,15 @@ public class SaveRune : MonoBehaviour
                     {
                         if (RuneList[RuneList.Count - 4] == correctRuneArray[8])
                         {
-                            saveObj.SetGL(6);
+                            if (saveObj.GetGL() < 6)
+                            {
+                                saveObj.SetGL(6);
+                                saveObj.GetComponent<Event_Manager>().Title_T(true);//メッセージ
+                            }
+                            else
+                            {
+                                saveObj.GetComponent<Event_Manager>().Title_T(false);//メッセージ
+                            }
                             RuneList.Clear();//チェックしたらクリア
                             return;
                         }
@@ -226,7 +251,15 @@ public class SaveRune : MonoBehaviour
             {
                 if (RuneList[RuneList.Count - 2] == correctRuneArray[6])
                 {
-                    saveObj.SetGL(5);
+                    if (saveObj.GetGL() < 5)
+                    {
+                        saveObj.SetGL(5);
+                        saveObj.GetComponent<Event_Manager>().Title_T(true);//メッセージ
+                    }
+                    else
+                    {
+                        saveObj.GetComponent<Event_Manager>().Title_T(false);//メッセージ
+                    }
                     RuneList.Clear();//チェックしたらクリア
                     return;
 
@@ -238,7 +271,15 @@ public class SaveRune : MonoBehaviour
             {
                 if (RuneList[RuneList.Count - 2] == correctRuneArray[4])
                 {
-                    saveObj.SetGL(4);
+                    if (saveObj.GetGL() < 4)
+                    {
+                        saveObj.SetGL(4);
+                        saveObj.GetComponent<Event_Manager>().Title_T(true);//メッセージ
+                    }
+                    else
+                    {
+                        saveObj.GetComponent<Event_Manager>().Title_T(false);//メッセージ
+                    }
                     RuneList.Clear();//チェックしたらクリア
                     return;
 
@@ -250,7 +291,15 @@ public class SaveRune : MonoBehaviour
             {
                 if (RuneList[RuneList.Count - 2] == correctRuneArray[2])
                 {
-                    saveObj.SetGL(3);
+                    if (saveObj.GetGL() < 3)
+                    {
+                        saveObj.SetGL(3);
+                        saveObj.GetComponent<Event_Manager>().Title_T(true);//メッセージ
+                    }
+                    else
+                    {
+                        saveObj.GetComponent<Event_Manager>().Title_T(false);//メッセージ
+                    }
                     RuneList.Clear();//チェックしたらクリア
                     return;
 
@@ -261,7 +310,15 @@ public class SaveRune : MonoBehaviour
         //初級3
         if (RuneList[RuneList.Count - 1] == correctRuneArray[1])
         {
-            saveObj.SetGL(2);
+            if (saveObj.GetGL() < 2)
+            {
+                saveObj.SetGL(2);
+                saveObj.GetComponent<Event_Manager>().Title_T(true);//メッセージ
+            }
+            else
+            {
+                saveObj.GetComponent<Event_Manager>().Title_T(false);//メッセージ
+            }
             RuneList.Clear();//チェックしたらクリア
             return;
         }
@@ -269,8 +326,15 @@ public class SaveRune : MonoBehaviour
         //初級2
         if (RuneList[RuneList.Count - 1] == correctRuneArray[0])
         {
-            saveObj.SetGL(1);
-            Debug.Log("www");
+            if (saveObj.GetGL() < 1)
+            {
+                saveObj.SetGL(1);
+                saveObj.GetComponent<Event_Manager>().Title_T(true);//メッセージ
+            }
+            else
+            {
+                saveObj.GetComponent<Event_Manager>().Title_T(false);//メッセージ
+            }
             RuneList.Clear();//チェックしたらクリア
             return;
         }
