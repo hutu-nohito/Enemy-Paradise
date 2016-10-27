@@ -36,6 +36,10 @@ public class Static : MonoBehaviour {
     public int GetBP() { return bonus_P; }
     public void SetBP(int BP) { this.bonus_P = BP; }
 
+    public int guild_level = 0;
+    public int GetGL() { return guild_level; }
+    public void SetGL(int GL) { this.guild_level = GL; }
+
     /*
      * ここに隙間の状態と持ってるデータの情報 
      */

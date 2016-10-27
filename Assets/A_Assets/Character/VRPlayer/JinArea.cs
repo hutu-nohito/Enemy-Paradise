@@ -6,6 +6,9 @@ public class JinArea : MonoBehaviour {
     public GameObject HandL;
     public Magic_ControllerVR magic;
 
+    public SaveRune save;
+    public bool flag_save = false;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -20,7 +23,15 @@ public class JinArea : MonoBehaviour {
     {
         if(col.gameObject == HandL)
         {
-            magic.SetRod();
+            if (flag_save)
+            {
+                save.SetRod();
+            }
+            else
+            {
+                magic.SetRod();
+            }
+            
         }
     }
 
@@ -28,7 +39,15 @@ public class JinArea : MonoBehaviour {
     {
         if (col.gameObject == HandL)
         {
-            magic.PutRod();
+            if (flag_save)
+            {
+                save.SetRod();
+            }
+            else
+            {
+                magic.PutRod();
+            }
+            
         }
     }
 }

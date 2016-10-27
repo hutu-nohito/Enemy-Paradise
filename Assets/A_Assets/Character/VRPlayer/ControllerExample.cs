@@ -6,6 +6,9 @@ public class ControllerExample : MonoBehaviour {
     public Magic_ControllerVR Player_Magic;
     public bool right = false;//右のコントローラ
 
+    public SaveRune save;
+    public bool flag_save = false;
+
     void Update()
     {
         SteamVR_TrackedObject trackedObject = GetComponent<SteamVR_TrackedObject>();
@@ -20,17 +23,41 @@ public class ControllerExample : MonoBehaviour {
         }
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
         {
-            Player_Magic.ControllerPulse(Magic_ControllerVR.VRButton.TriggerPressDown, right);
+            if (flag_save)
+            {
+                save.ControllerPulse(SaveRune.VRButton.TriggerPressDown, right);
+            }
+            else
+            {
+                Player_Magic.ControllerPulse(Magic_ControllerVR.VRButton.TriggerPressDown, right);
+            }
+            
             //Debug.Log("トリガーを深く引いた");
         }
         if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
         {
-            Player_Magic.ControllerPulse(Magic_ControllerVR.VRButton.TriggerUp, right);
+            if (flag_save)
+            {
+                save.ControllerPulse(SaveRune.VRButton.TriggerUp, right);
+            }
+            else
+            {
+                Player_Magic.ControllerPulse(Magic_ControllerVR.VRButton.TriggerUp, right);
+            }
+            
             Debug.Log("トリガーを離した");
         }
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
         {
-            Player_Magic.ControllerPulse(Magic_ControllerVR.VRButton.GripDown, right);
+            if (flag_save)
+            {
+                save.ControllerPulse(SaveRune.VRButton.GripDown, right);
+            }
+            else
+            {
+                Player_Magic.ControllerPulse(Magic_ControllerVR.VRButton.GripDown, right);
+            }
+            
             Debug.Log("グリップボタンをクリックした");
         }
         if (device.GetPressUp(SteamVR_Controller.ButtonMask.Grip))

@@ -9,6 +9,9 @@ public class TouchJin : MonoBehaviour {
     public int PointNumber = 0;
     public GameObject UI;
 
+    public SaveRune save;
+    public bool flag_save = false;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -25,7 +28,15 @@ public class TouchJin : MonoBehaviour {
         if (col.gameObject == HandR)
         {
             Debug.Log(PointNumber);
-            MC.DotToDot(PointNumber);
+            if (flag_save)
+            {
+                save.DotToDot(PointNumber);
+            }
+            else
+            {
+                MC.DotToDot(PointNumber);
+            }
+            
         }
     }
 

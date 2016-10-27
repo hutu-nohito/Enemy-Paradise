@@ -60,11 +60,13 @@ public class Guild : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        if (flag_title)
-        {
-            CamRig = CamRigPos[0];
-        }
+        //if (flag_title)
+        //{
+        //    CamRig = CamRigPos[0];
+        //}
 
+        //仕様が変わったら移動
+        guildLevel = _static.GetGL();
         for(int i = 0; i <= guildLevel; i++)
         {
             Battle_paper[i].SetActive(true);
