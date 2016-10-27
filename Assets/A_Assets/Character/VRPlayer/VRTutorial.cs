@@ -3,7 +3,7 @@ using System.Collections;
 
 public class VRTutorial : MonoBehaviour {
 
-    public GameObject GM;
+    private GameObject GM;
     private Event_Manager EM;
 
     public GameObject HandR;
@@ -11,6 +11,7 @@ public class VRTutorial : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+        GM = GameObject.FindGameObjectWithTag("Manager");
         EM = GM.GetComponent<Event_Manager>();
     }
 	

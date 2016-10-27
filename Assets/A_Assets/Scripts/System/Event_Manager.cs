@@ -50,6 +50,28 @@ public class Event_Manager : MonoBehaviour {
     public int TutorialStep = 0;//チュートリアルのステップ数(頑張れば使いまわせそう)
     public GameObject[] TutorialCube;//とりあえず直入れ
 
+    void Awake()
+    {
+        uGM = Canvas.GetComponent<uGUI_Msg>();
+        uGM.enabled = false;
+
+        //デバッグ用
+        if (SceneManager.GetActiveScene().name == "Backyard" || SceneManager.GetActiveScene().name == "BackyardVR")
+        {
+            //TutorialCube[0] = GameObject.Find("Tutorial1");
+            //TutorialCube[1] = GameObject.Find("Tutorial2");
+            //TutorialCube[2] = GameObject.FindWithTag("Tutorial3");
+
+            ////チュートリアル
+            //for (int i = 0; i < TutorialCube.Length; i++)
+            //{
+            //    TutorialCube[i].SetActive(false);//消しとく
+            //}
+            //TutorialStep = 0;
+
+            //StartCoroutine(Backyard_T());
+        }
+    }
     // Use this for initialization
     void Start() {
 
@@ -63,26 +85,11 @@ public class Event_Manager : MonoBehaviour {
         //これはシーンが変わるごとに必要(とりあえずプレイヤーの動きはとめない)
         //pcVR = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_ControllerVR>();
 
-        uGM = Canvas.GetComponent<uGUI_Msg>();
-        uGM.enabled = false;//消しとく
-
         for (int i = 0; i < EventFlag.Length; i++)
         {
             EventFlag[i] = false;//初期化　イベントをセーブするようになったらその時考える
         }
-
-        //デバッグ用
-        if (SceneManager.GetActiveScene().name == "Backyard" || SceneManager.GetActiveScene().name == "BackyardVR")
-        {
-            //チュートリアル
-            for (int i = 0; i < TutorialCube.Length; i++)
-            {
-                TutorialCube[i].SetActive(false);//消しとく
-            }
-            TutorialStep = 0;
-
-            StartCoroutine(Backyard_T());
-        }            
+                    
 
     }
 	
@@ -108,14 +115,34 @@ public class Event_Manager : MonoBehaviour {
     void Check_Event()
     {
         if(SceneManager.GetActiveScene().name == "Home")
-            StartCoroutine(Home_T());
+        {
+            //StartCoroutine(Home_T());
+        }
+
 
         if (SceneManager.GetActiveScene().name == "Guild")
+        {
             StartCoroutine(guild_T());
+        }
 
         if (SceneManager.GetActiveScene().name == "title")
         {
-            Information.SetActive(false);
+            //Information.SetActive(false);
+        }
+        if(SceneManager.GetActiveScene().name == "BackyardVR")
+        {
+            TutorialCube[0] = GameObject.Find("Tutorial1");
+            TutorialCube[1] = GameObject.Find("Tutorial2");
+            var Tuto = GameObject.FindWithTag("Player");
+            TutorialCube[2] = Tuto.GetComponent<utoT>().Tuto3;
+
+            //チュートリアル
+            TutorialStep = 0;
+            //for (int i = 0; i < TutorialCube.Length; i++)
+            //{
+            //    TutorialCube[i].SetActive(false);//消しとく
+            //}
+            StartCoroutine(Backyard_T());
         }
         else
         {
@@ -161,7 +188,6 @@ public class Event_Manager : MonoBehaviour {
         
 		if(isCoroutineG){yield break;}
 		isCoroutineG = true;
-
         if (!EventFlag[1])
         {
             
@@ -224,10 +250,13 @@ public class Event_Manager : MonoBehaviour {
         if (isCoroutineBY) { yield break; }
         isCoroutineBY = true;
 
-        
         //偶数番目で説明、奇数番目で実践(奇数の時はメッセージを表示しない)
         if (TutorialStep == 0)
         {
+            TutorialCube[2].SetActive(false);
+            TutorialCube[1].SetActive(false);
+
+            yield return new WaitForSeconds(1.0f);
             //pcVR.SetKeylock();
             uGM.enabled = true;//つける
             uGM.dispMessage(EventText[4]);//表示する

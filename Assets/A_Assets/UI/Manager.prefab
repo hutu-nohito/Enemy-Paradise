@@ -434,11 +434,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventText:
   - {fileID: 4900000, guid: ac0060fcf3179994c87ed76c6326d70a, type: 3}
-  - {fileID: 4900000, guid: ab10954e88817544f809a9e9236d9313, type: 3}
+  - {fileID: 4900000, guid: bc8e7d020b58b9d4eada18110a5cd033, type: 3}
   - {fileID: 4900000, guid: f8ee7ec9146a185428aafd7d320d755f, type: 3}
   - {fileID: 4900000, guid: fe7c9d08e01ac4344b6d5af1d305187a, type: 3}
   - {fileID: 4900000, guid: 62c1e18252e0f564bacf419033a0844e, type: 3}
-  - {fileID: 4900000, guid: 402e90046761f8c49959b5fd9af4e606, type: 3}
+  - {fileID: 4900000, guid: fc2c66cf4a682354e94125b3023727d2, type: 3}
   - {fileID: 4900000, guid: d72f61b59b1f0f74baff0450221641a2, type: 3}
   - {fileID: 4900000, guid: 42397b222191b434cbe30d827d425e96, type: 3}
   - {fileID: 4900000, guid: 3dd9f9012d21dac4588a3ce378fe646e, type: 3}
@@ -447,7 +447,7 @@ MonoBehaviour:
   YesNo:
   - {fileID: 1000011378717866}
   - {fileID: 1000010290277682}
-  TutorialStep: 0
+  TutorialStep: -1
   TutorialCube:
   - {fileID: 0}
   - {fileID: 0}
