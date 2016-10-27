@@ -103,6 +103,12 @@ public class SceneTransition : MonoBehaviour {
 
     }
 
+    public void Backyard()
+    {
+        SceneName = "BackyardVR";
+        coroutine = StartCoroutine(TransScene());
+    }
+
     public void BattleField()//コロシアム
     {
         SceneName = "lilith2 battle field";

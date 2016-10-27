@@ -7,6 +7,7 @@ public class uGUI_Msg : MonoBehaviour {
     /*
         テキストに入ってるものを表示
     */
+    private Event_Manager EM;//文章を何回送ったかを数えられるようにする
 
     new private Text guiText;
     public GameObject UI_Window;//表示するWindow
@@ -21,6 +22,8 @@ public class uGUI_Msg : MonoBehaviour {
     // Use this for initialization
     void Awake()
     {
+        EM = gameObject.transform.parent.GetComponent<Event_Manager>();
+
         _Text = Text;
         guiText = UI_Text.GetComponent<Text>();
         readMap(_Text);
@@ -99,6 +102,7 @@ public class uGUI_Msg : MonoBehaviour {
                 //Viveでメッセージ送り
                 if (vive_click)
                 {
+                    EM.storyCount();//文章を送ったことをイベント管理へ
                     lengthSecenario++;
                     lengthMsg = 0;		//0文字目にリセット
                     TextFinish.SetActive(false);
@@ -108,7 +112,7 @@ public class uGUI_Msg : MonoBehaviour {
                 //文末まで行ったら
                 if (lengthSecenario > dispMsg.Length - 1)
                 {
-
+                    EM.storyReset();//文章が終わったことをイベント管理へ
                     flgDisp = false;		//非表示
                     UI_Window.SetActive(false);
                     lengthMsg = 0;		//0文字目にリセット

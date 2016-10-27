@@ -31,6 +31,8 @@ public class Event_Manager : MonoBehaviour {
 	public GameObject Canvas;//UI
     public GameObject Information;//情報表示
     private uGUI_Msg uGM;
+    public GameObject[] YesNo;
+    private int story = 0;//文章をどこまで読んだか
 
     private Static save;//日数、起動回数、HP、MP、名声、ボーナスポイント
     private SceneTransition ST;
@@ -159,19 +161,54 @@ public class Event_Manager : MonoBehaviour {
         if (!EventFlag[1])
         {
             
-
-            if (save.GetDay() == 1)
+            if(save.GetGL() == 0)//初級1のみの時
             {
                 uGM.enabled = true;//つける
-                uGM.dispMessage(EventText[1]);//表示する
+                uGM.dispMessage(EventText[2]);//表示する
                 EventFlag[1] = true;
-
             }
+            //if (save.GetDay() == 1)
+            //{
+            //    uGM.enabled = true;//つける
+            //    uGM.dispMessage(EventText[1]);//表示する
+            //    EventFlag[1] = true;
+
+            //}
         }
             
 		isCoroutineG = false;
 		
 	}
+
+    public void storyCount()
+    {
+        story++;
+
+        //後でこっから移動させる
+        if(story == 5)
+        {
+            YesNo[0].SetActive(true);//Yesボタン
+            YesNo[1].SetActive(true);//Noボタン
+        }
+    }
+    public void storyReset()
+    {
+        story = 0;
+    }
+    //イベントのはいいいえを選ぶボタン（今はチュートリアルを受けるかどうかだけ選択）
+    public void YesButton()
+    {
+        YesNo[0].SetActive(false);//Yesボタン
+        YesNo[1].SetActive(false);//Noボタン
+        ST.Backyard();
+    }
+    public void NoButton()
+    {
+        YesNo[0].SetActive(false);//Yesボタン
+        YesNo[1].SetActive(false);//Noボタン
+        uGM.enabled = true;//つける
+        uGM.dispMessage(EventText[3]);//表示する
+    }
 
     IEnumerator Backyard_T()//裏庭でのイベント
     {
