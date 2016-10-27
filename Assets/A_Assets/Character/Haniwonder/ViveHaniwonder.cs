@@ -156,93 +156,98 @@ public class ViveHaniwonder : Enemy_Base
             //アニメーションの最中など動かしたくないときに用いる
         }
 
-        //体操
-        if (state == ActionState.Exercise)
+        //レベル100で動かない
+        if(level != 100)
         {
-            if (animState != (int)ActionState.Exercise)
-            {
-                transform.LookAt(Player.transform.position);
-                base.animator.SetTrigger("Exercise");
-            }
 
-            timer += Time.deltaTime;
-            if(level == 2)
+            //体操
+            if (state == ActionState.Exercise)
             {
-                if (timer >= 6)
+                if (animState != (int)ActionState.Exercise)
                 {
-                    state = ActionState.Headbutt;
-                    timer = 0;
+                    transform.LookAt(Player.transform.position);
+                    base.animator.SetTrigger("Exercise");
+                }
+
+                timer += Time.deltaTime;
+                if (level == 2)
+                {
+                    if (timer >= 6)
+                    {
+                        state = ActionState.Headbutt;
+                        timer = 0;
+                    }
+                }
+                if (level == 3)
+                {
+                    if (timer >= 3.2f)
+                    {
+                        state = ActionState.Beam;
+                        timer = 0;
+                    }
                 }
             }
-            if (level == 3)
+
+            //腕組み
+            if (state == ActionState.Idle)
             {
-                if (timer >= 3.2f)
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(base.Player.transform.position - transform.position), 0.5f);
+                if (animState != (int)ActionState.Idle)
                 {
-                    state = ActionState.Beam;
-                    timer = 0;
+                    base.animator.SetTrigger("Idle");
+                }
+
+                if ((int)Time.time % 5 == 0)//5秒ごと
+                {
+                    float randAt1 = Random.value;
+
+
+                    if (randAt1 > 0.3)
+                    {
+                        state = ActionState.AfterImage;
+                    }
+                    else
+                    {
+                        state = ActionState.Headbutt;
+                    }
                 }
             }
-        }
 
-        //腕組み
-        if (state == ActionState.Idle)
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(base.Player.transform.position - transform.position), 0.5f);
-            if (animState != (int)ActionState.Idle)
+            //カウンター
+            if (state == ActionState.Counter)
             {
-                base.animator.SetTrigger("Idle");
+                coroutine = StartCoroutine(Counter());
             }
 
-            if ((int)Time.time % 5 == 0)//5秒ごと
+            //アタックするだけ
+            if (state == ActionState.Tackle)
             {
-                float randAt1 = Random.value;
-                
-
-                if (randAt1 > 0.3)
-                {
-                    state = ActionState.AfterImage;
-                }
-                else
-                {
-                    state = ActionState.Headbutt;
-                }
+                coroutine = StartCoroutine(Tackle());
             }
+
+            //頭突き
+            if (state == ActionState.Headbutt)
+            {
+                coroutine = StartCoroutine(Headbutt());
+            }
+
+            //ビーム
+            if (state == ActionState.Beam)
+            {
+                coroutine = StartCoroutine(Beam());
+            }
+
+
+
+            //パターン//////////////////////////////////////////////
+
+            if (state == ActionState.AfterImage)
+            {
+
+                coroutine = StartCoroutine(AvatarAttack());
+            }
+
         }
-
-        //カウンター
-        if (state == ActionState.Counter)
-        {
-            coroutine = StartCoroutine(Counter());
-        }
-
-        //アタックするだけ
-        if (state == ActionState.Tackle)
-        {
-            coroutine = StartCoroutine(Tackle());
-        }
-
-        //頭突き
-        if (state == ActionState.Headbutt)
-        {
-            coroutine = StartCoroutine(Headbutt());
-        }
-
-        //ビーム
-        if (state == ActionState.Beam)
-        {
-            coroutine = StartCoroutine(Beam());
-        }
-
-        
-
-        //パターン//////////////////////////////////////////////
-
-        if(state == ActionState.AfterImage)
-        {
-            
-            coroutine = StartCoroutine(AvatarAttack());
-        }
-
     }
 
     /////////////////////////////////////

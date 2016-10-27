@@ -6459,6 +6459,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HandL: {fileID: 0}
   magic: {fileID: 114000013557437858}
+  save: {fileID: 0}
+  flag_save: 0
 --- !u!114 &114000010355692930
 MonoBehaviour:
   m_ObjectHideFlags: 1

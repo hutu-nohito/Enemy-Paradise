@@ -6,6 +6,8 @@ public class VRTutorial : MonoBehaviour {
     public GameObject GM;
     private Event_Manager EM;
 
+    public GameObject HandR;
+
 	// Use this for initialization
 	void Start () {
 
@@ -21,21 +23,15 @@ public class VRTutorial : MonoBehaviour {
     {
         if (col.tag == "Player")
         {
-            if (EM.TutorialStep == 1)//移動
-            {
-                EM.TutorialClear();
-            }
-            if (EM.TutorialStep == 3)//視点操作
-            {
-                EM.TutorialClear();
-            }
+            
         }
         if (col.tag == "Bullet")
         {
-            if (EM.TutorialStep == 5)//ウェルオーウィスプ
-            {
-                EM.TutorialClear();
-            }
+            
+        }
+        if(col.gameObject == HandR)//1
+        {
+            EM.TutorialClear();
         }
     }
 }

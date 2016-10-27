@@ -74,13 +74,14 @@ public class Event_Manager : MonoBehaviour {
         //デバッグ用
         if (SceneManager.GetActiveScene().name == "Backyard" || SceneManager.GetActiveScene().name == "BackyardVR")
         {
-            StartCoroutine(Backyard_T());
-
             //チュートリアル
             for (int i = 0; i < TutorialCube.Length; i++)
             {
                 TutorialCube[i].SetActive(false);//消しとく
             }
+            TutorialStep = 0;
+
+            StartCoroutine(Backyard_T());
         }            
 
     }
@@ -98,6 +99,9 @@ public class Event_Manager : MonoBehaviour {
         }
 
         olduGM = uGM.enabled;
+
+        //チュートリアルチェック
+        
 	}
 
     //シーンが変わったらイベントチェック
@@ -184,16 +188,21 @@ public class Event_Manager : MonoBehaviour {
     {
         story++;
 
-        //後でこっから移動させる
-        if(story == 5)
+        if (SceneManager.GetActiveScene().name != "BackyardVR")
         {
-            YesNo[0].SetActive(true);//Yesボタン
-            YesNo[1].SetActive(true);//Noボタン
+            //後でこっから移動させる
+            if (story == 5)
+            {
+                YesNo[0].SetActive(true);//Yesボタン
+                YesNo[1].SetActive(true);//Noボタン
+            }
         }
+            
     }
     public void storyReset()
     {
         story = 0;
+        //TutorialStep++;
     }
     //イベントのはいいいえを選ぶボタン（今はチュートリアルを受けるかどうかだけ選択）
     public void YesButton()
@@ -221,21 +230,23 @@ public class Event_Manager : MonoBehaviour {
         {
             //pcVR.SetKeylock();
             uGM.enabled = true;//つける
-            uGM.dispMessage(EventText[2]);//表示する
+            uGM.dispMessage(EventText[4]);//表示する
+            
         }
-        if (TutorialStep == 1)
+        if (TutorialStep == 1)//敵を探す
         {
-            //pcVR.SetActive();
             TutorialCube[0].SetActive(true);
+            //pcVR.SetActive();
+            
         }
         if (TutorialStep == 2)
         {
             TutorialCube[0].SetActive(false);
             //pcVR.SetKeylock();
             uGM.enabled = true;//つける
-            uGM.dispMessage(EventText[3]);//表示する
+            uGM.dispMessage(EventText[5]);//表示する
         }
-        if (TutorialStep == 3)
+        if (TutorialStep == 3)//魔法陣を出す
         {
             //pcVR.SetActive();
             TutorialCube[1].SetActive(true);
@@ -245,9 +256,9 @@ public class Event_Manager : MonoBehaviour {
             TutorialCube[1].SetActive(false);
             //pcVR.SetKeylock();
             uGM.enabled = true;//つける
-            uGM.dispMessage(EventText[4]);//表示する
+            uGM.dispMessage(EventText[6]);//表示する
         }
-        if (TutorialStep == 5)
+        if (TutorialStep == 5)//魔法を作る
         {
             //pcVR.SetActive();
             TutorialCube[2].SetActive(true);
@@ -257,10 +268,12 @@ public class Event_Manager : MonoBehaviour {
             TutorialCube[2].SetActive(false);
             //pcVR.SetKeylock();
             uGM.enabled = true;//つける
-            uGM.dispMessage(EventText[5]);//表示する
+            uGM.dispMessage(EventText[7]);//表示する
         }
         if (TutorialStep == 7)
         {
+            uGM.enabled = true;//つける
+            uGM.dispMessage(EventText[8]);//表示する
             //pcVR.SetActive();
         }
 
