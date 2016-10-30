@@ -14,6 +14,7 @@ public class Event_Manager : MonoBehaviour {
     /* 更新履歴
     *  イベントのフラグ管理
     *  裏庭のチュートリアル追加
+    *  イベントをシーンごとに分割、E_contと連携
     */
     /******************************************************************************/
 
@@ -30,9 +31,13 @@ public class Event_Manager : MonoBehaviour {
 
 	public GameObject Canvas;//UI
     public GameObject Information;//情報表示
-    private uGUI_Msg uGM;
+
+    [System.NonSerialized]
+    public uGUI_Msg uGM;//呼び出し用にpublic
+    //uGMのlengthSecenarioが文章の何段目かを示す
+
     public GameObject[] YesNo;
-    private int story = 0;//文章をどこまで読んだか
+    private Event_Controller EC;//Event_Controller
 
     private Static save;//日数、起動回数、HP、MP、名声、ボーナスポイント
     private SceneTransition ST;
@@ -43,12 +48,7 @@ public class Event_Manager : MonoBehaviour {
 	private int count;//汎用のカウント用の箱(使い終わったら0に戻すこと)
 	private bool isCoroutineH = false;
 	private bool isCoroutineG = false;
-    private bool isCoroutineBY = false;
     private bool olduGM = false;//メッセージウィンドウを開いていたかどうか
-
-    //チュートリアル用（突貫　後でどうにかする）
-    public int TutorialStep = 0;//チュートリアルのステップ数(頑張れば使いまわせそう)
-    public GameObject[] TutorialCube;//とりあえず直入れ
 
     void Awake()
     {
@@ -81,6 +81,10 @@ public class Event_Manager : MonoBehaviour {
         {
             Canvas = GameObject.Find("Msg_Canvas");
         }
+        if (EC == null)
+        {
+            EC = GameObject.Find("Event_Controller").GetComponent<Event_Controller>();
+        }
 
         //これはシーンが変わるごとに必要(とりあえずプレイヤーの動きはとめない)
         //pcVR = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_ControllerVR>();
@@ -99,17 +103,19 @@ public class Event_Manager : MonoBehaviour {
         if (olduGM)
         {
             //メッセージが非表示になった瞬間
-            if(olduGM != uGM.enabled)
+            if (olduGM != uGM.enabled)
             {
-                TutorialClear();
+                //チュートリアル以外でも使えるようにする
+                EC.TutorialClear();
             }
         }
 
         olduGM = uGM.enabled;
 
         //チュートリアルチェック
-        
-	}
+
+
+    }
 
     //シーンが変わったらイベントチェック
     void Check_Event()
@@ -131,23 +137,17 @@ public class Event_Manager : MonoBehaviour {
         }
         if(SceneManager.GetActiveScene().name == "BackyardVR")
         {
-            TutorialCube[0] = GameObject.Find("Tutorial1");
-            TutorialCube[1] = GameObject.Find("Tutorial2");
-            var Tuto = GameObject.FindWithTag("Player");
-            TutorialCube[2] = Tuto.GetComponent<utoT>().Tuto3;
-
+            
             //チュートリアル
-            TutorialStep = 0;
-            //for (int i = 0; i < TutorialCube.Length; i++)
-            //{
-            //    TutorialCube[i].SetActive(false);//消しとく
-            //}
-            StartCoroutine(Backyard_T());
+            EC.Backyard_T();
         }
         else
         {
             //Information.SetActive(true);/消しとく
         }
+
+        //イベントコントローラをそのシーンのものに更新
+        EC = GameObject.Find("Event_Controller").GetComponent<Event_Controller>();
 
     }
 
@@ -205,31 +205,21 @@ public class Event_Manager : MonoBehaviour {
 
             //}
         }
-            
-		isCoroutineG = false;
-		
-	}
-
-    public void storyCount()
-    {
-        story++;
-
-        if (SceneManager.GetActiveScene().name != "BackyardVR")
+        if (!EventFlag[2])
         {
-            //後でこっから移動させる
-            if (story == 5)
+            if (uGM.lengthSecenario == 5)//文章の何段落目か
             {
                 YesNo[0].SetActive(true);//Yesボタン
                 YesNo[1].SetActive(true);//Noボタン
+                EventFlag[2] = true;
             }
         }
             
-    }
-    public void storyReset()
-    {
-        story = 0;
-        //TutorialStep++;
-    }
+
+        isCoroutineG = false;
+		
+	}
+    
     //イベントのはいいいえを選ぶボタン（今はチュートリアルを受けるかどうかだけ選択）
     public void YesButton()
     {
@@ -243,82 +233,6 @@ public class Event_Manager : MonoBehaviour {
         YesNo[1].SetActive(false);//Noボタン
         uGM.enabled = true;//つける
         uGM.dispMessage(EventText[3]);//表示する
-    }
-
-    IEnumerator Backyard_T()//裏庭でのイベント
-    {
-        if (isCoroutineBY) { yield break; }
-        isCoroutineBY = true;
-
-        //偶数番目で説明、奇数番目で実践(奇数の時はメッセージを表示しない)
-        if (TutorialStep == 0)
-        {
-            TutorialCube[2].SetActive(false);
-            TutorialCube[1].SetActive(false);
-
-            yield return new WaitForSeconds(1.0f);
-            //pcVR.SetKeylock();
-            uGM.enabled = true;//つける
-            uGM.dispMessage(EventText[4]);//表示する
-            
-        }
-        if (TutorialStep == 1)//敵を探す
-        {
-            TutorialCube[0].SetActive(true);
-            //pcVR.SetActive();
-            
-        }
-        if (TutorialStep == 2)
-        {
-            TutorialCube[0].SetActive(false);
-            //pcVR.SetKeylock();
-            uGM.enabled = true;//つける
-            uGM.dispMessage(EventText[5]);//表示する
-        }
-        if (TutorialStep == 3)//魔法陣を出す
-        {
-            //pcVR.SetActive();
-            TutorialCube[1].SetActive(true);
-        }
-        if (TutorialStep == 4)
-        {
-            TutorialCube[1].SetActive(false);
-            //pcVR.SetKeylock();
-            uGM.enabled = true;//つける
-            uGM.dispMessage(EventText[6]);//表示する
-        }
-        if (TutorialStep == 5)//魔法を作る
-        {
-            //pcVR.SetActive();
-            TutorialCube[2].SetActive(true);
-        }
-        if (TutorialStep == 6)
-        {
-            TutorialCube[2].SetActive(false);
-            //pcVR.SetKeylock();
-            uGM.enabled = true;//つける
-            uGM.dispMessage(EventText[7]);//表示する
-        }
-        if (TutorialStep == 7)
-        {
-            uGM.enabled = true;//つける
-            uGM.dispMessage(EventText[8]);//表示する
-            //pcVR.SetActive();
-        }
-
-        isCoroutineBY = false;
-    }
-
-    //チュートリアルのステップを外から進める
-    public void TutorialClear()
-    {
-        TutorialStep++;
-
-        if (SceneManager.GetActiveScene().name == "Backyard" || SceneManager.GetActiveScene().name == "BackyardVR")
-        {
-            StartCoroutine(Backyard_T());
-        }
-            
     }
 
 }

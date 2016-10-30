@@ -3,16 +3,15 @@ using System.Collections;
 
 public class VRTutorial : MonoBehaviour {
 
-    private GameObject GM;
-    private Event_Manager EM;
+    private Event_Controller EC;
 
     public GameObject HandR;
 
 	// Use this for initialization
 	void Start () {
 
-        GM = GameObject.FindGameObjectWithTag("Manager");
-        EM = GM.GetComponent<Event_Manager>();
+        //探す必要ないかも
+        EC = GameObject.Find("Event_Controller").GetComponent<Event_Controller>();
     }
 	
 	// Update is called once per frame
@@ -22,6 +21,7 @@ public class VRTutorial : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
+        //ちゅーとりある
         if (col.tag == "Player")
         {
             
@@ -32,7 +32,7 @@ public class VRTutorial : MonoBehaviour {
         }
         if(col.gameObject == HandR)//1
         {
-            EM.TutorialClear();
+            EC.TutorialClear();
         }
     }
 }

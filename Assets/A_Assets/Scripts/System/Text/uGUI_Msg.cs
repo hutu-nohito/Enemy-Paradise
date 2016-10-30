@@ -40,7 +40,7 @@ public class uGUI_Msg : MonoBehaviour {
     public static float waitTime = 0;//メッセージが消えるまでの待ち時間
 
     //自分でつくったの
-    public static int lengthSecenario = 0;//テキスト全体(シナリオ)の何段目か
+    public int lengthSecenario = 0;//テキスト全体(シナリオ)の何段目か
 
     float nextTime = 0;//次の文字の表示間隔
 
@@ -102,7 +102,6 @@ public class uGUI_Msg : MonoBehaviour {
                 //Viveでメッセージ送り
                 if (vive_click)
                 {
-                    EM.storyCount();//文章を送ったことをイベント管理へ
                     lengthSecenario++;
                     lengthMsg = 0;		//0文字目にリセット
                     TextFinish.SetActive(false);
@@ -112,7 +111,6 @@ public class uGUI_Msg : MonoBehaviour {
                 //文末まで行ったら
                 if (lengthSecenario > dispMsg.Length - 1)
                 {
-                    EM.storyReset();//文章が終わったことをイベント管理へ
                     flgDisp = false;		//非表示
                     UI_Window.SetActive(false);
                     lengthMsg = 0;		//0文字目にリセット
