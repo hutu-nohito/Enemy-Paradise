@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;//List用
 using UnityEngine.UI;//UI用
+using UnityEngine.SceneManagement;
 
 public class Magic_ControllerVR : MonoBehaviour {
 
@@ -158,7 +159,7 @@ public class Magic_ControllerVR : MonoBehaviour {
 
         }
 
-        stockMagic.Add(100);
+            stockMagic.Add(100);
 
     }
 

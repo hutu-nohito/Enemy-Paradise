@@ -294,7 +294,7 @@ public class ViveGolem : Enemy_Base {
         base.animator.speed = 1.0f;//振り降ろし
 
         //CCZ.flag_quake = true;//Viveのカメラを揺らすのは難しいので別の方法を考える
-        Player.GetComponent<Player_ControllerVR>().SetKeylock();
+        //Player.GetComponent<Player_ControllerVR>().SetKeylock();
 
         yield return new WaitForSeconds(0.3f);//揺れが収まる
         
@@ -334,7 +334,7 @@ public class ViveGolem : Enemy_Base {
         yield return new WaitForSeconds(0.1f);//たたいた瞬間
         base.animator.speed = 1.0f;//振り降ろし
 
-        Player.GetComponent<Player_ControllerVR>().SetKeylock();
+        //Player.GetComponent<Player_ControllerVR>().SetKeylock();
 
         yield return new WaitForSeconds(6.5f);//攻撃後のため
 

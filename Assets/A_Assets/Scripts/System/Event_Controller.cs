@@ -37,7 +37,7 @@ public class Event_Controller : MonoBehaviour {
         PcVR = GameObject.FindWithTag("Player").GetComponent<Player_ControllerVR>();
         TutorialStep = 0;
         //シーン遷移時の関数の呼び出し順が難しいので気を付ける
-        if (SceneManager.GetActiveScene().name == "Backyard" || SceneManager.GetActiveScene().name == "BackyardVR")
+        if (SceneManager.GetActiveScene().name == "BackyardVR")
         {
             Backyard_T();
         }

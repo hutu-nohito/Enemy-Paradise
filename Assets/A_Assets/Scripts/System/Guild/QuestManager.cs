@@ -62,7 +62,7 @@ public class QuestManager : Quest_Parameter {
     {
         yield return new WaitForSeconds(2.1f);//シーン切り替わり待ち
 
-        Player = GameObject.FindGameObjectWithTag("Player");//切り替わってからでないと読めない
+        Player = GameObject.FindWithTag("Player");//切り替わってからでないと読めない
         //F_camera = Player.transform.FindChild("FrontCamera").GetComponent<Camera>();
         _static = GetComponent<Static>();
         ST = GetComponent<SceneTransition>();
@@ -97,7 +97,7 @@ public class QuestManager : Quest_Parameter {
         Ready.SetActive(true);
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        Player.GetComponent<Player_ControllerZ>().Reverse_Magic();//魔法が打てると先制で勝てる
+        Player.GetComponent<Player_ControllerVR>().flag_magic = false;//魔法が打てると先制で勝てる
 
         //この時間で魔法をストックできるはず
         yield return new WaitForSeconds(5);//表示に時間がかかる可能性を考えて少したってから行動できるようにしておく
@@ -108,6 +108,7 @@ public class QuestManager : Quest_Parameter {
 
         yield return new WaitForSeconds(2);//ちょっとしたらGoを消す
         Go.SetActive(false);
+        Player.GetComponent<Player_ControllerVR>().flag_magic = true;
 
     }
 
@@ -220,7 +221,7 @@ public class QuestManager : Quest_Parameter {
         now_count = 0;//使い終わったら戻す
 
         //クリア後だからたぶんほっといても大丈夫
-        Player.GetComponent<Player_ControllerZ>().Reverse_Magic();
+        Player.GetComponent<Player_ControllerVR>().Reverse_Magic();
         //Camera.main.enabled = false;
         //F_camera.enabled = true;
 
@@ -234,7 +235,7 @@ public class QuestManager : Quest_Parameter {
 
         Failed.SetActive(false);
         //一応戻しとく
-        Player.GetComponent<Player_ControllerZ>().Reverse_Magic();
+        Player.GetComponent<Player_ControllerVR>().Reverse_Magic();
         isCoroutine = false;
 
         //クエストが終わったら特別なことがない限りギルドへ
