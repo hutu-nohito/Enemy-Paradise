@@ -96,9 +96,9 @@ public class QuestManager : Quest_Parameter {
         Ready.SetActive(true);
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        //Player.GetComponent<Player_ControllerZ>().SetKeylock();
+        Player.GetComponent<Player_ControllerZ>().Reverse_Magic();//魔法
 
-        yield return new WaitForSeconds(3);//表示に時間がかかる可能性を考えて少したってから行動できるようにしておく
+        yield return new WaitForSeconds(5);//表示に時間がかかる可能性を考えて少したってから行動できるようにしておく
 
         Ready.SetActive(false);
         Go.SetActive(true);

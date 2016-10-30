@@ -618,99 +618,105 @@ public class Magic_ControllerVR : MonoBehaviour {
             case VRButton.TriggerTouchDown:
                 break;
             case VRButton.TriggerPressDown:
-                if (right)//右トリガーで魔法発動
+                if (Pz.GetF_Magic())//魔法が打てる状態かどうかを確認
                 {
-                    /*
-                    if(stockMagic[0] == 1)//セイバー
+                    if (right)//右トリガーで魔法発動
                     {
-                        SelectMagic[stockMagic[0]].SendMessage("Fire");
-                        break;
+                        /*
+                        if(stockMagic[0] == 1)//セイバー
+                        {
+                            SelectMagic[stockMagic[0]].SendMessage("Fire");
+                            break;
+                        }
+                        if(stockMagic[0] == 4)//ボム
+                        {
+                            SelectMagic[stockMagic[0]].SendMessage("Fire");
+                            break;
+                        }
+                        if (stockMagic[0] == 6)//ブーメラン
+                        {
+                            SelectMagic[stockMagic[0]].SendMessage("Fire");
+                            break;
+                        }
+                        */
+                        if (stockMagic[0] == 0)//セイバー
+                        {
+                            SelectMagic[stockMagic[0]].SendMessage("Fire");
+                            break;
+                        }
+                        if (stockMagic[0] == 3)//ボム
+                        {
+                            SelectMagic[stockMagic[0]].SendMessage("Fire");
+                            break;
+                        }
+                        if (stockMagic[0] != 100)//それ以外
+                        {
+                            SelectMagic[stockMagic[0]].SendMessage("Fire");
+                            //DisplaceStockMagic();                        
+                        }
                     }
-                    if(stockMagic[0] == 4)//ボム
+                    if (!right)//左トリガーでレベルアップ
                     {
-                        SelectMagic[stockMagic[0]].SendMessage("Fire");
-                        break;
+                        //次のステップ
                     }
-                    if (stockMagic[0] == 6)//ブーメラン
-                    {
-                        SelectMagic[stockMagic[0]].SendMessage("Fire");
-                        break;
-                    }
-                    */
-                    if (stockMagic[0] == 0)//セイバー
-                    {
-                        SelectMagic[stockMagic[0]].SendMessage("Fire");
-                        break;
-                    }
-                    if (stockMagic[0] == 3)//ボム
-                    {
-                        SelectMagic[stockMagic[0]].SendMessage("Fire");
-                        break;
-                    }
-                    if (stockMagic[0] != 100)//それ以外
-                    {
-                        SelectMagic[stockMagic[0]].SendMessage("Fire");
-                        //DisplaceStockMagic();                        
-                    }
-                }
-                if (!right)//左トリガーでレベルアップ
-                {
-                    //次のステップ
-                }
+                }                    
                 break;
             case VRButton.TriggerUp:
-                if (right)
+                if (Pz.GetF_Magic())//魔法が打てる状態かどうかを確認
                 {
-                    /*
-                    if (stockMagic[0] == 0)//バブル
+                    if (right)
                     {
-                        //使用済み
-                        DisplaceStockMagic();
-                        break;
+                        /*
+                        if (stockMagic[0] == 0)//バブル
+                        {
+                            //使用済み
+                            DisplaceStockMagic();
+                            break;
+                        }
+                        if (stockMagic[0] == 1)//セイバー
+                        {
+                            //剣を壊す
+                            SelectMagic[stockMagic[0]].SendMessage("Break");
+                            DisplaceStockMagic();
+                            Debug.Log("www");
+                            break;
+                        }
+                        if (stockMagic[0] == 4)//ボム
+                        {
+                            //ボムを投げる
+                            SelectMagic[stockMagic[0]].SendMessage("Throw");
+                            DisplaceStockMagic();
+                            break;
+                        }
+                        if (stockMagic[0] == 6)//ブーメラン
+                        {
+                            //投げる
+                            SelectMagic[stockMagic[0]].SendMessage("Throw");
+                            DisplaceStockMagic();
+                            break;
+                        }
+                        */
+                        if (stockMagic[0] == 0)//セイバー
+                        {
+                            //剣を壊す
+                            SelectMagic[stockMagic[0]].SendMessage("Break");
+                            DisplaceStockMagic();
+                            break;
+                        }
+                        if (stockMagic[0] == 3)//ボム
+                        {
+                            //ボムを投げる
+                            SelectMagic[stockMagic[0]].SendMessage("Throw");
+                            DisplaceStockMagic();
+                            break;
+                        }
+                        if (stockMagic[0] != 100)//それ以外
+                        {
+                            //SelectMagic[stockMagic[0]].SendMessage("Fire");
+                            DisplaceStockMagic();
+                        }
                     }
-                    if (stockMagic[0] == 1)//セイバー
-                    {
-                        //剣を壊す
-                        SelectMagic[stockMagic[0]].SendMessage("Break");
-                        DisplaceStockMagic();
-                        Debug.Log("www");
-                        break;
-                    }
-                    if (stockMagic[0] == 4)//ボム
-                    {
-                        //ボムを投げる
-                        SelectMagic[stockMagic[0]].SendMessage("Throw");
-                        DisplaceStockMagic();
-                        break;
-                    }
-                    if (stockMagic[0] == 6)//ブーメラン
-                    {
-                        //投げる
-                        SelectMagic[stockMagic[0]].SendMessage("Throw");
-                        DisplaceStockMagic();
-                        break;
-                    }
-                    */
-                    if (stockMagic[0] == 0)//セイバー
-                    {
-                        //剣を壊す
-                        SelectMagic[stockMagic[0]].SendMessage("Break");
-                        DisplaceStockMagic();
-                        break;
-                    }
-                    if (stockMagic[0] == 3)//ボム
-                    {
-                        //ボムを投げる
-                        SelectMagic[stockMagic[0]].SendMessage("Throw");
-                        DisplaceStockMagic();
-                        break;
-                    }
-                    if (stockMagic[0] != 100)//それ以外
-                    {
-                        //SelectMagic[stockMagic[0]].SendMessage("Fire");
-                        DisplaceStockMagic();
-                    }
-                }
+                }                    
                 break;
             case VRButton.GripDown:
                 if (!right)//左グリップで魔法陣発動
@@ -744,43 +750,47 @@ public class Magic_ControllerVR : MonoBehaviour {
     //押っぱの
     public void ControllerTrigger(bool right)
     {
-        if (right)
+        if (Pz.GetF_Magic())//魔法が打てる状態かどうかを確認
         {
-            /*
-            if (stockMagic[0] == 0)//バブル
+            if (right)
             {
-                SelectMagic[stockMagic[0]].SendMessage("Hold");
-                //離した時にstockmagicを100にする処理を入れる
-            }
-            if (stockMagic[0] == 1)//セイバー
-            {
-                
-                SelectMagic[stockMagic[0]].SendMessage("Hold");
-                //セイバーが壊れた時にstockmagicを100にする処理を入れる
-            }
-            if (stockMagic[0] == 4)//ボム
-            {
-                SelectMagic[stockMagic[0]].SendMessage("Hold");
-                //ボムを離した時にstockmagicを100にする処理を入れる
-            }
-            if (stockMagic[0] == 6)//ブーメラン
-            {
-                SelectMagic[stockMagic[0]].SendMessage("Hold");
-                //離した時にstockmagicを100にする処理を入れる
-            }
-            */
-            if (stockMagic[0] == 0)//セイバー
-            {
+                /*
+                if (stockMagic[0] == 0)//バブル
+                {
+                    SelectMagic[stockMagic[0]].SendMessage("Hold");
+                    //離した時にstockmagicを100にする処理を入れる
+                }
+                if (stockMagic[0] == 1)//セイバー
+                {
 
-                SelectMagic[stockMagic[0]].SendMessage("Hold");
-                //セイバーが壊れた時にstockmagicを100にする処理を入れる
-            }
-            if (stockMagic[0] == 3)//ボム
-            {
-                SelectMagic[stockMagic[0]].SendMessage("Hold");
-                //ボムを離した時にstockmagicを100にする処理を入れる
+                    SelectMagic[stockMagic[0]].SendMessage("Hold");
+                    //セイバーが壊れた時にstockmagicを100にする処理を入れる
+                }
+                if (stockMagic[0] == 4)//ボム
+                {
+                    SelectMagic[stockMagic[0]].SendMessage("Hold");
+                    //ボムを離した時にstockmagicを100にする処理を入れる
+                }
+                if (stockMagic[0] == 6)//ブーメラン
+                {
+                    SelectMagic[stockMagic[0]].SendMessage("Hold");
+                    //離した時にstockmagicを100にする処理を入れる
+                }
+                */
+                if (stockMagic[0] == 0)//セイバー
+                {
+
+                    SelectMagic[stockMagic[0]].SendMessage("Hold");
+                    //セイバーが壊れた時にstockmagicを100にする処理を入れる
+                }
+                if (stockMagic[0] == 3)//ボム
+                {
+                    SelectMagic[stockMagic[0]].SendMessage("Hold");
+                    //ボムを離した時にstockmagicを100にする処理を入れる
+                }
             }
         }
+            
     }
 
     //杖を前に掲げたら

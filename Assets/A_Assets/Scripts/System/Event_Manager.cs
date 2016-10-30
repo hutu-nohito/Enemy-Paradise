@@ -55,22 +55,6 @@ public class Event_Manager : MonoBehaviour {
         uGM = Canvas.GetComponent<uGUI_Msg>();
         uGM.enabled = false;
 
-        //デバッグ用
-        if (SceneManager.GetActiveScene().name == "Backyard" || SceneManager.GetActiveScene().name == "BackyardVR")
-        {
-            //TutorialCube[0] = GameObject.Find("Tutorial1");
-            //TutorialCube[1] = GameObject.Find("Tutorial2");
-            //TutorialCube[2] = GameObject.FindWithTag("Tutorial3");
-
-            ////チュートリアル
-            //for (int i = 0; i < TutorialCube.Length; i++)
-            //{
-            //    TutorialCube[i].SetActive(false);//消しとく
-            //}
-            //TutorialStep = 0;
-
-            //StartCoroutine(Backyard_T());
-        }
     }
     // Use this for initialization
     void Start() {
@@ -93,12 +77,20 @@ public class Event_Manager : MonoBehaviour {
         {
             EventFlag[i] = false;//初期化　イベントをセーブするようになったらその時考える
         }
-                    
+
+
+        //デバッグ用
+        if (SceneManager.GetActiveScene().name == "Backyard" || SceneManager.GetActiveScene().name == "BackyardVR")
+        {
+
+            //EC.Backyard_T();
+        }
+
 
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 
         if (olduGM)
         {
@@ -112,7 +104,17 @@ public class Event_Manager : MonoBehaviour {
 
         olduGM = uGM.enabled;
 
-        //チュートリアルチェック
+        //後で移動
+        if (!EventFlag[2])
+        {
+            if (uGM.lengthSecenario == 5)//文章の何段落目か
+            {
+                YesNo[0].SetActive(true);//Yesボタン
+                YesNo[1].SetActive(true);//Noボタン
+                EventFlag[2] = true;
+            }
+        }
+
 
 
     }
@@ -139,7 +141,7 @@ public class Event_Manager : MonoBehaviour {
         {
             
             //チュートリアル
-            EC.Backyard_T();
+            //EC.Backyard_T();
         }
         else
         {
@@ -205,16 +207,6 @@ public class Event_Manager : MonoBehaviour {
 
             //}
         }
-        if (!EventFlag[2])
-        {
-            if (uGM.lengthSecenario == 5)//文章の何段落目か
-            {
-                YesNo[0].SetActive(true);//Yesボタン
-                YesNo[1].SetActive(true);//Noボタン
-                EventFlag[2] = true;
-            }
-        }
-            
 
         isCoroutineG = false;
 		
