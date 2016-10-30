@@ -52,7 +52,7 @@ public class monster_Cont2 : Enemy_Base
 
         //初期状態セット
         base.animator.SetTrigger("G_Weapon");
-        coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Run));
+        coroutine = StartCoroutine(ChangeState(7.5f, ActionState.Run));
 
         //AIで戦わせてみた(共通事項より後に書けばPlayerという名のターゲットを変えられる)
         //if(this.gameObject.name == "AImonster")
@@ -83,14 +83,20 @@ public class monster_Cont2 : Enemy_Base
         //HPがなくなった時の処理
         if(GetHP() <= 0)
         {
-            //ダウン演出
-            if (animState != (int)ActionState.Stop)
+            if (flag_die == false)
             {
-                base.animator.SetTrigger("Die");
-                Destroy(this.gameObject, 3);//とりあえず消す
+                Manager.GetComponent<QuestManager>().MonsterCount();
+                flag_die = true;
+                //ダウン演出
+                if (animState != (int)ActionState.Stop)
+                {
+                    base.animator.SetTrigger("Die");
+                    Destroy(this.gameObject, 3);//とりあえず消す
+                }
+                state = ActionState.Stop;
+                animState = (int)ActionState.Stop;
+
             }
-            state = ActionState.Stop;
-            animState = (int)ActionState.Stop;
             
         }
 
@@ -200,17 +206,28 @@ public class monster_Cont2 : Enemy_Base
                 float randAt1 = Random.value;
                 float randAt2 = Random.value;
 
-                if (randAt1 > 0.9)
+                //if (randAt1 > 0.9)
+                //{
+                //    if (randAt2 < 0.4)
+                //    {
+                //        state = ActionState.Avoid;
+                //    }
+                //    else
+                //    {
+                //        state = ActionState.Attack;
+                //    }
+                //}
+
+                if (randAt1 > 0.3)
                 {
-                    if (randAt2 < 0.4)
-                    {
-                        state = ActionState.Avoid;
-                    }
-                    else
-                    {
-                        state = ActionState.Attack;
-                    }
+                    state = ActionState.Attack;
+
                 }
+                if (randAt1 > 0.8)
+                {
+                    state = ActionState.Avoid;
+                }
+
             }
 
         }

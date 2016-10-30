@@ -18,6 +18,7 @@ public class Player_ControllerVR : Character_Parameters {
     //使うもの
     private CharacterController playerController;//キャラクタコントローラで動かす場合
     private Animator animator;//アニメーション設定用
+    private GameObject Manager;
 
     public GameObject MainCamera;//動かす用のカメラ
 
@@ -33,7 +34,7 @@ public class Player_ControllerVR : Character_Parameters {
     {
         playerController = GetComponent<CharacterController>();//rigidbodyを使う場合は外す
         animator = GetComponentInChildren<Animator>();//アニメータを使うとき
-        
+        Manager = GameObject.FindWithTag("Manager");
         
         //初期パラメタを保存
         max_HP = H_point;
@@ -50,7 +51,7 @@ public class Player_ControllerVR : Character_Parameters {
         //HPがなくなった時の処理
         if (H_point <= 0)
         {
-            
+            Manager.GetComponent<QuestManager>().Questfailure();
         }
 
         //接地用(Character_Parametersに合わせて無駄に入れてる)

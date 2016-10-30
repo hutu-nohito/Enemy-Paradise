@@ -63,7 +63,14 @@ public class ViveHaniwonder : Enemy_Base
         base.BaseStart();
 
         //初期状態セット
-        //coroutine = StartCoroutine(ChangeState(15.0f, ActionState.Idle));
+        if (level <= 3)
+        {
+            coroutine = StartCoroutine(ChangeState(7.5f, ActionState.Exercise));
+        }
+        if (level == 4)
+        {
+            coroutine = StartCoroutine(ChangeState(7.5f, ActionState.Idle));
+        }
 
         SE = GetComponent<AudioSource>();
 
@@ -89,6 +96,7 @@ public class ViveHaniwonder : Enemy_Base
         {
             if (!flag_die)
             {
+                Manager.GetComponent<QuestManager>().MonsterCount();
                 StopAllCoroutines();//コルーチンはどうやって止めたらいいんだろう
                 state = ActionState.Stop;
                 animState = (int)ActionState.Stop;
@@ -331,7 +339,11 @@ public class ViveHaniwonder : Enemy_Base
         {
             state = ActionState.Exercise;
         }
-        
+        if (level == 4)
+        {
+            state = ActionState.Idle;
+        }
+
         isCoroutine = false;
     }
 
@@ -401,8 +413,8 @@ public class ViveHaniwonder : Enemy_Base
 
         //反動
         iTween.MoveTo(this.gameObject, iTween.Hash(
-                "x", transform.position.x - (Player.transform.position - transform.position).normalized.x * 1,//定数が突進距離
-                "z", transform.position.z - (Player.transform.position - transform.position).normalized.z * 1,//定数が突進距離
+                "x", transform.position.x - (Player.transform.position - transform.position).normalized.x * 5,//定数が突進距離
+                "z", transform.position.z - (Player.transform.position - transform.position).normalized.z * 5,//定数が突進距離
                 "time", 1.0f,
                 "easetype", iTween.EaseType.linear)
 

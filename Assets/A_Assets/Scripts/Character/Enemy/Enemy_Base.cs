@@ -28,6 +28,7 @@ public class Enemy_Base : Character_Parameters
 
     [System.NonSerialized]
     public GameObject Player;
+    public GameObject Manager;
 
     private Vector3 Old_position;//計測用の1フレーム前の位置
 
@@ -47,6 +48,10 @@ public class Enemy_Base : Character_Parameters
         if (Player == null)
         {
             Player = GameObject.FindWithTag("Player");
+        }
+        if (Manager == null)
+        {
+            Manager = GameObject.FindWithTag("Manager");
         }
         if (flag_vsCom)
         {

@@ -49,8 +49,15 @@ public class DeathHand : Enemy_Base {
 
         //初期状態セット
         //coroutine = StartCoroutine(ChangeState(30.0f, ActionState.Search));
-        //coroutine = StartCoroutine(ChangeState(1.0f, ActionState.Warp));
-
+        if(level == 1)
+        {
+            coroutine = StartCoroutine(ChangeState(7.5f, ActionState.Search));
+        }
+        if (level <= 2)
+        {
+            coroutine = StartCoroutine(ChangeState(7.5f, ActionState.Warp));
+        }
+        
         //CPU戦用
         //Player = AI;
 
@@ -78,6 +85,7 @@ public class DeathHand : Enemy_Base {
         {
             if (!flag_die)
             {
+                Manager.GetComponent<QuestManager>().MonsterCount();
                 //ダウン演出
                 if (animState != (int)ActionState.Stop)
                 {
@@ -232,6 +240,7 @@ public class DeathHand : Enemy_Base {
         isCoroutine = false;
     }
 
+    //おどろかす
     IEnumerator Astonish()
     {
         if (isCoroutine) yield break;

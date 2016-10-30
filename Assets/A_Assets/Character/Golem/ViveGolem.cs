@@ -48,7 +48,7 @@ public class ViveGolem : Enemy_Base {
         //CCZ = Camera.main.gameObject.GetComponent<Camera_ControllerZ>();
 
         //初期状態セット
-        coroutine = StartCoroutine(ChangeState(30.0f, ActionState.Fight));
+        coroutine = StartCoroutine(ChangeState(7.5f, ActionState.Fight));
 
         //SE = GetComponent<AudioSource>();
 
@@ -74,6 +74,7 @@ public class ViveGolem : Enemy_Base {
         {
             if(flag_die == false)
             {
+                Manager.GetComponent<QuestManager>().MonsterCount();
                 flag_die = true;
                 diedGolem.SetActive(true);
                 this.gameObject.SetActive(false);
