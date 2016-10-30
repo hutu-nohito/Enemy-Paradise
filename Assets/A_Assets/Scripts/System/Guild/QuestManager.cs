@@ -35,6 +35,7 @@ public class QuestManager : Quest_Parameter {
     public GameObject Ready;
     public GameObject Go;
     public GameObject Clear;
+    public GameObject Failed;
 
     //Player
     public GameObject Player;
@@ -96,8 +97,9 @@ public class QuestManager : Quest_Parameter {
         Ready.SetActive(true);
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        Player.GetComponent<Player_ControllerZ>().Reverse_Magic();//魔法
+        Player.GetComponent<Player_ControllerZ>().Reverse_Magic();//魔法が打てると先制で勝てる
 
+        //この時間で魔法をストックできるはず
         yield return new WaitForSeconds(5);//表示に時間がかかる可能性を考えて少したってから行動できるようにしておく
 
         Ready.SetActive(false);
@@ -142,6 +144,11 @@ public class QuestManager : Quest_Parameter {
         
     }
 
+    public void MonsterCount()//コロシアム用のカウント
+    {
+        now_count++;
+    }
+
     public void SaisyuCount()//採取用のカウント
     {
         if (quest_Target[0] == "0" || quest_Target[0] == "4")//採取クエの時だけカウント
@@ -171,6 +178,7 @@ public class QuestManager : Quest_Parameter {
         yield return new WaitForSeconds(0.5f);//カメラ切り替えの間
 
         Clear.SetActive(true);
+        _static.SetGL(_static.GetGL() + 1);
 
         yield return new WaitForSeconds(3);//クリアを見せる
 
@@ -212,22 +220,24 @@ public class QuestManager : Quest_Parameter {
         now_count = 0;//使い終わったら戻す
 
         //クリア後だからたぶんほっといても大丈夫
-        Player.GetComponent<Player_ControllerZ>().SetKeylock();
+        Player.GetComponent<Player_ControllerZ>().Reverse_Magic();
         //Camera.main.enabled = false;
         //F_camera.enabled = true;
 
         //死んでるかもだからHPを回復させて1日たたせる
         //_static.SetHP(Player.GetComponent<Player_ControllerZ>().GetHP());
-        _static.day += 0.5f;//強制的に寝たことにする
-        _static.SetHP(100);
+        //_static.day += 0.5f;//強制的に寝たことにする
+        //_static.SetHP(100);
+        Failed.SetActive(true);
 
+        yield return new WaitForSeconds(3);//ないとコルーチンにできない
+
+        Failed.SetActive(false);
         //一応戻しとく
-        Player.GetComponent<Player_ControllerZ>().SetActive();
+        Player.GetComponent<Player_ControllerZ>().Reverse_Magic();
         isCoroutine = false;
 
         //クエストが終わったら特別なことがない限りギルドへ
         ST.Guild();
-        yield return new WaitForSeconds(0);//ないとコルーチンにできない
-
     }
 }

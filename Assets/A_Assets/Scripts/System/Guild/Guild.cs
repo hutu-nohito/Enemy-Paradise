@@ -323,64 +323,82 @@ public class Guild : MonoBehaviour {
 
     //バトル掲示板/////////////////////////////////////////////////////////
 
+    //e1
     public void Battle0()
     {
+        qM.clear_num = 1;
         qM.SetQuestStageID(0);
         ST.BattleField();
         qM.QuestStart();
     }
 
+    //e2
     public void Battle1()
     {
+        qM.clear_num = 1;
         qM.SetQuestStageID(1);
         ST.BattleField();
         qM.QuestStart();
     }
 
+    //e3
     public void Battle2()
     {
+        qM.clear_num = 1;
         qM.SetQuestStageID(2);
         ST.BattleField();
         qM.QuestStart();
     }
 
+    //n1
     public void Battle3()
     {
+        qM.clear_num = 2;
         qM.SetQuestStageID(3);
         ST.BattleField();
         qM.QuestStart();
     }
 
+    //n2
     public void Battle4()
     {
+        qM.clear_num = 3;
         qM.SetQuestStageID(4);
         ST.BattleField();
         qM.QuestStart();
     }
 
+    //n3
     public void Battle5()
     {
+        qM.clear_num = 1;
         qM.SetQuestStageID(5);
         ST.BattleField();
         qM.QuestStart();
     }
 
+    //h1
     public void Battle6()
     {
+        qM.clear_num = 3;
         qM.SetQuestStageID(6);
         ST.BattleField();
         qM.QuestStart();
     }
 
+    //h2
     public void Battle7()
     {
+        qM.clear_num = 4;
         qM.SetQuestStageID(7);
         ST.BattleField();
         qM.QuestStart();
     }
 
+    //h3
     public void Battle8()
     {
+        qM.clear_num = 3;
         qM.SetQuestStageID(8);
         ST.BattleField();
         qM.QuestStart();
