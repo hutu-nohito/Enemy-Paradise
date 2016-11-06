@@ -179,7 +179,7 @@ public class QuestManager : Quest_Parameter {
         yield return new WaitForSeconds(0.5f);//カメラ切り替えの間
 
         Clear.SetActive(true);
-        _static.SetGL(_static.GetGL() + 1);
+        _static.SetGL(_static.GetGL() + 1);//これでクエスト管理
 
         yield return new WaitForSeconds(3);//クリアを見せる
 
