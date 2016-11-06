@@ -43,6 +43,7 @@ public class IcicleVR : Magic_Parameter {
 
     void Fire()
     {
+        flag_guide = false;
         TargetArea.SetActive(false);
         StartCoroutine(Shot());
     }

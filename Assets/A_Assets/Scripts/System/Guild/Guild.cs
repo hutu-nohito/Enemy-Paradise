@@ -380,7 +380,7 @@ public class Guild : MonoBehaviour {
     //h1
     public void Battle6()
     {
-        qM.clear_num = 3;
+        qM.clear_num = 1;
         qM.SetQuestStageID(6);
         ST.BattleField();
         qM.QuestStart();

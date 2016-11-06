@@ -23,6 +23,10 @@ public class FlameVR : Magic_Parameter
     private Magic_Controller MC;
     private Player_ControllerVR pcVR;
 
+    //ガイド用
+    public GameObject TargetGuide;
+    public Vector3 HandOffset;
+
     //private Animator animator;//アニメ
     private AudioSource SE;//音
 
@@ -41,7 +45,6 @@ public class FlameVR : Magic_Parameter
         
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -50,11 +53,16 @@ public class FlameVR : Magic_Parameter
     //魔法を保持してる間
     void Guide()
     {
-
+        TargetGuide.SetActive(true);
+        //TargetGuide.transform.position = HandR.transform.position + HandOffset;
+        //TargetGuide.transform.parent = HandR.transform;//右手の子にする
+        //TargetGuide.transform.rotation = Quaternion.LookRotation(HandR.transform.TransformDirection(Vector3.up));//回転させて弾頭を進行方向に向ける
     }
-
+    
     void Fire()
     {
+        //TargetGuide.transform.parent = transform;//自分の子にする
+        TargetGuide.SetActive(false);
         StartCoroutine(Shot());
     }
 
