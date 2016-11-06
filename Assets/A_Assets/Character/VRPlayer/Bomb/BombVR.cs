@@ -7,6 +7,7 @@ public class BombVR : Magic_Parameter
     public GameObject bullet_Prefab;//弾のプレハブ
     public GameObject Hand;//右手
     private GameObject bullet;//
+    public float HandOffset = 2;//ボムの出現位置の調整
     private Vector3 OldPos = Vector3.zero;
     private Vector3 direction = Vector3.zero;
     private float elapsedTime = 0.0f;
@@ -24,7 +25,7 @@ public class BombVR : Magic_Parameter
 
         MC = GameObject.FindGameObjectWithTag("Player").GetComponent<Magic_Controller>();
         pcVR = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_ControllerVR>();
-        animator = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>();
+        //animator = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>();
         SE = GetComponent<AudioSource>();
         zcamera = Camera.main.gameObject.GetComponentInChildren<Z_Camera>();
 
@@ -57,7 +58,7 @@ public class BombVR : Magic_Parameter
     {
         elapsedTime += Time.deltaTime;
         bullet.GetComponent<Collider>().enabled = false;
-        bullet.transform.position = Hand.transform.position + Hand.transform.TransformDirection(Vector3.forward);//手の位置
+        bullet.transform.position = Hand.transform.position + Hand.transform.TransformDirection(Vector3.forward).normalized / (1 / HandOffset);//手の位置
         direction = bullet.transform.position - OldPos;
 
         if(elapsedTime >= 0.5f)
@@ -76,10 +77,7 @@ public class BombVR : Magic_Parameter
 
     IEnumerator Shot()
     {
-        Parent.GetComponent<Character_Parameters>().SetKeylock();
-        //GameObject bullet;
-
-        animator.SetTrigger("Shoot");
+        //animator.SetTrigger("Shoot");
         bullet.GetComponent<Collider>().enabled = true;
         bullet.GetComponent<Rigidbody>().velocity = (Parent.transform.TransformDirection(Vector3.forward) + direction * 100000).normalized * direction.magnitude * bullet.GetComponent<Attack_Parameter>().speed;//キャラの向いてる方向
         //bullet.GetComponent<Rigidbody>().velocity = direction.normalized * bullet.GetComponent<Attack_Parameter>().speed * 100;//キャラの向いてる方向
@@ -152,11 +150,8 @@ public class BombVR : Magic_Parameter
 
         Destroy(bullet, bullet.GetComponent<Attack_Parameter>().GetA_Time());
 
-        yield return new WaitForSeconds(bullet.GetComponent<Attack_Parameter>().GetR_Time());//撃った後の硬直
-
-        //硬直を解除
-        Parent.GetComponent<Character_Parameters>().SetActive();
-
+        yield return new WaitForSeconds(0);//コルーチンだよー
+        
     }
 
 }

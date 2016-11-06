@@ -24,7 +24,7 @@ public class BarrierVR : Magic_Parameter
     private Player_ControllerVR pcVR;
     public GameObject Player;
 
-    private Animator animator;//アニメ
+    //private Animator animator;//アニメ
     private AudioSource SE;//音
 
     // Use this for initialization
@@ -32,7 +32,7 @@ public class BarrierVR : Magic_Parameter
     {
         MC = GameObject.FindGameObjectWithTag("Player").GetComponent<Magic_Controller>();
         pcVR = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_ControllerVR>();
-        animator = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>();
+        //animator = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>();
         SE = GetComponent<AudioSource>();
     }
 
@@ -55,10 +55,9 @@ public class BarrierVR : Magic_Parameter
 
     IEnumerator Shot()
     {
-        Parent.GetComponent<Character_Parameters>().SetKeylock();
         GameObject bullet;
 
-        animator.SetTrigger("Shoot");
+        //animator.SetTrigger("Shoot");
 
         Parent.GetComponent<Character_Parameters>().Reverse_Damage();//ダメージを受けないようにする
 
@@ -86,8 +85,6 @@ public class BarrierVR : Magic_Parameter
         yield return new WaitForSeconds(2.0f);//撃った後の硬直
 
         Parent.GetComponent<Character_Parameters>().Reverse_Damage();//ダメージを受けるようにする
-        //硬直を解除
-        Parent.GetComponent<Character_Parameters>().SetActive();
-
+       
     }
 }

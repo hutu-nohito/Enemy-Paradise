@@ -17,7 +17,7 @@ public class Player_ControllerVR : Character_Parameters {
     
     //使うもの
     private CharacterController playerController;//キャラクタコントローラで動かす場合
-    private Animator animator;//アニメーション設定用
+    //private Animator animator;//アニメーション設定用
     private GameObject Manager;
 
     public GameObject MainCamera;//動かす用のカメラ
@@ -33,7 +33,7 @@ public class Player_ControllerVR : Character_Parameters {
     void Start()
     {
         playerController = GetComponent<CharacterController>();//rigidbodyを使う場合は外す
-        animator = GetComponentInChildren<Animator>();//アニメータを使うとき
+        //animator = GetComponentInChildren<Animator>();//アニメータを使うとき
         Manager = GameObject.FindWithTag("Manager");
         
         //初期パラメタを保存
@@ -138,13 +138,13 @@ public class Player_ControllerVR : Character_Parameters {
         {
 
             _Move();
-            animator.SetFloat("Speed", move_direction.magnitude);
+            //animator.SetFloat("Speed", move_direction.magnitude);
 
         }
         else
         {
 
-            animator.SetFloat("Speed", 0);
+            //animator.SetFloat("Speed", 0);
 
         }
         

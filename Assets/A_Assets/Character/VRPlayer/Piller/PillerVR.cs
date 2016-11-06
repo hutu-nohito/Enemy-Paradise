@@ -8,9 +8,12 @@ public class PillerVR : Magic_Parameter {
     private Magic_Controller MC;
     private Player_ControllerVR pcVR;
     public GameObject HandR;
-    private Animator animator;//アニメ
+    //private Animator animator;//アニメ
     private AudioSource SE;//音
+
+    //ガイド用
     public GameObject TargetArea;
+    private bool flag_guide = false;
 
     private Z_Camera zcamera;//足元用 注目対象はここで取得
 
@@ -19,7 +22,7 @@ public class PillerVR : Magic_Parameter {
     {
         MC = GameObject.FindGameObjectWithTag("Player").GetComponent<Magic_Controller>();
         pcVR = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_ControllerVR>();
-        animator = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>();
+        //animator = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>();
         SE = GetComponent<AudioSource>();
 
         //zcamera = Camera.main.gameObject.GetComponentInChildren<Z_Camera>();
@@ -43,19 +46,25 @@ public class PillerVR : Magic_Parameter {
         //    //Debug.Log(hitObject);
 
         //}
+
+        if (flag_guide)
+        {
+            TargetArea.SetActive(true);
+            TargetArea.transform.position = new Vector3(transform.position.x + (HandR.transform.TransformDirection(Vector3.forward) * 15).x,
+                        transform.position.y + 4.5f,
+                        transform.position.z + (HandR.transform.TransformDirection(Vector3.forward) * 15).z);
+        }
     }
 
     //魔法を保持してる間
     void Guide()
     {
-        TargetArea.SetActive(true);
-        TargetArea.transform.position = new Vector3(transform.position.x + (HandR.transform.TransformDirection(Vector3.forward) * 15).x,
-                    transform.position.y + 4.5f,
-                    transform.position.z + (HandR.transform.TransformDirection(Vector3.forward) * 15).z);
+        flag_guide = true;
     }
 
     void Fire()
     {
+        flag_guide = false;
         TargetArea.SetActive(false);
         StartCoroutine(Shot());
     }
@@ -66,7 +75,7 @@ public class PillerVR : Magic_Parameter {
         Vector3 direction = Parent.transform.TransformDirection(Vector3.forward);//この時点でのプレイヤの向きを基準にする
         Vector3 HandDirection = HandR.transform.TransformDirection(Vector3.forward) * 5;
         Vector3 OldTransform = transform.position;
-        animator.SetTrigger("Shoot");
+        //animator.SetTrigger("Shoot");
 
         //yield return new WaitForSeconds(1.0f);
 
@@ -98,11 +107,6 @@ public class PillerVR : Magic_Parameter {
 
             yield return new WaitForSeconds(1.5f);
         }
-
-        yield return new WaitForSeconds(0.5f);//撃った後の硬直
-
-        //硬直を解除
-        Parent.GetComponent<Character_Parameters>().SetActive();
 
     }
 

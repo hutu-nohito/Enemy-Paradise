@@ -5,6 +5,7 @@ public class SaberVR : Magic_Parameter {
 
     public GameObject bullet_Prefab;//弾のプレハブ
     public GameObject HandR;
+    public float HandOffset = 1;
     private GameObject bullet;
 
     private GameObject Player;
@@ -13,7 +14,7 @@ public class SaberVR : Magic_Parameter {
     private Coroutine coroutine;
     
     //演出用
-    private Animator animator;
+    //private Animator animator;
     private AudioSource SE;//音
     public AudioClip[] se;
 
@@ -25,7 +26,7 @@ public class SaberVR : Magic_Parameter {
         pcVR = Player.GetComponent<Player_ControllerVR>();
         //vision = Player.GetComponentInChildren<Vision>();
 
-        animator = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>();
+        //animator = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>();
         SE = GetComponent<AudioSource>();
     }
 
@@ -62,11 +63,11 @@ public class SaberVR : Magic_Parameter {
     //剣を持たせる
     IEnumerator Shot()
     {
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(0);//コルーチンだよー
 
         
         bullet = GameObject.Instantiate(bullet_Prefab);//弾生成
-        bullet.transform.position = HandR.transform.position;
+        bullet.transform.position = HandR.transform.position + HandR.transform.TransformDirection(Vector3.forward).normalized / (1 / HandOffset);
         bullet.transform.parent = HandR.transform;//右手の子にする
         bullet.transform.FindChild("Armature").gameObject.transform.FindChild("Bone").gameObject.GetComponentInChildren<Attack_Parameter>().Parent = this.Parent;//もらった親を渡しておく必要がある
 

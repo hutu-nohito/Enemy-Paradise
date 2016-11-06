@@ -285,7 +285,6 @@ public class Magic_ControllerVR : MonoBehaviour {
             {
                 MagicIcon[i].SetActive(false);
             }
-            SelectMagic[stockMagic[0]].SendMessage("Guide");//ガイドのある魔法はこれ使う
 
         }
         else
@@ -726,6 +725,7 @@ public class Magic_ControllerVR : MonoBehaviour {
                     if (MagicList.Count > 0)
                     {
                         CheckMagicList();//ここで魔法が完成しているかを判定
+                        SelectMagic[stockMagic[0]].SendMessage("Guide");//ガイドのある魔法はこれ使う
                     }
 
                 }

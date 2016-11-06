@@ -23,7 +23,7 @@ public class CharacterDamageVR : MonoBehaviour
 
     private Renderer[] Renderer;//レンダー1
     private Renderer[] SkinRenderer;//レンダー2
-    public GameObject Model;//モデル
+    //public GameObject Model;//モデル
 
 
     //演出(最初に取得)

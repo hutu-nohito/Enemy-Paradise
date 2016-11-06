@@ -5,7 +5,10 @@ public class IcicleVR : Magic_Parameter {
 
     public GameObject bullet_Prefab;//弾のプレハブ
     public GameObject HandR;
+
+    //ガイド用
     public GameObject TargetArea;
+    private bool flag_guide = false;
 
     private Magic_Controller MC;
     private Player_ControllerVR pcVR;
@@ -22,16 +25,20 @@ public class IcicleVR : Magic_Parameter {
     // Update is called once per frame
     void Update()
     {
-        
+        if (flag_guide)
+        {
+            TargetArea.SetActive(true);
+            TargetArea.transform.position = new Vector3(transform.position.x + (HandR.transform.TransformDirection(Vector3.forward) * 15).x,
+                        transform.position.y - 4.5f,
+                        transform.position.z + (HandR.transform.TransformDirection(Vector3.forward) * 15).z);
+        }
+
     }
 
     //魔法を保持してる間
     void Guide()
     {
-        TargetArea.SetActive(true);
-        TargetArea.transform.position = new Vector3(transform.position.x + (HandR.transform.TransformDirection(Vector3.forward) * 15).x,
-                    transform.position.y - 4.5f,
-                    transform.position.z + (HandR.transform.TransformDirection(Vector3.forward) * 15).z);
+        flag_guide = true;
     }
 
     void Fire()

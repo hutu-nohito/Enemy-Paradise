@@ -23,7 +23,7 @@ public class FlameVR : Magic_Parameter
     private Magic_Controller MC;
     private Player_ControllerVR pcVR;
 
-    private Animator animator;//アニメ
+    //private Animator animator;//アニメ
     private AudioSource SE;//音
 
     public GameObject HandR;//VRコントローラR
@@ -33,7 +33,7 @@ public class FlameVR : Magic_Parameter
     {
         MC = GameObject.FindGameObjectWithTag("Player").GetComponent<Magic_Controller>();
         pcVR = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_ControllerVR>();
-        animator = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>();
+        //animator = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>();
         SE = GetComponent<AudioSource>();
 
         //Target = GameObject.FindGameObjectWithTag("Enemy");
@@ -60,10 +60,9 @@ public class FlameVR : Magic_Parameter
 
     IEnumerator Shot()
     {
-        Parent.GetComponent<Character_Parameters>().SetKeylock();
         GameObject bullet;
 
-        animator.SetTrigger("Shoot");
+        //animator.SetTrigger("Shoot");
 
         //Target = GameObject.FindGameObjectWithTag("Enemy");
 
@@ -112,10 +111,8 @@ public class FlameVR : Magic_Parameter
 
         Destroy(bullet, bullet.GetComponent<Attack_Parameter>().GetA_Time());
 
-        yield return new WaitForSeconds(bullet.GetComponent<Attack_Parameter>().GetR_Time());//撃った後の硬直
-
-        //硬直を解除
-        Parent.GetComponent<Character_Parameters>().SetActive();
+        //yield return new WaitForSeconds(bullet.GetComponent<Attack_Parameter>().GetR_Time());//撃った後の硬直
+        yield return new WaitForSeconds(0);//コルーチンだよー
 
     }
 
