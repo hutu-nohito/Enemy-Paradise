@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;//リスト
 
 public class Enemy_Base : Character_Parameters
 {
@@ -36,6 +37,10 @@ public class Enemy_Base : Character_Parameters
 
     public GameObject Model;//アーマチュア(残像用)
     private SkinnedMeshRenderer Skin;
+
+    [System.NonSerialized]
+    public SkinnedMeshRenderer[] Skins;//とりあえず取得してみる
+
     private float color = 0.25f;//透明度
 
     // Use this for initialization
@@ -71,6 +76,7 @@ public class Enemy_Base : Character_Parameters
 
         //メッシュは分かれてたりするから対策した方がいいかも
         Skin = Model.GetComponentInChildren<SkinnedMeshRenderer>();
+        Skins = Model.GetComponentsInChildren<SkinnedMeshRenderer>();
 
     }
 	

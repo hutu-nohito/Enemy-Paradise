@@ -22,10 +22,10 @@ public class ViveGolem : Enemy_Base {
         Stop,//アニメーションが終わるまで待機(状態でなくアニメーションの整合性のために必要)
         HammerAttack,//ハンマー攻撃
         Idle,//待機
+        Fight,//臨戦態勢
         SpikeAttack,//とげ攻撃
         HammerRot,//回転攻撃
         Jump,//跳ぶらしい
-        Fight,//臨戦態勢
         Knockback,//必要なのか？
 
     }//intにすれば優先度にできる
@@ -65,7 +65,7 @@ public class ViveGolem : Enemy_Base {
         if (!GetF_Move())
         {
             //コルーチンは最後まで流さないと状態がおかしくなるかも(ムービーとかでは素直に時間止めたほうがいいかも)
-            //StopAllCoroutines();//コルーチンはどうやって止めたらいいんだろう
+            StopAllCoroutines();//コルーチンを止める
             return;//これで行動不能になる(アニメーションは止まらない)
         }
 
@@ -77,12 +77,16 @@ public class ViveGolem : Enemy_Base {
                 Manager.GetComponent<QuestManager>().MonsterCount();
                 flag_die = true;
                 diedGolem.SetActive(true);
-                this.gameObject.SetActive(false);
+                for (int i = 0; i < Skins.Length; i++)
+                {
+                    Skins[i].enabled = false;
+                }
                 //flag_fade = true;
-                //state = ActionState.Stop;
-                //animState = (int)ActionState.Stop;
+                state = ActionState.Stop;
+                animState = (int)ActionState.Stop;
+                StopAllCoroutines();//コルーチンを止める
                 //Destroy(this.gameObject, 10);//とりあえず消す
-            }      
+            }
         }
 
         //相手がいなくなった時の処理
@@ -306,7 +310,9 @@ public class ViveGolem : Enemy_Base {
         AttackCol[1].tag = ("Untagged");//攻撃でなくす
         AttackCol[1].GetComponents<CapsuleCollider>()[1].enabled = false;//攻撃判定なくす
         AttackCol[1].GetComponent<CapsuleCollider>().enabled = true;//接触判定つける
-        
+
+        yield return new WaitForSeconds(3.0f);//次の攻撃まで間を置く
+
         state = ActionState.Fight;
         isCoroutine = false;
     }
@@ -343,6 +349,8 @@ public class ViveGolem : Enemy_Base {
         AttackCol[1].GetComponents<CapsuleCollider>()[1].enabled = false;//攻撃判定なくす
         AttackCol[1].GetComponent<CapsuleCollider>().enabled = true;//接触判定つける
 
+        yield return new WaitForSeconds(3.0f);//次の攻撃まで間を置く
+
         state = ActionState.Fight;
         isCoroutine = false;
     }
@@ -358,15 +366,15 @@ public class ViveGolem : Enemy_Base {
         }        
 
         //プレイヤから遠ざかる方向
-        iTween.MoveTo(this.gameObject, iTween.Hash(
-                "x", transform.position.x - (Player.transform.position - transform.position).normalized.x * 3,//定数が突進距離
-                "z", transform.position.z - (Player.transform.position - transform.position).normalized.z * 3,//定数が突進距離
-                "time", 1.5f,
-                "easetype", iTween.EaseType.easeOutBack)
+        //iTween.MoveTo(this.gameObject, iTween.Hash(
+        //        "x", transform.position.x - (Player.transform.position - transform.position).normalized.x * 3,//定数が突進距離
+        //        "z", transform.position.z - (Player.transform.position - transform.position).normalized.z * 3,//定数が突進距離
+        //        "time", 1.5f,
+        //        "easetype", iTween.EaseType.easeOutBack)
 
-                );
+        //        );
 
-        yield return new WaitForSeconds(1.5f);//攻撃後のため
+        yield return new WaitForSeconds(1.5f);//ノックバック時間
         
         state = ActionState.Fight;
         isCoroutine = false;
@@ -467,11 +475,12 @@ public class ViveGolem : Enemy_Base {
     public void Damage()
     {
         //イベント側で優先度を確認すればよい
-        if (state >= ActionState.Idle)//待機より優先順位が下
+        if (state >= ActionState.Fight)//歩きより優先順位が下
         {
             //CCZ.flag_quake = false;
             base.animator.speed = 1.0f;
             state = ActionState.Knockback;
+            StopAllCoroutines();//コルーチンを止める
             isCoroutine = false;
             StartCoroutine(Knockback());
         }
