@@ -105,8 +105,6 @@ public class ViveHaniwonder : Enemy_Base
                 Destroy(this.gameObject, 7);//とりあえず消す
                 SE.PlayOneShot(cv[1]);//SE
                 //flag_fade = true;
-                state = ActionState.Stop;
-                animState = (int)ActionState.Stop;
                 
             }
             

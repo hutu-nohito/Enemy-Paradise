@@ -177,27 +177,28 @@ public class CharacterDamageVR : MonoBehaviour
                 //こっから演出////////////////////////////////////////////////////////////////
 
                 //属性エフェクト
-                switch (col.GetComponent<Attack_Parameter>().GetElement())
-                {
-                    case Attack_Parameter.MagicElement.Earth:
-                        //effectKind = EffectKind.Earth;
-                        break;
-                    case Attack_Parameter.MagicElement.Water:
-                        effectKind = EffectKind.Water;
-                        break;
-                    case Attack_Parameter.MagicElement.Fire:
-                        effectKind = EffectKind.Fire;
-                        break;
-                    case Attack_Parameter.MagicElement.Wind:
-                        //effectKind = EffectKind.Wind;
-                        break;
+                //switch (col.GetComponent<Attack_Parameter>().GetElement())
+                //{
+                //    case Attack_Parameter.MagicElement.Earth:
+                //        //effectKind = EffectKind.Earth;
+                //        break;
+                //    case Attack_Parameter.MagicElement.Water:
+                //        effectKind = EffectKind.Water;
+                //        break;
+                //    case Attack_Parameter.MagicElement.Fire:
+                //        effectKind = EffectKind.Fire;
+                //        break;
+                //    case Attack_Parameter.MagicElement.Wind:
+                //        //effectKind = EffectKind.Wind;
+                //        break;
 
-                }
-                Effects[(int)effectKind].transform.position = col.transform.position;//弾が当たった場所
-                //一瞬だけ消してつけるともう一回再生してくれる
-                Effects[(int)effectKind].SetActive(false);
-                Effects[(int)effectKind].SetActive(true);
+                //}
+                //Effects[(int)effectKind].transform.position = col.transform.position;//弾が当たった場所
+                ////一瞬だけ消してつけるともう一回再生してくれる
+                //Effects[(int)effectKind].SetActive(false);
+                //Effects[(int)effectKind].SetActive(true);
 
+                //どしゅ
                 Effects[(int)EffectKind.Hit].transform.position = col.transform.position;//弾が当たった場所
 
                 //一瞬だけ消してつけるともう一回再生してくれる

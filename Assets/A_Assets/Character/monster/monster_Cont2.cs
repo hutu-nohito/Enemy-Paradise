@@ -86,6 +86,7 @@ public class monster_Cont2 : Enemy_Base
             if (flag_die == false)
             {
                 Manager.GetComponent<QuestManager>().MonsterCount();
+                StopAllCoroutines();//コルーチンはどうやって止めたらいいんだろう
                 flag_die = true;
                 //ダウン演出
                 if (animState != (int)ActionState.Stop)
@@ -380,6 +381,10 @@ public class monster_Cont2 : Enemy_Base
                 "time", 0.5f,
                 "easetype", iTween.EaseType.easeInOutBack)
                 );
+
+        //前を向ける
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(base.Player.transform.position - transform.position), 0.05f);
+        transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
 
         //武器を振り下ろすまで
         yield return new WaitForSeconds(0.4f);//こーゆーパラメータもインスペクタで決めるべきだと思うけどごちゃごちゃしそうでいや

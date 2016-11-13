@@ -25,7 +25,7 @@ public class Bomb_Bullet : Attack_Parameter {
         {
             return;
         }
-        if (col.tag == "Reflect" || col.tag == "HitPlayer")
+        if (col.tag == "Reflect" || col.tag == "HitPlayer" || col.tag == "Player")
         {
             return;
         }
