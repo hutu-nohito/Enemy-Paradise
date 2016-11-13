@@ -221,6 +221,7 @@ public class Magic_ControllerVR : MonoBehaviour {
                 stockMagic[i] = stockMagic[i + 1];//要素を詰める(先頭からやれば消えない)
             }
             stockMagic.RemoveAt(stockMagic.Count - 1);//末尾を消す
+            SelectMagic[stockMagic[0]].SendMessage("Guide");//ガイドのある魔法はこれ使う
         }
         else//ストックに魔法が1つの場合
         {
