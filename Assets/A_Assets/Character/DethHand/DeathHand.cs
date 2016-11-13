@@ -53,7 +53,7 @@ public class DeathHand : Enemy_Base {
         {
             coroutine = StartCoroutine(ChangeState(7.5f, ActionState.Search));
         }
-        if (level <= 2)
+        if (level >= 2)
         {
             coroutine = StartCoroutine(ChangeState(7.5f, ActionState.Warp));
         }

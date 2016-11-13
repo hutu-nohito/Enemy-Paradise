@@ -212,6 +212,7 @@ public class Guild : MonoBehaviour {
             quest_num = 5;
         }
 	}
+
     public void Quest2()
     {
 
@@ -251,6 +252,7 @@ public class Guild : MonoBehaviour {
         quest_num = 4;
 
     }
+
     public void Quest5()
     {
 

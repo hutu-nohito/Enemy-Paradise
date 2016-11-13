@@ -235,7 +235,7 @@ public class QuestManager : Quest_Parameter {
 
         Failed.SetActive(false);
         //一応戻しとく
-        Player.GetComponent<Player_ControllerVR>().Reverse_Magic();
+        //Player.GetComponent<Player_ControllerVR>().Reverse_Magic();
         isCoroutine = false;
 
         //クエストが終わったら特別なことがない限りギルドへ
