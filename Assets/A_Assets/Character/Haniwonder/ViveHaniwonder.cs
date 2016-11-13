@@ -32,7 +32,7 @@ public class ViveHaniwonder : Enemy_Base
     public GameObject Avatar;//分身
     public GameObject TacleCol;//体当たり攻撃判定
     public GameObject HeadCol;//頭突き攻撃判定
-    GameObject[] Avatars = new GameObject[5];
+    GameObject[] Avatars = new GameObject[3];
 
     //Timer
     float timer = 0;//使ったら0に
@@ -121,7 +121,7 @@ public class ViveHaniwonder : Enemy_Base
             {
                 timer += Time.deltaTime;
 
-                if (timer > 2.2f)//ちょっと待ってから
+                if (timer > 1.5f)//ちょっと待ってから
                 {
                     StopAllCoroutines();//コルーチンはどうやって止めたらいいんだろう
                     flag_win = true;
@@ -214,12 +214,12 @@ public class ViveHaniwonder : Enemy_Base
                     base.animator.SetTrigger("Idle");
                 }
 
-                if ((int)Time.time % 5 == 0)//5秒ごと
+                if ((int)Time.time % 10 == 0)//10秒ごと
                 {
                     float randAt1 = Random.value;
 
 
-                    if (randAt1 > 0.3)
+                    if (randAt1 > 0.7)
                     {
                         state = ActionState.AfterImage;
                     }
@@ -375,6 +375,9 @@ public class ViveHaniwonder : Enemy_Base
 
         base.animator.SetTrigger("Headbutt");
         HeadCol.SetActive(true);
+
+        //とりあえずノックバックしないようにしとく
+        state = ActionState.Guard;
 
         //プレイヤに突進
         iTween.MoveTo(this.gameObject, iTween.Hash(
@@ -564,7 +567,7 @@ public class ViveHaniwonder : Enemy_Base
         {
             Angle = -Angle;
         }
-        //分身を4体出す
+        //分身を2体出す
         for(int i = 0; i < Avatars.Length / 2; i++)//半分より前
         {
             //分身ははじめから走ってる
@@ -572,9 +575,9 @@ public class ViveHaniwonder : Enemy_Base
             //Avatars[i].GetComponentInChildren<Haniwonder>().animator.SetTrigger("Run");
             //Avatars[i].GetComponentInChildren<Haniwonder>().TacleCol.SetActive(true);
             Avatars[i].transform.position = new Vector3(
-                Player.transform.position.x + GetDistanceP() * Mathf.Cos(Angle + ((i - 2) * 30 * Mathf.PI / 180)),
+                Player.transform.position.x + GetDistanceP() * Mathf.Cos(Angle + ((i - 1) * 30 * Mathf.PI / 180)),
                 transform.position.y,
-                Player.transform.position.z + GetDistanceP() * (Mathf.Sin(Angle + ((i - 2) * 30 * Mathf.PI / 180)))
+                Player.transform.position.z + GetDistanceP() * (Mathf.Sin(Angle + ((i - 1) * 30 * Mathf.PI / 180)))
                 );
             //Avatars[i].transform.position = AffineRot(Avatars[i].transform.position);//playerとの位置関係で変換
                 Avatars[i].transform.LookAt(Player.transform.position);
@@ -587,23 +590,23 @@ public class ViveHaniwonder : Enemy_Base
             //Avatars[i].GetComponentInChildren<Haniwonder>().animator.SetTrigger("Run");
             //Avatars[i].GetComponentInChildren<Haniwonder>().TacleCol.SetActive(true);
             Avatars[i].transform.position = new Vector3(
-                Player.transform.position.x + GetDistanceP() * Mathf.Cos(Angle + ((i - 1) * 30 * Mathf.PI / 180)),
+                Player.transform.position.x + GetDistanceP() * Mathf.Cos(Angle + ((i) * 30 * Mathf.PI / 180)),
                 transform.position.y,
-                Player.transform.position.z + GetDistanceP() * (Mathf.Sin(Angle + ((i - 1) * 30 * Mathf.PI / 180)))
+                Player.transform.position.z + GetDistanceP() * (Mathf.Sin(Angle + ((i) * 30 * Mathf.PI / 180)))
                 );
             //Avatars[i].transform.position = AffineRot(Avatars[i].transform.position);//playerとの位置関係で変換
             Avatars[i].transform.LookAt(Player.transform.position);
             Avatars[i].GetComponentInChildren<Attack_Parameter>().SetParent(this.gameObject);//親を設定
         }
 
-        Avatars[4] = this.gameObject;//５番目が自分自身
+        Avatars[2] = this.gameObject;//５番目が自分自身
 
         transform.LookAt(Player.transform.position);//方向のみを合わせたいならXとYを0に
         base.animator.SetTrigger("Run");
         TacleCol.SetActive(true);
 
         int random;
-        int[] number = new int[5];//入れ替え用
+        int[] number = new int[3];//入れ替え用
         //まず0～4の配列を作る
         for (int i = 0; i < number.Length; i++)
         {
@@ -612,7 +615,7 @@ public class ViveHaniwonder : Enemy_Base
         //シャッフル
         for (int i = 0; i < number.Length; i++)
         {
-            random = Random.Range(0, 5);
+            random = Random.Range(0, 3);
             int temp = number[i];
             number[i] = number[random];
             number[random] = temp;
@@ -620,14 +623,14 @@ public class ViveHaniwonder : Enemy_Base
 
         yield return new WaitForSeconds(3);
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 3; i++)
         {         
             
             //プレイヤに突進
             iTween.MoveTo(Avatars[number[i]], iTween.Hash(
                     "x", Avatars[number[i]].transform.position.x + (Player.transform.position - Avatars[number[i]].transform.position).normalized.x * (15 + GetDistanceP()),//定数が突進距離
                     "z", Avatars[number[i]].transform.position.z + (Player.transform.position - Avatars[number[i]].transform.position).normalized.z * (15 + GetDistanceP()),//定数が突進距離
-                    "time", 6,
+                    "time", 4,
                     "easetype", iTween.EaseType.easeInOutBack)
 
                     );
@@ -635,7 +638,7 @@ public class ViveHaniwonder : Enemy_Base
             yield return new WaitForSeconds(0.1f);
 
             //前を向ける
-            if (number[i] != 4)
+            if (number[i] != 2)
             {
                 Avatars[number[i]].transform.LookAt(Player.transform.position);
             }
@@ -653,12 +656,12 @@ public class ViveHaniwonder : Enemy_Base
             }
 
             //本体じゃなかったら突進後消す
-            if (number[i] != 4)
+            if (number[i] != 2)
             {
                 Destroy(Avatars[number[i]], 6);
             }
 
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(0.3f);
 
         }
 
@@ -773,11 +776,13 @@ public class ViveHaniwonder : Enemy_Base
                 //いろいろ消さないと・・・(後処理を別でできるといいかも)
                 StopAllCoroutines();//コルーチンはどうやって止めたらいいんだろう
                 TacleCol.SetActive(false);
+                HeadCol.SetActive(false);
                 isCoroutine = false;
+                //beam
                 Bullet[0].SetActive(false);
                 Bullet[0].transform.rotation = new Quaternion(0, 0, 0, 0);
                 timer = 0;
-                for (int i = 0;i < 4; i++)
+                for (int i = 0;i < 2; i++)
                 {
                     Destroy(Avatars[i]);
                 }

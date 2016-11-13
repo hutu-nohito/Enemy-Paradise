@@ -1173,8 +1173,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1251,7 +1251,7 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 559
     - serializedVersion: 16
       name: "\u76EE\u304B\u3089\u30D3\u30FC\u30E0220\uFF5E230"
       takeName: "\u76EE\u304B\u3089\u30D3\u30FC\u30E0220\uFF5E230"
