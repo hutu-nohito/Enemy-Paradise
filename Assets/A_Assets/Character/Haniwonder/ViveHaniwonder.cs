@@ -119,28 +119,37 @@ public class ViveHaniwonder : Enemy_Base
             //StopAllCoroutines();
             if (!flag_win)//一回だけの処理
             {
-                StopAllCoroutines();//コルーチンはどうやって止めたらいいんだろう
-                flag_win = true;
-                state = ActionState.Stop;
-                animState = (int)ActionState.Run;
-                ReverseAfterImage();//残像
+                timer += Time.deltaTime;
+
+                if (timer > 2.2f)//ちょっと待ってから
+                {
+                    StopAllCoroutines();//コルーチンはどうやって止めたらいいんだろう
+                    flag_win = true;
+                    timer = 0;
+                    state = ActionState.Stop;
+                    animState = (int)ActionState.Run;
+                    ReverseAfterImage();//残像
+                    if (level <= 3)//はにわんだー
+                    {
+                        base.animator.SetTrigger("Dash");
+                    }
+                    if (level == 4)//熱血
+                    {
+                        base.animator.SetTrigger("Dance");
+                    }
+                }
+
+            }
+            else
+            {
                 if (level <= 3)//はにわんだー
                 {
-                    base.animator.SetTrigger("Run");
+                    //勝利のポーズ(相手の周りを走り回る)
+                    transform.position = base.AffineRot(transform.position, 1500);
+                    //前を向ける(進行方向)
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(GetMove()), 0.5f);
                 }
-                if (level == 4)//熱血
-                {
-                    base.animator.SetTrigger("Dance");
-                }
-            }
-
-            if(level <= 3)//はにわんだー
-            {
-                //勝利のポーズ(相手の周りを走り回る)
-                transform.position = base.AffineRot(transform.position, 2000);
-                //前を向ける(進行方向)
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(GetMove()), 0.5f);
-            }
+            }          
             
         }
 
@@ -309,8 +318,8 @@ public class ViveHaniwonder : Enemy_Base
         }
         
         iTween.MoveTo(this.gameObject, iTween.Hash(
-                "x", transform.position.x + (Player.transform.position - transform.position).normalized.x * 30,//定数が突進距離
-                "z", transform.position.z + (Player.transform.position - transform.position).normalized.z * 30,//定数が突進距離
+                "x", transform.position.x + (Player.transform.position - transform.position).normalized.x * (15 + GetDistanceP()),//定数が突進距離
+                "z", transform.position.z + (Player.transform.position - transform.position).normalized.z * (15 + GetDistanceP()),//定数が突進距離
                 "time", 3.0f,
                 "easetype", iTween.EaseType.easeInOutBack)
 
@@ -369,8 +378,8 @@ public class ViveHaniwonder : Enemy_Base
 
         //プレイヤに突進
         iTween.MoveTo(this.gameObject, iTween.Hash(
-                "x", transform.position.x + (Player.transform.position - transform.position).normalized.x * 30,//定数が突進距離
-                "z", transform.position.z + (Player.transform.position - transform.position).normalized.z * 30,//定数が突進距離
+                "x", transform.position.x + (Player.transform.position - transform.position).normalized.x * (15 + GetDistanceP()),//定数が突進距離
+                "z", transform.position.z + (Player.transform.position - transform.position).normalized.z * (15 + GetDistanceP()),//定数が突進距離
                 "time", 3.0f,
                 "easetype", iTween.EaseType.linear)
 
@@ -413,8 +422,8 @@ public class ViveHaniwonder : Enemy_Base
 
         //反動
         iTween.MoveTo(this.gameObject, iTween.Hash(
-                "x", transform.position.x - (Player.transform.position - transform.position).normalized.x * 5,//定数が突進距離
-                "z", transform.position.z - (Player.transform.position - transform.position).normalized.z * 5,//定数が突進距離
+                "x", transform.position.x - (Player.transform.position - transform.position).normalized.x * 10,//定数が突進距離
+                "z", transform.position.z - (Player.transform.position - transform.position).normalized.z * 10,//定数が突進距離
                 "time", 1.0f,
                 "easetype", iTween.EaseType.linear)
 
@@ -616,9 +625,9 @@ public class ViveHaniwonder : Enemy_Base
             
             //プレイヤに突進
             iTween.MoveTo(Avatars[number[i]], iTween.Hash(
-                    "x", Avatars[number[i]].transform.position.x + (Player.transform.position - Avatars[number[i]].transform.position).normalized.x * 30,//定数が突進距離
-                    "z", Avatars[number[i]].transform.position.z + (Player.transform.position - Avatars[number[i]].transform.position).normalized.z * 30,//定数が突進距離
-                    "time", 3,
+                    "x", Avatars[number[i]].transform.position.x + (Player.transform.position - Avatars[number[i]].transform.position).normalized.x * (15 + GetDistanceP()),//定数が突進距離
+                    "z", Avatars[number[i]].transform.position.z + (Player.transform.position - Avatars[number[i]].transform.position).normalized.z * (15 + GetDistanceP()),//定数が突進距離
+                    "time", 6,
                     "easetype", iTween.EaseType.easeInOutBack)
 
                     );
@@ -646,10 +655,10 @@ public class ViveHaniwonder : Enemy_Base
             //本体じゃなかったら突進後消す
             if (number[i] != 4)
             {
-                Destroy(Avatars[number[i]], 3);
+                Destroy(Avatars[number[i]], 6);
             }
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2);
 
         }
 
@@ -706,13 +715,13 @@ public class ViveHaniwonder : Enemy_Base
         }
 
         //プレイヤから遠ざかる方向
-        iTween.MoveTo(this.gameObject, iTween.Hash(
-                "x", transform.position.x - (Player.transform.position - transform.position).normalized.x * 2,//定数が突進距離
-                "z", transform.position.z - (Player.transform.position - transform.position).normalized.z * 2,//定数が突進距離
-                "time", 1.0f,
-                "easetype", iTween.EaseType.easeOutBack)
+        //iTween.MoveTo(this.gameObject, iTween.Hash(
+        //        "x", transform.position.x - (Player.transform.position - transform.position).normalized.x * 2,//定数が突進距離
+        //        "z", transform.position.z - (Player.transform.position - transform.position).normalized.z * 2,//定数が突進距離
+        //        "time", 1.0f,
+        //        "easetype", iTween.EaseType.easeOutBack)
 
-                );
+        //        );
 
         yield return new WaitForSeconds(1.0f);//
 
@@ -720,7 +729,7 @@ public class ViveHaniwonder : Enemy_Base
 
         yield return new WaitForSeconds(1.5f);//攻撃後のため
 
-        if(level == 1)
+        if(level <= 3)
         {
             state = ActionState.Exercise;
         }
@@ -746,6 +755,7 @@ public class ViveHaniwonder : Enemy_Base
 
     public void Hit()
     {
+
         StopAllCoroutines();
         StartCoroutine(HitHead());
         
