@@ -9,11 +9,13 @@ public class TextMove : MonoBehaviour {
     public int speed = 2;
     public int count = 1;
     public bool flag_True = true;
+    private int font_size = 70;
 
     // Use this for initialization
     void Start()
     {
         text = GetComponent<Text>();
+        font_size = text.fontSize;
     }
 
     // Update is called once per frame
@@ -44,5 +46,10 @@ public class TextMove : MonoBehaviour {
     public void ReverseFade()
     {
         flag_True = !flag_True;
+    }
+
+    public void Reset()
+    {
+        text.fontSize = font_size;
     }
 }
