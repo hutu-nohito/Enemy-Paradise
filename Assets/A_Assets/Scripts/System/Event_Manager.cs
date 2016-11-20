@@ -37,7 +37,7 @@ public class Event_Manager : MonoBehaviour {
     //uGMのlengthSecenarioが文章の何段目かを示す
 
     public GameObject[] YesNo;
-    private Event_Controller EC;//Event_Controller
+    public Event_Controller EC;//Event_Controller
 
     private Static save;//日数、起動回数、HP、MP、名声、ボーナスポイント
     private SceneTransition ST;
@@ -148,6 +148,11 @@ public class Event_Manager : MonoBehaviour {
             //Information.SetActive(true);/消しとく
         }
 
+        if (SceneManager.GetActiveScene().name == "lilith2 battle field")
+        {
+            StartCoroutine(battle_T());
+        }
+
         //イベントコントローラをそのシーンのものに更新
         EC = GameObject.Find("Event_Controller").GetComponent<Event_Controller>();
 
@@ -211,7 +216,15 @@ public class Event_Manager : MonoBehaviour {
         isCoroutineG = false;
 		
 	}
-    
+
+    IEnumerator battle_T()
+    {//コロシアムでのイベント
+
+        
+        yield return new WaitForSeconds(1);//
+
+    }
+
     //イベントのはいいいえを選ぶボタン（今はチュートリアルを受けるかどうかだけ選択）
     public void YesButton()
     {

@@ -26,7 +26,13 @@ public class Event_Controller : MonoBehaviour {
     //チュートリアル用（突貫　後でどうにかする）
     public int TutorialStep = 100;//チュートリアルのステップ数(頑張れば使いまわせそう)
     public GameObject[] TutorialCube;//とりあえず直入れ
-    
+
+    //登場シーン用（後で何とかする）
+    public GameObject AnimCamera;//とりあえず映す
+    public GameObject AnimMoji;
+    public GameObject AnimHaniwonder;
+    public GameObject AnimGolem;//今はダミー
+
     // Use this for initialization
     void Start () {
 
@@ -41,6 +47,12 @@ public class Event_Controller : MonoBehaviour {
         {
             Backyard_T();
         }
+
+        //めんどくさいからとりあえずなんか入れとけ
+        //if(TutorialCube[0] == null)
+        //{
+
+        //}
             
     }
 	

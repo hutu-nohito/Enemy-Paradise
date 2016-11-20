@@ -76,6 +76,12 @@ public class ViveHaniwonder : Enemy_Base
 
     }
 
+    //元の状態に戻せるよう整理する
+    public void ForceReset()
+    {
+        coroutine = StartCoroutine(ChangeState(0.5f, ActionState.Idle));
+    }
+
     // Update is called once per frame
     void Update()
     {

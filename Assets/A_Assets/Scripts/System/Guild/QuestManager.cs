@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;//List用
+
 
 public class QuestManager : Quest_Parameter {
 
@@ -40,6 +42,16 @@ public class QuestManager : Quest_Parameter {
     //Player
     public GameObject Player;
 
+    //(このステージにいる)Enemy
+    private List<GameObject> Enemys = new List<GameObject>();
+    
+    //アニメーション用キャラクタ（後で移動）
+    private GameObject AnimCamera;//とりあえず映す
+    public Vector3 AnimCamOffset = new Vector3(0,3,-5);
+    private GameObject AnimMoji;
+    private GameObject AnimHaniwonder;
+    private GameObject AnimGolem;//今はダミー
+
     //クエストマネージャはManagerについてるのでStartは基本使わない
     // Use this for initialization
     void Start()
@@ -68,6 +80,12 @@ public class QuestManager : Quest_Parameter {
         ST = GetComponent<SceneTransition>();
         clear_count = clear_num;
 
+        //後で直す
+        Event_Controller EC = GameObject.Find("Event_Controller").GetComponent<Event_Controller>();
+        AnimHaniwonder = EC.AnimHaniwonder;
+        AnimCamera = EC.AnimCamera;
+        AnimMoji = EC.AnimMoji;
+
         //敵やらなんやら配置構成 全部アクティブにしておく///////////////////////////////////////////////////////////////////////////////////////////
 
         //eBで判断すれば、敵一体一体を識別できるはず
@@ -80,6 +98,54 @@ public class QuestManager : Quest_Parameter {
             {
                 eB[i].gameObject.SetActive(false);
             }
+            else
+            {
+                Enemys.Add(eB[i].gameObject);
+            }
+        }
+
+        Player.GetComponent<Player_ControllerVR>().flag_magic = false;//魔法が打てると先制で勝てる
+
+        //登場演出（後で移動？）//////////////////////////////////////////////////////////////////////////////////////////////
+
+        //熱血はにわんだー
+        if (queststageID == 6)
+        {
+            //Time.timeScale = 0;//止めとく
+            Enemys[0].SetActive(false);//消しとく
+
+            //カメラ切り替え
+            AnimCamera.SetActive(true);
+            //AnimCamera.transform.position = AnimHaniwonder.transform.position + AnimCamOffset;
+            Camera.main.GetComponent<Camera>().depth = -1;
+
+            yield return new WaitForSeconds(3.0f);//切り替わり待ち
+
+            AnimHaniwonder.SetActive(true);
+
+            yield return new WaitForSeconds(3.0f);//アニメーション待ち
+
+            //文字表示
+            AnimMoji.SetActive(true);
+            
+            yield return new WaitForSeconds(2.0f);//文字待ち
+
+            AnimMoji.GetComponent<TextEffect>().ReverseFade();
+            AnimMoji.GetComponent<TextEffect>().fade_speed = 0.8f;
+
+            yield return new WaitForSeconds(1.0f);//文字待ち
+
+            AnimMoji.SetActive(false);
+
+            yield return new WaitForSeconds(2.0f);//余韻
+
+            Camera.main.GetComponent<Camera>().depth = 0;
+            AnimCamera.SetActive(false);
+
+            AnimHaniwonder.SetActive(false);
+            Enemys[0].SetActive(true);//つけとく
+            //Time.timeScale = 1;//動かす
+
         }
 
 
@@ -89,6 +155,8 @@ public class QuestManager : Quest_Parameter {
         //Go = GameObject.Find("Text_Go");
         //Clear = GameObject.Find("Text_Clear");
 
+        yield return new WaitForSeconds(0.5f);//ちょい待つ
+
         //GameObjectはアクティブでないと探せないので探したら消す
         Ready.SetActive(false);
         Go.SetActive(false);
@@ -97,10 +165,8 @@ public class QuestManager : Quest_Parameter {
         Ready.SetActive(true);
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        Player.GetComponent<Player_ControllerVR>().flag_magic = false;//魔法が打てると先制で勝てる
-
         //この時間で魔法をストックできるはず
-        yield return new WaitForSeconds(5);//表示に時間がかかる可能性を考えて少したってから行動できるようにしておく
+        yield return new WaitForSeconds(4.5f);//表示に時間がかかる可能性を考えて少したってから行動できるようにしておく
 
         Ready.SetActive(false);
         Go.SetActive(true);
@@ -109,6 +175,12 @@ public class QuestManager : Quest_Parameter {
         yield return new WaitForSeconds(2);//ちょっとしたらGoを消す
         Go.SetActive(false);
         Player.GetComponent<Player_ControllerVR>().flag_magic = true;
+
+        //熱血はにわんだー登場演出用（後でどうにかする）
+        if (queststageID == 6)
+        {
+            Enemys[0].GetComponent<ViveHaniwonder>().ForceReset();
+        }
 
     }
 
