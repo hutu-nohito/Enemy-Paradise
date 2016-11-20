@@ -260,7 +260,7 @@ public class QuestManager : Quest_Parameter {
         yield return new WaitForSeconds(0.5f);//カメラ切り替えの間
 
         Clear.SetActive(true);
-        if(queststageID > _static.GetGL())
+        if(queststageID >= _static.GetGL())
         {
             _static.SetGL(_static.GetGL() + 1);//これでクエスト管理
         }
