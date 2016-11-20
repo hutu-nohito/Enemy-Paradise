@@ -15,7 +15,7 @@ public class Tips_Controller : MonoBehaviour {
         _static = GameObject.FindGameObjectWithTag("Manager").GetComponent<Static>();
 
         Tip = GetComponentInChildren<Image>();
-        Tip.sprite = Tips[Random.Range(2, Tips.Length + 1)];
+        Tip.sprite = Tips[Random.Range(2, Tips.Length)];
         if (_static.guild_level == 3)
         {
             Tip.sprite = Tips[0];
