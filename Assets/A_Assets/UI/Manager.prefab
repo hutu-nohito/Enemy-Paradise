@@ -393,7 +393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI_Window: {fileID: 160248}
   UI_Text: {fileID: 154660}
-  Text_spead: 1
+  Text_spead: 0.95
   Text: {fileID: 4900000, guid: b28c9782945e206458b4f3ae56008ff7, type: 3}
   flag: 1
   lengthSecenario: 0

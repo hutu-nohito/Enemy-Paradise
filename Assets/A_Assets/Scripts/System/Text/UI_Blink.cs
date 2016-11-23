@@ -8,12 +8,12 @@ public class UI_Blink : MonoBehaviour {
     public float blinkTime;//点滅周期
 
     private bool isBlink = false;
-
+    
 	// Use this for initialization
 	void Start () {
 
         StartCoroutine(Blink());
-
+        
     }
 	
 	// Update is called once per frame
@@ -27,6 +27,7 @@ public class UI_Blink : MonoBehaviour {
     {
         isBlink = false;
         StartCoroutine(Blink());
+        
     }
 
     IEnumerator Blink()
@@ -43,4 +44,5 @@ public class UI_Blink : MonoBehaviour {
         }
 
     }
+    
 }

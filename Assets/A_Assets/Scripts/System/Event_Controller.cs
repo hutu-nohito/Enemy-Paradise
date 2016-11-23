@@ -26,6 +26,7 @@ public class Event_Controller : MonoBehaviour {
     //チュートリアル用（突貫　後でどうにかする）
     public int TutorialStep = 100;//チュートリアルのステップ数(頑張れば使いまわせそう)
     public GameObject[] TutorialCube;//とりあえず直入れ
+    public GameObject[] TutorialImage;//後でもっとうまい方法を考える
 
     //登場シーン用（後で何とかする）
     public GameObject AnimCamera;//とりあえず映す
@@ -42,10 +43,12 @@ public class Event_Controller : MonoBehaviour {
         ST = Manager.GetComponent<SceneTransition>();
         PcVR = GameObject.FindWithTag("Player").GetComponent<Player_ControllerVR>();
         TutorialStep = 0;
+
+        //これはそのうちEMから呼び出せるようにしたい
         //シーン遷移時の関数の呼び出し順が難しいので気を付ける
         if (SceneManager.GetActiveScene().name == "BackyardVR")
         {
-            Backyard_T();
+            StartCoroutine(Backyard_T());
         }
 
         //めんどくさいからとりあえずなんか入れとけ
@@ -58,12 +61,25 @@ public class Event_Controller : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        if(TutorialStep == 2)//魔法陣を出す
+        {
+            if (EM.uGM.lengthSecenario == 3)//文章の何段落目か
+            {
+                TutorialImage[0].SetActive(true);//下げ
+                Invoke("Age",0.5f);//後で何とかする
+            }
+        }
+        
         
     }
 
+    void Age()
+    {
+        TutorialImage[1].SetActive(true);//上げ
+    }
 
-    public void Backyard_T()//裏庭でのイベント
+
+    IEnumerator Backyard_T()//裏庭でのイベント
     {
         flag_tutorial = true;
 
@@ -96,7 +112,14 @@ public class Event_Controller : MonoBehaviour {
         }
         if (TutorialStep == 4)
         {
+            //ちょっと観察できる時間を作る
+            TutorialImage[0].SetActive(false);//
+            TutorialImage[1].SetActive(false);//
+            TutorialImage[1].transform.parent.gameObject.SetActive(false);//親も消しとくと安心
             TutorialCube[1].SetActive(false);
+
+            yield return new WaitForSeconds(3);
+
             PcVR.Reverse_Magic();
             EM.uGM.enabled = true;//つける
             EM.uGM.dispMessage(EM.EventText[6]);//表示する
@@ -139,7 +162,7 @@ public class Event_Controller : MonoBehaviour {
 
             if (SceneManager.GetActiveScene().name == "Backyard" || SceneManager.GetActiveScene().name == "BackyardVR")
             {
-                Backyard_T();
+                StartCoroutine(Backyard_T());
             }
         }
 

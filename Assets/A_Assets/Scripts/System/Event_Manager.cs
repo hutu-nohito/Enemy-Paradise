@@ -104,19 +104,20 @@ public class Event_Manager : MonoBehaviour {
 
         olduGM = uGM.enabled;
 
-        //後で移動
-        if (!EventFlag[2])
+        //後で移動(テキスト名とかとるべき？)
+        if (SceneManager.GetActiveScene().name == "Guild")
         {
-            if (uGM.lengthSecenario == 5)//文章の何段落目か
+            if (!EventFlag[2])
             {
-                YesNo[0].SetActive(true);//Yesボタン
-                YesNo[1].SetActive(true);//Noボタン
-                EventFlag[2] = true;
+                if (uGM.lengthSecenario == 5)//文章の何段落目か
+                {
+                    YesNo[0].SetActive(true);//Yesボタン
+                    YesNo[1].SetActive(true);//Noボタン
+                    EventFlag[2] = true;
+                }
             }
         }
-
-
-
+        
     }
 
     //シーンが変わったらイベントチェック
