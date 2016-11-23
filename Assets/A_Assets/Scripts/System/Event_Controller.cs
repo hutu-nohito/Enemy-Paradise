@@ -69,13 +69,38 @@ public class Event_Controller : MonoBehaviour {
                 Invoke("Age",0.5f);//後で何とかする
             }
         }
-        
-        
+
+        if (TutorialStep == 4)//魔法陣発動
+        {
+            if (EM.uGM.lengthSecenario == 5)//文章の何段落目か
+            {
+                TutorialImage[1].transform.parent.gameObject.SetActive(true);// 親もつける
+                TutorialImage[2].SetActive(true);//触らん
+                Invoke("Age2", 0.5f);//後で何とかする
+            }
+        }
+
+        if (TutorialStep == 6)//魔法をストック
+        {
+            if (EM.uGM.lengthSecenario == 1)//文章の何段落目か
+            {
+                TutorialImage[1].transform.parent.gameObject.SetActive(true);// 親もつける
+                TutorialImage[3].SetActive(true);//グリップ
+            }
+        }
+
+
     }
 
+    //後で何とかする
     void Age()
     {
         TutorialImage[1].SetActive(true);//上げ
+    }
+
+    void Age2()
+    {
+        TutorialImage[3].SetActive(true);//赤触る
     }
 
 
@@ -131,13 +156,21 @@ public class Event_Controller : MonoBehaviour {
         }
         if (TutorialStep == 6)
         {
+            //ちょっと観察できる時間を作る
+            TutorialImage[2].SetActive(false);//
+            TutorialImage[3].SetActive(false);//
+            TutorialImage[1].transform.parent.gameObject.SetActive(false);//親も消しとくと安心
             TutorialCube[2].SetActive(false);
+
+            yield return new WaitForSeconds(3);
+
             PcVR.Reverse_Magic();
             EM.uGM.enabled = true;//つける
             EM.uGM.dispMessage(EM.EventText[7]);//表示する
         }
         if (TutorialStep == 7)
         {
+            TutorialImage[3].SetActive(false);//グリップ
             PcVR.Reverse_Magic();
             Invoke("TutorialClear", 10);//とりあえず
         }

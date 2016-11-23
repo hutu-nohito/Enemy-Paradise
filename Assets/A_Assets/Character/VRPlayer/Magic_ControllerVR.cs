@@ -723,11 +723,11 @@ public class Magic_ControllerVR : MonoBehaviour {
                     //    flag_Jin = true;
                     //}
                     //flag_Jin = false;
-                    if (MagicList.Count > 0)
-                    {
-                        CheckMagicList();//ここで魔法が完成しているかを判定
-                        SelectMagic[stockMagic[0]].SendMessage("Guide");//ガイドのある魔法はこれ使う
-                    }
+                    //if (MagicList.Count > 0)
+                    //{
+                    //    CheckMagicList();//ここで魔法が完成しているかを判定
+                    //    SelectMagic[stockMagic[0]].SendMessage("Guide");//ガイドのある魔法はこれ使う
+                    //}
 
                 }
                 break;
@@ -806,6 +806,15 @@ public class Magic_ControllerVR : MonoBehaviour {
 
         flag_Jin = false;
         MagicList.Clear();//チェックしたらクリア
+    }
+
+    public void PutHP()//HPに触れる
+    {
+        if (MagicList.Count > 0)
+        {
+            CheckMagicList();//ここで魔法が完成しているかを判定
+            SelectMagic[stockMagic[0]].SendMessage("Guide");//ガイドのある魔法はこれ使う
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////
