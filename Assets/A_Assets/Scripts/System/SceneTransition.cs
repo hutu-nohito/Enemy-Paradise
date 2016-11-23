@@ -13,7 +13,7 @@ public class SceneTransition : MonoBehaviour {
     private Coroutine coroutine;
     private bool isCoroutine;
     private Event_Manager EM;
-
+    
     // Use this for initialization
     void Start()
     {
@@ -204,7 +204,7 @@ public class SceneTransition : MonoBehaviour {
         if (isCoroutine) yield break;
         isCoroutine = true;
         Fade();
-
+        
         //Asy = Application.LoadLevelAsync(SceneName);
         Asy = SceneManager.LoadSceneAsync(SceneName);
 

@@ -597,7 +597,7 @@ MonoBehaviour:
   M_Point: 100
   lank_P: 0
   bonus_P: 0
-  guild_level: 6
+  guild_level: 0
   currentPallete: 1
   SelectMagicID: 0000000002000000080000000b0000000c000000
   folder: 
@@ -1270,6 +1270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185958ba317a5a44a9eeb57491c7c876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  msgCan: {fileID: 1000010082949508}
   fade: {fileID: 11446152}
   isFade: 0
   fadeTime: 2

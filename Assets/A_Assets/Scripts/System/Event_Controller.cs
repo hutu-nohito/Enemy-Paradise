@@ -42,7 +42,7 @@ public class Event_Controller : MonoBehaviour {
         EM = Manager.GetComponent<Event_Manager>();
         ST = Manager.GetComponent<SceneTransition>();
         PcVR = GameObject.FindWithTag("Player").GetComponent<Player_ControllerVR>();
-        TutorialStep = 8;
+        TutorialStep = 0;
 
         //これはそのうちEMから呼び出せるようにしたい
         //シーン遷移時の関数の呼び出し順が難しいので気を付ける
@@ -244,6 +244,7 @@ public class Event_Controller : MonoBehaviour {
 
         if (TutorialStep == 13)
         {
+            EM.uGM.enabled = false;//つける
             flag_tutorial = false;//チュートリアルを途中でやめるとバグる気がする
             ST.Guild();
         }

@@ -599,7 +599,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010272276798, guid: 84492f99af132cc4caea8159ef5311ca, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1000013036652800, guid: 84492f99af132cc4caea8159ef5311ca, type: 2}
       propertyPath: m_IsActive
@@ -835,7 +835,7 @@ Prefab:
       objectReference: {fileID: 1456328606}
     - target: {fileID: 150974, guid: 0469b30b32c702543a0552a6e3ec2dbe, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11488026, guid: 0469b30b32c702543a0552a6e3ec2dbe, type: 2}
       propertyPath: state
@@ -1058,7 +1058,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010272276798, guid: 84492f99af132cc4caea8159ef5311ca, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1000013036652800, guid: 84492f99af132cc4caea8159ef5311ca, type: 2}
       propertyPath: m_IsActive
@@ -2088,7 +2088,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010272276798, guid: 84492f99af132cc4caea8159ef5311ca, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1000013036652800, guid: 84492f99af132cc4caea8159ef5311ca, type: 2}
       propertyPath: m_IsActive
@@ -2198,6 +2198,35 @@ BoxCollider:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 0109f0f01845af642af3618bcfe28673, type: 3}
   m_PrefabInternal: {fileID: 1371801755}
+--- !u!21 &174377890
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+    - first:
+        name: _MainTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - first:
+        name: PixelSnap
+      second: 0
+    m_Colors:
+    - first:
+        name: _Color
+      second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &177216888
 Prefab:
   m_ObjectHideFlags: 0
@@ -2599,7 +2628,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100826, guid: 62621b5bef2106447946f81ac250e966, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62621b5bef2106447946f81ac250e966, type: 2}
@@ -2962,7 +2991,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010272276798, guid: 84492f99af132cc4caea8159ef5311ca, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1000013036652800, guid: 84492f99af132cc4caea8159ef5311ca, type: 2}
       propertyPath: m_IsActive
@@ -5918,7 +5947,7 @@ Prefab:
       objectReference: {fileID: 1456328606}
     - target: {fileID: 150974, guid: 0469b30b32c702543a0552a6e3ec2dbe, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11488026, guid: 0469b30b32c702543a0552a6e3ec2dbe, type: 2}
       propertyPath: state
@@ -6037,7 +6066,7 @@ Prefab:
       objectReference: {fileID: 1456328606}
     - target: {fileID: 150974, guid: 0469b30b32c702543a0552a6e3ec2dbe, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11488026, guid: 0469b30b32c702543a0552a6e3ec2dbe, type: 2}
       propertyPath: state
@@ -6337,7 +6366,7 @@ Prefab:
       objectReference: {fileID: 1696616897}
     - target: {fileID: 1000011583382628, guid: 08cfc46327eaea54aa9298253d5c44ff, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114000014151686472, guid: 08cfc46327eaea54aa9298253d5c44ff,
         type: 2}
@@ -6352,7 +6381,7 @@ Prefab:
     - target: {fileID: 114000014151686472, guid: 08cfc46327eaea54aa9298253d5c44ff,
         type: 2}
       propertyPath: H_point
-      value: 1
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114000014151686472, guid: 08cfc46327eaea54aa9298253d5c44ff,
         type: 2}
@@ -9826,12 +9855,12 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1499512040}
+      objectReference: {fileID: 174377890}
     - target: {fileID: 33000012330918286, guid: 4fe91fc9187a330489ae472ca8c1eb9c,
         type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1308608986}
+      objectReference: {fileID: 1307326938}
     - target: {fileID: 114000014041203790, guid: 4fe91fc9187a330489ae472ca8c1eb9c,
         type: 2}
       propertyPath: MC
@@ -12122,7 +12151,7 @@ Prefab:
       objectReference: {fileID: 401667739}
     - target: {fileID: 1000011583382628, guid: 08cfc46327eaea54aa9298253d5c44ff, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114000014151686472, guid: 08cfc46327eaea54aa9298253d5c44ff,
         type: 2}
@@ -12696,7 +12725,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 44fa49aaa06433448b95f6d567266b0c, type: 2}
   m_IsPrefabParent: 0
---- !u!43 &1308608986
+--- !u!43 &1307326938
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -13524,7 +13553,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010272276798, guid: 84492f99af132cc4caea8159ef5311ca, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1000013036652800, guid: 84492f99af132cc4caea8159ef5311ca, type: 2}
       propertyPath: m_IsActive
@@ -14169,7 +14198,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010272276798, guid: 84492f99af132cc4caea8159ef5311ca, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1000013036652800, guid: 84492f99af132cc4caea8159ef5311ca, type: 2}
       propertyPath: m_IsActive
@@ -14439,35 +14468,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000014145152054, guid: 4fe91fc9187a330489ae472ca8c1eb9c,
     type: 2}
   m_PrefabInternal: {fileID: 1004115030}
---- !u!21 &1499512040
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  m_SavedProperties:
-    serializedVersion: 2
-    m_TexEnvs:
-    - first:
-        name: _MainTex
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - first:
-        name: PixelSnap
-      second: 0
-    m_Colors:
-    - first:
-        name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &1506691734
 Prefab:
   m_ObjectHideFlags: 0
@@ -15567,7 +15567,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010272276798, guid: 84492f99af132cc4caea8159ef5311ca, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1000013036652800, guid: 84492f99af132cc4caea8159ef5311ca, type: 2}
       propertyPath: m_IsActive
@@ -15996,7 +15996,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010272276798, guid: 84492f99af132cc4caea8159ef5311ca, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1000013036652800, guid: 84492f99af132cc4caea8159ef5311ca, type: 2}
       propertyPath: m_IsActive
@@ -18358,7 +18358,7 @@ Prefab:
       objectReference: {fileID: 1456328606}
     - target: {fileID: 150974, guid: 0469b30b32c702543a0552a6e3ec2dbe, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11488026, guid: 0469b30b32c702543a0552a6e3ec2dbe, type: 2}
       propertyPath: state
@@ -19645,7 +19645,7 @@ Prefab:
       objectReference: {fileID: 1456328606}
     - target: {fileID: 150974, guid: 0469b30b32c702543a0552a6e3ec2dbe, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11488026, guid: 0469b30b32c702543a0552a6e3ec2dbe, type: 2}
       propertyPath: state
