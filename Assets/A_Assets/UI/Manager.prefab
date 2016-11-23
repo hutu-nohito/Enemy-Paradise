@@ -452,6 +452,8 @@ MonoBehaviour:
   - {fileID: 4900000, guid: d72f61b59b1f0f74baff0450221641a2, type: 3}
   - {fileID: 4900000, guid: 42397b222191b434cbe30d827d425e96, type: 3}
   - {fileID: 4900000, guid: 3dd9f9012d21dac4588a3ce378fe646e, type: 3}
+  - {fileID: 4900000, guid: e0da532fd074f6d4caa0809ade100d7c, type: 3}
+  - {fileID: 4900000, guid: 67a96cc222fcd494aae6701939296880, type: 3}
   Canvas: {fileID: 1000010082949508}
   Information: {fileID: 173054}
   YesNo:

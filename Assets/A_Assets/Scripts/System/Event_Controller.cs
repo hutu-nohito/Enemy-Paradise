@@ -42,7 +42,7 @@ public class Event_Controller : MonoBehaviour {
         EM = Manager.GetComponent<Event_Manager>();
         ST = Manager.GetComponent<SceneTransition>();
         PcVR = GameObject.FindWithTag("Player").GetComponent<Player_ControllerVR>();
-        TutorialStep = 0;
+        TutorialStep = 8;
 
         //これはそのうちEMから呼び出せるようにしたい
         //シーン遷移時の関数の呼び出し順が難しいので気を付ける
@@ -82,10 +82,19 @@ public class Event_Controller : MonoBehaviour {
 
         if (TutorialStep == 6)//魔法をストック
         {
-            if (EM.uGM.lengthSecenario == 1)//文章の何段落目か
+            if (EM.uGM.lengthSecenario == 2)//文章の何段落目か
             {
                 TutorialImage[1].transform.parent.gameObject.SetActive(true);// 親もつける
-                TutorialImage[3].SetActive(true);//グリップ
+                TutorialImage[5].SetActive(true);//HPタッチ
+            }
+        }
+
+        if (TutorialStep == 8)//魔法を放つ
+        {
+            if (EM.uGM.lengthSecenario == 2)//文章の何段落目か
+            {
+                TutorialImage[1].transform.parent.gameObject.SetActive(true);// 親もつける
+                TutorialImage[6].SetActive(true);//HPタッチ
             }
         }
 
@@ -119,6 +128,9 @@ public class Event_Controller : MonoBehaviour {
         }
         if (TutorialStep == 1)//敵を探す
         {
+
+            yield return new WaitForSeconds(1);//文章が消えるまで
+
             PcVR.Reverse_Magic();
             TutorialCube[0].SetActive(true);
 
@@ -132,6 +144,9 @@ public class Event_Controller : MonoBehaviour {
         }
         if (TutorialStep == 3)//魔法陣を出す
         {
+
+            yield return new WaitForSeconds(1);//文章が消えるまで
+
             PcVR.Reverse_Magic();
             TutorialCube[1].SetActive(true);
         }
@@ -151,6 +166,8 @@ public class Event_Controller : MonoBehaviour {
         }
         if (TutorialStep == 5)//魔法を作る
         {
+            yield return new WaitForSeconds(1);//文章が消えるまで
+
             PcVR.Reverse_Magic();
             TutorialCube[2].SetActive(true);
         }
@@ -168,18 +185,64 @@ public class Event_Controller : MonoBehaviour {
             EM.uGM.enabled = true;//つける
             EM.uGM.dispMessage(EM.EventText[7]);//表示する
         }
-        if (TutorialStep == 7)
+        if (TutorialStep == 7)//魔法をストック
         {
-            TutorialImage[3].SetActive(false);//グリップ
+
+            yield return new WaitForSeconds(1);//文章が消えるまで
+
             PcVR.Reverse_Magic();
-            Invoke("TutorialClear", 10);//とりあえず
+            TutorialCube[3].SetActive(true);
         }
         if (TutorialStep == 8)
         {
+            //ちょっと観察できる時間を作る
+            TutorialImage[5].SetActive(false);//
+            TutorialImage[1].transform.parent.gameObject.SetActive(false);//親も消しとくと安心
+            TutorialCube[3].SetActive(false);
+
+            yield return new WaitForSeconds(3);
+
+            PcVR.Reverse_Magic();
             EM.uGM.enabled = true;//つける
             EM.uGM.dispMessage(EM.EventText[8]);//表示する
         }
-        if (TutorialStep == 9)
+        if (TutorialStep == 9)//魔法を撃つ
+        {
+
+            yield return new WaitForSeconds(1);//文章が消えるまで
+
+            PcVR.Reverse_Magic();
+            Invoke("TutorialClear",7);//7秒遊んでもらう
+        }
+        if (TutorialStep == 10)
+        {
+            //ちょっと観察できる時間を作る
+            TutorialImage[6].SetActive(false);//
+            TutorialImage[1].transform.parent.gameObject.SetActive(false);//親も消しとくと安心
+            
+            yield return new WaitForSeconds(3);
+
+            PcVR.Reverse_Magic();
+            EM.uGM.enabled = true;//つける
+            EM.uGM.dispMessage(EM.EventText[9]);//表示する
+        }
+        if (TutorialStep == 11)//魔法を撃つ
+        {
+
+            yield return new WaitForSeconds(1);//文章が消えるまで
+
+            PcVR.Reverse_Magic();
+            Invoke("TutorialClear", 30);//30秒遊んでもらう
+        }
+        if (TutorialStep == 12)
+        {
+            //倒せても倒せなくても進む
+            PcVR.Reverse_Magic();
+            EM.uGM.enabled = true;//つける
+            EM.uGM.dispMessage(EM.EventText[10]);//表示する
+        }
+
+        if (TutorialStep == 13)
         {
             flag_tutorial = false;//チュートリアルを途中でやめるとバグる気がする
             ST.Guild();
