@@ -40,10 +40,21 @@ public class ViveGolem : Enemy_Base {
     //private Camera_ControllerZ CCZ;
     public GameObject diedGolem;//やられたとき
 
+    private AudioSource Audio_Source;
+    public AudioClip[] SE;
+
+    /*
+     * 0:ずっ・・・
+     * 1:ドン
+     * 
+     */
+
     // Use this for initialization
     void Start()
     {
         base.BaseStart();
+
+        Audio_Source = GetComponent<AudioSource>();
 
         //CCZ = Camera.main.gameObject.GetComponent<Camera_ControllerZ>();
 
@@ -175,6 +186,7 @@ public class ViveGolem : Enemy_Base {
                 base.animator.SetTrigger("Walk");
             }
 
+
             if (GetDistanceP() < 10)
             {
                 //たまーにとげ攻撃
@@ -296,6 +308,7 @@ public class ViveGolem : Enemy_Base {
         base.animator.speed = 3.0f;//振り降ろし
         yield return new WaitForSeconds(0.1f);//たたいた瞬間
         base.animator.speed = 1.0f;//振り降ろし
+        Audio_Source.PlayOneShot(SE[1]);//ドン
 
         //CCZ.flag_quake = true;//Viveのカメラを揺らすのは難しいので別の方法を考える
         //Player.GetComponent<Player_ControllerVR>().SetKeylock();
@@ -334,6 +347,8 @@ public class ViveGolem : Enemy_Base {
         AttackCol[1].tag = ("Bullet");//攻撃にする
         AttackCol[1].GetComponents<CapsuleCollider>()[1].enabled = true;//攻撃判定
         AttackCol[1].GetComponents<CapsuleCollider>()[0].enabled = false;//接触判定
+
+        Audio_Source.PlayOneShot(SE[2]);//くるくるー
 
         //base.animator.speed = 1.5f;//振り降ろし
         base.animator.speed = 3.0f;//振り降ろし

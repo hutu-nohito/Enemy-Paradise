@@ -324,7 +324,7 @@ public class DeathHand : Enemy_Base {
 
         flag_fade = false;
 
-        //SE.PlayOneShot(cv[0]);
+        SE.PlayOneShot(cv[0]);
 
         yield return new WaitForSeconds(1);//現れるまで
 

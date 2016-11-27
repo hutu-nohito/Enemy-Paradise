@@ -3652,7 +3652,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   QuestStageID: 0
   CharaName: Haniwander
-  level: 1
+  level: 4
   H_point: 10
   M_point: 10
   power: 1

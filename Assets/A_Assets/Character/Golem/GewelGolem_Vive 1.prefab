@@ -122,6 +122,7 @@ GameObject:
   - 54: {fileID: 54000012697228222}
   - 136: {fileID: 136000011818810410}
   - 114: {fileID: 114000014151686472}
+  - 82: {fileID: 82000011006121832}
   m_Layer: 0
   m_Name: StoneGolem.V.19
   m_TagString: Enemy
@@ -4623,6 +4624,80 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &82000011006121832
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010325635274}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e5f93c2a0288860428ce2e27abfff248, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!82 &82000011606015772
 AudioSource:
   m_ObjectHideFlags: 1
@@ -4918,6 +4993,10 @@ MonoBehaviour:
   - {fileID: 4000013283639762}
   - {fileID: 4000011478753956}
   diedGolem: {fileID: 1000013653079012}
+  SE:
+  - {fileID: 8300000, guid: e5f93c2a0288860428ce2e27abfff248, type: 3}
+  - {fileID: 8300000, guid: 9dc8b3408b63f3744b1a310db6d68c0a, type: 3}
+  - {fileID: 8300000, guid: 49bee184287d2d645aa66b35e6c7c399, type: 3}
 --- !u!114 &114000014273010826
 MonoBehaviour:
   m_ObjectHideFlags: 1

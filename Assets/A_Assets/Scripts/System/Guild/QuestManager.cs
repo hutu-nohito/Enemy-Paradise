@@ -249,14 +249,15 @@ public class QuestManager : Quest_Parameter {
 
         //消しとく
         Enemys.Clear();
+        now_count = 0;//使い終わったら戻す
 
         //クリア後だからたぶんほっといても大丈夫
         //Player.GetComponent<Player_ControllerZ>().SetKeylock();
         //Camera.main.enabled = false;
         //F_camera.enabled = true;
 
-		//クリア時のHP、MPを引き継がせる
-		//_static.SetHP(Player.GetComponent<Player_ControllerZ> ().GetHP ());
+        //クリア時のHP、MPを引き継がせる
+        //_static.SetHP(Player.GetComponent<Player_ControllerZ> ().GetHP ());
 
         yield return new WaitForSeconds(0.5f);//カメラ切り替えの間
 
