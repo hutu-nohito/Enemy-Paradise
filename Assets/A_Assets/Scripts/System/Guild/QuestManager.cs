@@ -79,6 +79,7 @@ public class QuestManager : Quest_Parameter {
         _static = GetComponent<Static>();
         ST = GetComponent<SceneTransition>();
         clear_count = clear_num;
+        now_count = 0;
 
         //後で直す
         Event_Controller EC = GameObject.Find("Event_Controller").GetComponent<Event_Controller>();
@@ -312,7 +313,7 @@ public class QuestManager : Quest_Parameter {
         now_count = 0;//使い終わったら戻す
 
         //クリア後だからたぶんほっといても大丈夫
-        Player.GetComponent<Player_ControllerVR>().Reverse_Magic();
+        //Player.GetComponent<Player_ControllerVR>().Reverse_Magic();
         //Camera.main.enabled = false;
         //F_camera.enabled = true;
 

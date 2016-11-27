@@ -13,6 +13,7 @@ public class SceneTransition : MonoBehaviour {
     private Coroutine coroutine;
     private bool isCoroutine;
     private Event_Manager EM;
+    private Sound_Manager SM;
     
     // Use this for initialization
     void Start()
@@ -20,6 +21,7 @@ public class SceneTransition : MonoBehaviour {
 
         _static = GetComponent<Static>();
         EM = GetComponent<Event_Manager>();
+        SM = GetComponent<Sound_Manager>();
 
     }
 
@@ -217,6 +219,7 @@ public class SceneTransition : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);//シーンが完全に変わりきってからイベントチェック
 
         EM.SendMessage("Check_Event");
+        SM.SendMessage("Check_BGM");
 
         isCoroutine = false;
     }

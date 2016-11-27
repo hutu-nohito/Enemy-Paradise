@@ -20,6 +20,7 @@ public class CharacterDamageVR : MonoBehaviour
     private GameObject Parent;//このあたり判定を持つキャラ
     public bool weak_point = false;
     private Character_Parameters Cpara;//キャラクタのパラメタ
+    private AudioSource Audio_Source;
 
     private Renderer[] Renderer;//レンダー1
     private Renderer[] SkinRenderer;//レンダー2
@@ -50,6 +51,8 @@ public class CharacterDamageVR : MonoBehaviour
     {
         //親を取得
         Parent = gameObject.transform.parent.gameObject;
+
+        Audio_Source = GetComponent<AudioSource>();
 
         if (Parent.gameObject.tag == "Player")
         {
@@ -168,6 +171,7 @@ public class CharacterDamageVR : MonoBehaviour
                 if (Cpara.GetF_Damage())
                 {
                     Cpara.H_point -= damage;
+                    Audio_Source.PlayOneShot(Audio_Source.clip);//ダメージ音
                     Cpara.SendMessage("Damage", SendMessageOptions.DontRequireReceiver);//とりあえずダメージを受けたことを知らせる
                     ReverseDamage();//ダメージを連続で受けないようにする
                     //StartCoroutine(Blink());

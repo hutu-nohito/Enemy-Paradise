@@ -27,6 +27,7 @@ public class CharacterDamage : MonoBehaviour {
     private Renderer[] Renderer;//レンダー1
     private Renderer[] SkinRenderer;//レンダー2
     public GameObject Model;//モデル
+    private AudioSource Audio_Source;
     
 
     //演出(最初に取得)
@@ -53,7 +54,8 @@ public class CharacterDamage : MonoBehaviour {
     {
         //親を取得
         Parent = gameObject.transform.parent.gameObject;
-        
+
+        Audio_Source = GetComponent<AudioSource>();     
 
         if (Parent.gameObject.tag == "Player")
         {
@@ -172,6 +174,7 @@ public class CharacterDamage : MonoBehaviour {
                 if (Cpara.GetF_Damage())
                 {
                     Cpara.H_point -= damage;
+                    Audio_Source.PlayOneShot(Audio_Source.clip);//ダメージ音
                     Cpara.SendMessage("Damage",SendMessageOptions.DontRequireReceiver);//とりあえずダメージを受けたことを知らせる
                     ReverseDamage();//ダメージを連続で受けないようにする
                     //StartCoroutine(Blink());

@@ -331,6 +331,8 @@ public class ViveHaniwonder : Enemy_Base
 
         yield return new WaitForSeconds(0.1f);
 
+        SE.PlayOneShot(cv[1]);//はにー
+
         //前を向ける
         iTween.RotateTo(this.gameObject, iTween.Hash(
                 "y", Mathf.Repeat(Quaternion.LookRotation(-GetMove()).eulerAngles.y, 360.0f),//(たまにおかしくなるので後で検証)
@@ -394,6 +396,9 @@ public class ViveHaniwonder : Enemy_Base
 
         yield return new WaitForSeconds(0.1f);
 
+        SE.PlayOneShot(cv[1]);//はにー
+        SE.PlayOneShot(cv[2]);//ぴゅーん
+
         //前を向ける
         iTween.RotateTo(this.gameObject, iTween.Hash(
                 "y", Mathf.Repeat(Quaternion.LookRotation(GetMove()).eulerAngles.y, 360.0f),//(たまにおかしくなるので後で検証)
@@ -407,7 +412,11 @@ public class ViveHaniwonder : Enemy_Base
         base.animator.SetTrigger("falseHeadbutt");
         HeadCol.SetActive(false);
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
+
+        SE.PlayOneShot(cv[3]);//ぐちゃ
+
+        yield return new WaitForSeconds(2);
 
         if (level == 2)
         {
@@ -648,6 +657,7 @@ public class ViveHaniwonder : Enemy_Base
             }
             else
             {
+                SE.PlayOneShot(cv[4]);//しゅん
                 ReverseAfterImage();//残像
                 iTween.RotateTo(Avatars[number[i]], iTween.Hash(
                     "y", Mathf.Repeat(Quaternion.LookRotation(-GetMove()).eulerAngles.y, 360.0f),//(たまにおかしくなるので後で検証)
@@ -700,6 +710,8 @@ public class ViveHaniwonder : Enemy_Base
                 "easetype", iTween.EaseType.linear
                 )
                 );
+
+        SE.PlayOneShot(cv[4]);//しゅん
 
         //前を向ける
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(base.Player.transform.position - transform.position), 0.05f);
