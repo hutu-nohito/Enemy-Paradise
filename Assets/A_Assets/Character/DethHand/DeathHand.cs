@@ -380,11 +380,11 @@ public class DeathHand : Enemy_Base {
                 "x", home.position.x + Random.Range(-10.0f, 10.0f),
                 "y", home.position.y + Random.Range(-2.0f, 2.0f),
                 "z", home.position.z + Random.Range(-10.0f, 10.0f),
-                "time", 2.5f,
+                "time", 4f,
                 "easetype", iTween.EaseType.easeInOutCubic)
                 );
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(4f);
 
         //サーチ中にたまにプレイヤの後ろにワープしてくる
 

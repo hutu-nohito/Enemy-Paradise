@@ -104,12 +104,12 @@ public class monster_Cont2 : Enemy_Base
         //相手がいなくなった時の処理
         if(base.Player.GetComponent<Character_Parameters>().GetHP() <= 0)
         {
-            StopAllCoroutines();
-            base.Player = this.gameObject;
-            state = ActionState.Stop;
-            animState = (int)ActionState.Stop;
-            //勝利のポーズ
-            base.animator.SetTrigger("Win");
+            //StopAllCoroutines();
+            //base.Player = this.gameObject;
+            //state = ActionState.Stop;
+            //animState = (int)ActionState.Stop;
+            ////勝利のポーズ
+            //base.animator.SetTrigger("Win");
         }
 
         //空中判定
@@ -202,7 +202,7 @@ public class monster_Cont2 : Enemy_Base
             }*/
 
             //たまーに避けつつ攻撃
-            if ((int)Time.time % 5 == 0)//5秒ごと
+            if ((int)Time.time % 10 == 0)//10秒ごと
             {
                 float randAt1 = Random.value;
                 float randAt2 = Random.value;
@@ -371,6 +371,10 @@ public class monster_Cont2 : Enemy_Base
 
         Vector3 OldPlayerPos = base.Player.transform.position;
 
+        //前を向ける
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(base.Player.transform.position - transform.position), 0.5f);
+        transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+
         //とびかかる
         iTween.MoveTo(this.gameObject, iTween.Hash(
                 "position", new Vector3(
@@ -381,10 +385,6 @@ public class monster_Cont2 : Enemy_Base
                 "time", 0.5f,
                 "easetype", iTween.EaseType.easeInOutBack)
                 );
-
-        //前を向ける
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(base.Player.transform.position - transform.position), 0.05f);
-        transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
 
         //武器を振り下ろすまで
         yield return new WaitForSeconds(0.4f);//こーゆーパラメータもインスペクタで決めるべきだと思うけどごちゃごちゃしそうでいや
