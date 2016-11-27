@@ -281,24 +281,14 @@ public class CharacterDamageVR : MonoBehaviour
     {
         DamegeEffect.SetActive(true);
 
-        yield return new WaitForSeconds(0.2f);//点滅時間
+        while (DamegeEffect.GetComponent<MeshRenderer>().material.color.a >= -0.1f)
+        {
+            DamegeEffect.GetComponent<MeshRenderer>().material.color -= new Color(0,0,0,0.01f);
 
-        DamegeEffect.SetActive(false);
+            yield return new WaitForSeconds(0.05f);//
+        }
 
-        yield return new WaitForSeconds(0.2f);//点滅時間
-
-        DamegeEffect.SetActive(true);
-
-        yield return new WaitForSeconds(0.2f);//点滅時間
-
-        DamegeEffect.SetActive(false);
-
-        yield return new WaitForSeconds(0.2f);//点滅時間
-
-        DamegeEffect.SetActive(true);
-
-        yield return new WaitForSeconds(0.2f);//点滅時間
-
+        DamegeEffect.GetComponent<MeshRenderer>().material.color = new Color(DamegeEffect.GetComponent<MeshRenderer>().material.color.r, DamegeEffect.GetComponent<MeshRenderer>().material.color.g, DamegeEffect.GetComponent<MeshRenderer>().material.color.b, 0.3f);
         DamegeEffect.SetActive(false);
 
     }

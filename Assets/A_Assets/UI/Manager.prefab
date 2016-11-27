@@ -1268,7 +1268,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e7a5b5de32b5a8a4480365be8f322bc0, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1485,10 +1485,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BGM:
-  - {fileID: 8300000, guid: e834c75ad232dd244baf6864e00a508b, type: 3}
+  - {fileID: 8300000, guid: e7a5b5de32b5a8a4480365be8f322bc0, type: 3}
   - {fileID: 8300000, guid: a72b0e805666dbf4795fe1ba0ec24641, type: 3}
-  - {fileID: 8300000, guid: 648d65f4cda4d954bac0a25c271e8e17, type: 3}
-  - {fileID: 8300000, guid: ae8b36a91d9aaca44a2302544c882545, type: 3}
+  - {fileID: 8300000, guid: 6a8991fa0531ad6428d798c8d1f7e300, type: 3}
+  - {fileID: 8300000, guid: 0352f36d2dcec164ba0b838ec7f569da, type: 3}
+  - {fileID: 8300000, guid: 80ced0ab9b675cb458cd7bff9fb8f3c3, type: 3}
 --- !u!114 &114000011291661188
 MonoBehaviour:
   m_ObjectHideFlags: 1
