@@ -106,20 +106,20 @@ public class DeathHand : Enemy_Base {
         //相手がいなくなった時の処理
         if (base.Player == null)
         {
-            StopAllCoroutines();
-            base.Player = this.gameObject;//プレイやがいなくなると不具合が起きるのでなんか入れとく
-            state = ActionState.Stop;
-            animState = (int)ActionState.Stop;
+            //StopAllCoroutines();
+            //base.Player = this.gameObject;//プレイやがいなくなると不具合が起きるのでなんか入れとく
+            //state = ActionState.Stop;
+            //animState = (int)ActionState.Stop;
             ////勝利のポーズ
             //base.animator.SetTrigger("Win");
             //効果音と演出
-            if (!SE.isPlaying)
-            {
+            //if (!SE.isPlaying)
+            //{
 
-                SE.loop = true;
-                SE.Play();//SE
+                //SE.loop = true;
+                //SE.Play();//SE
 
-            }
+            //}
 
         }
 
@@ -326,7 +326,7 @@ public class DeathHand : Enemy_Base {
 
         SE.PlayOneShot(cv[0]);
 
-        yield return new WaitForSeconds(1);//現れるまで
+        yield return new WaitForSeconds(3);//現れるまで
 
         float randomvalue = Random.Range(0.0f, 1.0f);
         float wispP, astonishP, floatP;
