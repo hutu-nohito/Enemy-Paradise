@@ -34,6 +34,9 @@ public class ViveHaniwonder : Enemy_Base
     public GameObject HeadCol;//頭突き攻撃判定
     GameObject[] Avatars = new GameObject[3];
 
+    //エフェクト
+    public GameObject[] Effects;
+
     //Timer
     float timer = 0;//使ったら0に
 
@@ -332,6 +335,7 @@ public class ViveHaniwonder : Enemy_Base
         yield return new WaitForSeconds(0.1f);
 
         SE.PlayOneShot(cv[1]);//はにー
+        Effects[0].SetActive(true);//砂埃
 
         //前を向ける
         iTween.RotateTo(this.gameObject, iTween.Hash(
@@ -342,6 +346,8 @@ public class ViveHaniwonder : Enemy_Base
                 );
 
         yield return new WaitForSeconds(3);
+
+        Effects[0].SetActive(false);//砂埃
 
         if (level == 4)
         {
@@ -412,11 +418,16 @@ public class ViveHaniwonder : Enemy_Base
         base.animator.SetTrigger("falseHeadbutt");
         HeadCol.SetActive(false);
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.7f);
 
         SE.PlayOneShot(cv[3]);//ぐちゃ
+        Effects[0].SetActive(true);//砂埃
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.5f);
+
+        Effects[0].SetActive(false);//砂埃
+
+        yield return new WaitForSeconds(1.8f);
 
         if (level == 2)
         {
@@ -476,19 +487,23 @@ public class ViveHaniwonder : Enemy_Base
 
         //        );
         transform.LookAt(Player.transform.position);
+        Effects[0].SetActive(true);//砂埃
 
         yield return new WaitForSeconds(0.25f);//
 
         SE.PlayOneShot(cv[1]);//SE
 
         Bullet[0].SetActive(true);
-
+        
         Bullet[0].transform.Rotate(-Mathf.Atan((Player.transform.position.y - transform.position.y) / (Player.transform.position - transform.position).magnitude) * (180 / Mathf.PI), 0, 0);
 
         //効果音と演出
         SE.PlayOneShot(cv[0]);//SE
 
-        //yield return new WaitForSeconds(0.7f);//撃った後の硬直
+        yield return new WaitForSeconds(0.5f);//撃った後の硬直
+
+        Effects[0].SetActive(false);//砂埃
+
         yield return new WaitForSeconds(1.0f);//撃った後の硬直
 
         Bullet[0].SetActive(false);
@@ -658,6 +673,7 @@ public class ViveHaniwonder : Enemy_Base
             else
             {
                 SE.PlayOneShot(cv[4]);//しゅん
+                Effects[0].SetActive(true);//砂埃
                 ReverseAfterImage();//残像
                 iTween.RotateTo(Avatars[number[i]], iTween.Hash(
                     "y", Mathf.Repeat(Quaternion.LookRotation(-GetMove()).eulerAngles.y, 360.0f),//(たまにおかしくなるので後で検証)
@@ -682,6 +698,8 @@ public class ViveHaniwonder : Enemy_Base
         TacleCol.SetActive(false);
 
         yield return new WaitForSeconds(3);
+
+        Effects[0].SetActive(false);//砂埃
 
         state = ActionState.Idle;
 
