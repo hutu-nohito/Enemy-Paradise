@@ -751,6 +751,8 @@ public class ViveHaniwonder : Enemy_Base
             base.animator.SetTrigger("Knockback");
         }
 
+        Effects[0].SetActive(false);//砂埃
+
         //プレイヤから遠ざかる方向
         //iTween.MoveTo(this.gameObject, iTween.Hash(
         //        "x", transform.position.x - (Player.transform.position - transform.position).normalized.x * 2,//定数が突進距離

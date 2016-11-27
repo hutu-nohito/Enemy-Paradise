@@ -25,6 +25,7 @@ public class CharacterDamageVR : MonoBehaviour
     private Renderer[] Renderer;//レンダー1
     private Renderer[] SkinRenderer;//レンダー2
     //public GameObject Model;//モデル
+    public GameObject DamegeEffect;
 
 
     //演出(最初に取得)
@@ -172,6 +173,7 @@ public class CharacterDamageVR : MonoBehaviour
                 {
                     Cpara.H_point -= damage;
                     Audio_Source.PlayOneShot(Audio_Source.clip);//ダメージ音
+                    StartCoroutine(DamageEffects());
                     Cpara.SendMessage("Damage", SendMessageOptions.DontRequireReceiver);//とりあえずダメージを受けたことを知らせる
                     ReverseDamage();//ダメージを連続で受けないようにする
                     //StartCoroutine(Blink());
@@ -273,6 +275,32 @@ public class CharacterDamageVR : MonoBehaviour
     void ReverseDamage()
     {
         Cpara.Reverse_Damage();
+    }
+
+    IEnumerator DamageEffects()
+    {
+        DamegeEffect.SetActive(true);
+
+        yield return new WaitForSeconds(0.2f);//点滅時間
+
+        DamegeEffect.SetActive(false);
+
+        yield return new WaitForSeconds(0.2f);//点滅時間
+
+        DamegeEffect.SetActive(true);
+
+        yield return new WaitForSeconds(0.2f);//点滅時間
+
+        DamegeEffect.SetActive(false);
+
+        yield return new WaitForSeconds(0.2f);//点滅時間
+
+        DamegeEffect.SetActive(true);
+
+        yield return new WaitForSeconds(0.2f);//点滅時間
+
+        DamegeEffect.SetActive(false);
+
     }
 
     //状態異常管理//////////////////////////////////////////////
