@@ -71,7 +71,6 @@ public class Guild : MonoBehaviour {
         {
             Battle_paper[i].SetActive(true);
         }
-
 	}
 
     public void GameStart()

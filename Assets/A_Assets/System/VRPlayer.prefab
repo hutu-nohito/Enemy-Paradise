@@ -6676,10 +6676,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   MagicTexture:
-  - {fileID: 21300000, guid: a349f714d4298ba428056efc18c9701f, type: 3}
+  - {fileID: 21300000, guid: ba7ad7cb6e585f54790b5ad3a05131ad, type: 3}
   - {fileID: 21300000, guid: 684c24abdfe4d1442905146c073320a8, type: 3}
   - {fileID: 21300000, guid: 444edf1fa0507bf44958f3521e9afc4f, type: 3}
-  - {fileID: 21300000, guid: 8ecaa6bfdbf88864c9db300e2bc7f7ab, type: 3}
+  - {fileID: 21300000, guid: 28ce7e44246f7ae49b993eaa8ea7efc6, type: 3}
   - {fileID: 21300000, guid: abea46b8c6a5f5842b78563b3f035a6d, type: 3}
   - {fileID: 21300000, guid: 7a7c41b441a8c1445b7f1df0b6e5b382, type: 3}
   MagicIcon:

@@ -27,6 +27,7 @@ public class Event_Manager : MonoBehaviour {
     /*
         0:ホーム一日目
         1:ギルド一日目
+        2:チュートリアル
     */
 
 	public GameObject Canvas;//UI
@@ -213,6 +214,24 @@ public class Event_Manager : MonoBehaviour {
 
             //}
         }
+        if (EventFlag[3])
+        {
+            uGM.enabled = true;//つける
+            uGM.dispMessage(EventText[11]);//表示する
+            EventFlag[3] = false;
+        }
+        if (EventFlag[4])
+        {
+            uGM.enabled = true;//つける
+            uGM.dispMessage(EventText[12]);//表示する
+            EventFlag[4] = false;
+        }
+        if (EventFlag[5])
+        {
+            uGM.enabled = true;//つける
+            uGM.dispMessage(EventText[13]);//表示する
+            EventFlag[5] = false;
+        }
 
         isCoroutineG = false;
 		
@@ -239,6 +258,12 @@ public class Event_Manager : MonoBehaviour {
         YesNo[1].SetActive(false);//Noボタン
         uGM.enabled = true;//つける
         uGM.dispMessage(EventText[3]);//表示する
+    }
+
+    //管理するフラグと立てるか下ろすかを選択
+    public void EventFlagSet(int num ,bool flag)
+    {
+        EventFlag[num] = flag;
     }
 
 }

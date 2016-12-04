@@ -23,6 +23,7 @@ public class QuestManager : Quest_Parameter {
 
 	//Script//////////////////////////////////////////////////////////
 	private Static _static;
+    private Event_Manager EM;
     private SceneTransition ST;
     private uGUI_Msg GUImsg;//メッセージ操作用
 
@@ -58,6 +59,7 @@ public class QuestManager : Quest_Parameter {
     {
 
         _static = GetComponent<Static>();
+        EM = GetComponent<Event_Manager>();
         ST = GetComponent<SceneTransition>();
 
     }
@@ -265,6 +267,15 @@ public class QuestManager : Quest_Parameter {
         if(queststageID >= _static.GetGL())
         {
             _static.SetGL(_static.GetGL() + 1);//これでクエスト管理
+        }
+        //クリアした時にしか出てこないはず
+        switch (_static.GetGL())
+        {
+            case 3:
+                EM.EventFlagSet(3,true);
+                break;
+            default:
+                break;
         }
         
         yield return new WaitForSeconds(3);//クリアを見せる
