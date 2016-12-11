@@ -6,7 +6,13 @@ public class Tips_Controller : MonoBehaviour {
 
     private Static _static;
 
-    public Sprite[] Tips;//0と1がセーブルーン
+    [SerializeField]
+    private Sprite[] Tips;
+    [SerializeField]
+    private GameObject[] Runes;
+    [SerializeField]
+    private GameObject[] Magics;
+
     private Image Tip;
 
 	// Use this for initialization
@@ -15,14 +21,21 @@ public class Tips_Controller : MonoBehaviour {
         _static = GameObject.FindGameObjectWithTag("Manager").GetComponent<Static>();
 
         Tip = GetComponentInChildren<Image>();
-        Tip.sprite = Tips[Random.Range(2, Tips.Length)];
-        if (_static.guild_level == 3)
+        Tip.sprite = Tips[Random.Range(0, Tips.Length - 5)];//ピラーまで
+        if (_static.guild_level >= 3)
         {
-            Tip.sprite = Tips[0];
+            Tip.sprite = Tips[Random.Range(0, Tips.Length - 3)];//キャリバーまで
+            //Tip.sprite = Tips[0];
+            Runes[0].SetActive(true);
+            Magics[1].SetActive(true);
+            Magics[2].SetActive(true);
         }
-        if (_static.guild_level == 6)
+        if (_static.guild_level >= 6)
         {
-            Tip.sprite = Tips[1];
+            Tip.sprite = Tips[Random.Range(0, Tips.Length)];//全部
+            Runes[1].SetActive(true);
+            Magics[3].SetActive(true);
+            Magics[4].SetActive(true);
         }
     }
 	
