@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Guild : MonoBehaviour {
 
@@ -16,6 +17,9 @@ public class Guild : MonoBehaviour {
 	private Quest_Parameter quest_parameter;
     private SceneTransition ST;
     private Static _static;
+
+    [SerializeField]
+    private RectTransform Image_New_pos;
 
     //チュートリアル用(不要か？)
     //private bool flag_onetime = false;
@@ -71,6 +75,7 @@ public class Guild : MonoBehaviour {
         {
             Battle_paper[i].SetActive(true);
         }
+        Image_New_pos.localPosition = new Vector3(qM.Image_New_pos.x, qM.Image_New_pos.y, 0);//newの位置合わせ
 	}
 
     public void GameStart()

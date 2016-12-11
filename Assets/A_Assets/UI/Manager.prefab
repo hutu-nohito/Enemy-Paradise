@@ -313,6 +313,7 @@ MonoBehaviour:
   Failed: {fileID: 166786}
   Player: {fileID: 0}
   AnimCamOffset: {x: 0, y: 0.5, z: -1}
+  Image_New_pos: {x: -10000, y: -10000}
 --- !u!114 &11408088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -459,6 +460,9 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 3dd9f9012d21dac4588a3ce378fe646e, type: 3}
   - {fileID: 4900000, guid: e0da532fd074f6d4caa0809ade100d7c, type: 3}
   - {fileID: 4900000, guid: 67a96cc222fcd494aae6701939296880, type: 3}
+  - {fileID: 4900000, guid: 05fe0150b24e0d24d8160059b993f2bf, type: 3}
+  - {fileID: 4900000, guid: 91c649776c3bcda4a96f911549edcbc3, type: 3}
+  - {fileID: 4900000, guid: 88586cc13f15ac149b4e31a2771bf0a3, type: 3}
   Canvas: {fileID: 1000010082949508}
   Information: {fileID: 173054}
   YesNo:
