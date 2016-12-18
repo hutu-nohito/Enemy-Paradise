@@ -270,43 +270,44 @@ public class QuestManager : Quest_Parameter {
         if(queststageID >= _static.GetGL())
         {
             _static.SetGL(_static.GetGL() + 1);//これでクエスト管理
-        }
-        //クリアした時にしか出てこないはず
-        switch (_static.GetGL())
-        {
-            case 1:
-                Image_New_pos = new Vector2(-192.5f, -133f);
-                break;
-            case 2:
-                Image_New_pos = new Vector2(30f, 72.6f);
-                break;
-            case 3:
-                EM.EventFlagSet(3,true);
-                Image_New_pos = new Vector2(174f, 72.6f);
-                break;
-            case 4:
-                Image_New_pos = new Vector2(150f, -114.6f);
-                break;
-            case 5:
-                Image_New_pos = new Vector2(145.5f, -203f);
-                break;
-            case 6:
-                EM.EventFlagSet(4, true);
-                Image_New_pos = new Vector2(-162.8f, -269.4f);
-                break;
-            case 7:
-                Image_New_pos = new Vector2(-11.1f, -229.4f);
-                break;
-            case 8:
-                Image_New_pos = new Vector2(214f, -305f);
-                break;
-            case 9:
-                EM.EventFlagSet(5, true);
-                Image_New_pos = new Vector2(-10000f, -10000f);
-                break;
-            default:
-                Image_New_pos = new Vector2(-10000f, -10000f);//ごまかし
-                break;
+
+            //クリアした時にしか出てこないはず
+            switch (_static.GetGL())
+            {
+                case 1:
+                    Image_New_pos = new Vector2(-192.5f, -133f);
+                    break;
+                case 2:
+                    Image_New_pos = new Vector2(30f, 72.6f);
+                    break;
+                case 3:
+                    EM.EventFlagSet(3, true);
+                    Image_New_pos = new Vector2(174f, 72.6f);
+                    break;
+                case 4:
+                    Image_New_pos = new Vector2(150f, -114.6f);
+                    break;
+                case 5:
+                    Image_New_pos = new Vector2(145.5f, -203f);
+                    break;
+                case 6:
+                    EM.EventFlagSet(4, true);
+                    Image_New_pos = new Vector2(-162.8f, -269.4f);
+                    break;
+                case 7:
+                    Image_New_pos = new Vector2(-11.1f, -229.4f);
+                    break;
+                case 8:
+                    Image_New_pos = new Vector2(214f, -305f);
+                    break;
+                case 9:
+                    EM.EventFlagSet(5, true);
+                    Image_New_pos = new Vector2(-10000f, -10000f);
+                    break;
+                default:
+                    Image_New_pos = new Vector2(-10000f, -10000f);//ごまかし
+                    break;
+            }
         }
         
         yield return new WaitForSeconds(3);//クリアを見せる
