@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneTransition : MonoBehaviour {
 
     //Scene系は全部ここで管理
+    public GameObject MessageWindow;
 
     private Static _static;
 
@@ -203,6 +204,9 @@ public class SceneTransition : MonoBehaviour {
     private AsyncOperation Asy = null;
     private IEnumerator TransScene()
     {
+        //メッセージが出ているときはシーン遷移を行わない
+        if (MessageWindow.activeSelf) yield break;
+
         if (isCoroutine) yield break;
         isCoroutine = true;
         Fade();
